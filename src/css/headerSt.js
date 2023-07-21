@@ -5,64 +5,53 @@ const path = process.env.PUBLIC_URL;
 export const HeaderContainer = styled.div`
   z-index: 999999;
   width: 100%;
-  height: 300px;
-  background: white;
-  background-image: url("${path}/image/headerBg.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 100%;
+  height: 120px;
+  background: #214a08;
   .inner {
     position: relative;
     margin: 0 auto;
     display: flex;
-    flex-direction: column;
-    width: 1400px;
+    justify-content: space-around;
+    width: 100%;
     height: 100%;
     .logo {
-      margin: 0 auto;
-      width: 200px;
-      height: 150px;
-      background: orange;
-    }
-    .nav_box {
-      display: flex;
-      width: 100%;
+      width: 15%;
       height: 100%;
-      .gnb {
-        margin: 0 auto;
+    }
+    .gnb_area {
+      display: flex;
+      justify-content: center;
+      width: 70%;
+      height: 100%;
+      .gnb_list {
         display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 80%;
+        justify-content: space-between;
+        width: 970px;
         height: 100%;
-        p {
-          width: 100%;
-          height: auto;
-          padding: 5px 10px;
-          border-radius: 5px;
-          font-size: 30px;
-          color: #fff;
-          text-align: center;
+        li {
+          width: 23%;
+          height: 100%;
+          a {
+            padding-bottom: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 50%;
+            background: #9ab685;
+            border-bottom-right-radius: 40px;
+            border-bottom-left-radius: 40px;
+            color: #fff;
+            font-size: 19px;
+            font-weight: bold;
+            text-shadow: 2px 2px 2px black;
+          }
         }
       }
     }
     .account {
-      position: absolute;
-      top: 0px;
-      right: 0px;
-      width: auto;
-      padding: 0px 10px;
-      height: 50px;
-      border-radius: 100px;
-      background: sandybrown;
-      .account_list {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 100%;
-        gap: 10px;
-      }
+      width: 15%;
+      height: 100%;
     }
   }
 `;

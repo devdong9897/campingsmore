@@ -1,3 +1,3 @@
 import styled from "@emotion/styled";
 
-export const Main = styled.div``;
+export const MainWarp = styled.div``;
