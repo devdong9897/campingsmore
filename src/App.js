@@ -14,8 +14,8 @@ function App() {
     // Wrap 컴포넌트 아닙니다. 스타일입니다.
     <Wrap>
       <Routes>
-        <Route path="/" element={<Main />}></Route>
-        <Route path="/login" element={<Login />}></Route>
+        <Route path="/" element={<Login />}></Route>
+        <Route path="/main" element={<Main />}></Route>
         <Route path="/orderlist" element={<OrderList />}></Route>
         <Route path="/community" element={<Community />}></Route>
         <Route path="*" element={<NotFound />}></Route>

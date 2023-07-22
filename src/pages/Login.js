@@ -1,8 +1,9 @@
 import React from 'react'
+import { LoginForm } from '../css/LoginSt'
 
 const Login = () => {
   return (
-    <div>로그인이다</div>
+    <LoginForm>로그인이다</LoginForm>
   )
 }
 
