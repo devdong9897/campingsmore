@@ -14,17 +14,21 @@ export const HeaderContainer = styled.div`
     position: relative;
     margin: 0 auto;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     width: 100%;
     height: 100%;
     .logo {
-      width: 15%;
+      width: 150px;
       height: 100%;
+      background-image: url("${path}/image/Logo.png");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 125px;
     }
     .gnb_area {
       display: flex;
       justify-content: center;
-      width: 70%;
+      width: 65%;
       height: 100%;
       .gnb_list {
         display: flex;
@@ -53,8 +57,9 @@ export const HeaderContainer = styled.div`
       }
     }
     .account {
-      width: 15%;
+      width: 10%;
       height: 100%;
+      background: gold;
     }
   }
 `;

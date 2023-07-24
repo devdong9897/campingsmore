@@ -1,7 +1,12 @@
 import React from "react";
+import { OrderListWrapper } from "../css/orderlist-style";
 
 const OrderList = () => {
-  return <div>주문페이지 입니다</div>;
+  return (
+    <OrderListWrapper>
+      주문주문!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    </OrderListWrapper>
+  );
 };
 
 export default OrderList;

@@ -6,20 +6,20 @@ const Header = () => {
   return (
     <HeaderContainer>
       <div className="inner">
-        <div className="logo">로고 자리</div>
+        <div className="logo"></div>
         <div className="gnb_area">
           <ul className="gnb_list">
             <li>
-              <Link to="/">메인페이지</Link>
+              <Link to="/main">메인페이지</Link>
             </li>
             <li>
-              <Link to="/orderlist">주문하기</Link>
+              <Link to="/main/orderlist">주문하기</Link>
             </li>
             <li>
               <Link to="/main">캠핑예약</Link>
             </li>
             <li>
-              <Link to="/community">커뮤니티</Link>
+              <Link to="/main/community">커뮤니티</Link>
             </li>
           </ul>
         </div>
