@@ -18,6 +18,7 @@ export const HeaderContainer = styled.div`
     width: 100%;
     height: 100%;
     .logo {
+      flex-grow: 1;
       width: 150px;
       height: 100%;
       background-image: url("${path}/image/Logo.png");
@@ -28,7 +29,7 @@ export const HeaderContainer = styled.div`
     .gnb_area {
       display: flex;
       justify-content: center;
-      width: 65%;
+      width: 70%;
       height: 100%;
       .gnb_list {
         display: flex;
@@ -57,9 +58,25 @@ export const HeaderContainer = styled.div`
       }
     }
     .account {
+      flex-grow: 1;
       width: 10%;
       height: 100%;
-      background: gold;
+      .account_list {
+        display: flex;
+        padding-right: 50px;
+        padding-top: 10px;
+        gap: 10px;
+        li {
+          a {
+            display: block;
+            width: 125px;
+            height: 50px;
+            font-size: 17px;
+            color: #fff;
+            background: green;
+          }
+        }
+      }
     }
   }
 `;

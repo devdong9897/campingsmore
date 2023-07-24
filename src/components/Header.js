@@ -24,9 +24,13 @@ const Header = () => {
           </ul>
         </div>
         <div className="account">
-          <ul>
-            <li>로그인</li>
-            <li>회원가입</li>
+          <ul className="account_list">
+            <li>
+              <Link to="#">로그인</Link>
+            </li>
+            <li>
+              <Link to="#">회원가입</Link>
+            </li>
           </ul>
         </div>
       </div>
