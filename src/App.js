@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { Wrap } from "./css/layoutSt";
+import { Wrap } from "./css/layout-style";
 import "./App.css";
 import Intro from "./pages/Intro";
 import Login from "./pages/Login";

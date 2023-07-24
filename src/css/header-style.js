@@ -3,10 +3,13 @@ import styled from "@emotion/styled";
 const path = process.env.PUBLIC_URL;
 
 export const HeaderContainer = styled.div`
+  position: fixed;
+  top: 0px;
+  left: 0px;
   z-index: 999999;
   width: 100%;
   height: 120px;
-  background: #214a08;
+  background: rgba(33, 77, 8, 0.1);
   .inner {
     position: relative;
     margin: 0 auto;
