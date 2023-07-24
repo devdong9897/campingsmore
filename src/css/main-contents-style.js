@@ -92,7 +92,7 @@ export const MainContentsWrapper = styled.div`
     position: relative;
     width: 100%;
     height: 1000px;
-    background: skyblue;
+    background: #262626;
     .kakao_map_area {
       position: absolute;
       top: 50%;
@@ -100,6 +100,8 @@ export const MainContentsWrapper = styled.div`
       transform: translate(-50%, -50%);
       width: 1300px;
       height: 800px;
+      overflow: hidden;
+      border-radius: 15px;
       background: green;
     }
   }

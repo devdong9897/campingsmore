@@ -1,4 +1,5 @@
 import React from "react";
+import KakaoMap from "../components/KakaoMap";
 import { MainContentsWrapper } from "../css/main-contents-style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
@@ -31,7 +32,9 @@ const MainContents = () => {
       </div>
       <div className="kakao_map_wrap">
         <span>최적의 캠핑 장소를 찾아보세요</span>
-        <div className="kakao_map_area">안나오냐</div>
+        <div className="kakao_map_area">
+          <KakaoMap />
+        </div>
       </div>
       <div className="recommned_menu">
         <div className="flying_basket"></div>
