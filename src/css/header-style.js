@@ -9,7 +9,7 @@ export const HeaderContainer = styled.div`
   z-index: 999999;
   width: 100%;
   height: 120px;
-  background: rgba(33, 77, 8, 0.1);
+  background: rgba(0, 0, 0, 0.59);
   .inner {
     position: relative;
     margin: 0 auto;
@@ -21,7 +21,7 @@ export const HeaderContainer = styled.div`
       flex-grow: 1;
       width: 150px;
       height: 100%;
-      background-image: url("${path}/image/Logo.png");
+      background-image: url("${path}/image/Logo_w.png");
       background-repeat: no-repeat;
       background-position: center;
       background-size: 125px;
