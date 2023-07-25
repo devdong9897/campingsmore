@@ -15,7 +15,7 @@ const MainContents = () => {
           <div className="search_bar">
             <input
               type="text"
-              placeholder="찾으시는 캠핑음식이 있으신가요?"
+              placeholder="찾으시는 캠핑음식이 있으신가d요?"
             ></input>
             <button className="search_submit">
               <FontAwesomeIcon icon={faMagnifyingGlass} />
