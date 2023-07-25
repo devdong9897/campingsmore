@@ -4,6 +4,7 @@ import "./App.css";
 import Intro from "./pages/Intro";
 import Login from "./pages/Login";
 import Main from "./pages/MainPage";
+import SignUp from "./pages/SignUp";
 import NotFound from "./pages/NotFound";
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />}></Route>
         <Route path="/main/*" element={<Main />}></Route>
+        <Route path="/signup" element={<SignUp />}></Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </Wrap>
