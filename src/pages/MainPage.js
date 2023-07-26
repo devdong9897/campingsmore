@@ -7,10 +7,8 @@ import Community from "./Community";
 import CommunityWrite from "./CommunityWrite";
 import Payment from "./Payment";
 import OrderHistory from "./OrderHistory";
-
-import { Route, Routes } from "react-router-dom";
 import MainContents from "./MainContents";
-import OrderHistory from "./OrderHistory";
+import { Route, Routes } from "react-router-dom";
 
 const MainPage = () => {
   return (
