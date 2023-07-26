@@ -23,7 +23,7 @@ const Account = () => {
         </Routes>
       </div>
     </AccoutWrapper>
-  );
+  ); 
 };
 
 export default Account;

@@ -9,32 +9,38 @@ const Payment = () => {
           <div className="top_line">
             <h1>주문/결제</h1>
           </div>
-
-          <div className="payment_order_cate">
-            <span>상세정보</span>
-            <span>판매자</span>
-            <sapn>수량</sapn>
-            <sapn>금액</sapn>
+          <div className="payment_order_cate_box">
+            <ul className="payment_order_cate">
+              <li></li>
+              <li>상세정보</li>
+              <li>판매자</li>
+              <li>수량</li>
+              <li>금액</li>
+              <li></li>
+            </ul>
           </div>
-          <div className="payment_order_list">
-            <img
-              src="/image/food.jpg"
-              alt="Food"
-              width="200px"
-              height="200px"
-              className="payment_img"
-            />
-            <div className="payment_moreinfo">
-              <div>
-                <p>[BBQ 어딘가점]</p>
-                <p>BBQ황금올리브</p>
-                <p>옵션:국물 떡볶이</p>
+          {/* 이 영역을 map 돌려서 반복시킵니다 */}
+          <ul className="payment_order_list">
+            <li>
+              <div className="product_img">
+                <img src="/image/food.jpg" />
               </div>
-              <span className="payment_seller">또치</span>
-              <span className="payment_quantity">1</span>
-              <span className="payment_amount">25000원</span>
-            </div>
-          </div>
+              <div className="payment_moreinfo">
+                <span className="item_title">
+                  <p>BOQ 황금올리브</p>
+                  <p>Bachelors Quarters</p>
+                </span>
+                <span className="item_order_date">주문일:1992-01-10</span>
+              </div>
+              <div className="payment_seller">오소한 사람</div>
+              <div className="payment_quantity">1</div>
+              <div className="payment_amount">25,000원</div>
+              <div className="payment_cancel">
+                <button>주문취소</button>
+              </div>
+            </li>
+          </ul>
+          {/* 이 영역을 map 돌려서 반복시킵니다 */}
 
           <div className="payment_order_del">
             <h1>배송지 정보</h1>
