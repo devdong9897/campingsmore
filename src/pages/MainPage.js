@@ -8,6 +8,7 @@ import OrderHistory from "./OrderHistory";
 
 import { Route, Routes } from "react-router-dom";
 import MainContents from "./MainContents";
+import OrderHistory from "./OrderHistory";
 
 const MainPage = () => {
   return (
