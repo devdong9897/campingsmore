@@ -1,6 +1,4 @@
 import React from "react";
-import { CommunityWrapper } from "../css/community-style";
-import { useNavigate } from "react-router-dom";
 
 const Community = () => {
   const navigate = useNavigate();

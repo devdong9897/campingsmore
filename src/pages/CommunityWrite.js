@@ -1,5 +1,4 @@
-import React from "react";
-import {CommunityWriteWrapper} from "../css/community-write-style";
+import React from 'react'
 
 const CommunityWrite = () => {
   return (
@@ -26,4 +25,4 @@ const CommunityWrite = () => {
   )
 };
 
-export default CommunityWrite;
+export default CommunityWrite

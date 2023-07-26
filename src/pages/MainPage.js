@@ -6,9 +6,11 @@ import OrderList from "./OrderList";
 import Community from "./Community";
 import CommunityWrite from "./CommunityWrite";
 import Payment from "./Payment";
+import OrderHistory from "./OrderHistory";
 
 import { Route, Routes } from "react-router-dom";
 import MainContents from "./MainContents";
+import OrderHistory from "./OrderHistory";
 
 const MainPage = () => {
   return (
@@ -20,6 +22,7 @@ const MainPage = () => {
         <Route path="/community" element={<Community />}></Route>
         <Route path="/communitywrite" element={<CommunityWrite />}></Route>
         <Route path="/payment" element={<Payment />}></Route>
+        <Route path="/orderhistory" element={<OrderHistory />}></Route>
       </Routes>
       <Footer />
     </MainWarp>
