@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Main from "./pages/MainPage";
 import SignUp from "./pages/SignUp";
 import NotFound from "./pages/NotFound";
+import CommunityWrite from "./pages/CommunityWrite";
 function App() {
   return (
     // Wrap 컴포넌트 아닙니다. 스타일입니다.

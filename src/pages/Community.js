@@ -10,7 +10,7 @@ const Community = () => {
   };
 
   return (
-    <div>
+
       <CommunityWrapper>
         <div className="top_community_contents">
           <div className="community_contents_inner">
@@ -73,7 +73,6 @@ const Community = () => {
           </div>
         </div>
       </CommunityWrapper>
-    </div>
   );
 };
 

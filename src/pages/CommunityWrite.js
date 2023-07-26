@@ -2,7 +2,7 @@ import React from "react";
 import {CommunityWriteWrapper} from "../css/community-write-style";
 
 const CommunityWrite = () => {
-  return <div>
+  return (
     <CommunityWriteWrapper>
       <div className="top_communityWrite_contents">
         <div className="communityWrite_contents_inner">
@@ -23,7 +23,7 @@ const CommunityWrite = () => {
         </div>
       </div>
     </CommunityWriteWrapper>
-  </div>;
+  )
 };
 
 export default CommunityWrite;
