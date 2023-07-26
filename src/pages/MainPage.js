@@ -7,6 +7,7 @@ import Community from "./Community";
 import CommunityWrite from "./CommunityWrite";
 import Payment from "./Payment";
 import OrderHistory from "./OrderHistory";
+import OrderDetail from "./OrderDetail";
 import MainContents from "./MainContents";
 import { Route, Routes } from "react-router-dom";
 
@@ -21,6 +22,7 @@ const MainPage = () => {
         <Route path="/communitywrite" element={<CommunityWrite />}></Route>
         <Route path="/payment" element={<Payment />}></Route>
         <Route path="/orderhistory" element={<OrderHistory />}></Route>
+        <Route path="/orderdetail" element={<OrderDetail />}></Route>
       </Routes>
       <Footer />
     </MainWarp>
