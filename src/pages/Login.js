@@ -22,10 +22,10 @@ const Login = () => {
         <div className="find_account">
           <span>로그인에 도움이 필요하세요?</span>
           <span>
-            <Link to="/">아이디 찾기</Link>
+            <Link to="/find/findid">아이디 찾기</Link>
           </span>
           <span>
-            <Link to="/">비밀번호 찾기</Link>
+            <Link to="/find/findps">비밀번호 찾기</Link>
           </span>
         </div>
         <div className="do_login">

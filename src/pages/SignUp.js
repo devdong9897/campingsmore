@@ -2,22 +2,6 @@ import React, { useRef } from "react";
 
 import { SignUpForm } from "../css/signup-style";
 
-// const StyledRadioButtons = () => {
-//   const maleRef = useRef(null);
-//   const femaleRef = useRef(null);
-
-//   const handleRadioChange = e => {
-//     if (e.target.value === "남자") {
-//       maleRef.current.style.backgroundColor = "yellow";
-//       femaleRef.current.style.backgroundColor = "black";
-//     } else if (event.target.value === "여자") {
-//       maleRef.current.style.backgroundColor = "#f3eddd";
-//       femaleRef.current.style.backgroundColor = "yellow";
-//     }
-//   };
-
-// };
-
 const SignUp = () => {
   return (
     <SignUpForm>
