@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Main from "./pages/MainPage";
 import SignUp from "./pages/SignUp";
 import NotFound from "./pages/NotFound";
+import CommunityWrite from "./pages/CommunityWrite";
 import Find from "./pages/Find";
 function App() {
   return (
