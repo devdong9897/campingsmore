@@ -7,6 +7,7 @@ import Community from "./Community";
 
 import { Route, Routes } from "react-router-dom";
 import MainContents from "./MainContents";
+import OrderHistory from "./OrderHistory";
 
 const MainPage = () => {
   return (
@@ -16,6 +17,8 @@ const MainPage = () => {
         <Route path="/" element={<MainContents />} />
         <Route path="/orderlist" element={<OrderList />}></Route>
         <Route path="/community" element={<Community />}></Route>
+        <Route path="/orderhistory" element={<OrderHistory />}></Route>
+        
       </Routes>
       <Footer />
     </MainWarp>

@@ -9,7 +9,7 @@ export const HeaderContainer = styled.div`
   z-index: 999999;
   width: 100%;
   height: 120px;
-  background: rgba(33, 77, 8, 0.1);
+  background: rgba(0, 0, 0, 0.59);
   .inner {
     position: relative;
     margin: 0 auto;
