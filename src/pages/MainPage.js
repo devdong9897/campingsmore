@@ -9,6 +9,9 @@ import Payment from "./Payment";
 import OrderHistory from "./OrderHistory";
 import MainContents from "./MainContents";
 import { Route, Routes } from "react-router-dom";
+import PaymentModal from "../components/PaymentModal";
+import ReviewModal from "../components/ReviewModal";
+import Basket from "./Basket";
 
 const MainPage = () => {
   return (
@@ -21,6 +24,9 @@ const MainPage = () => {
         <Route path="/communitywrite" element={<CommunityWrite />}></Route>
         <Route path="/payment" element={<Payment />}></Route>
         <Route path="/orderhistory" element={<OrderHistory />}></Route>
+        <Route path="/reviewmodal" element={<ReviewModal />}></Route>
+        <Route path="/paymentmodal" element={<PaymentModal />}></Route>
+        <Route path="/basket" element={<Basket />}></Route>
       </Routes>
       <Footer />
     </MainWarp>

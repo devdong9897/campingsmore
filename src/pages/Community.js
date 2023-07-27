@@ -1,6 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router";
 import { CommunityWrapper } from "../css/community-style";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 const Community = () => {
   const navigate = useNavigate();
@@ -14,14 +16,17 @@ const Community = () => {
       <div className="top_community_contents">
         <div className="community_contents_inner">
           <h1>커뮤니티</h1>
+
           <hr className="community_line" />
+          <input type="text" className="community_search"/>
+          <FontAwesomeIcon icon={faMagnifyingGlass} className="communit_icon"/> 
           <button
             className="community_board_regi"
             onClick={handleGoToCommunityWrite}
           >
             게시글 작성
           </button>
-
+          
           <div className="community_board_list_head">
             <span className="community_board_list_notice">공지</span>
             <span>우리 서비스에 대한 소개</span>
@@ -71,7 +76,9 @@ const Community = () => {
             <span>사이트에 대해 피드백을...</span>
             <span>오소</span>
           </div>
+          
         </div>
+        
       </div>
     </CommunityWrapper>
   );
