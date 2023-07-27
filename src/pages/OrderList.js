@@ -21,10 +21,10 @@ const OrderList = () => {
         </div>
         <ul className="order_category">
           <li>#소고기</li>
-          <li>#소고기</li>
-          <li>#소고기</li>
-          <li>#소고기</li>
-          <li>#소고기</li>
+          <li>#양고기</li>
+          <li>#닭고기</li>
+          <li>#생선</li>
+          <li>#돼지고기</li>
         </ul>
         <ul className="order_item_list">
           <li>

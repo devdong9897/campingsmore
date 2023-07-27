@@ -70,40 +70,147 @@ export const OrderDetailWrapper = styled.div`
         height: 700px;
         border: 1px solid black;
         border-radius: 20px;
-        h1 {
-          font-size: 45px;
-          color: #9ab685;
-          margin-top: 39px;
-          margin-left: 20px;
-        }
-        p {
-          font-size: 25px;
-          font-weight: 700;
-          margin-left: 20px;
-          color: #bfbfbf;
-        }
-        .save {
-          .orderdetail_price {
-            font-size: 50px;
-            color: black;
+        .title {
+          h1 {
+            font-size: 40px;
+            color: #9ab685;
+            margin-left: 37px;
           }
-          .point {
-            margin-top: 100px;
-            font-weight: 900;
-            color: black;
+          p {
+            margin-left: 37px;
           }
-          .review {
+          .meddle_title {
             font-size: 20px;
+            font-weight: 900;
             color: #bfbfbf;
+            margin-top: 8px;
           }
-          .img_upload {
-
+          .price {
+            font-size: 50px;
+            font-weight: 900;
+            margin-top: 17px;
+            margin-left: 46px;
+            color: black;
           }
         }
-        .points_earned {
-            
+        .points {
+          display: flex;
+          .way {
+            width: 270px;
+            height: 260px;
+            .point_earned {
+              font-size: 25px;
+              font-weight: 900;
+              margin-top: 100px;
+              margin-left: 46px;
+              color: black;
+            }
+            .review {
+              font-size: 15px;
+              margin-top: 14px;
+              margin-left: 46px;
+              color: black;
+            }
+            .img {
+              font-size: 15px;
+              margin-top: 10px;
+              margin-left: 46px;
+              color: black;
+            }
+          }
+          .earned {
+            width: 270px;
+            height: 260px;
+            margin-left: 75px;
+            .max_point {
+              font-size: 15px;
+              margin-top: 150px;
+              margin-left: 120px;
+              color: black;
+              span {
+                color: red;
+              }
+            }
+            .min_point {
+              font-size: 15px;
+              margin-top: 8px;
+              margin-left: 120px;
+              color: black;
+            }
+          }
+        }
+        .qantity {
+          .free {
+            font-size: 20px;
+            color: black;
+            margin-top: 141px;
+            margin-bottom: 27px;
+            border-bottom: 1px solid black;
+          }
+        }
+        .num {
+          display: flex;
+          button {
+            width: 55px;
+            height: 40px;
+            font-size: 30px;
+          }
+          .one {
+            width: 47px;
+            height: 40px;
+            font-size: 30px;
+            padding-left: 15px;
+            border: 1px solid black;
+            color: black;
+          }
+        }
+        .number {
+          font-size: 30px;
+          font-weight: 900;
+          margin-left: 320px;
+          color: black;
         }
       }
+      .total {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 37px;
+        .total_price {
+          font-size: 35px;
+          font-weight: 700;
+          color: black;
+        }
+        .orderdetail_price {
+          font-size: 35px;
+          color: #9AB685;
+          font-weight: 700;
+        }
+      }
+    }
+    .left {
+      width: 300px;
+      height: 100px;
+      font-size: 40px;
+      font-weight: 900;
+      cursor: pointer;
+      margin-top: 14px;
+      color: #9AB685;
+      background: #fff;
+      border: 1px solid #9AB685;
+      border-radius: 20px;
+    }
+    .right {
+      width: 300px;
+      height: 100px;
+      font-size: 40px;
+      font-weight: 900;
+      cursor: pointer;
+      margin-top: 14px;
+      color: #9AB685;
+      margin-left: 9px;
+      background: #fff;
+      border: 1px solid #9AB685;
+      border-radius: 20px;
     }
   }
 `;

@@ -20,6 +20,7 @@ export const OrderListWrapper = styled.div`
       position: relative;
       width: 100%;
       height: 75px;
+      margin-top: 42px;
       overflow: hidden;
       background: red;
       border-radius: 100px;
