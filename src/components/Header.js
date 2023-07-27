@@ -14,7 +14,6 @@ const Header = () => {
             </li>
             <li>
               <Link to="/main/payment">주문하기</Link>
-
             </li>
             <li>
               <Link to="/main">캠핑예약</Link>
@@ -30,7 +29,7 @@ const Header = () => {
               <Link to="/">로그인</Link>
             </li>
             <li>
-              <Link to="/signup">회원가입</Link>
+              <Link to="/main/mypage">회원가입</Link>
             </li>
           </ul>
         </div>
