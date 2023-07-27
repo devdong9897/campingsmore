@@ -10,6 +10,9 @@ import OrderHistory from "./OrderHistory";
 import OrderDetail from "./OrderDetail";
 import MainContents from "./MainContents";
 import { Route, Routes } from "react-router-dom";
+import PaymentModal from "../components/PaymentModal";
+import ReviewModal from "../components/ReviewModal";
+import Basket from "./Basket";
 import Mypage from "./Mypage";
 
 const MainPage = () => {
@@ -23,6 +26,9 @@ const MainPage = () => {
         <Route path="/communitywrite" element={<CommunityWrite />}></Route>
         <Route path="/payment" element={<Payment />}></Route>
         <Route path="/orderhistory" element={<OrderHistory />}></Route>
+        <Route path="/reviewmodal" element={<ReviewModal />}></Route>
+        <Route path="/paymentmodal" element={<PaymentModal />}></Route>
+        <Route path="/basket" element={<Basket />}></Route>
         <Route path="/orderdetail" element={<OrderDetail />}></Route>
         <Route path="/mypage" element={<Mypage />}></Route>
       </Routes>
