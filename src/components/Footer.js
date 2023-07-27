@@ -61,9 +61,6 @@ const Footer = () => {
               <Link to="/">커뮤니티</Link>
             </li>
             <li>
-              <Link to="/">회원탈퇴</Link>
-            </li>
-            <li>
               <Link to="/">주문하기</Link>
             </li>
           </ul>
