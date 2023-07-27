@@ -1,7 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { Wrap } from "./css/layout-style";
 import "./App.css";
-import Login from "./components/Login";
 import Main from "./pages/MainPage";
 import NotFound from "./pages/NotFound";
 import Account from "./pages/Account";

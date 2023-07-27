@@ -20,6 +20,7 @@ export const OrderListWrapper = styled.div`
       position: relative;
       width: 100%;
       height: 75px;
+      margin-top: 42px;
       overflow: hidden;
       background: red;
       border-radius: 100px;
@@ -93,10 +94,6 @@ export const OrderListWrapper = styled.div`
       font-size: 20px;
       font-weight: 700;
     }
-    .explanation {
-      font-size: 15px;
-      color: #929292;
-    }
     .date {
       font-size: 15px;
       color: #929292;
@@ -104,7 +101,11 @@ export const OrderListWrapper = styled.div`
       margin-top: 15px;
     }
   }
-  .price {
+  .explanation {
+    font-size: 20px;
+    color: #929292;
+  }
+  .content {
     display: grid;
     font-size: 30px;
     position: absolute;
@@ -117,29 +118,73 @@ export const OrderListWrapper = styled.div`
       align-items: center;
       margin-top: 50px;
     }
+    .price {
+      margin-left: 40px;
+      font-weight: 700;
+    }
   }
   .orderlist_btn {
-    bottom: 50px
+    position: absolute;
+    top: 30px;
   }
   .shopping_basket {
     width: 196px;
     height: 46px;
     border-radius: 30px;
     margin-bottom: 9px;
-    background: #91AA7F;
+    background: #91aa7f;
     border: none;
     color: #fff;
     font-size: 20px;
+    font-weight: 700;
     cursor: pointer;
+    .cart_icon {
+      right: 3px;
+      margin-left: 10px;
+    }
   }
   .product_details {
+    position: relative;
     width: 196px;
     height: 46px;
     border-radius: 30px;
-    background: #D9D9D9;
+    margin-bottom: 9px;
+    background: #d9d9d9;
     border: none;
     color: #868686;
     font-size: 20px;
+    font-weight: 700;
     cursor: pointer;
+    padding-left: 20px;
+    padding-top: 10px;
+  }
+  .tagicon_won {
+    position: absolute;
+    right: 1px;
+    bottom: 1px;
+    width: 46px;
+    height: 46px;
+    border-radius: 30px;
+    background: #91aa7f;
+    .tag_icon {
+      color: #fff;
+      margin-left: 15px;
+      margin-top: 13px;
+    }
+  }
+  .basket_fixed {
+    position: fixed;
+    width: 100px;
+    height: 100px;
+    background: #7EA870;
+    border-radius: 50px;
+    margin-left: 385px;
+    .fixed_icon {
+      margin-left: 25px;
+      margin-top: 25px;
+      width: 48px;
+      height: 48px;
+      color: #fff;
+    }
   }
 `;
