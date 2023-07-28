@@ -1,7 +1,15 @@
 import React from "react";
 import { CommunityWriteWrapper } from "../css/community-write-style";
+import { useNavigate } from "react-router";
 
 const CommunityWrite = () => {
+
+  const navigate = useNavigate()
+
+  const handleGoToCommunityWrite = () => {
+    navigate("/main/community");
+  }
+
   return (
     <CommunityWriteWrapper>
       <div className="top_communityWrite_contents">
@@ -29,6 +37,7 @@ const CommunityWrite = () => {
               placeholder="내용을 입력해 주세요"
             ></textarea>
           </form>
+          <button className="communityWrite_board_cancel" onClick={handleGoToCommunityWrite}>취소</button>
           <button className="communityWrite_board_regi">등록</button>
         </div>
       </div>

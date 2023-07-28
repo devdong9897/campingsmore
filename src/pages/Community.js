@@ -7,7 +7,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 const Community = () => {
   const navigate = useNavigate();
 
-  const handleGoToCommunityWrite = () => {
+  const handleGoToCommunity = () => {
     navigate("/main/communitywrite");
   };
 
@@ -22,7 +22,7 @@ const Community = () => {
           <FontAwesomeIcon icon={faMagnifyingGlass} className="communit_icon"/> 
           <button
             className="community_board_regi"
-            onClick={handleGoToCommunityWrite}
+            onClick={handleGoToCommunity}
           >
             게시글 작성
           </button>

@@ -44,7 +44,7 @@ export const CommunityWriteWrapper = styled.div`
   }
   .communityWrite_board_detail {
     width: 1300px;
-    height: 800px;
+    height: 500px;
     font-size: 20px;
     text-indent: 15px;
     line-height: 1.5;
@@ -59,6 +59,17 @@ export const CommunityWriteWrapper = styled.div`
     width: 80px;
     height: 30px;
     color: white;
-    margin-top:40px;
+    margin-top:25px;
+    margin-right:20px;
+  }
+  .communityWrite_board_cancel {
+    float: right;
+    background-color: #9ab685;
+    border-radius: 15px;
+    border: none;
+    width: 80px;
+    height: 30px;
+    color: white;
+    margin-top:25px;
   }
 `;
