@@ -42,6 +42,7 @@ const MainContents = () => {
           <span className="recommned_title">
             캠핑 스모어 에서 추천하는 상품
           </span>
+          <div className="img"></div>
         </div>
         <div className="recommned_inner">
           <ul className="recommned_list">

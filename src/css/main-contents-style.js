@@ -102,7 +102,14 @@ export const MainContentsWrapper = styled.div`
     position: relative;
     width: 100%;
     height: 1000px;
-    background: #262626;
+    margin-top: 30px;
+    span {
+      font-size: 40px;
+      text-align: center;
+      color: #D2B48C;
+      font-weight: 900;
+      margin-left: 37%;
+    }
     .kakao_map_area {
       position: absolute;
       top: 50%;
@@ -125,10 +132,18 @@ export const MainContentsWrapper = styled.div`
       align-items: center;
       width: 100%;
       height: 150px;
-      background: bisque;
+      background: #D2B48C;
+      .img {
+        width: 500px;
+        height: 500px;
+        margin-bottom: 30px;
+        background-image: url("${path}/image/food.jpg");
+
+      }
       .recommned_title {
         font-weight: bold;
-        font-size: 30px;
+        font-size: 40px;
+        color: #fff;
       }
     }
     .recommned_inner {
