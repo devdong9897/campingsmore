@@ -13,9 +13,8 @@ width: 100%;
     .review_modal_contents_inner {
         position: absolute;
         width: 1300px;
-        margin: 0 auto;
-        height: 100%;
-        top: 70%;
+        height: 75%;
+        top: 60%;
         left: 50%;
         border-radius: 30px;
         transform: translate(-50%, -50%);
@@ -36,7 +35,7 @@ width: 100%;
     }
     .review_modal_detail {
         width: calc(100% - 80px);
-        height: auto;
+        height: 300px;
         background-color: white;
         margin:0 auto;
         margin-top:40px;
@@ -60,7 +59,7 @@ width: 100%;
     .review_modal_complete {
         display: block;
         margin:0 auto;
-        margin-top:50px;
+        margin-top:35px;
         padding:5px 50px;
         border-radius:5px; 
         border:none;

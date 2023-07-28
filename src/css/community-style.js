@@ -5,12 +5,12 @@ const path = process.env.PUBLIC_URL;
 export const CommunityWrapper = styled.div`
   width: 100%;
   height: auto;
-  .top_community_contents {
+  .top_community_bulletin_board_contents {
     width: 100%;
     height: 1000px;
     position: relative;
   }
-  .community_contents_inner {
+  .community_bulletin_board_contents_inner {
     position: absolute;
     width: 1300px;
     margin: 0 auto;
