@@ -11,7 +11,7 @@ export const MainContentsWrapper = styled.div`
     flex-direction: column;
     position: relative;
     width: 100%;
-    height: 950px;
+    height: 100vh;
     background: #000;
     .main_contents_inner {
       z-index: 1;
