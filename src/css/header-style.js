@@ -9,13 +9,13 @@ export const HeaderContainer = styled.div`
   z-index: 999999;
   width: 100%;
   height: 120px;
-  background: rgba(0, 0, 0, 0.59);
+  background: rgba(0, 0, 0, 0.3);
   .inner {
     position: relative;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    width: 100%;
+    width: 1300px;
     height: 100%;
     .logo {
       flex-grow: 1;
@@ -28,16 +28,21 @@ export const HeaderContainer = styled.div`
     }
     .gnb_area {
       display: flex;
+      flex-direction: column;
       justify-content: center;
+      align-items: center;
+      padding-top: 3%;
       width: 70%;
       height: 100%;
       .gnb_list {
         display: flex;
-        justify-content: space-between;
-        width: 970px;
-        height: 100%;
+        justify-content: center;
+        gap: 3%;
+        align-items: center;
+        width: 100%;
+        height: auto;
         li {
-          width: 23%;
+          width: 10%;
           height: 100%;
           a {
             padding-bottom: 10px;
@@ -45,14 +50,14 @@ export const HeaderContainer = styled.div`
             justify-content: center;
             align-items: center;
             width: 100%;
-            height: 50%;
-            background: #9ab685;
-            border-bottom-right-radius: 40px;
-            border-bottom-left-radius: 40px;
+            height: auto;
             color: #fff;
             font-size: 19px;
-            font-weight: bold;
+            font-weight: 800;
             text-shadow: 2px 2px 2px black;
+            &:hover {
+              color: #9ab685;
+            }
           }
         }
       }

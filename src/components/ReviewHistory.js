@@ -4,6 +4,7 @@ import { ReviewHistoryWrapper } from "../css/mypage-style";
 const ReviewHistory = () => {
   return (
     <ReviewHistoryWrapper>
+      <h1>리뷰 내역</h1>
       <ul className="review_list">
         <li>
           <div className="review_img">

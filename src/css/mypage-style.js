@@ -182,6 +182,9 @@ export const EditWrapper = styled.div`
 export const PurchaseWrapper = styled.div`
   width: 100%;
   height: 100%;
+  h1 {
+    margin-bottom: 20px;
+  }
   /* background: #d9d9d9; */
   .purchase_list {
     display: flex;
@@ -242,6 +245,9 @@ export const PurchaseWrapper = styled.div`
 export const ReviewHistoryWrapper = styled.div`
   width: 100%;
   height: 100%;
+  h1 {
+    margin-bottom: 20px;
+  }
   .review_list {
     display: flex;
     flex-direction: column;
@@ -332,4 +338,14 @@ export const WritingWrapper = styled.div`
       }
     }
   }
+`;
+
+export const DibsWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  .writing_list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
 `;

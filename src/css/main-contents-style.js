@@ -85,6 +85,16 @@ export const MainContentsWrapper = styled.div`
     width: 100%;
     height: 100%;
     content: "";
+    opacity: 0.3;
+    background-image: url("${path}/image/dot_bg.png");
+  }
+  .top_main_contents::before {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    content: "";
     opacity: 0.7;
     background-image: url("${path}/image/bg.jpg");
   }

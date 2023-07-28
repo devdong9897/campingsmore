@@ -13,7 +13,7 @@ const Header = () => {
               <Link to="/main">메인페이지</Link>
             </li>
             <li>
-              <Link to="/main/paymentmodal">주문하기</Link>
+              <Link to="/main/paymentmodal">장터보기</Link>
             </li>
             <li>
               <Link to="/main">캠핑예약</Link>

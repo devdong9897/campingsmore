@@ -4,6 +4,7 @@ import { PurchaseWrapper } from "../css/mypage-style";
 const PurchaseHistory = () => {
   return (
     <PurchaseWrapper>
+      <h1>구매내역</h1>
       <ul className="purchase_list">
         <li>
           <div className="purchase_img">
