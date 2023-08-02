@@ -1,10 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { HeaderContainer } from "../css/header-style";
 import { Link } from "react-router-dom";
 
 const Header = () => {
+  const [scrollOver, setScrollOver] = useState(0);
+  const [scrolled, setScrolled] = useState(false);
+
+
+  const handleScroll = () => {
+    const scrollY = window.scrollY;
+    setScrollOver(scrollY);
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    setScrolled(scrollOver > 300);
+  }, [scrollOver]);
+
+
+
   return (
-    <HeaderContainer>
+    <HeaderContainer scrollOver={scrollOver}>
       <div className="inner">
         <div className="logo"></div>
         <div className="gnb_area">
@@ -13,7 +36,7 @@ const Header = () => {
               <Link to="/main">메인페이지</Link>
             </li>
             <li>
-              <Link to="/main/paymentmodal">장터보기</Link>
+              <Link to="/main/orderlist">장터보기</Link>
             </li>
             <li>
               <Link to="/main">캠핑예약</Link>
