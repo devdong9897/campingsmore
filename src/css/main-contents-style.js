@@ -13,8 +13,21 @@ export const MainContentsWrapper = styled.div`
     width: 100%;
     height: 100vh;
     background: #000;
+    .slide_area{
+      position: absolute;
+      top:0px;
+      left:0px;
+      width: 100%;
+      height: 100%;
+      background: skyblue;
+      .swiper{
+        width: 100%;
+        height: 100%;
+        background: ghostwhite;
+      }
+    }
     .main_contents_inner {
-      z-index: 1;
+      z-index: 300;
       position: absolute;
       top: 40%;
       left: 50%;
@@ -79,6 +92,7 @@ export const MainContentsWrapper = styled.div`
     }
   }
   .top_main_contents::after {
+    z-index: 3;
     position: absolute;
     top: 0px;
     left: 0px;
@@ -88,7 +102,7 @@ export const MainContentsWrapper = styled.div`
     opacity: 0.3;
     background-image: url("${path}/image/dot_bg.png");
   }
-  .top_main_contents::before {
+  /* .top_main_contents::before {
     position: absolute;
     top: 0px;
     left: 0px;
@@ -97,7 +111,7 @@ export const MainContentsWrapper = styled.div`
     content: "";
     opacity: 0.7;
     background-image: url("${path}/image/bg.jpg");
-  }
+  } */
   .kakao_map_wrap {
     position: relative;
     width: 100%;

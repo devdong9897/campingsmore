@@ -1,13 +1,22 @@
 import React from "react";
 import KakaoMap from "../components/KakaoMap";
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { MainContentsWrapper } from "../css/main-contents-style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import 'swiper/css';
+import 'swiper/css/effect-fade';
+import SwiperFade from "../components/SwiperFade";
+
+
 
 const MainContents = () => {
   return (
     <MainContentsWrapper>
       <div className="top_main_contents">
+        <div className="slide_area">
+          <SwiperFade />
+        </div>
         <div className="main_contents_inner">
           <span className="main_title">
             최고의 캠핑서비스 , <strong>캠핑스모어</strong> 와 함께 하세요
@@ -15,7 +24,7 @@ const MainContents = () => {
           <div className="search_bar">
             <input
               type="text"
-              placeholder="찾으시는 캠핑음식이 있으신가d요?"
+              placeholder="찾으시는 캠핑음식이 있으신가요?"
             ></input>
             <button className="search_submit">
               <FontAwesomeIcon icon={faMagnifyingGlass} />

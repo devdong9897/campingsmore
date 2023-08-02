@@ -1,0 +1,21 @@
+
+
+.swiper-slide{
+    position: relative;
+    overflow: hidden;
+    background: #000;
+}
+
+.swiper-slide > img{
+    width: 100%;
+    opacity: 0.4;
+}
+
+.swiper-button-prev
+{
+    display: none;
+}
+
+.swiper-button-next{
+    display: none;
+}
