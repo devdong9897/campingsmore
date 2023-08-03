@@ -1,6 +1,5 @@
 import axios from "axios";
 
-// 아이템 카테고리 가져오기
 const getOrderListCategory = async () => {
   try {
     const res = await axios.get("/api/item/category");
@@ -8,6 +7,19 @@ const getOrderListCategory = async () => {
     console.log("getOrderListItem 요청완료");
     console.log(result);
     return result;
+  catch(err){
+    console.log(err);
+  }
+  };
+    
+    
+const getbestitem = async () => {
+  try {
+    const res = await axios.get("/api/item/bestitem");
+    const result = res.data;
+    console.log("getbestitem 요청완료");
+    console.log(result);
+    console.log("뭐 안되냐");
   } catch (err) {
     console.log(err);
   }
@@ -30,4 +42,4 @@ const getOrderListSearch = async () => {
   return [];
 };
 
-export { getOrderListSearch };
+export { getOrderListSearch , getbestitem };
