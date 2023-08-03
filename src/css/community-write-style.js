@@ -25,9 +25,9 @@ export const CommunityWriteWrapper = styled.div`
     margin: 20px 0 20px 0;
   }
   .communityWrite_board_menu {
-    width: 120px;
+    width: 60px;
     height: 30px;
-    text-indent: 15px;
+    text-indent: 5px;
     display: block;
     margin-bottom: 20px;
     float: left;
@@ -46,24 +46,14 @@ export const CommunityWriteWrapper = styled.div`
   }
   .communityWrite_board_detail {
     width: 1300px;
-    height: 800px;
+    height: 500px;
     font-size: 20px;
     text-indent: 15px;
     line-height: 1.5;
     border:none;
     border-radius: 10px;
   }
-  .communityWrite_board_regi {
-    float: right;
-    background-color: #D2B48C;
-    border-radius: 15px;
-    border: none;
-    width: 80px;
-    height: 30px;
-    color: white;
-    margin-top:25px;
-    margin-right:20px;
-  }
+  
   .communityWrite_board_cancel {
     float: right;
     background-color: #D2B48C;
@@ -74,4 +64,15 @@ export const CommunityWriteWrapper = styled.div`
     color: white;
     margin-top:25px;
   }
+  .communityWrite_board_regi {
+    float: right;
+    background-color: #D2B48C;
+    border-radius: 15px;
+    border: none;
+    width: 80px;
+    height: 30px;
+    color: white;
+    margin-top:10px;
+  }
+  
 `;

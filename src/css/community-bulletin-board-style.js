@@ -66,11 +66,48 @@ export const CommunityBulletinBoardWrapper = styled.div`
   }
   .community_bulletin_board_detail {
     width: 1300px;
-    height: 500px;
+    height: 270px;
     font-size: 20px;
     text-indent: 15px;
     line-height: 1.5;
     border:none;
     border-radius: 10px;
+  }
+  .community_bulletin_board_comment_box {
+    width: 100%;
+    height:250px;
+    border-radius: 10px;
+    margin-top:50px;
+    background-color: white;
+  p{
+  }
+  .community_bulletin_board_comment {
+    width: 90%;
+    height:180px;
+    margin:0 auto;
+    background-color: white;
+    position:relative;
+    top:20px;
+    }  
+    textarea {
+      margin-top:20px;
+      width: 100%;
+      height:50px;
+      border:none;
+    }
+    button {
+      float:right;
+      width: 70px;
+      height:30px;
+      padding:0 20px;
+      border-radius:5px;
+      background-color: white;
+      margin:15px 0;
+    }
+    button:hover {
+      background-color: black;
+      color:white;
+      
+    }
   }
 `;
