@@ -14,7 +14,7 @@ export const OrderListWrapper = styled.div`
     flex-direction: column;
     position: relative;
     width: 1300px;
-    height: 3000px;
+    height: auto;
     .orderlist_search {
       position: relative;
       width: 100%;
@@ -67,13 +67,17 @@ export const OrderListWrapper = styled.div`
     }
   }
   .order_item_list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     position: relative;
     width: 100%;
-    height: 237px;
+    height: auto;
     background: #f2f2f2;
     margin-top: 42px;
     border-radius: 30px;
     grid-template-columns: 100px 2fr 1fr;
+<<<<<<< HEAD
     .img {
       width: 242px;
       height: 237px;
@@ -85,6 +89,27 @@ export const OrderListWrapper = styled.div`
     }
   }
 
+=======
+    li {
+      .img {
+        width: 242px;
+        height: 237px;
+        border-radius: 30px;
+        overflow: hidden;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+  .img {
+    background-image: url("${path}/image/food.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+>>>>>>> 45815cb98ce4a74265038688dc5af5a585a33b1e
   .product_desc {
     position: absolute;
     font-size: 30px;

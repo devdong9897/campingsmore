@@ -31,6 +31,15 @@ const CommunityBulletinBoard = () => {
               className="community_bulletin_board_detail"
               placeholder="내용을 입력해 주세요"
             ></textarea>
+            <div className="community_bulletin_board_comment_box">
+                    <h1>리뷰작성</h1>
+                <div className="community_bulletin_board_comment">
+                    <p>hyeongman1990</p>
+                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                <hr />
+                <button>등록</button>
+                </div>
+            </div>
                 </div>
             </div>
         </CommunityBulletinBoardWrapper>

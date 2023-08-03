@@ -4,10 +4,40 @@ import {
   faTag,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { getOrderListCategory, getOrderListSearch } from "../api/itemFatch";
 import { OrderListWrapper } from "../css/orderlist-style";
+
 const OrderList = () => {
+  // 아이템 카테고리
+  const [orderlist, setOrderList] = useState([]);
+  const getOrderList = async () => {
+    try {
+      const data = await getOrderListCategory();
+      setOrderList(data);
+    } catch (err) {
+      console.log("오더리스트 에러", err);
+    }
+  };
+  useEffect(() => {
+    getOrderList();
+  }, []);
+
+  // 아이템 검색리스트
+  const [orderlistsearch, setOrderListSearch] = useState([]);
+  const getSearchList = async () => {
+    try {
+      const data = await getOrderListSearch();
+      setOrderListSearch(data);
+    } catch (err) {
+      console.log("서치리스트 에러", err);
+    }
+  };
+  useEffect(() => {
+    getSearchList();
+  }, []);
+
   return (
     <OrderListWrapper>
       <div className="orderlist_inner">
@@ -21,17 +51,63 @@ const OrderList = () => {
           </button>
         </div>
         <ul className="order_category">
-          <li>#소고기</li>
-          <li>#양고기</li>
-          <li>#닭고기</li>
-          <li>#생선</li>
-          <li>#돼지고기</li>
+          {orderlist.map((item, index) => (
+            <li key={index}>{item.name}</li>
+          ))}
         </ul>
         <ul className="order_item_list">
+<<<<<<< HEAD
           <li>
             <div className="img">
               <img src="#" alt="#"></img>
             </div>
+=======
+          {orderlistsearch.map((item, index) => (
+            <li key={index}>
+              <div className="img">
+                <img src={item.pic} alt="" />
+              </div>
+              <div className="product_desc">
+                <span>{item.name}</span>
+                <span className="option">허니 머시기 후라이드치킨</span>
+                <span className="explanation">
+                  양심없는 교촌의 양심없는 가격! 에이 이걸 누가 먹어~ 하면서도
+                  계속 사는 호갱님들 덕분에 교촌이 살고 있습니다. 많이 사고 많이
+                  드세요.
+                </span>
+                <span className="date">등록일 : 1822.02.5</span>
+              </div>
+              <div className="content">
+                <span className="price">23000원</span>
+                <div className="orderlist_btn">
+                  <button className="shopping_basket">
+                    장바구니 담기
+                    <FontAwesomeIcon
+                      icon={faCartShopping}
+                      className="cart_icon"
+                    />
+                  </button>
+                  <button className="product_details">
+                    <Link to="/main/orderdetail" className="details_link">
+                      상품상세보기
+                    </Link>
+                    <div className="tagicon_won">
+                      <FontAwesomeIcon icon={faTag} className="tag_icon" />
+                    </div>
+                  </button>
+                  <div className="basket_fixed">
+                    <FontAwesomeIcon
+                      icon={faCartShopping}
+                      className="fixed_icon"
+                    />
+                  </div>
+                </div>
+              </div>
+            </li>
+          ))}
+          {/* <li>
+            <div className="img"></div>
+>>>>>>> 45815cb98ce4a74265038688dc5af5a585a33b1e
             <div className="product_desc">
               <div className="">
 
@@ -54,14 +130,14 @@ const OrderList = () => {
                     className="cart_icon"
                   />
                 </button>
-                <butdton className="product_details">
+                <button className="product_details">
                   <Link to="/main/orderdetail" className="details_link">
                     상품상세보기
                   </Link>
                   <div className="tagicon_won">
                     <FontAwesomeIcon icon={faTag} className="tag_icon" />
                   </div>
-                </butdton>
+                </button>
                 <div className="basket_fixed">
                   <FontAwesomeIcon
                     icon={faCartShopping}
@@ -70,7 +146,7 @@ const OrderList = () => {
                 </div>
               </div>
             </div>
-          </li>
+          </li> */}
         </ul>
       </div>
     </OrderListWrapper>
