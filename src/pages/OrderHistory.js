@@ -6,7 +6,7 @@ const OrderHistory = () => {
       <div className="inner">
         <div className="topline">
           <ul className="topline_list">
-            <li>1</li>
+            <li></li>
             <li>사진</li>
             <li>상품명</li>
             <li>옵션/수량</li>
@@ -29,7 +29,7 @@ const OrderHistory = () => {
                   계속 사는 호갱님들 덕분에 교촌이 살고 있습니다 많이 사고 많이
                   드세요양심없는 교촌의 양심없는 가격! 에이 이걸 누가 먹어~
                   하면서도 계속 사는 호갱님들 덕분에 교촌이 살고 있습니다 많이
-                  사고 많이 드세요
+                  사고 많이 드세요.
                 </span>
               </div>
               <div className="option">

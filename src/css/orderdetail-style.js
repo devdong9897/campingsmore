@@ -7,7 +7,9 @@ export const OrderDetailWrapper = styled.div`
   height: auto;
   background: white;
   color: #eee;
+
   .orderdetail_inner {
+    position: relative;
     padding-top: 100px;
     margin: 0 auto;
     display: flex;
@@ -15,14 +17,16 @@ export const OrderDetailWrapper = styled.div`
     position: relative;
     width: 1300px;
     height: 3000px;
-    box-shadow: 1px 1px 1px 3px inset skyblue;
+
     .main {
       display: flex;
       margin-top: 107px;
       gap: 24px;
+
       .first_box {
         width: 662px;
         height: 659px;
+
         .main_img {
           width: 660px;
           height: 480px;
@@ -32,59 +36,63 @@ export const OrderDetailWrapper = styled.div`
           background-size: cover;
           border-radius: 20px;
         }
+
         .sub_img {
           display: flex;
           gap: 25px;
           margin-top: 20px;
-          .subfir_img {
-            width: 200px;
-            height: 150px;
-            background-image: url("${path}/image/food.jpg");
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            border-radius: 20px;
-          }
-          .middle_img {
-            width: 200px;
-            height: 150px;
-            background-image: url("${path}/image/food.jpg");
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            border-radius: 20px;
-          }
+
+          .subfir_img,
+          .middle_img,
           .last_img {
             width: 200px;
             height: 150px;
-            background-image: url("${path}/image/food.jpg");
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
             border-radius: 20px;
           }
+
+          .subfir_img {
+            background-image: url("${path}/image/food.jpg");
+          }
+
+          .middle_img {
+            background-image: url("${path}/image/food.jpg");
+          }
+
+          .last_img {
+            background-image: url("${path}/image/food.jpg");
+          }
         }
       }
+
       .second_box {
         width: 700px;
         height: 700px;
         border: 1px solid black;
         border-radius: 20px;
+
         .title {
           h1 {
             font-size: 40px;
-            color: #9ab685;
+            font-weight: 900;
+            color: #d2b48c;
+            margin-top: 10px;
             margin-left: 37px;
           }
+
           p {
             margin-left: 37px;
           }
+
           .meddle_title {
             font-size: 20px;
             font-weight: 900;
             color: #bfbfbf;
             margin-top: 8px;
           }
+
           .price {
             font-size: 50px;
             font-weight: 900;
@@ -93,11 +101,17 @@ export const OrderDetailWrapper = styled.div`
             color: black;
           }
         }
+
         .points {
           display: flex;
-          .way {
+
+          .way,
+          .earned {
             width: 270px;
             height: 260px;
+          }
+
+          .way {
             .point_earned {
               font-size: 25px;
               font-weight: 900;
@@ -105,12 +119,8 @@ export const OrderDetailWrapper = styled.div`
               margin-left: 46px;
               color: black;
             }
-            .review {
-              font-size: 15px;
-              margin-top: 14px;
-              margin-left: 46px;
-              color: black;
-            }
+
+            .review,
             .img {
               font-size: 15px;
               margin-top: 10px;
@@ -118,10 +128,10 @@ export const OrderDetailWrapper = styled.div`
               color: black;
             }
           }
+
           .earned {
-            width: 270px;
-            height: 260px;
             margin-left: 75px;
+
             .max_point {
               font-size: 15px;
               margin-top: 150px;
@@ -131,6 +141,7 @@ export const OrderDetailWrapper = styled.div`
                 color: red;
               }
             }
+
             .min_point {
               font-size: 15px;
               margin-top: 8px;
@@ -139,6 +150,7 @@ export const OrderDetailWrapper = styled.div`
             }
           }
         }
+
         .qantity {
           .free {
             font-size: 20px;
@@ -148,13 +160,16 @@ export const OrderDetailWrapper = styled.div`
             border-bottom: 1px solid black;
           }
         }
+
         .num {
           display: flex;
+
           button {
             width: 55px;
             height: 40px;
             font-size: 30px;
           }
+
           .one {
             width: 47px;
             height: 40px;
@@ -164,6 +179,7 @@ export const OrderDetailWrapper = styled.div`
             color: black;
           }
         }
+
         .number {
           font-size: 30px;
           font-weight: 900;
@@ -171,22 +187,26 @@ export const OrderDetailWrapper = styled.div`
           color: black;
         }
       }
+
       .total {
         display: flex;
         justify-content: space-between;
         margin-top: 37px;
+
         .total_price {
           font-size: 35px;
           font-weight: 700;
           color: black;
         }
+
         .orderdetail_price {
           font-size: 35px;
-          color: #9AB685;
-          font-weight: 700;
+          color: #d2b48c;
+          font-weight: 900;
         }
       }
     }
+
     .left {
       width: 300px;
       height: 100px;
@@ -194,11 +214,12 @@ export const OrderDetailWrapper = styled.div`
       font-weight: 900;
       cursor: pointer;
       margin-top: 14px;
-      color: #9AB685;
+      color: #d2b48c;
       background: #fff;
-      border: 1px solid #9AB685;
+      border: 1px solid #d2b48c;
       border-radius: 20px;
     }
+
     .right {
       width: 300px;
       height: 100px;
@@ -206,11 +227,65 @@ export const OrderDetailWrapper = styled.div`
       font-weight: 900;
       cursor: pointer;
       margin-top: 14px;
-      color: #9AB685;
+      color: #d2b48c;
       margin-left: 9px;
       background: #fff;
-      border: 1px solid #9AB685;
+      border: 1px solid #d2b48c;
       border-radius: 20px;
+      .payrig {
+        color: #d2b48c;
+      }
+    }
+
+    .top_line,
+    .botton_line {
+      border-bottom: 1px solid #c0c0c0;
+      margin-top: 250px;
+    }
+
+    .detailed_image {
+      width: 70%;
+      height: 70vh;
+      background: gray;
+      margin: 0 auto;
+    }
+
+    .profile {
+      display: flex;
+      margin-top: 50px;
+      margin-left: 30px;
+
+      .profile_img {
+        width: 150px;
+        height: 150px;
+        background-image: url("${path}/image/profile.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 50%;
+      }
+
+      .profile_name {
+        font-size: 20px;
+        margin-top: 20px;
+        margin-left: 20px;
+        color: black;
+      }
+    }
+
+    .profile_content {
+      font-size: 20px;
+      color: black;
+      margin-left: 30px;
+
+      .profile_title {
+        display: inline-block;
+        margin-top: 20px;
+      }
+
+      .content {
+        margin-top: 20px;
+      }
     }
   }
 `;

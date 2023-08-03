@@ -21,7 +21,6 @@ export const OrderListWrapper = styled.div`
       height: 75px;
       margin-top: 42px;
       overflow: hidden;
-      background: red;
       border-radius: 100px;
       border: 2px solid #b28e68;
       input {
@@ -37,7 +36,7 @@ export const OrderListWrapper = styled.div`
         top: 0px;
         width: 100px;
         height: 100%;
-        background: #9ab685;
+        background: #d2b48c;
         border: none;
         color: #fff;
         font-size: 35px;
@@ -48,7 +47,7 @@ export const OrderListWrapper = styled.div`
       display: flex;
       width: 100%;
       height: 120px;
-      background: #b0d097;
+      background: #d2b48c;
       border-radius: 30px;
       overflow: hidden;
       li {
@@ -61,6 +60,9 @@ export const OrderListWrapper = styled.div`
         font-size: 25px;
         color: #eee;
         cursor: pointer;
+        &:hover {
+          background: #8B4513;
+        }
       }
     }
   }
@@ -131,7 +133,7 @@ export const OrderListWrapper = styled.div`
     height: 46px;
     border-radius: 30px;
     margin-bottom: 9px;
-    background: #91aa7f;
+    background: #d2b48c;
     border: none;
     color: #fff;
     font-size: 20px;
@@ -156,6 +158,9 @@ export const OrderListWrapper = styled.div`
     cursor: pointer;
     padding-left: 20px;
     padding-top: 10px;
+    .details_link {
+      color: #868686;
+    }
   }
   .tagicon_won {
     position: absolute;
@@ -164,7 +169,7 @@ export const OrderListWrapper = styled.div`
     width: 46px;
     height: 46px;
     border-radius: 30px;
-    background: #91aa7f;
+    background: #d2b48c;
     .tag_icon {
       color: #fff;
       margin-left: 15px;
@@ -175,9 +180,11 @@ export const OrderListWrapper = styled.div`
     position: fixed;
     width: 100px;
     height: 100px;
-    background: #7EA870;
+    background: #d2b48c;
     border-radius: 50px;
+
     margin-left: 385px;
+    cursor: pointer;
     .fixed_icon {
       margin-left: 25px;
       margin-top: 25px;

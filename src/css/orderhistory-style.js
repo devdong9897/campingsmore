@@ -17,7 +17,7 @@ export const OrderHistorysWrapper = styled.div`
       width: 100%;
       height: 65px;
       margin-top: 67px;
-      background: #f6f1bc;
+      background: #D2B48C;
       border-radius: 15px;
       .topline_list {
         width: 100%;
@@ -36,7 +36,7 @@ export const OrderHistorysWrapper = styled.div`
           justify-content: center;
           text-align: center;
           align-items: center;
-          border-right: 1px solid #9ab685;
+          border-right: 1px solid #fff;
           &:last-child {
             border-right: none;
           }
@@ -136,7 +136,7 @@ export const OrderHistorysWrapper = styled.div`
               cursor: pointer;
             }
             .write {
-              background: #696969;
+              background: #D2B48C;
             }
             .cancel {
               background: #d9d9d9;

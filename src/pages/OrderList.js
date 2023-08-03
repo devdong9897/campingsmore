@@ -5,6 +5,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
+import { Link } from "react-router-dom";
 import { OrderListWrapper } from "../css/orderlist-style";
 const OrderList = () => {
   return (
@@ -51,7 +52,9 @@ const OrderList = () => {
                   />
                 </button>
                 <butdton className="product_details">
-                  상품상세보기
+                  <Link to="/main/orderdetail" className="details_link">
+                    상품상세보기
+                  </Link>
                   <div className="tagicon_won">
                     <FontAwesomeIcon icon={faTag} className="tag_icon" />
                   </div>

@@ -20,7 +20,7 @@ const Community = () => {
 
   const navigate = useNavigate();
 
-  const handleGoToCommunity = () => {
+  const handleGoToCommunityWrite = () => {
     navigate("/main/communitywrite");
   };
 
@@ -33,9 +33,12 @@ const Community = () => {
           <h1>커뮤니티</h1>
   
           <hr className="community_line" />
-          <input type="text" className="community_search" />
-          <FontAwesomeIcon icon={faMagnifyingGlass} className="community_icon" />
-          <button className="community_board_regi" onClick={handleGoToCommunity}>
+          <input type="text" className="community_search"/>
+          <FontAwesomeIcon icon={faMagnifyingGlass} className="communit_icon"/> 
+          <button
+            className="community_board_regi"
+            onClick={handleGoToCommunityWrite}
+          >
             게시글 작성
           </button>
           <div className="community_board_list_head_box">

@@ -46,7 +46,7 @@ export const CommunityWriteWrapper = styled.div`
   }
   .communityWrite_board_detail {
     width: 1300px;
-    height: 500px;
+    height: 800px;
     font-size: 20px;
     text-indent: 15px;
     line-height: 1.5;
