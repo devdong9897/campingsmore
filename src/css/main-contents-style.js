@@ -13,21 +13,8 @@ export const MainContentsWrapper = styled.div`
     width: 100%;
     height: 100vh;
     background: #000;
-    .slide_area{
-      position: absolute;
-      top:0px;
-      left:0px;
-      width: 100%;
-      height: 100%;
-      background: skyblue;
-      .swiper{
-        width: 100%;
-        height: 100%;
-        background: ghostwhite;
-      }
-    }
     .main_contents_inner {
-      z-index: 300;
+      z-index: 1;
       position: absolute;
       top: 40%;
       left: 50%;
@@ -43,7 +30,8 @@ export const MainContentsWrapper = styled.div`
         font-size: 40px;
         font-weight: bold;
         strong {
-          color: #9ab685;
+          color: #D2B48C;
+          font-weight: 900;
         }
       }
       .search_bar {
@@ -64,10 +52,13 @@ export const MainContentsWrapper = styled.div`
           top: 0px;
           width: 100px;
           height: 100%;
-          background: #9ab685;
+          background: #C0C0C0;
           border: none;
           color: #fff;
           font-size: 35px;
+          &:hover {
+            background: #D2B48C;
+          }
         }
       }
       .main_category {
@@ -85,14 +76,13 @@ export const MainContentsWrapper = styled.div`
           padding: 0px 35px;
           height: 100%;
           border-radius: 100px;
-          background: #9ab685;
+          background: #D2B48C;
           color: #fff;
         }
       }
     }
   }
   .top_main_contents::after {
-    z-index: 3;
     position: absolute;
     top: 0px;
     left: 0px;
@@ -102,17 +92,28 @@ export const MainContentsWrapper = styled.div`
     opacity: 0.3;
     background-image: url("${path}/image/dot_bg.png");
   }
+  .top_main_contents::before {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    content: "";
+    opacity: 0.7;
+    background-image: url("${path}/image/bg.jpg");
+  }
   .kakao_map_wrap {
     position: relative;
     width: 100%;
     height: 1000px;
+    background: #fff;
     margin-top: 30px;
     span {
-      font-size: 40px;
-      text-align: center;
+      width: 100%;
       color: #D2B48C;
       font-weight: 900;
-      margin-left: 37%;
+      font-size: 35px;
+      margin-left: 40%;
     }
     .kakao_map_area {
       position: absolute;
@@ -123,7 +124,8 @@ export const MainContentsWrapper = styled.div`
       height: 800px;
       overflow: hidden;
       border-radius: 15px;
-      background: green;
+      background: #D2B48C;
+      padding-top: 10px;
     }
   }
   .recommned_menu {
@@ -135,15 +137,8 @@ export const MainContentsWrapper = styled.div`
       justify-content: center;
       align-items: center;
       width: 100%;
-      height: 150px;
+      height: 200px;
       background: #D2B48C;
-      .img {
-        width: 500px;
-        height: 500px;
-        margin-bottom: 30px;
-        background-image: url("${path}/image/food.jpg");
-
-      }
       .recommned_title {
         font-weight: bold;
         font-size: 40px;

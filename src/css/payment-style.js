@@ -197,6 +197,9 @@ export const PaymentWrapper = styled.div`
           text-indent: 10px;
           font-size: 20px;
         }
+        .plus {
+          color: red;
+        }
         hr {
           margin-top: 40px;
         }

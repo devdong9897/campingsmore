@@ -67,7 +67,7 @@ const Payment = () => {
               placeholder="경비실에 맡겨주세요"
               className="payment_memo"
             />
-            <p>
+            <p className="plus">
               *도서산간 지역의 경우 추후 수령 시 추가 배송비가 과금될 수
               있습니다.
             </p>
@@ -86,3 +86,4 @@ const Payment = () => {
 };
 
 export default Payment;
+ 
