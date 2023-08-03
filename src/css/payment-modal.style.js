@@ -26,15 +26,16 @@ export const PaymentModalWrapper = styled.div`
         background-color:white;
     }
     .payment_modal_title {
+        padding-top:50px;
         width: 600px;
-        height: 200px;
+        height: 250px;
         margin:0 auto;
         overflow: hidden;
         h1 {
-            font-size:60px;
+            font-size:65px;
             text-align:center;
             span {
-                color:#92C397;
+                color:#D2B48C;
             }
         }
     }
@@ -63,8 +64,9 @@ export const PaymentModalWrapper = styled.div`
     .payment_modal_indi_info p:last-child {
         margin-top:22px;
         margin-left:200px;
-        color:#92C397;
+        color:#D2B48C;
         font-size:25px;
+        font-weight:900;
     }
     .payment_modal_check {
         display: flex;
@@ -75,12 +77,13 @@ export const PaymentModalWrapper = styled.div`
             border-radius: 15px;
             font-size:20px;;
             color:white;
-            background-color: #A1A1A1;
+            background-color: #C0C0C0;
             border:none;
             cursor: pointer;
+            margin-top:-50px;
     }
     button:hover {
-        background-color: gray;
+        background-color: #808080;
     }
     button:first-child{
         margin-right:20px;

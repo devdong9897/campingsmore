@@ -1,6 +1,6 @@
 import React from "react";
 import { CommunityWriteWrapper } from "../css/community-write-style";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 const CommunityWrite = () => {
 

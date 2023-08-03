@@ -32,7 +32,9 @@ export const CommunityWriteWrapper = styled.div`
     margin-bottom: 20px;
     float: left;
   }
- 
+ .communityWrite_board_menu:focus, .communityWrite_board_menu:hover  {
+  border:1px solid #8B4513;
+ }
   .communityWrite_board_title {
     width: 100%;
     height: 60px;
@@ -53,7 +55,7 @@ export const CommunityWriteWrapper = styled.div`
   }
   .communityWrite_board_regi {
     float: right;
-    background-color: #9ab685;
+    background-color: #D2B48C;
     border-radius: 15px;
     border: none;
     width: 80px;
@@ -64,7 +66,7 @@ export const CommunityWriteWrapper = styled.div`
   }
   .communityWrite_board_cancel {
     float: right;
-    background-color: #9ab685;
+    background-color: #D2B48C;
     border-radius: 15px;
     border: none;
     width: 80px;

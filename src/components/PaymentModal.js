@@ -1,7 +1,14 @@
 import React from "react";
 import { PaymentModalWrapper } from "../css/payment-modal.style";
+import { useNavigate } from "react-router";
 
 const PaymentModal = () => {
+
+  const navigate = useNavigate();
+  const handleToGoMain = () => {
+    navigate("/main")
+  }
+
   return (
     <PaymentModalWrapper>
         <div className="top_payment_modal_contents">
@@ -29,7 +36,7 @@ const PaymentModal = () => {
               </div>
 
               <div className="payment_modal_check">
-                <button>메인</button>
+                <button onClick={handleToGoMain}>메인</button>
                 <button >뒤로가기</button>
                 
               </div>

@@ -134,7 +134,7 @@ export const BasketWrapper = styled.div`
     }
     .basket_box{
     display: block;
-    background-color: #9ab685;
+    background-color: #D2B48C;
     width: 200px;
     height: 40px;
     color: white;
@@ -146,7 +146,7 @@ export const BasketWrapper = styled.div`
     cursor: pointer;
     }
     .basket_box:hover {
-        background-color:green;
+        background-color:#CD853F;
     }
   }
 `;
