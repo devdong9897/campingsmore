@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import KakaoMap from "../components/KakaoMap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { MainContentsWrapper } from "../css/main-contents-style";
@@ -7,8 +7,26 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import SwiperFade from "../components/SwiperFade";
+import { getbestitem } from "../api/itemFatch";
 
 const MainContents = () => {
+  const [bestitem, setBestitem] = useState("");
+
+  // 추천상품 가져오기
+  const getbestitemFetch = async () => {
+    try {
+      const bestitemJson = await getbestitem();
+      setBestitem(bestitemJson);
+      console.log(bestitem);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getbestitemFetch();
+  }, []);
+
   return (
     <MainContentsWrapper>
       <div className="top_main_contents">
@@ -49,7 +67,6 @@ const MainContents = () => {
           <span className="recommned_title">
             캠핑 스모어 에서 추천하는 상품
           </span>
-          <div className="img"></div>
         </div>
         <div className="recommned_inner">
           <ul className="recommned_list">
