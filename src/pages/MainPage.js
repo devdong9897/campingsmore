@@ -14,6 +14,7 @@ import PaymentModal from "../components/PaymentModal";
 import ReviewModal from "../components/ReviewModal";
 import Basket from "./Basket";
 import Mypage from "./Mypage";
+import CommunityBulletinBoard from "./CommunityBulletinBoard";
 
 const MainPage = () => {
   return (
@@ -24,6 +25,7 @@ const MainPage = () => {
         <Route path="/orderlist" element={<OrderList />}></Route>
         <Route path="/community" element={<Community />}></Route>
         <Route path="/communitywrite" element={<CommunityWrite />}></Route>
+        <Route path="/communitybulletinboard" element={<CommunityBulletinBoard />}></Route>
         <Route path="/payment" element={<Payment />}></Route>
         <Route path="/orderhistory" element={<OrderHistory />}></Route>
         <Route path="/reviewmodal" element={<ReviewModal />}></Route>
