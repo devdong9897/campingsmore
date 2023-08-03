@@ -3,9 +3,9 @@ import styled from "@emotion/styled";
 const path = process.env.PUBLIC_URL;
 
 export const CommunityBulletinBoardWrapper = styled.div`
-    width: 100%;
-    height: auto;
-    .top_community_bulletin_board_contents {
+  width: 100%;
+  height: auto;
+  .top_community_bulletin_board_contents {
     width: 100%;
     height: 1000px;
     position: relative;
@@ -73,5 +73,4 @@ export const CommunityBulletinBoardWrapper = styled.div`
     border:none;
     border-radius: 10px;
   }
-  
-`
+`;

@@ -15,7 +15,6 @@ export const OrderListWrapper = styled.div`
     position: relative;
     width: 1300px;
     height: 3000px;
-    box-shadow: 1px 1px 1px 3px inset skyblue;
     .orderlist_search {
       position: relative;
       width: 100%;
