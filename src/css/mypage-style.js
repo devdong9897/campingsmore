@@ -79,8 +79,27 @@ export const EditWrapper = styled.div`
     background: #d9d9d9;
     overflow: hidden;
     .security_title {
+      margin-bottom: 30px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 0px 10px;
       font-size: 23px;
       font-weight: bold;
+      button {
+        width: auto;
+        padding: 0px 30px;
+        border-radius: 15px;
+        border: none;
+        color: #fff;
+        background: #999898;
+      }
+      .edit_all_btn {
+        display: ${props => (props.something ? "none" : "block")};
+      }
+      .edit_submit_btn {
+        display: ${props => (!props.something ? "none" : "block")};
+      }
     }
     .setting_box {
       margin: 10px 0px;
@@ -104,10 +123,14 @@ export const EditWrapper = styled.div`
           height: 50px;
           font-size: 25px;
         }
+        .setting_name {
+          display: ${props => (props.something ? "none" : "block")};
+        }
         span {
           font-size: 17px;
         }
         input {
+          display: ${props => (!props.something ? "none" : "block")};
           padding: 0px 20px;
           width: 50%;
           height: 100%;
@@ -157,6 +180,9 @@ export const EditWrapper = styled.div`
           height: 50px;
           font-size: 25px;
         }
+        .setting_name {
+          display: ${props => (props.something ? "none" : "block")};
+        }
         span {
           font-size: 17px;
         }
@@ -169,6 +195,7 @@ export const EditWrapper = styled.div`
         color: #fff;
       }
       input {
+        display: ${props => (!props.something ? "none" : "block")};
         padding: 0px 20px;
         width: 50%;
         height: 100%;
@@ -348,4 +375,5 @@ export const DibsWrapper = styled.div`
     flex-direction: column;
     width: 100%;
     height: 100%;
+  }
 `;

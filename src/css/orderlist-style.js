@@ -61,7 +61,7 @@ export const OrderListWrapper = styled.div`
         color: #eee;
         cursor: pointer;
         &:hover {
-          background: #8B4513;
+          background: #8b4513;
         }
       }
     }
@@ -74,16 +74,17 @@ export const OrderListWrapper = styled.div`
     margin-top: 42px;
     border-radius: 30px;
     grid-template-columns: 100px 2fr 1fr;
+    .img {
+      width: 242px;
+      height: 237px;
+      background-image: url("${path}/image/food.jpg");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      border-radius: 30px;
+    }
   }
-  .img {
-    width: 242px;
-    height: 237px;
-    background-image: url("${path}/image/food.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-radius: 30px;
-  }
+
   .product_desc {
     position: absolute;
     font-size: 30px;

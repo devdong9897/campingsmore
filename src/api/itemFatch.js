@@ -6,7 +6,7 @@ const getbestitem = async () => {
     const result = res.data;
     console.log("getbestitem 요청완료");
     console.log(result);
-    console.log("뭐 안되냐");
+    return result;
   } catch (err) {
     console.log(err);
   }
