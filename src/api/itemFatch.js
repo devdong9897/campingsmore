@@ -7,12 +7,12 @@ const getOrderListCategory = async () => {
     console.log("getOrderListItem 요청완료");
     console.log(result);
     return result;
-  catch(err){
+  } catch (err) {
     console.log(err);
   }
-  };
-    
-    
+  return [];
+};
+
 const getbestitem = async () => {
   try {
     const res = await axios.get("/api/item/bestitem");
@@ -42,4 +42,4 @@ const getOrderListSearch = async () => {
   return [];
 };
 
-export { getOrderListSearch , getbestitem };
+export { getOrderListSearch, getbestitem };

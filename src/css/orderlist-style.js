@@ -77,19 +77,6 @@ export const OrderListWrapper = styled.div`
     margin-top: 42px;
     border-radius: 30px;
     grid-template-columns: 100px 2fr 1fr;
-<<<<<<< HEAD
-    .img {
-      width: 242px;
-      height: 237px;
-      background-image: url("${path}/image/food.jpg");
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      border-radius: 30px;
-    }
-  }
-
-=======
     li {
       .img {
         width: 242px;
@@ -109,7 +96,6 @@ export const OrderListWrapper = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
   }
->>>>>>> 45815cb98ce4a74265038688dc5af5a585a33b1e
   .product_desc {
     position: absolute;
     font-size: 30px;

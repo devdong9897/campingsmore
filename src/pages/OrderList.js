@@ -56,12 +56,6 @@ const OrderList = () => {
           ))}
         </ul>
         <ul className="order_item_list">
-<<<<<<< HEAD
-          <li>
-            <div className="img">
-              <img src="#" alt="#"></img>
-            </div>
-=======
           {orderlistsearch.map((item, index) => (
             <li key={index}>
               <div className="img">
@@ -107,16 +101,14 @@ const OrderList = () => {
           ))}
           {/* <li>
             <div className="img"></div>
->>>>>>> 45815cb98ce4a74265038688dc5af5a585a33b1e
             <div className="product_desc">
-              <div className="">
-
-              </div>
               <span>교촌 대구점</span>
               <span className="option">허니 머시기 후라이드치킨</span>
               <span className="explanation">
                 양심없는 교촌의 양심없는 가격!
-                에이 이걸 누가 먹어~ 하면서도 계속 사는 호갱님들 덕분에 교촌이 살고 있습니다. 많이 사고 많이 드세요.
+                <br />
+                에이 이걸 누가 먹어~ 하면서도 계속 사는 호갱님들
+                <br /> 덕분에 교촌이 살고 있습니다. 많이 사고 많이 드세요.
               </span>
               <span className="date">등록일 : 1822.02.5</span>
             </div>
