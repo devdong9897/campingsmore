@@ -27,10 +27,11 @@ export const PaymentWrapper = styled.div`
         margin-bottom: 35px;
         width: 100%;
         height: 50px;
-        background: #f6f1bc;
+        background: #D2B48C;
         border-radius: 15px;
         overflow: hidden;
         padding: 0px 20px;
+        color:white;
         .payment_order_cate {
           display: grid;
           grid-template-columns: 150px 2fr 1fr 1fr 1fr 0.5fr;
@@ -42,7 +43,7 @@ export const PaymentWrapper = styled.div`
             align-items: center;
             height: auto;
             font-size: 20px;
-            border-right: 1px solid #9ab685;
+            border-right: 1px solid #fff;
             &:last-child {
               border-right: none;
             }
@@ -109,9 +110,11 @@ export const PaymentWrapper = styled.div`
               overflow: hidden;
               border: none;
               cursor: pointer;
+              width: 120px;
+              margin:0 auto;
             }
             button:hover {
-              background: #214a08;
+              background: #CD853F;
             }
           }
         }
@@ -120,7 +123,7 @@ export const PaymentWrapper = styled.div`
         width: 100%;
         height: auto;
         background-color: white;
-        border: 5px solid #9ab685;
+        border: 2px solid #D2B48C;
         border-radius: 15px;
         margin-bottom: 50px;
 
@@ -136,11 +139,15 @@ export const PaymentWrapper = styled.div`
           display: block;
           width: 300px;
         }
-
+        .payment_add {
+          font-size:12px;
+          color:red;
+        }
+        
         .payment_username {
           margin-left: 50px;
           width: 300px;
-          height: 50px;
+          height: 40px;
           border-radius: 15px;
           text-indent: 10px;
           font-size: 20px;
@@ -148,7 +155,7 @@ export const PaymentWrapper = styled.div`
         .payment_first_usernumber {
           margin-left: 50px;
           width: 70px;
-          height: 50px;
+          height: 40px;
           border-radius: 15px;
           text-indent: 10px;
           font-size: 20px;
@@ -156,7 +163,7 @@ export const PaymentWrapper = styled.div`
 
         .payment_usernumber {
           width: 70px;
-          height: 50px;
+          height: 40px;
           border-radius: 15px;
           text-indent: 10px;
           font-size: 20px;
@@ -164,7 +171,7 @@ export const PaymentWrapper = styled.div`
         .payment_postnumber {
           margin-left: 50px;
           width: 90px;
-          height: 50px;
+          height: 40px;
           border-radius: 15px;
           text-indent: 10px;
           font-size: 20px;
@@ -183,7 +190,7 @@ export const PaymentWrapper = styled.div`
         .payment_address {
           margin-left: 50px;
           width: 400px;
-          height: 50px;
+          height: 40px;
           border-radius: 15px;
           text-indent: 10px;
           font-size: 20px;
@@ -192,7 +199,7 @@ export const PaymentWrapper = styled.div`
         .payment_memo {
           margin-left: 50px;
           width: 800px;
-          height: 50px;
+          height: 40px;
           border-radius: 15px;
           text-indent: 10px;
           font-size: 20px;
@@ -231,17 +238,17 @@ export const PaymentWrapper = styled.div`
           width: 100px;
           height: 30px;
           margin-top: 39px;
-          border: 1px solid #9ab685;
+          border: 1px solid #D2B48C;
           border-radius: 5px;
           background-color: white;
           font-size: 17px;
         }
         .payment_all_point:hover {
-          border: 1px solid green;
+          border: 1px solid #FF4500;
         }
         .payment_box {
           display: block;
-          background-color: #9ab685;
+          background-color: #D2B48C;
           width: 200px;
           height: 40px;
           color: white;
@@ -254,7 +261,7 @@ export const PaymentWrapper = styled.div`
           cursor: pointer;
         }
         .payment_box:hover {
-          background: green;
+          background: #CD853F;
         }
       }
     }

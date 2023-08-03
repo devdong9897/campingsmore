@@ -64,6 +64,7 @@ width: 100%;
         padding:5px 50px;
         border-radius:5px; 
         border:none;
+        background-color: #D2B48C;
     }
 `
 
