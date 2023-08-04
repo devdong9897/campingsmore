@@ -42,4 +42,18 @@ const getOrderListSearch = async () => {
   return [];
 };
 
-export { getOrderListSearch, getbestitem };
+// 아이템 상세페이지 가져오기
+const getOrderDetailPage = async () => {
+  try {
+    const res = await axios.get("/api/item/detail?iitem=1&page=1&row=5");
+    const result = res.data;
+    console.log("getOrderDetail 요청완료");
+    console.log(result);
+    return result;
+  } catch (err) {
+    console.log(err);
+  }
+  return [];
+};
+
+export { getOrderDetailPage, getOrderListSearch, getbestitem };

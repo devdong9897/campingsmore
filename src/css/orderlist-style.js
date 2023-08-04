@@ -20,7 +20,7 @@ export const OrderListWrapper = styled.div`
       width: 100%;
       height: 75px;
       margin-top: 42px;
-      /* overflow: hidden; 제거 */
+      overflow: hidden;
       border-radius: 100px;
       border: 2px solid #b28e68;
       input {
@@ -65,146 +65,118 @@ export const OrderListWrapper = styled.div`
         }
       }
     }
-  }
-  .order_item_list {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    width: 100%;
-    height: auto;
-    background: #f2f2f2;
-    margin-top: 42px;
-    border-radius: 30px;
-    /* gap: 20px; 제거 */
-    grid-template-columns: 100px 2fr 1fr;
-    li {
-      color: black;
-      .img {
-        width: 242px;
-        height: 237px;
+    .order_item_list {
+      display: grid;
+      flex-wrap: wrap;
+      gap: 1% 5%;
+      grid-template-columns: 30% 30% 30%;
+      width: 100%;
+      height: auto;
+      padding-bottom: 30%;
+      margin-top: 42px;
+      li {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        color: black;
+        height: 550px;
+        background: #f2f2f2;
         border-radius: 30px;
         overflow: hidden;
-        img {
+        .img {
+          position: relative;
           width: 100%;
-          height: 100%;
+          height: 300px;
+          overflow: hidden;
+          img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 125%;
+            height: auto;
+          }
+        }
+        .product_desc {
+          padding: 20px;
+          height: 200px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          color: black;
+          .name {
+            font-weight: bold;
+            font-size: 21px;
+          }
+          .date {
+            display: flex;
+            justify-content: space-between;
+            font-size: 15px;
+            font-weight: 700;
+            margin-top: 15px;
+            p {
+              display: flex;
+              flex-direction: column;
+              justify-content: flex-end;
+              height: auto;
+            }
+            .item_price {
+              font-size: 22px;
+            }
+            .item_date {
+              font-size: 14px;
+              color: #929292;
+            }
+          }
+        }
+        .content {
+          width: 100%;
+          height: 50px;
+          .orderlist_btn {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            button {
+              &:hover {
+                background: #8b4513;
+              }
+            }
+            .shopping_basket {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              gap: 10px;
+              width: 50%;
+              border: none;
+              background: #d2b48c;
+              color: #fff;
+              font-size: 20px;
+              font-weight: 700;
+              cursor: pointer;
+            }
+            .product_details {
+              width: 50%;
+              border: none;
+              background: #d2b48c;
+              font-size: 20px;
+              font-weight: 700;
+              a {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                width: 100%;
+                height: 100%;
+                color: #fff;
+              }
+              color: #fff;
+              cursor: pointer;
+            }
+          }
         }
       }
-    }
-  }
-  .img {
-    background-image: url("${path}/image/food.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-  .product_desc {
-    position: absolute;
-    font-size: 30px;
-    display: grid;
-    top: 30px;
-    left: 250px;
-    color: black;
-    /* .option {
-      font-size: 20px;
-      font-weight: 700;
-    } */
-    .date {
-      font-size: 15px;
-      color: #929292;
-      font-weight: 700;
-      margin-top: 15px;
-    }
-  }
-  .explanation {
-    font-size: 20px;
-    color: #929292;
-    margin-top: 15px; /* 추가 */
-  }
-  .content {
-    display: grid;
-    font-size: 30px;
-    position: absolute;
-    right: 58px;
-    top: 40px;
-    color: black;
-    .orderlist_btn {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 50px;
-    }
-    .price {
-      margin-left: 40px;
-      font-weight: 700;
-    }
-  }
-  .orderlist_btn {
-    position: absolute;
-    top: 30px;
-  }
-  .shopping_basket {
-    width: 196px;
-    height: 46px;
-    border-radius: 30px;
-    margin-bottom: 9px;
-    background: #d2b48c;
-    border: none;
-    color: #fff;
-    font-size: 20px;
-    font-weight: 700;
-    cursor: pointer;
-    .cart_icon {
-      right: 3px;
-      margin-left: 10px;
-    }
-  }
-  .product_details {
-    position: relative;
-    width: 196px;
-    height: 46px;
-    border-radius: 30px;
-    margin-bottom: 9px;
-    background: #d9d9d9;
-    border: none;
-    color: #868686;
-    font-size: 20px;
-    font-weight: 700;
-    cursor: pointer;
-    padding-left: 20px;
-    padding-top: 10px;
-    .details_link {
-      color: #868686;
-    }
-  }
-  .tagicon_won {
-    position: absolute;
-    right: 1px;
-    bottom: 1px;
-    width: 46px;
-    height: 46px;
-    border-radius: 30px;
-    background: #d2b48c;
-    .tag_icon {
-      color: #fff;
-      margin-left: 15px;
-      margin-top: 13px;
-    }
-  }
-  .basket_fixed {
-    position: fixed;
-    width: 100px;
-    height: 100px;
-    background: #d2b48c;
-    border-radius: 50px;
-
-    margin-left: 385px;
-    cursor: pointer;
-    .fixed_icon {
-      margin-left: 25px;
-      margin-top: 25px;
-      width: 48px;
-      height: 48px;
-      color: #fff;
     }
   }
 `;

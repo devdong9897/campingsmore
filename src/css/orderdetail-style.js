@@ -28,41 +28,13 @@ export const OrderDetailWrapper = styled.div`
         height: 659px;
 
         .main_img {
-          width: 660px;
-          height: 480px;
-          background-image: url("${path}/image/food.jpg");
-          background-position: center;
-          background-repeat: no-repeat;
-          background-size: cover;
-          border-radius: 20px;
-        }
-
-        .sub_img {
-          display: flex;
-          gap: 25px;
-          margin-top: 20px;
-
-          .subfir_img,
-          .middle_img,
-          .last_img {
-            width: 200px;
-            height: 150px;
+          img {
+            width: 660px;
+            height: 480px;
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
             border-radius: 20px;
-          }
-
-          .subfir_img {
-            background-image: url("${path}/image/food.jpg");
-          }
-
-          .middle_img {
-            background-image: url("${path}/image/food.jpg");
-          }
-
-          .last_img {
-            background-image: url("${path}/image/food.jpg");
           }
         }
       }
@@ -75,7 +47,7 @@ export const OrderDetailWrapper = styled.div`
 
         .title {
           h1 {
-            font-size: 40px;
+            font-size: 35px;
             font-weight: 900;
             color: #d2b48c;
             margin-top: 10px;
