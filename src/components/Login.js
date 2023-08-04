@@ -1,16 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import { Logininner } from "../css/login-style";
 import { Link } from "react-router-dom";
+import { loginFetch } from "../api/userFatch";
+import { fetchLogin } from "../api/client";
 
 const Login = () => {
+  const [id, setId] = useState("");
+  const [pass, setPass] = useState("");
+
+  const handleLogin = e => {
+    e.preventDefault();
+    const newAccount = {
+      id: id,
+      password: pass,
+    };
+    console.log(newAccount);
+    fetchLogin(id, pass);
+    // loginFetch(newAccount);
+    setId("");
+    setPass("");
+  };
   return (
     <Logininner>
       <div className="login_logo"></div>
       <form className="login_form">
         <span>이메일</span>
-        <input type="text" placeholder="이메일을 입력하세요"></input>
+        <input
+          type="text"
+          placeholder="이메일을 입력하세요"
+          onChange={e => setId(e.target.value)}
+        ></input>
         <span>비밀번호</span>
-        <input type="password" placeholder="비밀번호를 입력하세요"></input>
+        <input
+          type="password"
+          placeholder="비밀번호를 입력하세요"
+          onChange={e => setPass(e.target.value)}
+        ></input>
       </form>
       <div className="to_signup">
         <span>회원이 아니세요?</span>
@@ -28,7 +53,9 @@ const Login = () => {
         </span>
       </div>
       <div className="do_login">
-        <button className="login_submit_btn">로그인</button>
+        <button className="login_submit_btn" onClick={handleLogin}>
+          로그인
+        </button>
       </div>
       <ul className="sub_login">
         <li>
