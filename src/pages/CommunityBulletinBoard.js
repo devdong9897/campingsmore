@@ -2,6 +2,7 @@ import React from "react";
 import {CommunityBulletinBoardWrapper} from '../css/community-bulletin-board-style'
 import { useNavigate } from "react-router";
 
+
 const CommunityBulletinBoard = () => {
 
     const navigate = useNavigate();
@@ -34,12 +35,12 @@ const CommunityBulletinBoard = () => {
                     <h1>리뷰작성</h1>
             <div className="community_bulletin_board_comment_box">
                 <div className="community_bulletin_board_comment">
+                <img src="/image/profile.jpg" alt="My Image" className="community_bulletin_board_img"/>
                     <p>hyeongman1990</p>
                     <textarea cols="30" rows="10"></textarea>
-                <hr />
-                <button>등록</button>
-                </div>
-            </div>
+                            <button>등록</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </CommunityBulletinBoardWrapper>

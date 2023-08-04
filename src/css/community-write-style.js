@@ -52,6 +52,7 @@ export const CommunityWriteWrapper = styled.div`
     line-height: 1.5;
     border:none;
     border-radius: 10px;
+    resize:none;
   }
   
   .communityWrite_board_cancel {

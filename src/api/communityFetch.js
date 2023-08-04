@@ -1,18 +1,8 @@
 import axios from "axios";
-import  axiosInstance  from "../api/communityFetch";
-// const axiosInstance = axios.create({
-//     baseURL: "http://localhost:5000",
-//     timeout: 1000,
-//     headers: {
-//     "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
-//     Accept: "*/*",
-//     },
-// })
-
 // 게시글 post
 const postCommunity = async () => {
   try {
-    const res = await axiosInstance.post("/api/community/comunity");
+    const res = await axios.post("/api/community/comunity");
     const data = res.data;
     return res.data;
   } catch (error) {
@@ -23,14 +13,29 @@ const postCommunity = async () => {
 
 // 게시글 디테일 보기
 
-// 게시글 리스트 보기
-export const getCommunityList = async (page, row) => {
-    try {
-        const res = await axiosInstance.get(`/api/community/comunity?page=${page}&row=${row}`);
-        return res.data;
-    }catch(err) {
-        console.log(err)
-        return null;
-    }
+// 제목으로 검색
+const getCommunityListSearch = async () => {
+  try {
+    const res = await axios.get("")
+    const result = res.data;
+    console.log(result)
+  }catch(err) {
+    console.log(err)
+    return []
+  }
 }
-export default { postCommunity, getCommunityList };
+
+// 게시글 리스트 보기
+const getCommunityList = async () => {
+  try {
+    const res = await axios.get("/api/community/comunity");
+    const result = res.data;
+    console.log("getCommunityList 요청완료");
+    console.log(result);
+    return result;
+  } catch (err) {
+    console.log(err);
+    return [];
+  }
+};
+export default { postCommunity, getCommunityList, getCommunityListSearch };
