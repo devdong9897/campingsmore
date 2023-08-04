@@ -20,7 +20,7 @@ export const OrderListWrapper = styled.div`
       width: 100%;
       height: 75px;
       margin-top: 42px;
-      overflow: hidden;
+      /* overflow: hidden; 제거 */
       border-radius: 100px;
       border: 2px solid #b28e68;
       input {
@@ -69,13 +69,13 @@ export const OrderListWrapper = styled.div`
   .order_item_list {
     display: flex;
     flex-direction: column;
-    gap: 20px;
     position: relative;
     width: 100%;
     height: auto;
     background: #f2f2f2;
     margin-top: 42px;
     border-radius: 30px;
+    /* gap: 20px; 제거 */
     grid-template-columns: 100px 2fr 1fr;
     li {
       color: black;
@@ -104,10 +104,10 @@ export const OrderListWrapper = styled.div`
     top: 30px;
     left: 250px;
     color: black;
-    .option {
+    /* .option {
       font-size: 20px;
       font-weight: 700;
-    }
+    } */
     .date {
       font-size: 15px;
       color: #929292;
@@ -118,6 +118,7 @@ export const OrderListWrapper = styled.div`
   .explanation {
     font-size: 20px;
     color: #929292;
+    margin-top: 15px; /* 추가 */
   }
   .content {
     display: grid;

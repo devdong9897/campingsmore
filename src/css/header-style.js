@@ -26,10 +26,11 @@ export const HeaderContainer = styled.div`
       flex-grow: 1;
       width: 150px;
       height: 100%;
-      background-image: url("${path}/image/Logo_w.png");
+      background-image: url("${path}/image/logo2.png");
       background-repeat: no-repeat;
       background-position: center;
-      background-size: ${props => (props.scrollOver ? "100px" : "125px")};
+      background-size: 175px;
+      margin-top: 10px;
     }
     .gnb_area {
       display: flex;
@@ -62,7 +63,7 @@ export const HeaderContainer = styled.div`
             font-weight: 800;
             text-shadow: 2px 2px 2px black;
             &:hover {
-              color: #9ab685;
+              color: #D2B48C;
             }
           }
         }
