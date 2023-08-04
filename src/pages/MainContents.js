@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import KakaoMap from "../components/KakaoMap";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { MainContentsWrapper } from "../css/main-contents-style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
@@ -8,16 +7,16 @@ import "swiper/css";
 import "swiper/css/effect-fade";
 import SwiperFade from "../components/SwiperFade";
 import { getbestitem } from "../api/itemFatch";
+import { cookies } from "../api/cookie";
 
 const MainContents = () => {
-  const [bestitem, setBestitem] = useState("");
+  const [bestitem, setBestitem] = useState([]);
 
   // 추천상품 가져오기
   const getbestitemFetch = async () => {
     try {
       const bestitemJson = await getbestitem();
       setBestitem(bestitemJson);
-      console.log(bestitem);
     } catch (error) {
       console.log(error);
     }
@@ -70,15 +69,22 @@ const MainContents = () => {
         </div>
         <div className="recommned_inner">
           <ul className="recommned_list">
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
+            {bestitem.map((item, index) => (
+              <li key={index}>
+                <div className="reco_item_pic">
+                  <img src={item.pic} alt="추천상품이미지"></img>
+                </div>
+                <div className="reco_item_desc">
+                  <span className="reco_title">{item.name}</span>
+                  <span className="reco_price">{item.price} 원</span>
+                </div>
+                <ul className="option">
+                  <li>무료배송</li>
+                  <li>카드가능</li>
+                  <li>개인가능</li>
+                </ul>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

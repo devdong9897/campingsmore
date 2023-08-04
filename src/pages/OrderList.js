@@ -60,6 +60,7 @@ const OrderList = () => {
         </ul>
         <ul className="order_item_list">
           {orderListitem.map((item, index) => (
+
             <li key={index}>
               <div className="img">
                 <img src={item.pic} alt="" />

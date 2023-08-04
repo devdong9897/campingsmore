@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { HeaderContainer } from "../css/header-style";
 import { Link } from "react-router-dom";
+import { cookies } from "../api/cookie";
 
 const Header = () => {
   const [scrollOver, setScrollOver] = useState(0);
@@ -46,11 +47,13 @@ const Header = () => {
         <div className="account">
           <ul className="account_list">
             <li>
-              <Link to="/">로그인</Link>
+              {cookies ? (
+                <Link to="/">로그아웃</Link>
+              ) : (
+                <Link to="/">로그인</Link>
+              )}
             </li>
-            <li>
-              <Link to="/main/mypage">회원가입</Link>
-            </li>
+            <li>{cookies ? <Link to="/main/mypage">마이페이지</Link> : ""}</li>
           </ul>
         </div>
       </div>

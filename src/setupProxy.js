@@ -8,4 +8,11 @@ module.exports = function (app) {
       changeOrigin: true,
     }),
   );
+  app.use(
+    "/sign-api",
+    createProxyMiddleware({
+      target: "http://192.168.0.144:5005",
+      changeOrigin: true,
+    }),
+  );
 };

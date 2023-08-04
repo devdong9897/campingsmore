@@ -5,9 +5,17 @@ import PurchaseHistory from "../components/PurchaseHistory";
 import ReviewHistory from "../components/ReviewHistory";
 import WritingHistory from "../components/WritingHistory";
 import DibsList from "../components/DibsList";
+import { cookies } from "../api/cookie";
+import { useEffect } from "react";
 
 const Mypage = () => {
   const [menuindex, setMenuIndex] = useState(0);
+
+  const handleMenuChange = index => {
+    setMenuIndex(index);
+  };
+
+
 
   const menuComponents = [
     () => <EditInformation />,
@@ -19,7 +27,7 @@ const Mypage = () => {
 
   console.log(menuindex);
   return (
-    <MypageWrapper>
+    <MypageWrapper menuindex={menuindex}>
       <div className="mypage_inner">
         <div className="my_menu">
           <span className="my_menu_title">마이페이지</span>
@@ -31,7 +39,7 @@ const Mypage = () => {
           <ul className="my_menu_list">
             {["개인정보수정", "구매내역", "리뷰내역", "작성글", "찜하기"].map(
               (menu, index) => (
-                <li key={index} onClick={() => setMenuIndex(index)}>
+                <li key={index} onClick={() => handleMenuChange(index)}>
                   {menu}
                 </li>
               ),
