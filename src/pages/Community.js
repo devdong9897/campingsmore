@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getCommunityList, getCommunityPage } from "../api/communityFetch";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
+
 const Community = () => {
   const navigate = useNavigate();
   const [communityList, setCommunityList] = useState([]);
@@ -53,8 +54,8 @@ const Community = () => {
       <div className="top_community_contents">
         <div className="community_contents_inner">
           <h1>커뮤니티</h1>
-
           <hr className="community_line" />
+
           <div className="community_input_area">
             <div action="" className="community_form">
               <select className="community_board_menu">

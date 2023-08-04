@@ -1,6 +1,4 @@
 import axios from "axios";
-
-// 게시글 post postCommunity
 const postCommunity = async () => {
   try {
     const res = await axios.post("/api/community/comunity");
@@ -39,5 +37,6 @@ const getCommunityPage = async _index => {
   }
   return [];
 };
+
 
 export { postCommunity, getCommunityList, getCommunityPage };
