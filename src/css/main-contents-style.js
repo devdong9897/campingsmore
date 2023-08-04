@@ -43,7 +43,7 @@ export const MainContentsWrapper = styled.div`
         font-size: 40px;
         font-weight: bold;
         strong {
-          color: #d2b48c;
+          color: #D2B48C;
         }
       }
       .search_bar {
@@ -64,7 +64,7 @@ export const MainContentsWrapper = styled.div`
           top: 0px;
           width: 100px;
           height: 100%;
-          background: #9ab685;
+          background: #D2B48C;
           border: none;
           color: #fff;
           font-size: 35px;
