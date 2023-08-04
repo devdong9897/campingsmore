@@ -78,6 +78,7 @@ export const OrderListWrapper = styled.div`
     border-radius: 30px;
     grid-template-columns: 100px 2fr 1fr;
     li {
+      color: black;
       .img {
         width: 242px;
         height: 237px;

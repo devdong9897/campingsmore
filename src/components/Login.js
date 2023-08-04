@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Logininner } from "../css/login-style";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { loginFetch } from "../api/userFatch";
 import { fetchLogin } from "../api/client";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [id, setId] = useState("");
   const [pass, setPass] = useState("");
 
@@ -16,7 +17,9 @@ const Login = () => {
     };
     console.log(newAccount);
     fetchLogin(id, pass);
+
     // loginFetch(newAccount);
+    navigate("/main");
     setId("");
     setPass("");
   };

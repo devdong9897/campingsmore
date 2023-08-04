@@ -7,6 +7,7 @@ import "swiper/css";
 import "swiper/css/effect-fade";
 import SwiperFade from "../components/SwiperFade";
 import { getbestitem } from "../api/itemFatch";
+import { cookies } from "../api/cookie";
 
 const MainContents = () => {
   const [bestitem, setBestitem] = useState([]);

@@ -31,9 +31,7 @@ export { getOrderListCategory };
 // 아이템 검색리스트 가져오기
 const getOrderListSearch = async () => {
   try {
-    const res = await axios.get(
-      "/api/item/search?cate=11&page=1&row=21&sort=0",
-    );
+    const res = await axios.get("/api/item/search");
     const result = res.data;
     console.log("getOrderListSearch 요청완료");
     console.log(result);

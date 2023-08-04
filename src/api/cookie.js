@@ -9,3 +9,5 @@ export const setCookie = (name, value) => {
 export const getCookie = (name, value) => {
   return cookies.get(name, value);
 };
+
+export { cookies };

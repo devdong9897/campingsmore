@@ -5,6 +5,8 @@ import PurchaseHistory from "../components/PurchaseHistory";
 import ReviewHistory from "../components/ReviewHistory";
 import WritingHistory from "../components/WritingHistory";
 import DibsList from "../components/DibsList";
+import { cookies } from "../api/cookie";
+import { useEffect } from "react";
 
 const Mypage = () => {
   const [menuindex, setMenuIndex] = useState(0);
@@ -12,6 +14,8 @@ const Mypage = () => {
   const handleMenuChange = index => {
     setMenuIndex(index);
   };
+
+
 
   const menuComponents = [
     () => <EditInformation />,
@@ -27,8 +31,7 @@ const Mypage = () => {
       <div className="mypage_inner">
         <div className="my_menu">
           <span className="my_menu_title">마이페이지</span>
-          <div className="profile_img_box">
-          </div>
+          <div className="profile_img_box"></div>
           <div className="profile_info">
             <span className="profile_name">신형만</span>
             <span className="profile_email">sin1990@naver.com</span>
