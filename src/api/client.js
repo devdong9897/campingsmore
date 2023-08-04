@@ -50,3 +50,7 @@ export const fetchLogin = async (email, pw) => {
     console.log(error);
   }
 };
+
+// export const fetchLogout = () => {
+//   cookies.remove("token");
+// };

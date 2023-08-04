@@ -60,23 +60,18 @@ const OrderList = () => {
         </ul>
         <ul className="order_item_list">
           {orderListitem.map((item, index) => (
-
             <li key={index}>
               <div className="img">
                 <img src={item.pic} alt="" />
               </div>
               <div className="product_desc">
-                <span>{item.name}</span>
-                <span className="option">허니 머시기 후라이드치킨</span>
-                <span className="explanation">
-                  양심없는 교촌의 양심없는 가격! 에이 이걸 누가 먹어~ 하면서도
-                  계속 사는 호갱님들 덕분에 교촌이 살고 있습니다. 많이 사고 많이
-                  드세요.
+                <span className="name">{item.name}</span>
+                <span className="date">
+                  <p className="item_price">{item.price} 원</p>
+                  <p className="item_date">{item.createdAt}</p>
                 </span>
-                <span className="date">{item.createdAt}</span>
               </div>
               <div className="content">
-                <span className="price">{item.price}</span>
                 <div className="orderlist_btn">
                   <button className="shopping_basket">
                     장바구니 담기
@@ -88,17 +83,9 @@ const OrderList = () => {
                   <button className="product_details">
                     <Link to="/main/orderdetail" className="details_link">
                       상품상세보기
-                    </Link>
-                    <div className="tagicon_won">
                       <FontAwesomeIcon icon={faTag} className="tag_icon" />
-                    </div>
+                    </Link>
                   </button>
-                  <div className="basket_fixed">
-                    <FontAwesomeIcon
-                      icon={faCartShopping}
-                      className="fixed_icon"
-                    />
-                  </div>
                 </div>
               </div>
             </li>
