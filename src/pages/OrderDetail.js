@@ -1,29 +1,46 @@
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { getOrderDetailPage } from "../api/itemFatch";
 import { OrderDetailWrapper } from "../css/orderdetail-style";
+import { Link } from "react-router-dom";
 
 const OrderDetail = () => {
+  const [orderdetail, setOrderDetail] = useState([]);
+  const [detailListItem, setDetailListItem] = useState([]);
+  const [reviewItem, setReviewItem] = useState([]);
+  const getOrderDetail = async () => {
+    try {
+      const data = await getOrderDetailPage();
+      setOrderDetail(data);
+      console.log(data.item);
+      setDetailListItem(data.item);
+      setReviewItem(data.review);
+    } catch (err) {
+      console.log("오더디테일 에러", err);
+    }
+  };
+
+  useEffect(() => {
+    getOrderDetail();
+  }, []);
+
   return (
     <OrderDetailWrapper>
       <div className="orderdetail_inner">
         <div className="main">
           <div className="first_box">
-            <div className="main_img"></div>
-            <div className="sub_img">
-              <div className="subfir_img"></div>
-              <div className="middle_img"></div>
-              <div className="last_img"></div>
+            <div className="main_img">
+              <img src={detailListItem.pic} alt="" />
             </div>
           </div>
           <div className="second_box">
             <div className="title">
-              <h1>교촌 허니 후라이드 치킨</h1>
+              <h1>{detailListItem.name}</h1>
               <p className="meddle_title">
-                양심없는 가격 노양심 허니 후라이드 치킨!
+                
               </p>
-              <p className="price">23000원</p>
+              <p className="price">{detailListItem.price}원</p>
             </div>
 
             <div className="points">
@@ -58,7 +75,9 @@ const OrderDetail = () => {
 
             <button className="left">장바구니담기</button>
             <button className="right">
-              <Link to="/main/payment" className="payrig">구매하기</Link>
+              <Link to="/main/payment" className="payrig">
+                구매하기
+              </Link>
             </button>
           </div>
         </div>
@@ -72,6 +91,7 @@ const OrderDetail = () => {
             <div className="profile_name">
               <p>신형만</p>
               <p>
+                <FontAwesomeIcon icon={faStar} style={{ color: "#ffea00" }} />
                 <FontAwesomeIcon icon={faStar} style={{ color: "#ffea00" }} />
                 <FontAwesomeIcon icon={faStar} style={{ color: "#ffea00" }} />
                 <FontAwesomeIcon icon={faStar} style={{ color: "#ffea00" }} />

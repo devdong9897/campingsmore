@@ -10,11 +10,11 @@ export const Logininner = styled.div`
   padding: 20px;
   .login_logo {
     width: 100%;
-    height: 160px;
-    background-image: url("${path}/image/Logo.png");
+    height: 200px;
+    background-image: url("${path}/image/logo2.png");
     background-repeat: no-repeat;
-    background-position: 50% 80%;
-    background-size: 35%;
+    background-position: 50% 100%;
+    background-size: 45%;
   }
   .login_form {
     display: flex;
