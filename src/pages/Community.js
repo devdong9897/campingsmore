@@ -3,11 +3,27 @@ import { useNavigate } from "react-router-dom";
 import { CommunityWrapper } from "../css/community-style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import {getCommunityList} from "../api/communityFetch"
 
 const Community = () => {
   const navigate = useNavigate();
 
-  const [community, setCommunityData] = useState([]);
+  // const [community, setCommunityData] = useState([]);
+  const [communityList, setCommunityList] = useState([])
+  const getCommunity = async () =>{
+    try{
+      const data = await getCommunityList(1, 15);
+      setCommunityList(data.list);
+      console.log(communityList.item.list)
+    }catch(err) {
+      console.log("커뮤니티리스트 에러",err)
+    } 
+  }
+
+
+  useEffect( () => {
+    getCommunity()
+  },[])
 
   const handleGoToCommunityWrite = () => {
     navigate("/main/communitywrite");
@@ -46,13 +62,13 @@ const Community = () => {
           <div className="community_board_list_head_box">
             <div className="community_board_list_head">
               <div className="community_board_bod">
-                {/* {communityData.map((item, index) => (
+                {communityList.map((item, index) => (
                 <div key={index}>
                   <span>{item.title}</span>
                   <span>{item.information}</span>
                   <span>{item.writer}</span>
                 </div>
-              ))} */}
+              ))}
               </div>
               <button
                 className="community_board_regi"
