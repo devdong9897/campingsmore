@@ -9,19 +9,16 @@ const Login = () => {
   const [id, setId] = useState("");
   const [pass, setPass] = useState("");
 
-  const handleLogin = e => {
-    e.preventDefault();
-    const newAccount = {
-      id: id,
-      password: pass,
-    };
-    console.log(newAccount);
-    fetchLogin(id, pass);
-
-    // loginFetch(newAccount);
-    navigate("/main");
-    setId("");
-    setPass("");
+  const handleLogin = async e => {
+    try {
+      e.preventDefault();
+      await fetchLogin(id, pass);
+      navigate("/main");
+      setId("");
+      setPass("");
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <Logininner>

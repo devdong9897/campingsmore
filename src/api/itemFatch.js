@@ -42,6 +42,27 @@ const getOrderListSearch = async () => {
   return [];
 };
 
+// 아이템 검색결과 가져오기
+// const getOrderSearch = async () => {
+//   try{
+//     const res = await axios.get("")
+//   }
+// }
+
+const getOrderSearch = async qusearch => {
+  try {
+    const res = await axios.get(
+      `/api/item/search?text=${qusearch}&page=1&row=15&sort=0`,
+    );
+    const result = res.data;
+    console.log("getOrderSearch 요청완료");
+    console.log(result);
+  } catch (err) {
+    console.log(err);
+  }
+  return [];
+};
+
 // 아이템 상세페이지 가져오기
 const getOrderDetailPage = async () => {
   try {
@@ -56,4 +77,4 @@ const getOrderDetailPage = async () => {
   return [];
 };
 
-export { getOrderDetailPage, getOrderListSearch, getbestitem };
+export { getOrderDetailPage, getOrderListSearch, getbestitem, getOrderSearch };

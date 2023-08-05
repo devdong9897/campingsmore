@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getCookie, setCookie } from "./cookie";
+import { cookies, getCookie, setCookie } from "./cookie";
 
 export const client = axios.create({
   baseURL: "http://localhost:3000",
@@ -49,6 +49,11 @@ export const fetchLogin = async (email, pw) => {
   } catch (error) {
     console.log(error);
   }
+};
+
+export const deleteCookie = () => {
+  cookies.remove("accessToken");
+  cookies.remove("refreshToken");
 };
 
 // export const fetchLogout = () => {

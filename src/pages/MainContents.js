@@ -6,11 +6,48 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import SwiperFade from "../components/SwiperFade";
-import { getbestitem } from "../api/itemFatch";
+import {
+  getOrderListCategory,
+  getOrderSearch,
+  getbestitem,
+} from "../api/itemFatch";
 import { cookies } from "../api/cookie";
+import { useNavigate } from "react-router-dom";
 
 const MainContents = () => {
+  const navigate = useNavigate();
+  // 추천상품 state
   const [bestitem, setBestitem] = useState([]);
+  // 카테고리 상품 state
+  const [orderlist, setOrderList] = useState([]);
+  // 검색 state
+  const [search, setSearch] = useState("");
+
+  // 검색 쿼리스트링 state
+  const [qusearch, setQusearch] = useState("");
+
+  // 검색기능 핸들러
+  const handleSearch = () => {
+    const queryString = encodeURIComponent(search);
+    setQusearch(queryString);
+    console.log(queryString);
+    getOrderSearch(queryString);
+    const getSearchDate = async () => {
+      
+    }
+  };
+
+
+  // 카테고리 상품 가져오기
+  const getOrderList = async () => {
+    try {
+      const data = await getOrderListCategory();
+      setOrderList(data);
+      console.log("얌마!", orderlist.itemList);
+    } catch (err) {
+      console.log("오더리스트 에러", err);
+    }
+  };
 
   // 추천상품 가져오기
   const getbestitemFetch = async () => {
@@ -24,6 +61,7 @@ const MainContents = () => {
 
   useEffect(() => {
     getbestitemFetch();
+    getOrderList();
   }, []);
 
   return (
@@ -40,17 +78,16 @@ const MainContents = () => {
             <input
               type="text"
               placeholder="찾으시는 캠핑음식이 있으신가요?"
+              onChange={e => setSearch(e.target.value)}
             ></input>
-            <button className="search_submit">
+            <button className="search_submit" onClick={handleSearch}>
               <FontAwesomeIcon icon={faMagnifyingGlass} />
             </button>
           </div>
           <ul className="main_category">
-            <li>#카테고리 데이터</li>
-            <li>#카테고리 데이터</li>
-            <li>#카테고리 데이터</li>
-            <li>#카테고리 데이터</li>
-            <li>#카테고리 데이터</li>
+            {orderlist.map((item, index) => (
+              <li key={index}>{item.name}</li>
+            ))}
           </ul>
         </div>
       </div>

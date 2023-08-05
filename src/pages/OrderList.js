@@ -16,7 +16,7 @@ const OrderList = () => {
     try {
       const data = await getOrderListCategory();
       setOrderList(data);
-      console.log(orderlist.itemList);
+      console.log("얌마!", orderlist.itemList);
     } catch (err) {
       console.log("오더리스트 에러", err);
     }
