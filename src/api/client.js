@@ -32,7 +32,7 @@ export const fetchLogin = async (email, pw) => {
         pw: pw,
       },
     );
-    console.log(res.data);
+    console.log("데이터받아옴", res.data);
     const result = await res.data;
     setCookie("refreshToken", result.refreshToken, {
       path: "/",
