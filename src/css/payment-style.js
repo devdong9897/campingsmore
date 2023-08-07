@@ -48,6 +48,12 @@ export const PaymentWrapper = styled.div`
               border-right: none;
             }
           }
+          li:first-child {
+            border-right:none;
+          }
+          li:nth-child(2) {
+            margin-left:-180px;
+          }
         }
       }
       .payment_order_list {
