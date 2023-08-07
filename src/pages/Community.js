@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getCommunityList, getCommunityPage } from "../api/communityFetch";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
-
 const Community = () => {
   const navigate = useNavigate();
   const [communityList, setCommunityList] = useState([]);

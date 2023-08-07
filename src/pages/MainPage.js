@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { MainWarp } from "../css/main-style";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -26,7 +26,10 @@ const MainPage = () => {
         <Route path="/orderlist" element={<OrderList />}></Route>
         <Route path="/community" element={<Community />}></Route>
         <Route path="/communitywrite" element={<CommunityWrite />}></Route>
-        <Route path="/communitybulletinboard" element={<CommunityBulletinBoard />}></Route>
+        <Route
+          path="/communitybulletinboard"
+          element={<CommunityBulletinBoard />}
+        ></Route>
         <Route path="/payment" element={<Payment />}></Route>
         <Route path="/orderhistory" element={<OrderHistory />}></Route>
         <Route path="/reviewmodal" element={<ReviewModal />}></Route>

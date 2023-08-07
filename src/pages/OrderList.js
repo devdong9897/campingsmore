@@ -16,6 +16,7 @@ const OrderList = () => {
 
   const getOrderListCategory = async () => {
     try {
+
       const res = await axios.get("/api/item/category");
       setOrderList(res.data);
       // 전체 리스트

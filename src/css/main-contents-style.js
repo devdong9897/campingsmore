@@ -43,7 +43,7 @@ export const MainContentsWrapper = styled.div`
         font-size: 40px;
         font-weight: bold;
         strong {
-          color: #D2B48C;
+          color: #d2b48c;
         }
       }
       .search_bar {
@@ -64,7 +64,7 @@ export const MainContentsWrapper = styled.div`
           top: 0px;
           width: 100px;
           height: 100%;
-          background: #D2B48C;
+          background: #d2b48c;
           border: none;
           color: #fff;
           font-size: 35px;
@@ -81,11 +81,12 @@ export const MainContentsWrapper = styled.div`
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          width: auto;
+          width: 18%;
           padding: 0px 35px;
           height: 100%;
           border-radius: 100px;
           background: #d2b48c;
+          font-size: 17px;
           color: #fff;
         }
       }

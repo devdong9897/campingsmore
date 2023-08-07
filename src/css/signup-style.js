@@ -5,11 +5,11 @@ export const SignUpForm = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: auto;
+  height: 800px;
+  overflow-x: scroll;
   background: rgba(154, 182, 133, 0.7);
   padding: 20px;
   border-radius: 20px;
-  overflow: hidden;
   .signup_title {
     margin-top: 20px;
     margin-bottom: 25px;
@@ -58,10 +58,16 @@ export const SignUpForm = styled.div`
       display: flex;
       flex-direction: column;
       span {
+        gap: 15px;
+        display: flex;
         margin-bottom: 10px;
         font-size: 18px;
         color: #fff;
         font-weight: bold;
+        p {
+          color: #cf6353;
+          font-size: 15px;
+        }
       }
       input {
         height: 50px;

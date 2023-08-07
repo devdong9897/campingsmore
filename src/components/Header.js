@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { HeaderContainer } from "../css/header-style";
 import { Link } from "react-router-dom";
-import { cookies } from "../api/cookie";
+import { cookies, getCookie } from "../api/cookie";
+import { Cookies } from "react-cookie";
+import { deleteCookie } from "../api/client";
 
 const Header = () => {
+  const accessToken = getCookie("accessToken");
+  const [isLoggedIn, setIsLoggedIn] = useState(accessToken ? true : false);
+
+  useEffect(() => {}, [accessToken]);
   const [scrollOver, setScrollOver] = useState(0);
   const [scrolled, setScrolled] = useState(false);
 
@@ -12,9 +18,13 @@ const Header = () => {
     setScrollOver(scrollY);
   };
 
+  const handleLogout = () => {
+    deleteCookie();
+    setIsLoggedIn(false);
+  };
+
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -47,8 +57,8 @@ const Header = () => {
         <div className="account">
           <ul className="account_list">
             <li>
-              {cookies ? (
-                <Link to="/">로그아웃</Link>
+              {isLoggedIn ? (
+                <button onClick={handleLogout}>로그아웃</button>
               ) : (
                 <Link to="/">로그인</Link>
               )}

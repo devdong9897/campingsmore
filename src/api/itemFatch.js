@@ -42,7 +42,6 @@ const getOrderListSearch = async () => {
   return [];
 };
 
-// 아이템 상세페이지 get
 const getOrderDetailPage = async () => {
   try {
     const res = await axios.get("/api/item/detail?iitem=1&page=1&row=5");
@@ -56,4 +55,4 @@ const getOrderDetailPage = async () => {
   return [];
 };
 
-export { getOrderDetailPage, getOrderListSearch, getbestitem };
+export { getOrderDetailPage, getOrderListSearch, getbestitem, getOrderSearch };
