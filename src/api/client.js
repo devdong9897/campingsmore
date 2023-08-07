@@ -1,13 +1,13 @@
 import axios from "axios";
 import { cookies, getCookie, setCookie } from "./cookie";
 
-export const client = axios.create({
-  baseURL: "http://192.168.0.144:5005",
-  timeout: 1000,
-  headers: {
-    "Content-Type": "application/json;charset=UTF-8",
-  },
-});
+// export const client = axios.create({
+//   baseURL: "http://192.168.0.144:5005",
+//   timeout: 1000,
+//   headers: {
+//     "Content-Type": "application/json;charset=UTF-8",
+//   },
+// });
 
 // Request 처리
 axios.interceptors.request.use(

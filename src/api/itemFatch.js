@@ -55,4 +55,4 @@ const getOrderDetailPage = async () => {
   return [];
 };
 
-export { getOrderDetailPage, getOrderListSearch, getbestitem ,  };
+export { getOrderDetailPage, getOrderListSearch, getbestitem };

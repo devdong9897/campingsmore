@@ -28,7 +28,6 @@ const MainContents = () => {
     setQusearch(queryString);
     console.log(queryString);
     // getOrderSearch(queryString);
-    const getSearchDate = async () => {};
   };
 
   // 카테고리 상품 가져오기
