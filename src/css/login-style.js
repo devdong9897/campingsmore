@@ -98,6 +98,7 @@ export const Logininner = styled.div`
         background: #fae100;
         border: none;
         border-radius: 5px;
+        color: #fff;
       }
       .google {
         border: none;
@@ -107,6 +108,7 @@ export const Logininner = styled.div`
         background: #00c300;
         border: none;
         border-radius: 5px;
+        color: #fff;
       }
     }
   }

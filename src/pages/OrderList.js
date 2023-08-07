@@ -13,10 +13,10 @@ const OrderList = () => {
   const [orderlist, setOrderList] = useState([]);
   const [orderListitem, setOrderListItem] = useState([]);
   const [searchText, setSearchText] = useState("");
+  
 
   const getOrderListCategory = async () => {
     try {
-
       const res = await axios.get("/api/item/category");
       setOrderList(res.data);
       // 전체 리스트
@@ -38,7 +38,7 @@ const OrderList = () => {
   useEffect(() => {
     getOrderListCategory();
   }, []);
-
+  
   const handleSearch = () => {
     getOrderListSearch(searchText);
   };
@@ -56,6 +56,12 @@ const OrderList = () => {
           <button className="search_submit" onClick={handleSearch}>
             <FontAwesomeIcon icon={faMagnifyingGlass} />
           </button>
+        </div>
+        <div className="btn">
+          <button>최신순</button>
+          <button>오래된순</button>
+          <button>높은가격순</button>
+          <button>낮은가격순</button>
         </div>
         <ul className="order_category">
           {orderlist.map((item, index) => (
@@ -75,7 +81,7 @@ const OrderList = () => {
                   <p className="item_date">{item.createdAt}</p>
                 </span>
               </div>
-              <div className="content">
+              <div className="content"> 
                 <div className="orderlist_btn">
                   <button className="shopping_basket">
                     장바구니 담기
@@ -85,7 +91,10 @@ const OrderList = () => {
                     />
                   </button>
                   <button className="product_details">
-                    <Link to="/main/orderdetail" className="details_link">
+                    <Link
+                      to={`/main/orderdetail?iitem=${item.iitem}`}
+                      className="details_link"
+                    >
                       상품상세보기
                       <FontAwesomeIcon icon={faTag} className="tag_icon" />
                     </Link>
