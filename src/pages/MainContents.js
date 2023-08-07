@@ -55,7 +55,7 @@ const MainContents = () => {
       const bestitemJson = await getbestitem();
       setBestitem(bestitemJson);
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
   };
 

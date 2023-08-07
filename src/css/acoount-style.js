@@ -43,7 +43,7 @@ export const AccoutWrapper = styled.div`
     margin: 0 auto;
     width: 575px;
     height: auto;
-    background: rgba(154, 182, 133, 0.7);
+    background: rgba(210, 180, 140, 0.7);
     border-radius: 20px;
     overflow: hidden;
   }

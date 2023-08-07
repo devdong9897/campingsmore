@@ -29,8 +29,8 @@ export const HeaderContainer = styled.div`
       background-image: url("${path}/image/logo2.png");
       background-repeat: no-repeat;
       background-position: center;
-      background-size: 175px;
-      margin-top: 10px;
+      background-size: 115px;
+      margin-top: 5px;
     }
     .gnb_area {
       display: flex;

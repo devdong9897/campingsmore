@@ -59,13 +59,13 @@ const Login = () => {
       </div>
       <ul className="sub_login">
         <li>
-          <button>카카오 로그인</button>
+          <button className="kakao">카카오 로그인</button>
         </li>
         <li>
-          <button>구글 로그인</button>
+          <button className="google">구글 로그인</button>
         </li>
         <li>
-          <button>네이버 로그인</button>
+          <button className="naver">네이버 로그인</button>
         </li>
       </ul>
       <div className="non_member">
