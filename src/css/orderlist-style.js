@@ -44,8 +44,22 @@ export const OrderListWrapper = styled.div`
         cursor: pointer;
       }
     }
+    .btn {
+      margin-top: 30px;
+      button {
+        padding: 10px;
+        border: none;
+        color: #fff;
+        font-weight: 700;
+        margin-left: 10px;
+        background: #c86a26;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        cursor: pointer;
+      }
+    }
     .order_category {
-      margin-top: 40px;
+      margin-top: 20px;
       display: flex;
       width: 100%;
       height: 120px;
@@ -181,5 +195,4 @@ export const OrderListWrapper = styled.div`
       }
     }
   }
-
 `;

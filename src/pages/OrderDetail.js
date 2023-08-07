@@ -97,14 +97,14 @@ const OrderDetail = () => {
           <div className="profile">
             <div className="profile_img"></div>
             <div className="profile_name">
-              <p>신형만</p>
+              <p>신형만이</p>
               <p>
                 <FontAwesomeIcon icon={faStar} style={{ color: "#ffea00" }} />
                 <FontAwesomeIcon icon={faStar} style={{ color: "#ffea00" }} />
                 <FontAwesomeIcon icon={faStar} style={{ color: "#ffea00" }} />
                 <FontAwesomeIcon icon={faStar} style={{ color: "#ffea00" }} />
                 <FontAwesomeIcon icon={faStar} style={{ color: "#ffea00" }} />
-              </p>
+              </p>  
             </div>
           </div>
           <div className="profile_content">
