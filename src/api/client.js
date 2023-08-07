@@ -2,7 +2,7 @@ import axios from "axios";
 import { cookies, getCookie, setCookie } from "./cookie";
 
 export const client = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "http://192.168.0.144:5005",
   timeout: 1000,
   headers: {
     "Content-Type": "application/json;charset=UTF-8",
@@ -25,13 +25,10 @@ axios.interceptors.request.use(
 // 쿠키 set 하기
 export const fetchLogin = async (email, pw) => {
   try {
-    const res = await client.post(
-      `/sign-api/sign-in?id=${email}&password=${pw}`,
-      {
-        email: email,
-        pw: pw,
-      },
-    );
+    const res = await axios.post(`/sign-api/sign-in`, {
+      uid: email,
+      upw: pw,
+    });
     console.log("데이터받아옴", res.data);
     const result = await res.data;
     setCookie("refreshToken", result.refreshToken, {

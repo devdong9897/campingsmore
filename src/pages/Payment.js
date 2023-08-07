@@ -33,9 +33,9 @@ const Payment = () => {
             <ul className="payment_order_cate">
               <li></li>
               <li>상세정보</li>
+              <li>판매자</li>
               <li>수량</li>
               <li>금액</li>
-              
               <li></li>
             </ul>
           </div>
