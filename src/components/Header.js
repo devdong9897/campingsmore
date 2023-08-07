@@ -37,7 +37,7 @@ const Header = () => {
               <Link to="/main/orderlist">장터보기</Link>
             </li>
             <li>
-              <Link to="/main">캠핑예약</Link>
+              <Link to="/main/reservation">캠핑예약</Link>
             </li>
             <li>
               <Link to="/main/community">커뮤니티</Link>

@@ -23,6 +23,7 @@ export const OrderListWrapper = styled.div`
       overflow: hidden;
       border-radius: 100px;
       border: 2px solid #b28e68;
+      cursor: pointer;
       input {
         width: 100%;
         height: 100%;
@@ -40,6 +41,7 @@ export const OrderListWrapper = styled.div`
         border: none;
         color: #fff;
         font-size: 35px;
+        cursor: pointer;
       }
     }
     .order_category {

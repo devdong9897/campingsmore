@@ -47,6 +47,7 @@ export const Logininner = styled.div`
     border-bottom: 1px solid #fff;
     span {
       font-weight: bold;
+      color: #8b4513;
       a {
         color: #fff;
       }
@@ -61,7 +62,7 @@ export const Logininner = styled.div`
     color: #fff;
     span {
       a {
-        color: greenyellow;
+        color: #8b4513;
       }
     }
   }
@@ -91,6 +92,21 @@ export const Logininner = styled.div`
       button {
         width: 100%;
         padding: 10px;
+        cursor: pointer;
+      }
+      .kakao {
+        background: #fae100;
+        border: none;
+        border-radius: 5px;
+      }
+      .google {
+        border: none;
+        border-radius: 5px;
+      }
+      .naver {
+        background: #00c300;
+        border: none;
+        border-radius: 5px;
       }
     }
   }

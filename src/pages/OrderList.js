@@ -4,42 +4,43 @@ import {
   faTag,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getOrderListCategory, getOrderListSearch } from "../api/itemFatch";
 import { OrderListWrapper } from "../css/orderlist-style";
 
 const OrderList = () => {
-  // 아이템 카테고리
   const [orderlist, setOrderList] = useState([]);
-  const getOrderList = async () => {
+  const [orderListitem, setOrderListItem] = useState([]);
+  const [searchText, setSearchText] = useState("");
+
+  const getOrderListCategory = async () => {
     try {
-      const data = await getOrderListCategory();
-      setOrderList(data);
-      console.log(orderlist.itemList);
+      const res = await axios.get("/api/item/category");
+      setOrderList(res.data);
+      // 전체 리스트
+      getOrderListSearch("");
     } catch (err) {
-      console.log("오더리스트 에러", err);
+      console.log(err);
     }
   };
 
-  // 아이템 검색리스트
-  const [orderlistsearch, setOrderListSearch] = useState([]);
-  const [orderListitem, setOrderListItem] = useState([]);
-  const getSearchList = async () => {
+  const getOrderListSearch = async text => {
     try {
-      const data = await getOrderListSearch();
-      setOrderListSearch(data);
-      console.log(data.itemList);
-      setOrderListItem(data.itemList);
+      const res = await axios.get(`/api/item/search?text=${text}`);
+      setOrderListItem(res.data.itemList);
     } catch (err) {
-      console.log("서치리스트 에러", err);
+      console.log(err);
     }
   };
 
   useEffect(() => {
-    getOrderList();
-    getSearchList();
+    getOrderListCategory();
   }, []);
+
+  const handleSearch = () => {
+    getOrderListSearch(searchText);
+  };
 
   return (
     <OrderListWrapper>
@@ -48,8 +49,10 @@ const OrderList = () => {
           <input
             type="text"
             placeholder="찾으시는 캠핑음식이 있으신가요?"
-          ></input>
-          <button className="search_submit">
+            value={searchText}
+            onChange={e => setSearchText(e.target.value)}
+          />
+          <button className="search_submit" onClick={handleSearch}>
             <FontAwesomeIcon icon={faMagnifyingGlass} />
           </button>
         </div>

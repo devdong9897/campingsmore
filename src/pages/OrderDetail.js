@@ -1,11 +1,12 @@
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { getOrderDetailPage } from "../api/itemFatch";
 import { OrderDetailWrapper } from "../css/orderdetail-style";
-import { Link } from "react-router-dom";
 
 const OrderDetail = () => {
+  // orderdetail 데이터 가져오기
   const [orderdetail, setOrderDetail] = useState([]);
   const [detailListItem, setDetailListItem] = useState([]);
   const [reviewItem, setReviewItem] = useState([]);
@@ -25,6 +26,9 @@ const OrderDetail = () => {
     getOrderDetail();
   }, []);
 
+  // 금액 수량 증가
+  const [quantity, setQuantity] = useState(1);
+
   return (
     <OrderDetailWrapper>
       <div className="orderdetail_inner">
@@ -37,9 +41,7 @@ const OrderDetail = () => {
           <div className="second_box">
             <div className="title">
               <h1>{detailListItem.name}</h1>
-              <p className="meddle_title">
-                
-              </p>
+              <p className="meddle_title"></p>
               <p className="price">{detailListItem.price}원</p>
             </div>
 
@@ -60,17 +62,23 @@ const OrderDetail = () => {
             <div className="qantity">
               <div className="free">[배송무료] / 기본배송</div>
               <div className="num">
-                <button>-</button>
-                <p className="one">1</p>
-                <button>+</button>
+                <button
+                  onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)}
+                >
+                  -
+                </button>
+                <p className="one">{quantity}</p>
+                <button onClick={() => setQuantity(quantity + 1)}>+</button>
                 <div className="number">
-                  <p>23000원</p>
+                  <p>{detailListItem.price * quantity}원</p>
                 </div>
               </div>
             </div>
             <div className="total">
               <p className="total_price">총 상품 금액</p>
-              <p className="orderdetail_price">23000원</p>
+              <p className="orderdetail_price">
+                {detailListItem.price * quantity}원
+              </p>
             </div>
 
             <button className="left">장바구니담기</button>

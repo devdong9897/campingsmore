@@ -41,7 +41,7 @@ export const CommunityWriteWrapper = styled.div`
     font-size: 20px;
     text-indent: 15px;
     margin-bottom: 20px;
-    border:none;
+    border: 1px solid #D2B48C;
     border-radius:10px;
   }
   .communityWrite_board_detail {
@@ -50,7 +50,7 @@ export const CommunityWriteWrapper = styled.div`
     font-size: 20px;
     text-indent: 15px;
     line-height: 1.5;
-    border:none;
+    border: 1px solid #D2B48C;
     border-radius: 10px;
     resize:none;
   }

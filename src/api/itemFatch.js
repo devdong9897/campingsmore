@@ -28,7 +28,7 @@ const getbestitem = async () => {
 
 export { getOrderListCategory };
 
-// 아이템 검색리스트 가져오기
+// 아이템 검색리스트 get
 const getOrderListSearch = async () => {
   try {
     const res = await axios.get("/api/item/search");
@@ -42,7 +42,7 @@ const getOrderListSearch = async () => {
   return [];
 };
 
-// 아이템 상세페이지 가져오기
+// 아이템 상세페이지 get
 const getOrderDetailPage = async () => {
   try {
     const res = await axios.get("/api/item/detail?iitem=1&page=1&row=5");

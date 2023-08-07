@@ -135,6 +135,8 @@ export const OrderDetailWrapper = styled.div`
 
         .num {
           display: flex;
+          margin-left: 5px;
+          margin-bottom: 5px;
 
           button {
             width: 55px;
@@ -143,7 +145,7 @@ export const OrderDetailWrapper = styled.div`
           }
 
           .one {
-            width: 47px;
+            width: 55px;
             height: 40px;
             font-size: 30px;
             padding-left: 15px;
