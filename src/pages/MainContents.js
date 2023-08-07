@@ -6,11 +6,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import SwiperFade from "../components/SwiperFade";
-import {
-  getOrderListCategory,
-  getOrderSearch,
-  getbestitem,
-} from "../api/itemFatch";
+import { getOrderListCategory, getbestitem } from "../api/itemFatch";
 import { cookies } from "../api/cookie";
 import { useNavigate } from "react-router-dom";
 
@@ -31,12 +27,9 @@ const MainContents = () => {
     const queryString = encodeURIComponent(search);
     setQusearch(queryString);
     console.log(queryString);
-    getOrderSearch(queryString);
-    const getSearchDate = async () => {
-      
-    }
+    // getOrderSearch(queryString);
+    const getSearchDate = async () => {};
   };
-
 
   // 카테고리 상품 가져오기
   const getOrderList = async () => {
@@ -55,7 +48,7 @@ const MainContents = () => {
       const bestitemJson = await getbestitem();
       setBestitem(bestitemJson);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
