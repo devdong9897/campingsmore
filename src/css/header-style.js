@@ -63,7 +63,7 @@ export const HeaderContainer = styled.div`
             font-weight: 800;
             text-shadow: 2px 2px 2px black;
             &:hover {
-              color: #d2b48c;
+              color: #D2B48C;
             }
           }
         }
@@ -73,36 +73,19 @@ export const HeaderContainer = styled.div`
       flex-grow: 1;
       width: 10%;
       height: 100%;
-      padding-top: 1.8%;
+      padding-top: 1.6%;
       .account_list {
         display: flex;
         justify-content: flex-end;
+        padding-right: 50px;
+        padding-top: 10px;
         gap: 15px;
         li {
           a {
-            display: flex;
-            gap: 3px;
+            display: block;
             width: auto;
-            height: auto;
+            height: 50px;
             font-size: 17px;
-            .basket_img {
-              display: block;
-              position: relative;
-              .basket_count {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                font-size: 12px;
-                font-weight: bolder;
-                position: absolute;
-                top: -10px;
-                right: -10px;
-                width: 20px;
-                height: 20px;
-                border-radius: 100%;
-                background: green;
-              }
-            }
             color: #fff;
           }
         }
