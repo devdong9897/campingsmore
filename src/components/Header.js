@@ -6,11 +6,12 @@ import { Cookies } from "react-cookie";
 import { deleteCookie } from "../api/client";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getBasketList } from "../api/basketFetch";
-
+import { UserLogout } from "../reducers/userSlice";
 
 const Header = () => {
+  const dispatch = useDispatch();
   const accessToken = getCookie("accessToken");
   const [isLoggedIn, setIsLoggedIn] = useState(accessToken ? true : false);
   // 장바구니 아이템 갯수 state
@@ -39,6 +40,8 @@ const Header = () => {
   const handleLogout = () => {
     deleteCookie();
     setIsLoggedIn(false);
+    const LogoutEmpty = [];
+    dispatch(UserLogout(LogoutEmpty));
   };
 
   useEffect(() => {
