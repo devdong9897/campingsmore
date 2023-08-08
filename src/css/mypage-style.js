@@ -220,47 +220,51 @@ export const PurchaseWrapper = styled.div`
     width: 100%;
     height: 100%;
     li {
-      position: relative;
-      display: flex;
-      justify-content: space-between;
-      gap: 15px;
       width: 100%;
       height: 150px;
-      padding: 10px;
       border-radius: 15px;
       background-color: #fff;
       box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-      .purchase_img {
-        width: 150px;
-        height: 100%;
-        border-radius: 15px;
-        overflow: hidden;
-        img {
-          width: 100%;
-          height: 100%;
-        }
-      }
-      .purchase_info_box {
+      .inner {
+        position: relative;
         display: flex;
-        flex-direction: column;
+        gap: 15px;
         justify-content: space-between;
-        width: 80%;
+        width: 100%;
         height: 100%;
-        font-size: 18px;
-        .purchase_date {
-          font-size: 16px;
-          color: #9d9d9d;
-        }
-        .purchase_info {
-          width: 100%;
+        padding: 10px;
+        .purchase_img {
+          width: 150px;
           height: 100%;
-          p {
-            &:first-of-type {
-              font-size: 25px;
-              font-weight: bold;
-            }
-            &:last-child {
-              font-size: 18px;
+          border-radius: 15px;
+          overflow: hidden;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+        .purchase_info_box {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          width: 80%;
+          height: 100%;
+          font-size: 18px;
+          .purchase_date {
+            font-size: 16px;
+            color: #9d9d9d;
+          }
+          .purchase_info {
+            width: 100%;
+            height: 100%;
+            p {
+              &:first-of-type {
+                font-size: 25px;
+                font-weight: bold;
+              }
+              &:last-child {
+                font-size: 18px;
+              }
             }
           }
         }

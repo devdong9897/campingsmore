@@ -13,13 +13,12 @@ const OrderList = () => {
   const [orderlist, setOrderList] = useState([]);
   const [orderListitem, setOrderListItem] = useState([]);
   const [searchText, setSearchText] = useState("");
-  
 
+  // 전체 리스트
   const getOrderListCategory = async () => {
     try {
       const res = await axios.get("/api/item/category");
       setOrderList(res.data);
-      // 전체 리스트
       getOrderListSearch("");
     } catch (err) {
       console.log(err);
@@ -30,6 +29,7 @@ const OrderList = () => {
     try {
       const res = await axios.get(`/api/item/search?text=${text}`);
       setOrderListItem(res.data.itemList);
+      console.log("이게제일의심", res.data.itemList);
     } catch (err) {
       console.log(err);
     }
@@ -38,7 +38,7 @@ const OrderList = () => {
   useEffect(() => {
     getOrderListCategory();
   }, []);
-  
+
   const handleSearch = () => {
     getOrderListSearch(searchText);
   };
@@ -81,7 +81,7 @@ const OrderList = () => {
                   <p className="item_date">{item.createdAt}</p>
                 </span>
               </div>
-              <div className="content"> 
+              <div className="content">
                 <div className="orderlist_btn">
                   <button className="shopping_basket">
                     장바구니 담기
