@@ -26,4 +26,35 @@ const getPurchaseData = async () => {
   }
 };
 
-export { getMypageReviewData, getPurchaseData };
+// 작성 게시글 요청
+
+const getCommunityData = async () => {
+  try {
+    const res = await axios.get("/api/community");
+    const result = res.data;
+    console.log("getCommunityData 요청완료");
+    console.log(result);
+    return result;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const getMyProfileData = async () => {
+  try {
+    const res = await axios.get("/sign-api/myinfo");
+    const result = res.data;
+    console.log("getMyProfile 요청완료");
+    console.log(result);
+    return result;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export {
+  getMypageReviewData,
+  getPurchaseData,
+  getCommunityData,
+  getMyProfileData,
+};

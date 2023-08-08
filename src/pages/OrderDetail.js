@@ -125,8 +125,8 @@ const OrderDetail = () => {
           <div className="profile_content">
             <span className="profile_title">
               아무데나 캠핑장 시설이 정말 좋아요
-            </span>
             <p className="content">{/* 내용 */}</p>
+
           </div>
         </div>
       </div>

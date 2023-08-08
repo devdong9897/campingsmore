@@ -85,6 +85,7 @@ export const HeaderContainer = styled.div`
             width: auto;
             height: auto;
             font-size: 17px;
+            color: #fff;
             .basket_img {
               display: block;
               position: relative;
@@ -103,7 +104,16 @@ export const HeaderContainer = styled.div`
                 background: green;
               }
             }
+          }
+          .logout_btn {
+            padding-top: 2px;
+            width: auto;
+            height: auto;
+            font-size: 17px;
+            border: none;
+            background: none;
             color: #fff;
+            font-family: "Inter", "NanumSquare";
           }
         }
       }

@@ -15,6 +15,7 @@ const OrderList = () => {
   const [orderlist, setOrderList] = useState([]);
   const [orderListitem, setOrderListItem] = useState([]);
   const [searchText, setSearchText] = useState("");
+
   // 현재페이지
   const [pageNum, setPageNum] = useState(0);
 
@@ -39,6 +40,7 @@ const OrderList = () => {
       console.log(err);
     }
   };
+
 
   useEffect(() => {
     getOrderListCategory();
@@ -98,6 +100,7 @@ const OrderList = () => {
     // getOrderDetailPage(iitem);
     navigate(`/main/orderdetail?iitem=${iitem}`);
     // return <OrderDetail iitem={iitem} />;
+
   };
 
   return (

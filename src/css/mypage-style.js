@@ -341,9 +341,13 @@ export const ReviewHistoryWrapper = styled.div`
 export const WritingWrapper = styled.div`
   width: 100%;
   height: 100%;
+  h1 {
+    margin-bottom: 20px;
+  }
   .writing_list {
     display: flex;
     flex-direction: column;
+    gap: 10px;
     width: 100%;
     height: 100%;
     li {

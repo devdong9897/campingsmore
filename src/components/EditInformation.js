@@ -9,11 +9,22 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const EditInformation = () => {
+  const [fixPass, setfixPass] = useState("");
+  const [fixEmail, setFixEmail] = useState("");
+  const [fixName, setFixName] = useState("");
+  const [fixbirth, setFixBirth] = useState("");
+  const [fixPhone, setFixPhone] = useState("");
+  const [fixAddress, setFixAddress] = useState("");
+
   const [something, setSomething] = useState(false);
+
+  // 에딧핸들러
   const editall = e => {
     e.preventDefault();
     setSomething(true);
   };
+
+  // 수정완료 핸들러
   const editSubmit = e => {
     e.preventDefault();
     setSomething(false);
@@ -40,6 +51,7 @@ const EditInformation = () => {
               type="password"
               className="password_input"
               placeholder="비밀번호를 입력하세요"
+              onChange={e => setfixPass(e.target.value)}
             ></input>
           </div>
           {/* <button className="edit_button">수정</button>
@@ -55,6 +67,7 @@ const EditInformation = () => {
               type="text"
               className="email_input"
               placeholder="이메일을 입력하세요"
+              onChange={e => setFixEmail(e.target.value)}
             ></input>
           </div>
 
@@ -69,27 +82,12 @@ const EditInformation = () => {
             <span className="icon">
               <FontAwesomeIcon icon={faSquarePen} />
             </span>
-            <span className="setting_name">닉네임 설정</span>
-            <input
-              type="password"
-              className="nickname_input"
-              placeholder="닉네임을 입력하세요"
-            ></input>
-          </div>
-
-          {/* <button className="edit_button">수정</button>
-          <button className="comfrom_button">완료</button> */}
-        </div>
-        <div className="setting_box">
-          <div className="setting">
-            <span className="icon">
-              <FontAwesomeIcon icon={faSquarePen} />
-            </span>
             <span className="setting_name">이름</span>
             <input
               type="text"
               className="name_input"
               placeholder="이름을 입력하세요"
+              onChange={e => setFixName(e.target.value)}
             ></input>
           </div>
           {/* <button className="edit_button">수정</button>
@@ -104,7 +102,8 @@ const EditInformation = () => {
             <input
               type="number"
               className="birth_input"
-              placeholder="이름을 입력하세요"
+              placeholder="생년월일을 입력하세요"
+              onChange={e => setFixBirth(e.target.value)}
             ></input>
           </div>
           {/* <button className="edit_button">수정</button>
@@ -122,8 +121,19 @@ const EditInformation = () => {
               placeholder="전화번호를 입력하세요"
             ></input>
           </div>
-          {/* <button className="edit_button">수정</button>
-          <button className="comfrom_button">완료</button> */}
+        </div>
+        <div className="setting_box">
+          <div className="setting">
+            <span className="icon">
+              <FontAwesomeIcon icon={faSquarePen} />
+            </span>
+            <span className="setting_name">주소</span>
+            <input
+              type="number"
+              className="phone_input"
+              placeholder="주소를 입력하세요"
+            ></input>
+          </div>
         </div>
       </div>
     </EditWrapper>

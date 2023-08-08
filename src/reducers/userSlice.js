@@ -1,24 +1,15 @@
-// import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
-// const initialState = {
-//   user: null,
-//   accessToken: null,
-// };
+const initialState = { UserProFileArr: [] };
+const UserSlice = createSlice({
+  name: "UserSlice",
+  initialState,
+  reducers: {
+    UserAdd: (state, action) => {
+      state.UserProFileArr = action.payload;
+    },
+  },
+});
 
-// const userSlice = createSlice({
-//     name : 'user',
-//     initialState,
-//     reducers: {
-//         login: (state,action) => {
-//             state.user = action.payload.user;
-//             state.accessToken = action.payload.accessToken;
-//         },
-//         logout: (state) => {
-//             state.user = null;
-//             state.accessToken = null;
-//         }
-//     }
-// }),
-
-// export const { login , logout} = userSlice.actions;
-// export default userSlice.reducer;
+export default UserSlice;
+export const { UserAdd } = UserSlice.actions;

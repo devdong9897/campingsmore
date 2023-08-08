@@ -7,9 +7,9 @@ const Basket = () => {
   const navigate = useNavigate();
 
   const [basketList, setBasketList] = useState([]);
-  const [count, setCount] = useState(1);
+  // const [count, setCount] = useState(1);
   const [selectAll, setSelectAll] = useState(false);
-  const [basketQuantity, setBasketQuantity] = useState(null);
+  // const [basketQuantity, setBasketQuantity] = useState(null);
 
   const getBasketData = async () => {
     try {
@@ -119,25 +119,17 @@ const Basket = () => {
                     />
                   </div>
                   <div className="basket_product_img">
-                    {/* <img src="#" alt="" />{item.pic} */}
                     <img src={item.pic} alt="" />
                   </div>
                   <div>
-                    {/* <p>{item.name}허니 머시기 후라이드 치킨</p> */}
                     <p>{item.name}</p>
                   </div>
                   <div>
                     <button onClick={() => onHandleClickMinus(index)}>-</button>
-                    {/* <button>-</button> */}
-                    {/* <span>{item.quantity}1</span> */}
                     <span>{item.quantity}</span>
-                    {/* <span>{count}</span> */}
                     <button onClick={() => onHandleClickPlus(index)}>+</button>
-                    {/* <button>+</button> */}
                   </div>
-                  {/* <div>{item.price}10000원</div> */}
                   <div>{calculateItemTotal(item)}</div>
-                  {/* <div>{item.price}</div> */}
                   <div>
                     <button onClick={() => handleRemoveItem(item.icart)}>
                       x

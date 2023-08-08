@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Logininner } from "../css/login-style";
 import { Link, useNavigate } from "react-router-dom";
-import { loginFetch } from "../api/userFatch";
+import { getUserData, loginFetch } from "../api/userFatch";
 import { fetchLogin } from "../api/client";
+import { useDispatch } from "react-redux";
 
 const Login = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [id, setId] = useState("");
   const [pass, setPass] = useState("");
@@ -14,6 +16,7 @@ const Login = () => {
       e.preventDefault();
       await fetchLogin(id, pass);
       navigate("/main");
+      getUserData(dispatch);
       setId("");
       setPass("");
     } catch (err) {
