@@ -12,4 +12,16 @@ const getBasketList = async () => {
   return [];
 };
 
-export { getBasketList };
+const postBasket = async iitem => {
+  try {
+    const res = await axios.post(`/api/cart`, {
+      iitem: iitem,
+      quantity: 1,
+    });
+    console.log("postbasket 실행완료");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { getBasketList, postBasket };

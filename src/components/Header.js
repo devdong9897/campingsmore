@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { HeaderContainer } from "../css/header-style";
-import { Link } from "react-router-dom";
-import { cookies, getCookie } from "../api/cookie";
-import { Cookies } from "react-cookie";
-import { deleteCookie } from "../api/client";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { deleteCookie } from "../api/client";
+import { cookies, getCookie } from "../api/cookie";
+import { HeaderContainer } from "../css/header-style";
 
 const Header = () => {
   const accessToken = getCookie("accessToken");
