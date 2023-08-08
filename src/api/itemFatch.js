@@ -42,9 +42,9 @@ const getOrderListSearch = async () => {
   return [];
 };
 
-const getOrderDetailPage = async (iitem) => {
+const getOrderDetailPage = async () => {
   try {
-    const res = await axios.get(`/api/item/detail?iitem=${iitem}&page=1&row=5`);
+    const res = await axios.get("/api/item/detail?iitem=1&page=1&row=5");
     const result = res.data;
     console.log("getOrderDetail 요청완료");
     console.log(result);
