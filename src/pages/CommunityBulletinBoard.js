@@ -1,19 +1,39 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {CommunityBulletinBoardWrapper} from '../css/community-bulletin-board-style'
 import { useNavigate } from "react-router";
+import { useState } from "react";
+import { getCommunityBulletinBoarList } from "../api/communityBulletinBoardFetch";
 
 
 const CommunityBulletinBoard = () => {
-
+    const [communityBulletinBoardData, setCommunityBulletinBoardData] = useState(null)
     const navigate = useNavigate();
+
+    const getCommunityBulletinBoardData = async () => {
+        try {
+            const data = await getCommunityBulletinBoarList()
+            
+        }catch(err) {
+            console.log(err)
+        }
+    }
+
+    useEffect(() => {
+        getCommunityBulletinBoardData()
+    },[])
 
     const handleGoToCommunityBulletinBoard = () => {
         navigate("/main/communitywrite")
     }
 
+
     return (
         <CommunityBulletinBoardWrapper>
-            <div className="top_community_bulletin_board_contents">
+
+            {
+                communityBulletinBoardData.map((item, index)=>(
+                    <li key={index}>
+                         <div className="top_community_bulletin_board_contents">
                 <div className="community_bulletin_board_contents_inner">
                     <h1>커뮤니티 게시글</h1>
                     <hr className="community_bulletin_board_line" />
@@ -26,6 +46,7 @@ const CommunityBulletinBoard = () => {
               className="community_bulletin_board_title"
               placeholder="제목을 입력해 주세요"
             />
+            
             <textarea
               cols="30"
               rows="10"
@@ -43,6 +64,16 @@ const CommunityBulletinBoard = () => {
                     </div>
                 </div>
             </div>
+                    </li>
+                ))
+            }
+
+
+
+               
+
+
+            
         </CommunityBulletinBoardWrapper>
     )
 };

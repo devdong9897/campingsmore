@@ -37,6 +37,25 @@ const getCommunityPage = async _index => {
   }
   return [];
 };
+const searchCommunityData = async (searchKeyword) => {
+  try {
+    const encodedSearchKeyword = encodeURIComponent(searchKeyword)
+    const res = await axios.get(
+      `/api/community/title?title=${encodedSearchKeyword}&page=1&row=15`,
+    );
+    const result = res.data;
+    console.log("제목으로 검색 기능 요청완료");
+    console.log(result);
+    return result;
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
+};
 
-
-export { postCommunity, getCommunityList, getCommunityPage };
+export {
+  postCommunity,
+  getCommunityList,
+  getCommunityPage,
+  searchCommunityData,
+};

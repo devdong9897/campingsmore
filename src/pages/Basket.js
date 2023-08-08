@@ -16,6 +16,7 @@ const Basket = () => {
       const data = await getBasketList();
       const basketWithQuantity = data.map(item => ({ ...item, quantity: 1 }));
       setBasketList(basketWithQuantity);
+      setBasketList(data);
     } catch (err) {
       console.log(err);
     }
@@ -127,13 +128,16 @@ const Basket = () => {
                   </div>
                   <div>
                     <button onClick={() => onHandleClickMinus(index)}>-</button>
+                    {/* <button>-</button> */}
                     {/* <span>{item.quantity}1</span> */}
                     <span>{item.quantity}</span>
                     {/* <span>{count}</span> */}
                     <button onClick={() => onHandleClickPlus(index)}>+</button>
+                    {/* <button>+</button> */}
                   </div>
                   {/* <div>{item.price}10000원</div> */}
                   <div>{calculateItemTotal(item)}</div>
+                  {/* <div>{item.price}</div> */}
                   <div>
                     <button onClick={() => handleRemoveItem(item.icart)}>
                       x

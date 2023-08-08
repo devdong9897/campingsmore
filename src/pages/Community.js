@@ -2,14 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CommunityWrapper } from "../css/community-style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { getCommunityList, getCommunityPage } from "../api/communityFetch";
+import { getCommunityList, getCommunityPage, searchCommunityData } from "../api/communityFetch";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+
 
 const Community = () => {
   const navigate = useNavigate();
   const [communityList, setCommunityList] = useState([]);
   const [comuList, setComuList] = useState([]);
   const [comuPage, setcomuPage] = useState("");
+  const [searchKeyword, setSearchKeyword] = useState("")
 
   const getCommunityData = async () => {
     try {
@@ -42,6 +44,33 @@ const Community = () => {
     getCommunityDataPage(index);
   };
 
+  const handleSearchKeywordChange = (event) => {
+    setSearchKeyword(event.target.value)
+  }
+
+  const handleSearch = async (event) => {
+    event.preventDefault()
+    // const result = await searchCommunityData(searchKeyword)
+    // if(result) {
+    //   setComuList(result.list)
+    // }
+    try {
+      const result = await searchCommunityData(searchKeyword);
+      if(result){
+      setComuList(result.list);
+      setcomuPage(parseInt(result.maxPage,10))
+    }
+    }catch(err) {
+      console.log(err)
+    }
+  }
+
+  const handleKeyPress = (event) => {
+    if(event.key === "Enter") {
+      handleSearch(event)
+    }  
+  }
+
   useEffect(() => {
     getCommunityData();
   }, []);
@@ -66,15 +95,19 @@ const Community = () => {
                 <option value="">잡담</option>
                 <option value="">문의</option>
               </select>
-              <form className="community_input_from">
+              <form className="community_input_from" onSubmit={handleSearch}>
                 <input
                   type="text"
                   className="community_search"
                   placeholder="검색어를 입력하세요"
+                  value={searchKeyword}
+                  onChange={handleSearchKeywordChange}
+                  onKeyPress={handleKeyPress}
                 />
                 <FontAwesomeIcon
                   icon={faMagnifyingGlass}
                   className="community_icon"
+                  onClick={handleSearch}
                 />
               </form>
             </div>
