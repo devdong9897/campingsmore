@@ -1,30 +1,16 @@
 import axios from "axios";
+import {UserAdd} from "../reducers/userSlice";
 
-// const loginFetch = async newAccount => {
-//   try {
-//     const res = await axios.post("/sign-api/sign-in", newAccount);
-//     const result = res.data;
-//     console.log("로그인전송 성공?");
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-// export { loginFetch };
-
-// export const LoginFetch = async (_id, pass) => {
-//   try {
-//     const res = await axios.post(
-//       `/sign-api/sign-in?id=${_id}&password=${pass}`, {
-
-//       }
-//     );
-//     const result = res.data;
-
-//   } catch (err) {
-//     console.log();
-//   }
-// };
+const getUserData = async dispatch => {
+  try {
+    const res = await axios.get("/sign-api/myinfo");
+    const result = res.data;
+    console.log("유저데이터 불러오기", result);
+    dispatch(UserAdd(result));
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 const SignupFetch = async newUser => {
   try {
@@ -35,4 +21,4 @@ const SignupFetch = async newUser => {
   }
 };
 
-export { SignupFetch };
+export { SignupFetch, getUserData };

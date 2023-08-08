@@ -9,14 +9,25 @@ import { cookies } from "../api/cookie";
 import { useEffect } from "react";
 import {
   getCommunityData,
+  getMyProfileData,
   getMypageReviewData,
   getPurchaseData,
 } from "../api/mypageFatch";
+import { useDispatch, useSelector } from "react-redux";
 
 const Mypage = () => {
   const [menuindex, setMenuIndex] = useState(0);
 
+  // 디스패치!
+  const dispatch = useDispatch();
+  const userData = useSelector(state => state.user.data);
+
+  console.log("유저데이터??!?!");
+
   //마이페이지 정보 state
+  const [UserProFile, setUserProfile] = useState([]);
+  const [ProfileName, setProFileName] = useState("");
+  const [ProfileEmail, setProfileEmail] = useState("");
   // 구매내역 state
   const [purchase, setPurchase] = useState([]);
   // 리뷰목록 state
@@ -77,6 +88,20 @@ const Mypage = () => {
     }
   };
 
+  // 프로필데이터 실행
+  const getMyProfile = async () => {
+    try {
+      const data = await getMyProfileData();
+      setUserProfile(data);
+      console.log(data);
+      console.log("유저데이터 받았니?", data);
+      setProFileName(data.name);
+      setProfileEmail(data.email);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const menuComponents = [
     () => <EditInformation />,
     () => <PurchaseHistory purchase={purchase} />,
@@ -87,6 +112,7 @@ const Mypage = () => {
 
   useEffect(() => {
     getPurchase();
+    getMyProfile();
   }, []);
   return (
     <MypageWrapper menuindex={menuindex}>
@@ -95,8 +121,8 @@ const Mypage = () => {
           <span className="my_menu_title">마이페이지</span>
           <div className="profile_img_box"></div>
           <div className="profile_info">
-            <span className="profile_name">신형만</span>
-            <span className="profile_email">sin1990@naver.com</span>
+            <span className="profile_name">{ProfileName}</span>
+            <span className="profile_email">{ProfileEmail}</span>
           </div>
           <ul className="my_menu_list">
             {["개인정보수정", "구매내역", "리뷰내역", "작성글", "찜하기"].map(

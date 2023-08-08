@@ -40,4 +40,21 @@ const getCommunityData = async () => {
   }
 };
 
-export { getMypageReviewData, getPurchaseData, getCommunityData };
+const getMyProfileData = async () => {
+  try {
+    const res = await axios.get("/sign-api/myinfo");
+    const result = res.data;
+    console.log("getMyProfile 요청완료");
+    console.log(result);
+    return result;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export {
+  getMypageReviewData,
+  getPurchaseData,
+  getCommunityData,
+  getMyProfileData,
+};
