@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import { cookies, getCookie } from "../api/cookie";
 import { Cookies } from "react-cookie";
 import { deleteCookie } from "../api/client";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Header = () => {
   const accessToken = getCookie("accessToken");
@@ -66,22 +64,7 @@ const Header = () => {
               )}
             </li>
             <li>{cookies ? <Link to="/main/mypage">마이페이지</Link> : ""}</li>
-            <li>
-              <Link to="/">
-                장바구니
-                <span className="basket_img">
-                  <FontAwesomeIcon
-                    icon={faCartShopping}
-                    className="cart_icon"
-                  />
-                  <p className="basket_count">1</p>
-                </span>
-              </Link>
-            </li>
           </ul>
-        </div>
-        <div className="basket_function">
-          <div className="basket_count"></div>
         </div>
       </div>
     </HeaderContainer>
