@@ -11,4 +11,6 @@ const getCommunityBulletinBoarList = async () => {
     }
     return []
 }
+
+
 export {getCommunityBulletinBoarList}
