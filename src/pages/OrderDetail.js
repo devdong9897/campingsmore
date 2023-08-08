@@ -10,6 +10,7 @@ const OrderDetail = () => {
   const [orderdetail, setOrderDetail] = useState([]);
   const [detailListItem, setDetailListItem] = useState([]);
   const [reviewItem, setReviewItem] = useState([]);
+  
   const getOrderDetail = async () => {
     try {
       const data = await getOrderDetailPage();
