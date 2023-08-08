@@ -92,7 +92,7 @@ const OrderList = () => {
     console.log("실행?");
     console.log("클릭한 값 인덱스", iitem);
     getOrderDetailPage(iitem);
-    navigate("main/orderdetail");
+    navigate("/main/orderdetail");
   };
 
   return (

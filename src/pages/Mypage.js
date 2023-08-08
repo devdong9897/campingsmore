@@ -7,7 +7,11 @@ import WritingHistory from "../components/WritingHistory";
 import DibsList from "../components/DibsList";
 import { cookies } from "../api/cookie";
 import { useEffect } from "react";
-import { getMypageReviewData, getPurchaseData } from "../api/mypageFatch";
+import {
+  getCommunityData,
+  getMypageReviewData,
+  getPurchaseData,
+} from "../api/mypageFatch";
 
 const Mypage = () => {
   const [menuindex, setMenuIndex] = useState(0);
@@ -17,6 +21,8 @@ const Mypage = () => {
   const [purchase, setPurchase] = useState([]);
   // 리뷰목록 state
   const [review, setReview] = useState([]);
+  // 게시글 목록 state
+  const [comulist, setComuList] = useState([]);
 
   const handleMenuChange = index => {
     setMenuIndex(index);
@@ -26,8 +32,8 @@ const Mypage = () => {
     if (index == 2) {
       getReview();
     }
-    if (index == 1) {
-      getPurchase();
+    if (index == 3) {
+      getCommunity();
     }
     if (index == 1) {
       getPurchase();
@@ -49,6 +55,7 @@ const Mypage = () => {
     }
   };
 
+  // 리뷰내역 실행
   const getReview = async () => {
     try {
       const data = await getMypageReviewData();
@@ -59,11 +66,22 @@ const Mypage = () => {
     }
   };
 
+  // 게시글내역 실행
+  const getCommunity = async () => {
+    try {
+      const data = await getCommunityData();
+      setComuList(data);
+      console.log("게시글내역", data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const menuComponents = [
     () => <EditInformation />,
     () => <PurchaseHistory purchase={purchase} />,
     () => <ReviewHistory review={review} />,
-    () => <WritingHistory />,
+    () => <WritingHistory comulist={comulist} />,
     () => <DibsList />,
   ];
 
