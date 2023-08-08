@@ -9,8 +9,11 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { OrderListWrapper } from "../css/orderlist-style";
 import { postBasket } from "../api/basketFetch";
+import { getCookie } from "../api/cookie";
 
 const OrderList = () => {
+  const accessToken = getCookie("accessToken");
+  const [isLoggedIn, setIsLoggedIn] = useState(accessToken ? true : false);
   const navigate = useNavigate();
   const [orderlist, setOrderList] = useState([]);
   const [orderListitem, setOrderListItem] = useState([]);
@@ -41,7 +44,6 @@ const OrderList = () => {
     }
   };
 
-
   useEffect(() => {
     getOrderListCategory();
   }, []);
@@ -49,7 +51,6 @@ const OrderList = () => {
   const handleSearch = () => {
     getOrderListSearch(searchText);
   };
-
 
   const handleSort = sortType => {
     // orderListitem을 정렬하는 로직 추가
@@ -91,16 +92,19 @@ const OrderList = () => {
     }
   };
 
-  const handleCart = (iitem) => {
-    postBasket(iitem)
-  }
+  const handleCart = iitem => {
+    if (isLoggedIn) {
+      postBasket(iitem);
+    } else {
+      alert("마");
+    }
+  };
 
   const something = iitem => {
     console.log("클릭한 값 인덱스", iitem);
     // getOrderDetailPage(iitem);
     navigate(`/main/orderdetail?iitem=${iitem}`);
     // return <OrderDetail iitem={iitem} />;
-
   };
 
   return (
@@ -148,11 +152,12 @@ const OrderList = () => {
               </div>
               <div className="content">
                 <div className="orderlist_btn">
-                  <button className="shopping_basket" onClick={e=> handleCart(item.iitem)}>
+                  <button
+                    className="shopping_basket"
+                    onClick={e => handleCart(item.iitem)}
+                  >
                     장바구니 담기
-                    <FontAwesomeIcon
-                      icon={faCartShopping}
-                     />
+                    <FontAwesomeIcon icon={faCartShopping} />
                   </button>
                   <button
                     className="product_details"
