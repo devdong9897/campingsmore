@@ -2,16 +2,27 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CommunityWrapper } from "../css/community-style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { getCommunityList, getCommunityPage, searchCommunityData } from "../api/communityFetch";
+import {
+  getCommunityCategoryList,
+  getCommunityList,
+  getCommunityPage,
+  searchCommunityData,
+} from "../api/communityFetch";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-
 
 const Community = () => {
   const navigate = useNavigate();
   const [communityList, setCommunityList] = useState([]);
   const [comuList, setComuList] = useState([]);
   const [comuPage, setcomuPage] = useState("");
-  const [searchKeyword, setSearchKeyword] = useState("")
+  const [searchKeyword, setSearchKeyword] = useState("");
+
+  const [selectedCategory, setSelectedCategory] = useState("");
+
+  const handleCategoryChange = event => {
+    setSelectedCategory(event.target.value);
+    console.log("이게뭥미?", event.target.value);
+  };
 
   const getCommunityData = async () => {
     try {
@@ -44,36 +55,51 @@ const Community = () => {
     getCommunityDataPage(index);
   };
 
-  const handleSearchKeywordChange = (event) => {
-    setSearchKeyword(event.target.value)
-  }
+  const handleSearchKeywordChange = event => {
+    setSearchKeyword(event.target.value);
+  };
 
-  const handleSearch = async (event) => {
-    event.preventDefault()
+  const handleSearch = async event => {
+    event.preventDefault();
     // const result = await searchCommunityData(searchKeyword)
     // if(result) {
     //   setComuList(result.list)
     // }
     try {
       const result = await searchCommunityData(searchKeyword);
-      if(result){
-      setComuList(result.list);
-      setcomuPage(parseInt(result.maxPage,10))
+      if (result) {
+        setComuList(result.list);
+        setcomuPage(parseInt(result.maxPage, 10));
+      }
+    } catch (err) {
+      console.log(err);
     }
-    }catch(err) {
-      console.log(err)
-    }
-  }
+  };
 
-  const handleKeyPress = (event) => {
-    if(event.key === "Enter") {
-      handleSearch(event)
-    }  
-  }
+  const handleKeyPress = event => {
+    if (event.key === "Enter") {
+      handleSearch(event);
+    }
+  };
 
   useEffect(() => {
     getCommunityData();
-  }, []);
+
+    const fetchData = async () => {
+      try {
+        let data;
+        if (selectedCategory) {
+          data = await getCommunityCategoryList(selectedCategory);
+        } else {
+          data = await getCommunityCategoryList();
+        }
+        setComuList(data.list);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+  }, [selectedCategory]);
 
   // const bbb = communityData.map(el => <div key={el.title}>{el.title} {el.information} {el.writer}</div>)
 
@@ -86,14 +112,18 @@ const Community = () => {
 
           <div className="community_input_area">
             <div action="" className="community_form">
-              <select className="community_board_menu">
+              <select
+                className="community_board_menu"
+                value={selectedCategory}
+                onChange={handleCategoryChange}
+              >
                 <option value="" disabled>
                   분류
                 </option>
-                <option value="">공지</option>
-                <option value="">자유</option>
-                <option value="">잡담</option>
-                <option value="">문의</option>
+                <option value="1">공지</option>
+                <option value="2">게시글</option>
+                <option value="3">잡담</option>
+                <option value="4">리뷰</option>
               </select>
               <form className="community_input_from" onSubmit={handleSearch}>
                 <input
