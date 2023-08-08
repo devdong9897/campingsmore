@@ -4,18 +4,18 @@ const path = process.env.PUBLIC_URL;
 
 export const ReviewModalWrapper = styled.div`
 width: 100%;
-    height: auto;
+    height: 900px;
     .top_review_modal_contents {
         width: 100%;
-        height: 800px;
+        height: 1000px;
         position: relative;
     }
     .review_modal_contents_inner {
         position: absolute;
-        width: 1300px;
+        width: 1000px;
         margin: 0 auto;
-        height: 100%;
-        top: 70%;
+        height: 60%;
+        top: 50%;
         left: 50%;
         border-radius: 30px;
         transform: translate(-50%, -50%);
@@ -36,7 +36,7 @@ width: 100%;
     }
     .review_modal_detail {
         width: calc(100% - 80px);
-        height: auto;
+        height: 50%;
         background-color: white;
         margin:0 auto;
         margin-top:40px;
@@ -60,7 +60,7 @@ width: 100%;
     .review_modal_complete {
         display: block;
         margin:0 auto;
-        margin-top:50px;
+        margin-top:25px;
         padding:5px 50px;
         border-radius:5px; 
         border:none;
