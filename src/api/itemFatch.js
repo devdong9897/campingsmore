@@ -42,7 +42,7 @@ const getOrderListSearch = async () => {
   return [];
 };
 
-const getOrderDetailPage = async (iitem) => {
+const getOrderDetailPage = async iitem => {
   try {
     const res = await axios.get(`/api/item/detail?iitem=${iitem}&page=1&row=5`);
     const result = res.data;

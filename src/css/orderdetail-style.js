@@ -11,13 +11,13 @@ export const OrderDetailWrapper = styled.div`
   .orderdetail_inner {
     position: relative;
     padding-top: 100px;
+    padding-bottom: 150px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     position: relative;
     width: 1300px;
-    height: 3000px;
-
+    height: auto;
     .main {
       display: flex;
       margin-top: 107px;
@@ -131,83 +131,78 @@ export const OrderDetailWrapper = styled.div`
             margin-bottom: 27px;
             border-bottom: 1px solid black;
           }
-        }
+          .num {
+            display: flex;
+            margin-left: 5px;
+            margin-bottom: 5px;
 
-        .num {
-          display: flex;
-          margin-left: 5px;
-          margin-bottom: 5px;
+            button {
+              width: 55px;
+              height: 40px;
+              font-size: 30px;
+            }
 
-          button {
-            width: 55px;
-            height: 40px;
-            font-size: 30px;
+            .one {
+              width: 55px;
+              height: 40px;
+              font-size: 30px;
+              padding-left: 15px;
+              border: 1px solid black;
+              color: black;
+            }
+            .number {
+              font-size: 30px;
+              font-weight: 900;
+              margin-left: 320px;
+              color: black;
+            }
           }
+        }
+        .total {
+          display: flex;
+          justify-content: space-between;
+          margin-top: 37px;
 
-          .one {
-            width: 55px;
-            height: 40px;
-            font-size: 30px;
-            padding-left: 15px;
-            border: 1px solid black;
+          .total_price {
+            font-size: 35px;
+            font-weight: 700;
             color: black;
           }
-        }
 
-        .number {
-          font-size: 30px;
+          .orderdetail_price {
+            font-size: 35px;
+            color: #d2b48c;
+            font-weight: 900;
+          }
+        }
+        .left {
+          width: 300px;
+          height: 100px;
+          font-size: 40px;
           font-weight: 900;
-          margin-left: 320px;
-          color: black;
-        }
-      }
-
-      .total {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 37px;
-
-        .total_price {
-          font-size: 35px;
-          font-weight: 700;
-          color: black;
-        }
-
-        .orderdetail_price {
-          font-size: 35px;
+          cursor: pointer;
+          margin-top: 14px;
           color: #d2b48c;
-          font-weight: 900;
+          background: #fff;
+          border: 1px solid #d2b48c;
+          border-radius: 20px;
         }
-      }
-    }
-
-    .left {
-      width: 300px;
-      height: 100px;
-      font-size: 40px;
-      font-weight: 900;
-      cursor: pointer;
-      margin-top: 14px;
-      color: #d2b48c;
-      background: #fff;
-      border: 1px solid #d2b48c;
-      border-radius: 20px;
-    }
-
-    .right {
-      width: 300px;
-      height: 100px;
-      font-size: 40px;
-      font-weight: 900;
-      cursor: pointer;
-      margin-top: 14px;
-      color: #d2b48c;
-      margin-left: 9px;
-      background: #fff;
-      border: 1px solid #d2b48c;
-      border-radius: 20px;
-      .payrig {
-        color: #d2b48c;
+        .right {
+          width: 300px;
+          height: 100px;
+          font-size: 40px;
+          font-weight: 900;
+          cursor: pointer;
+          margin-top: 14px;
+          color: #d2b48c;
+          margin-left: 9px;
+          background: #fff;
+          border: 1px solid #d2b48c;
+          border-radius: 20px;
+          .payrig {
+            color: #d2b48c;
+          }
+        }
       }
     }
 
@@ -219,46 +214,47 @@ export const OrderDetailWrapper = styled.div`
 
     .detailed_image {
       width: 70%;
-      height: 70vh;
-      background: gray;
+      height: auto;
       margin: 0 auto;
     }
+    .profile_box {
+      width: 100%;
+      height: auto;
+      .profile {
+        display: flex;
+        margin-top: 50px;
+        margin-left: 30px;
 
-    .profile {
-      display: flex;
-      margin-top: 50px;
-      margin-left: 30px;
+        .profile_img {
+          width: 150px;
+          height: 150px;
+          background-image: url("${path}/image/profile.jpg");
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+          border-radius: 50%;
+        }
 
-      .profile_img {
-        width: 150px;
-        height: 150px;
-        background-image: url("${path}/image/profile.jpg");
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        border-radius: 50%;
+        .profile_name {
+          font-size: 20px;
+          margin-top: 20px;
+          margin-left: 20px;
+          color: black;
+        }
       }
-
-      .profile_name {
+      .profile_content {
         font-size: 20px;
-        margin-top: 20px;
-        margin-left: 20px;
         color: black;
-      }
-    }
+        margin-left: 30px;
 
-    .profile_content {
-      font-size: 20px;
-      color: black;
-      margin-left: 30px;
+        .profile_title {
+          display: inline-block;
+          margin-top: 20px;
+        }
 
-      .profile_title {
-        display: inline-block;
-        margin-top: 20px;
-      }
-
-      .content {
-        margin-top: 20px;
+        .content {
+          margin-top: 20px;
+        }
       }
     }
   }

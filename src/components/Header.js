@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSelector } from "react-redux";
 import { getBasketList } from "../api/basketFetch";
 
+
 const Header = () => {
   const accessToken = getCookie("accessToken");
   const [isLoggedIn, setIsLoggedIn] = useState(accessToken ? true : false);

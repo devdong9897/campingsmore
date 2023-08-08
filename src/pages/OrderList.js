@@ -7,8 +7,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { getOrderDetailPage } from "../api/itemFatch";
 import { OrderListWrapper } from "../css/orderlist-style";
+import { postBasket } from "../api/basketFetch";
 
 const OrderList = () => {
   const navigate = useNavigate();
@@ -50,25 +50,26 @@ const OrderList = () => {
     getOrderListSearch(searchText);
   };
 
+
   const handleSort = sortType => {
     // orderListitem을 정렬하는 로직 추가
     let sortedItems = [...orderListitem];
 
     switch (sortType) {
-      case "최신순":
+      case "LatestOrder":
         sortedItems.sort(
           (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
         );
         break;
-      case "오래된순":
+      case "OldOrder":
         sortedItems.sort(
           (a, b) => new Date(a.createdAt) - new Date(b.createdAt),
         );
         break;
-      case "높은가격순":
+      case "HighPrice":
         sortedItems.sort((a, b) => b.price - a.price);
         break;
-      case "낮은가격순":
+      case "LowPrice":
         sortedItems.sort((a, b) => a.price - b.price);
         break;
       default:
@@ -90,11 +91,16 @@ const OrderList = () => {
     }
   };
 
+  const handleCart = (iitem) => {
+    postBasket(iitem)
+  }
+
   const something = iitem => {
-    console.log("실행?");
     console.log("클릭한 값 인덱스", iitem);
-    getOrderDetailPage(iitem);
-    navigate("/main/orderdetail");
+    // getOrderDetailPage(iitem);
+    navigate(`/main/orderdetail?iitem=${iitem}`);
+    // return <OrderDetail iitem={iitem} />;
+
   };
 
   return (
@@ -112,10 +118,10 @@ const OrderList = () => {
           </button>
         </div>
         <div className="btn">
-          <button onClick={() => handleSort("최신순")}>최신순</button>
-          <button onClick={() => handleSort("오래된순")}>오래된순</button>
-          <button onClick={() => handleSort("높은가격순")}>높은가격순</button>
-          <button onClick={() => handleSort("낮은가격순")}>낮은가격순</button>
+          <button onClick={() => handleSort("LatestOrder")}>최신순</button>
+          <button onClick={() => handleSort("OldOrder")}>오래된순</button>
+          <button onClick={() => handleSort("HighPrice")}>높은가격순</button>
+          <button onClick={() => handleSort("LowPrice")}>낮은가격순</button>
         </div>
         <ul className="order_category">
           {orderlist.map((item, index) => (
@@ -142,12 +148,11 @@ const OrderList = () => {
               </div>
               <div className="content">
                 <div className="orderlist_btn">
-                  <button className="shopping_basket">
+                  <button className="shopping_basket" onClick={e=> handleCart(item.iitem)}>
                     장바구니 담기
                     <FontAwesomeIcon
                       icon={faCartShopping}
-                      className="cart_icon"
-                    />
+                     />
                   </button>
                   <button
                     className="product_details"
