@@ -4,21 +4,31 @@ import { Link, useNavigate } from "react-router-dom";
 import { getUserData, loginFetch } from "../api/userFatch";
 import { fetchLogin } from "../api/client";
 import { useDispatch } from "react-redux";
+import { getBasketList } from "../api/basketFetch";
+import { getCookie } from "../api/cookie";
 
 const Login = () => {
+  const accessToken = getCookie("accessToken");
+  const [isLoggedIn, setIsLoggedIn] = useState(accessToken ? true : false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [id, setId] = useState("");
   const [pass, setPass] = useState("");
 
   const handleLogin = async e => {
+    if (id === "" || pass === "") {
+      alert("아이디와 비밀번호를 입력해주세요");
+    }
     try {
       e.preventDefault();
       await fetchLogin(id, pass);
-      navigate("/main");
-      getUserData(dispatch);
+      await getUserData(dispatch);
+      await getBasketList(dispatch);
       setId("");
       setPass("");
+      if (isLoggedIn) {
+        navigate("/main");
+      }
     } catch (err) {
       console.log(err);
     }

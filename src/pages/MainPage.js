@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MainWarp } from "../css/main-style";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -16,8 +16,16 @@ import ReviewModal from "../components/ReviewModal";
 import Basket from "./Basket";
 import Mypage from "./Mypage";
 import CommunityBulletinBoard from "./CommunityBulletinBoard";
+import { getUserData } from "../api/userFatch";
+import { useDispatch } from "react-redux";
+import { getBasketList } from "../api/basketFetch";
 
 const MainPage = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    getUserData(dispatch);
+    getBasketList(dispatch);
+  }, []);
   return (
     <MainWarp>
       <Header />

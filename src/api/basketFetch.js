@@ -1,10 +1,12 @@
 import axios from "axios";
+import { basketItem } from "../reducers/basketSlice";
 
-const getBasketList = async () => {
+const getBasketList = async dispatch => {
   try {
     const res = await axios.get("/api/cart");
     const result = res.data;
-    console.log(result);
+    console.log("로그인된 사용자 장바구니 불러오자!", result);
+    dispatch(basketItem(result));
     return result;
   } catch (err) {
     console.log(err);
