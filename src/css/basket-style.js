@@ -4,10 +4,11 @@ const path = process.env.PUBLIC_URL;
 
 export const BasketWrapper = styled.div`
   width: 100%;
-  height: 3000px;
+  height: auto;
   background: white;
   color: #eee;
   padding-top: 120px;
+  padding-bottom: 120px;
   .basket_inner {
     margin: 0 auto;
     width: 1300px;
@@ -120,33 +121,33 @@ export const BasketWrapper = styled.div`
       }
     }
     .basket_all_choice {
-        background-color: #9ab685;
-        width:100px;
-        height:30px;
-        margin-top:10px;
-        float:right;
-        border:none;
-        border-radius: 15px;
-        color:white;
-        padding:5px 15px;
-        margin-left:30px;
-        cursor: pointer;
+      background-color: #9ab685;
+      width: 100px;
+      height: 30px;
+      margin-top: 10px;
+      float: right;
+      border: none;
+      border-radius: 15px;
+      color: white;
+      padding: 5px 15px;
+      margin-left: 30px;
+      cursor: pointer;
     }
-    .basket_box{
-    display: block;
-    background-color: #D2B48C;
-    width: 200px;
-    height: 40px;
-    color: white;
-    border-radius: 10px;
-    border: none;
-    font-size: 20px;
-    margin:0 auto;
-    margin-top: 50px;
-    cursor: pointer;
+    .basket_box {
+      display: block;
+      background-color: #d2b48c;
+      width: 200px;
+      height: 40px;
+      color: white;
+      border-radius: 10px;
+      border: none;
+      font-size: 20px;
+      margin: 0 auto;
+      margin-top: 50px;
+      cursor: pointer;
     }
     .basket_box:hover {
-        background-color:#CD853F;
+      background-color: #cd853f;
     }
   }
 `;

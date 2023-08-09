@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import { BasketWrapper } from "../css/basket-style";
 import { getBasketList, getBasketQuantity } from "../api/basketFetch";
 import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
 
 const Basket = () => {
   const navigate = useNavigate();
 
+  const BasketData = useSelector(state => state.basket.basketArr);
   const [basketList, setBasketList] = useState([]);
   const [count, setCount] = useState(1);
   const [selectAll, setSelectAll] = useState(false);
@@ -106,7 +108,7 @@ const Basket = () => {
             <li>상품금액</li>
           </ul>
         </div>
-        {basketList.map((item, index) => (
+        {BasketData.map((item, index) => (
           <li key={index}>
             <div className="basket_list">
               <ul className="basket_goods_list">
