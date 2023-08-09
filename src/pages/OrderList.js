@@ -7,8 +7,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { OrderListWrapper } from "../css/orderlist-style";
 import { postBasket } from "../api/basketFetch";
+import { OrderListWrapper } from "../css/orderlist-style";
 import { getCookie } from "../api/cookie";
 
 const OrderList = () => {
@@ -93,6 +93,7 @@ const OrderList = () => {
   };
 
   const handleCart = iitem => {
+    postBasket(iitem);
     if (isLoggedIn) {
       postBasket(iitem);
     } else {

@@ -166,7 +166,7 @@ const Community = () => {
                             ? "잡담"
                             : item.icategory === 4
                             ? "리뷰"
-                            : "어쩌고"}
+                            : item.icategory === 5}
                         </p>
                       </span>
                       <span className="list_item_title">{item.title}</span>
