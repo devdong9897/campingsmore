@@ -24,4 +24,13 @@ const postBasket = async iitem => {
   }
 };
 
-export { getBasketList, postBasket };
+// 목록 선택 삭제
+// const deleteBasket = async () =>{
+//   try {
+
+//   }catch(err){
+//     console.log(err)
+//   }
+// }
+
+export { getBasketList, postBasket,  };
