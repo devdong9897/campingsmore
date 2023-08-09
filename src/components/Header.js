@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { HeaderContainer } from "../css/header-style";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { cookies, getCookie } from "../api/cookie";
 import { Cookies } from "react-cookie";
 import { deleteCookie } from "../api/client";
@@ -9,26 +9,28 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch, useSelector } from "react-redux";
 import { getBasketList } from "../api/basketFetch";
 import { UserLogout } from "../reducers/userSlice";
+import { basketItemEmpty } from "../reducers/basketSlice";
 
 const Header = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const accessToken = getCookie("accessToken");
   const [isLoggedIn, setIsLoggedIn] = useState(accessToken ? true : false);
   // 장바구니 아이템 갯수 state
-  const [basketCount, setBasketCount] = useState();
+  const userBasketCount = useSelector(state => state.basket.basketArr);
 
   const [scrollOver, setScrollOver] = useState(0);
   const [scrolled, setScrolled] = useState(false);
 
-  const basketCountData = async () => {
-    try {
-      const data = await getBasketList();
-      setBasketCount(data);
-      console.log("장바구니데이터", data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const basketCountData = async () => {
+  //   try {
+  //     const data = await getBasketList();
+  //     setBasketCount(data);
+  //     console.log("장바구니데이터", data);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   // 스크롤이벤트 핸들러
   const handleScroll = () => {
@@ -41,12 +43,15 @@ const Header = () => {
     deleteCookie();
     setIsLoggedIn(false);
     const LogoutEmpty = [];
+    const basketEmpty = [];
     dispatch(UserLogout(LogoutEmpty));
+    dispatch(basketItemEmpty(basketEmpty));
+    navigate("/");
   };
 
-  useEffect(() => {
-    basketCountData();
-  }, []);
+  // useEffect(() => {
+  //   basketCountData();
+  // }, []);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -108,7 +113,7 @@ const Header = () => {
                       icon={faCartShopping}
                       className="cart_icon"
                     />
-                    <p className="basket_count">SHIT</p>
+                    <p className="basket_count">{userBasketCount.length}</p>
                   </span>
                 </Link>
               ) : (

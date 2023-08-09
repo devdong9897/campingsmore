@@ -9,8 +9,11 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { postBasket } from "../api/basketFetch";
 import { OrderListWrapper } from "../css/orderlist-style";
+import { getCookie } from "../api/cookie";
 
 const OrderList = () => {
+  const accessToken = getCookie("accessToken");
+  const [isLoggedIn, setIsLoggedIn] = useState(accessToken ? true : false);
   const navigate = useNavigate();
   const [orderlist, setOrderList] = useState([]);
   const [orderListitem, setOrderListItem] = useState([]);
@@ -91,6 +94,11 @@ const OrderList = () => {
 
   const handleCart = iitem => {
     postBasket(iitem);
+    if (isLoggedIn) {
+      postBasket(iitem);
+    } else {
+      alert("마");
+    }
   };
 
   const something = iitem => {

@@ -5,7 +5,7 @@ import PurchaseHistory from "../components/PurchaseHistory";
 import ReviewHistory from "../components/ReviewHistory";
 import WritingHistory from "../components/WritingHistory";
 import DibsList from "../components/DibsList";
-import { cookies } from "../api/cookie";
+import { cookies, getCookie } from "../api/cookie";
 import { useEffect } from "react";
 import {
   getCommunityData,
@@ -17,12 +17,14 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Mypage = () => {
   const [menuindex, setMenuIndex] = useState(0);
+  const accessToken = getCookie("accessToken");
+  const [isLoggedIn, setIsLoggedIn] = useState(accessToken ? true : false);
 
   // 디스패치!
   const dispatch = useDispatch();
-  const userData = useSelector(state => state.user.data);
+  const userData = useSelector(state => state.user.UserProFileArr);
 
-  console.log("유저데이터??!?!");
+  console.log("유저데이터??!?!", userData);
 
   //마이페이지 정보 state
   const [UserProFile, setUserProfile] = useState([]);
@@ -88,19 +90,19 @@ const Mypage = () => {
     }
   };
 
-  // 프로필데이터 실행
-  const getMyProfile = async () => {
-    try {
-      const data = await getMyProfileData();
-      setUserProfile(data);
-      console.log(data);
-      console.log("유저데이터 받았니?", data);
-      setProFileName(data.name);
-      setProfileEmail(data.email);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // // 프로필데이터 실행
+  // const getMyProfile = async () => {
+  //   try {
+  //     const data = await getMyProfileData();
+  //     setUserProfile(data);
+  //     console.log(data);
+  //     console.log("유저데이터 받았니?", data);
+  //     setProFileName(data.name);
+  //     setProfileEmail(data.email);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   const menuComponents = [
     () => <EditInformation />,
@@ -112,7 +114,7 @@ const Mypage = () => {
 
   useEffect(() => {
     getPurchase();
-    getMyProfile();
+    // getMyProfile();
   }, []);
   return (
     <MypageWrapper menuindex={menuindex}>
@@ -121,8 +123,8 @@ const Mypage = () => {
           <span className="my_menu_title">마이페이지</span>
           <div className="profile_img_box"></div>
           <div className="profile_info">
-            <span className="profile_name">{ProfileName}</span>
-            <span className="profile_email">{ProfileEmail}</span>
+            <span className="profile_name">{userData.name}</span>
+            <span className="profile_email">{userData.email}</span>
           </div>
           <ul className="my_menu_list">
             {["개인정보수정", "구매내역", "리뷰내역", "작성글", "찜하기"].map(
