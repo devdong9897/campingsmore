@@ -101,7 +101,7 @@ export const HeaderContainer = styled.div`
                 width: 20px;
                 height: 20px;
                 border-radius: 100%;
-                background: green;
+                background: red;
               }
             }
           }

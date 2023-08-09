@@ -1,7 +1,7 @@
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useSearchParams } from "react-router-dom/dist";
 import { getOrderDetailPage } from "../api/itemFatch";
 import { OrderDetailWrapper } from "../css/orderdetail-style";
@@ -49,6 +49,19 @@ const OrderDetail = () => {
     }
   };
 
+  const handleAddToCart = () => {
+    const cartItem = {
+      id: iitem,
+      name: goodName,
+      price: goodPrice,
+      quantity: quantity,
+    };
+  };
+
+  const handleGoToPayment = () => {
+    Navigate("/main/payment");
+  };
+
   return (
     <OrderDetailWrapper>
       <div className="orderdetail_inner">
@@ -92,7 +105,9 @@ const OrderDetail = () => {
               <p className="total_price">총 상품 금액</p>
               <p className="orderdetail_price">{goodPrice * quantity}원</p>
             </div>
-            <button className="left">장바구니담기</button>
+            <button className="left" onClick={handleAddToCart}>
+              장바구니담기
+            </button>
             <button className="right">
               <Link to="/main/payment" className="payrig">
                 구매하기

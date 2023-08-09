@@ -48,6 +48,7 @@ export const MypageWrapper = styled.div`
         align-items: center;
         width: 100%;
         gap: 10px;
+        cursor: pointer;
         li {
           width: 70%;
           padding: 10px 0px;
