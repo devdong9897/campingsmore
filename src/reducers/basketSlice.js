@@ -18,6 +18,14 @@ const basketSlice = createSlice({
       console.log("장바구니 추가");
       state.basketArr.push(action.payload);
     },
+    basketPlus: (state, action) => {
+      state.basketArr.splice(action.payload);
+      console.log("장바구니 수량 추가");
+    },
+    basketMinus: (state, action) => {
+      state.basketArr.splice(action.payload);
+      console.log("장바구니 수량 빼기 성공");
+    },
     // 장바구니 목록 선택 삭제하기
     basketDelete: (state, action) => {
       console.log("장바구니 항목 한개 삭제");
@@ -37,4 +45,6 @@ export const {
   basketAllDelete,
   basketItem,
   basketItemEmpty,
+  basketPlus,
+  basketMinus,
 } = basketSlice.actions;

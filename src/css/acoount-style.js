@@ -41,7 +41,7 @@ export const AccoutWrapper = styled.div`
     flex-direction: column;
     transform: translate(-50%, -50%);
     margin: 0 auto;
-    width: 575px;
+    width: auto;
     height: auto;
     background: rgba(210, 180, 140, 0.7);
     border-radius: 20px;

@@ -6,15 +6,28 @@ import PassChange from "../components/PassChange";
 import PassWordResult from "../components/PassWordResult";
 import FindID from "../components/FindID";
 import IdResult from "../components/IdResult";
+import DaumPost from "../api/DaumPost";
 import { AccoutWrapper } from "../css/acoount-style";
+import { useState } from "react";
 
 const Account = () => {
+  const [daumPost, setDaumPost] = useState(false);
+  const [fullad, setFulladState] = useState("");
   return (
     <AccoutWrapper>
+      {daumPost ? (
+        <DaumPost setFulladState={setFulladState} setDaumPost={setDaumPost} />
+      ) : (
+        ""
+      )}
+      {/* <DaumPost /> */}
       <div className="account_inner">
         <Routes>
           <Route path="/" element={<Login />}></Route>
-          <Route path="/signup" element={<SignUp />}></Route>
+          <Route
+            path="/signup"
+            element={<SignUp setDaumPost={setDaumPost} fullad={fullad} />}
+          ></Route>
           <Route path="/findpassword" element={<FindPassWord />}></Route>
           <Route path="/passchange" element={<PassChange />}></Route>
           <Route path="/passwordresult" element={<PassWordResult />}></Route>
@@ -23,7 +36,7 @@ const Account = () => {
         </Routes>
       </div>
     </AccoutWrapper>
-  ); 
+  );
 };
 
 export default Account;

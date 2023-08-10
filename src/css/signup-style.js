@@ -4,11 +4,9 @@ const path = process.env.PUBLIC_URL;
 export const SignUpForm = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 1300px;
   height: 800px;
-  overflow-x: scroll;
-  background: rgba(154, 182, 133, 0.7);
-  padding: 20px;
+  padding: 20px 100px;
   border-radius: 20px;
   .signup_title {
     margin-top: 20px;
@@ -37,9 +35,9 @@ export const SignUpForm = styled.div`
       .gender_box {
         display: flex;
         flex-direction: row;
+        gap: 10px;
         height: 45px;
-        .gender_male,
-        .gender_female {
+        .gender_label {
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -48,144 +46,94 @@ export const SignUpForm = styled.div`
           height: 45px;
           background: #f3eddd;
           border-radius: 15px;
+          cursor: pointer;
+        }
+        .selected {
+          background: #cd853f;
+          color: #fff;
+          font-weight: bold;
         }
         input[type="radio"] {
+          display: none;
+          opacity: 0;
         }
       }
     }
-    div {
-      margin-bottom: 15px;
+    .input_info_area {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      width: 100%;
+      .input_left {
+        width: 50%;
+      }
+      .input_right {
+        width: 50%;
+      }
+      div {
+        margin-bottom: 15px;
+        display: flex;
+        flex-direction: column;
+        span {
+          gap: 15px;
+          display: flex;
+          margin-bottom: 10px;
+          font-size: 18px;
+          color: #fff;
+          font-weight: bold;
+          p {
+            color: #cf6353;
+            font-size: 15px;
+          }
+        }
+        input {
+          height: 50px;
+          background: #f0f0f0;
+          border: none;
+          border-radius: 10px;
+          padding: 0px 10px;
+          font-size: 17px;
+        }
+      }
+    }
+    .input_role {
       display: flex;
       flex-direction: column;
+      width: 100%;
+      height: auto;
       span {
-        gap: 15px;
-        display: flex;
-        margin-bottom: 10px;
         font-size: 18px;
         color: #fff;
         font-weight: bold;
-        p {
-          color: #cf6353;
-          font-size: 15px;
-        }
       }
-      input {
-        height: 50px;
-        background: #f0f0f0;
-        border: none;
-        border-radius: 10px;
-        padding: 0px 10px;
-        font-size: 17px;
+      .role_box {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        height: 45px;
+        .role_label {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          width: 100px;
+          height: 45px;
+          background: #f3eddd;
+          border-radius: 15px;
+          cursor: pointer;
+        }
+        .selected {
+          background: #cd853f;
+          color: #fff;
+          font-weight: bold;
+        }
+        input[type="radio"] {
+          display: none;
+          opacity: 0;
+        }
       }
     }
-    /* .input_email {
-        margin-bottom: 15px;
-        display: flex;
-        flex-direction: column;
-        span {
-          margin-bottom: 10px;
-          font-size: 18px;
-          color: #fff;
-          font-weight: bold;
-        }
-        .email {
-          height: 50px;
-          background: #f0f0f0;
-          border: none;
-          border-radius: 10px;
-          padding: 0px 10px;
-        }
-      }
-      .input_password {
-        margin-bottom: 15px;
-        display: flex;
-        flex-direction: column;
-        span {
-          margin-bottom: 10px;
-          font-size: 18px;
-          color: #fff;
-          font-weight: bold;
-        }
-        .password {
-          height: 50px;
-          background: #f0f0f0;
-          border: none;
-          border-radius: 10px;
-          padding: 0px 10px;
-        }
-      }
-      .input_password_check {
-        margin-bottom: 15px;
-        display: flex;
-        flex-direction: column;
-        span {
-          margin-bottom: 10px;
-          font-size: 18px;
-          color: #fff;
-          font-weight: bold;
-        }
-        .password_check {
-          height: 50px;
-          background: #f0f0f0;
-          border: none;
-          border-radius: 10px;
-          padding: 0px 10px;
-        }
-      }
-      .input_name {
-        margin-bottom: 15px;
-        display: flex;
-        flex-direction: column;
-        span {
-          margin-bottom: 10px;
-          font-size: 18px;
-          color: #fff;
-          font-weight: bold;
-        }
-        .name {
-          height: 50px;
-          background: #f0f0f0;
-          border: none;
-          border-radius: 10px;
-          padding: 0px 10px;
-        }
-      }
-      .input_nickname {
-        margin-bottom: 15px;
-        display: flex;
-        flex-direction: column;
-        span {
-          margin-bottom: 10px;
-          font-size: 18px;
-          color: #fff;
-          font-weight: bold;
-        }
-        .nickname {
-          height: 50px;
-          background: #f0f0f0;
-          border: none;
-          border-radius: 10px;
-          padding: 0px 10px;
-        }
-      }
-      .input_phone {
-        margin-bottom: 15px;
-        display: flex;
-        flex-direction: column;
-        span {
-          margin-bottom: 10px;
-          font-size: 18px;
-          color: #fff;
-          font-weight: bold;
-        }
-        .phone_number {
-          height: 50px;
-          background: #f0f0f0;
-          border: none;
-          border-radius: 10px;
-          padding: 0px 10px;
-        }
-      } */
   }
   .confirm_box {
     margin-bottom: 30px;

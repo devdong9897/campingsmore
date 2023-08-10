@@ -18,6 +18,7 @@ const OrderList = () => {
   const [orderlist, setOrderList] = useState([]);
   const [orderListitem, setOrderListItem] = useState([]);
   const [searchText, setSearchText] = useState("");
+  // const [Sparebasket , ]
 
   // 현재페이지
   const [pageNum, setPageNum] = useState(0);
@@ -39,6 +40,7 @@ const OrderList = () => {
     try {
       const res = await axios.get(`/api/item/search?text=${text}`);
       setOrderListItem(res.data.itemList);
+
     } catch (err) {
       console.log(err);
     }
