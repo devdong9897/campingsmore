@@ -13,6 +13,7 @@ const getOrderListCategory = async () => {
   return [];
 };
 
+// 처음들어갔을때 나오는 것
 const getbestitem = async () => {
   try {
     const res = await axios.get("/api/item/bestitem");
@@ -55,4 +56,38 @@ const getOrderDetailPage = async iitem => {
   return [];
 };
 
-export { getOrderDetailPage, getOrderListSearch, getbestitem };
+const getOrderListPage = async (index, cataID) => {
+  try {
+    const res = await axios.get(
+      `/api/item/search?cate=${cataID}&page=${index}&row=15&sort=0`,
+    );
+    const result = res.data;
+    console.log("getOrderListPage 요청완료");
+    console.log(result);
+    return result;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const getOrderCateSearch = async cateID => {
+  try {
+    const res = await axios.get(
+      `/api/item/search?cate=${cateID}&page=1&row=15&sort=0`,
+    );
+    const result = res.data;
+    console.log("getOrderCateSearch 요쳥완료");
+    console.log(result);
+    return result;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export {
+  getOrderDetailPage,
+  getOrderListSearch,
+  getbestitem,
+  getOrderListPage,
+  getOrderCateSearch,
+};

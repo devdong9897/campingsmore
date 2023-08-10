@@ -9,7 +9,14 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { postBasket } from "../api/basketFetch";
 import { getCookie } from "../api/cookie";
-import { getOrderCateSearch, getOrderListPage } from "../api/itemFatch";
+import {
+  getOrderCateSearch,
+  getOrderDetailPage,
+  getOrderListCategory,
+  getOrderListPage,
+  getOrderListSearch,
+  getbestitem,
+} from "../api/itemFatch";
 import { OrderListWrapper } from "../css/orderlist-style";
 
 const OrderList = () => {
@@ -25,7 +32,6 @@ const OrderList = () => {
   const getOrderListCategory = async () => {
     try {
       const res = await axios.get("/api/item/category");
-      // console.log(res.data);
       setOrderList(res.data);
       getOrderListSearch("");
     } catch (err) {
@@ -33,6 +39,7 @@ const OrderList = () => {
     }
   };
 
+  // 검색 하는거고
   const getOrderListSearch = async text => {
     try {
       const res = await axios.get(`/api/item/search?text=${text}`);
@@ -44,10 +51,6 @@ const OrderList = () => {
   };
 
   const pagenation = Array.from({ length: orderPage }, (_, index) => index);
-
-  useEffect(() => {
-    getOrderListCategory();
-  }, []);
 
   const handleSearch = () => {
     getOrderListSearch(searchText);
@@ -86,6 +89,7 @@ const OrderList = () => {
       const data = await getOrderCateSearch(categoryId);
       setOrderListItem(data.itemList);
       setOrderPage(data.maxPage);
+      console.log(data.maxPage);
       console.log("카테고리 눌럿을때 나오는 데이터", data);
     } catch (err) {
       console.log(err);
@@ -126,8 +130,11 @@ const OrderList = () => {
 
   const handlePage = index => {
     getOrderPage(index + 1);
-    // alert(index + 1);
   };
+
+  useEffect(() => {
+    getOrderListCategory();
+  }, []);
 
   return (
     <OrderListWrapper>

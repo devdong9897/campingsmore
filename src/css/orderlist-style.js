@@ -194,5 +194,23 @@ export const OrderListWrapper = styled.div`
         }
       }
     }
+    .order_pagenation {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      height: 100px;
+      li {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        height: 50px;
+        border-radius: 100%;
+        background: skyblue;
+        font-weight: bold;
+        font-size: 18px;
+      }
+    }
   }
 `;
