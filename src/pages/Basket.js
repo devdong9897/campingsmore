@@ -78,9 +78,14 @@ const Basket = () => {
     setBasketList(updatedBasketList);
   };
 
-  const handleRemoveItem = icart => {
-    setCartCount(icart);
-    isModal(true);
+  const handleRemoveItem = async icart => {
+    try {
+      await deleteBasket(icart)
+      const updatedBasketList = basketList.filter(item => item.icart !== icart);
+      setBasketList(updatedBasketList);
+    }catch(err){
+      console.log(err)
+    }
   };
 
   const calculateItemTotal = item => {
