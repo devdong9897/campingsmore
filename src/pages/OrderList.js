@@ -8,8 +8,9 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { postBasket } from "../api/basketFetch";
-import { OrderListWrapper } from "../css/orderlist-style";
 import { getCookie } from "../api/cookie";
+import { getOrderCateSearch, getOrderListPage } from "../api/itemFatch";
+import { OrderListWrapper } from "../css/orderlist-style";
 
 const OrderList = () => {
   const accessToken = getCookie("accessToken");
@@ -18,18 +19,14 @@ const OrderList = () => {
   const [orderlist, setOrderList] = useState([]);
   const [orderListitem, setOrderListItem] = useState([]);
   const [searchText, setSearchText] = useState("");
-  // const [Sparebasket , ]
-
-  // 현재페이지
-  const [pageNum, setPageNum] = useState(0);
+  const [orderPage, setOrderPage] = useState("");
+  const [cateID, setCateId] = useState("");
 
   const getOrderListCategory = async () => {
     try {
       const res = await axios.get("/api/item/category");
       // console.log(res.data);
-
       setOrderList(res.data);
-      // 전체 리스트
       getOrderListSearch("");
     } catch (err) {
       console.log(err);
@@ -40,11 +37,13 @@ const OrderList = () => {
     try {
       const res = await axios.get(`/api/item/search?text=${text}`);
       setOrderListItem(res.data.itemList);
-
+      setOrderPage(parseInt(res.data.maxPage, 10));
     } catch (err) {
       console.log(err);
     }
   };
+
+  const pagenation = Array.from({ length: orderPage }, (_, index) => index);
 
   useEffect(() => {
     getOrderListCategory();
@@ -82,16 +81,20 @@ const OrderList = () => {
     setOrderListItem(sortedItems);
   };
 
-  const handleCategoryClick = async categoryId => {
-    console.log("handleCategoryClick : ", categoryId);
+  const getOrderCateSearchData = async categoryId => {
     try {
-      const res = await axios.get(
-        `/api/item/search?cate=${categoryId}&page=1&row=15&sort=0`,
-      );
-      setOrderListItem(res.data.itemList);
+      const data = await getOrderCateSearch(categoryId);
+      setOrderListItem(data.itemList);
+      setOrderPage(data.maxPage);
+      console.log("카테고리 눌럿을때 나오는 데이터", data);
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const handleCategoryClick = async categoryId => {
+    getOrderCateSearchData(categoryId);
+    setCateId(categoryId);
   };
 
   const handleCart = iitem => {
@@ -108,6 +111,22 @@ const OrderList = () => {
     // getOrderDetailPage(iitem);
     navigate(`/main/orderdetail?iitem=${iitem}`);
     // return <OrderDetail iitem={iitem} />;
+  };
+
+  const getOrderPage = async index => {
+    console.log(index, cateID);
+    try {
+      const data = await getOrderListPage(index, cateID);
+      setOrderListItem(data.itemList);
+      console.log("페이지네이션", data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handlePage = index => {
+    getOrderPage(index + 1);
+    // alert(index + 1);
   };
 
   return (
@@ -176,6 +195,13 @@ const OrderList = () => {
                   </button>
                 </div>
               </div>
+            </li>
+          ))}
+        </ul>
+        <ul className="order_pagenation">
+          {pagenation.map((item, index) => (
+            <li key={index} onClick={e => handlePage(index)}>
+              {index + 1}
             </li>
           ))}
         </ul>
