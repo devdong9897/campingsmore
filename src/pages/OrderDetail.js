@@ -27,7 +27,7 @@ const OrderDetail = () => {
       setGoodPicListImg(data.item.picList);
 
       setOrderDetail(data);
-      console.log("이거나옵니까?", data);
+      console.log("이거나옵d니까?", data);
     } catch (err) {
       console.log("오더디테일 에러", err);
     }
