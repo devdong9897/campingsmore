@@ -27,12 +27,15 @@ const postBasket = async iitem => {
 };
 
 // 목록 선택 삭제
-// const deleteBasket = async () =>{
-//   try {
+const deleteBasket = async (icart) => {
+  try {
+    const res = await axios.delete(`/api/cart/${icart}`);
+    console.log("삭제 요청 성공");
+    return res.data;
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
+};
 
-//   }catch(err){
-//     console.log(err)
-//   }
-// }
-
-export { getBasketList, postBasket,  };
+export { getBasketList, postBasket, deleteBasket };

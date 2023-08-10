@@ -19,8 +19,6 @@ export const CommunityWriteWrapper = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
   }
-  .top_communityWrite_title {
-  }
   .communityWrite_line {
     margin: 20px 0 20px 0;
   }
@@ -41,8 +39,7 @@ export const CommunityWriteWrapper = styled.div`
     font-size: 20px;
     text-indent: 15px;
     margin-bottom: 20px;
-    border: 1px solid #D2B48C;
-    border-radius:10px;
+    border:1px solid #cccccc;
   }
   .communityWrite_board_detail {
     width: 1300px;
@@ -65,7 +62,7 @@ export const CommunityWriteWrapper = styled.div`
     color: white;
     margin-top:25px;
   }
-  .communityWrite_board_regi {
+  .communityWrite_board_regi, .communityWrite_board_del{
     float: right;
     background-color: #D2B48C;
     border-radius: 15px;
@@ -73,7 +70,7 @@ export const CommunityWriteWrapper = styled.div`
     width: 80px;
     height: 30px;
     color: white;
-    margin-top:10px;
+    margin-top:15px;
+    margin-left:10px;
   }
-  
 `;

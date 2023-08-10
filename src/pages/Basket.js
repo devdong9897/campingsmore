@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BasketWrapper } from "../css/basket-style";
-import { getBasketList, getBasketQuantity } from "../api/basketFetch";
+import { deleteBasket, getBasketList, getBasketQuantity } from "../api/basketFetch";
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 
@@ -76,9 +76,14 @@ const Basket = () => {
     setBasketList(updatedBasketList);
   };
 
-  const handleRemoveItem = icart => {
-    const updatedBasketList = basketList.filter(item => item.icart !== icart);
-    setBasketList(updatedBasketList);
+  const handleRemoveItem = async icart => {
+    try {
+      await deleteBasket(icart)
+      const updatedBasketList = basketList.filter(item => item.icart !== icart);
+      setBasketList(updatedBasketList);
+    }catch(err){
+      console.log(err)
+    }
   };
 
   const calculateItemTotal = item => {
