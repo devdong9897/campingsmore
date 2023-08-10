@@ -7,37 +7,30 @@ import { getOrderDetailPage } from "../api/itemFatch";
 import { OrderDetailWrapper } from "../css/orderdetail-style";
 
 const OrderDetail = () => {
-  const [searchParams, setSerchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const iitem = searchParams.get("iitem");
 
   const [goodImg, setGoodImg] = useState(null);
   const [goodName, setGoodName] = useState(null);
   const [goodPrice, setGoodPrice] = useState(0);
   const [goodPicListImg, setGoodPicListImg] = useState(null);
-  const [orderdetail, setOrderDetail] = useState([]);
-  const [detailListItem, setDetailListItem] = useState([]);
-  const [reviewItem, setReviewItem] = useState([]);
-
-  const getOrderDetail = async () => {
-    try {
-      const data = await getOrderDetailPage(iitem);
-      setGoodImg(data.item.pic);
-      setGoodName(data.item.name);
-      setGoodPrice(data.item.price);
-      setGoodPicListImg(data.item.picList);
-
-      setOrderDetail(data);
-      console.log("이거나옵니까?", data);
-    } catch (err) {
-      console.log("오더디테일 에러", err);
-    }
-  };
+  const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
-    getOrderDetail();
-  }, []);
+    const getOrderDetail = async () => {
+      try {
+        const data = await getOrderDetailPage(iitem);
+        setGoodImg(data.item.pic)
+        setGoodName(data.item.name);
+        setGoodPrice(data.item.price);
+        setGoodPicListImg(data.item.picList);
+      } catch (err) {
+        console.log("오더디테일 에러", err);
+      }
+    };
 
-  const [quantity, setQuantity] = useState(1);
+    getOrderDetail();
+  }, [iitem]);
 
   const handleIncreaseQuantity = () => {
     setQuantity(quantity + 1);
@@ -139,7 +132,7 @@ const OrderDetail = () => {
           </div>
           <div className="profile_content">
             <span className="profile_title">
-              <p className="content">{/* 내용 */}</p>
+              <p className="content"></p>
             </span>
           </div>
         </div>
@@ -149,3 +142,4 @@ const OrderDetail = () => {
 };
 
 export default OrderDetail;
+

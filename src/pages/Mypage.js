@@ -114,7 +114,6 @@ const Mypage = () => {
 
   useEffect(() => {
     getPurchase();
-    // getMyProfile();
   }, []);
   return (
     <MypageWrapper menuindex={menuindex}>

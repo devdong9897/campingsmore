@@ -47,6 +47,7 @@ const Header = () => {
     dispatch(UserLogout(LogoutEmpty));
     dispatch(basketItemEmpty(basketEmpty));
     navigate("/");
+    window.location.reload();
   };
 
   // useEffect(() => {

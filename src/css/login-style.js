@@ -7,14 +7,14 @@ export const Logininner = styled.div`
   height: auto;
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 20px 100px;
   .login_logo {
     width: 100%;
     height: 200px;
     background-image: url("${path}/image/logo2.png");
     background-repeat: no-repeat;
     background-position: 50% 100%;
-    background-size: 45%;
+    background-size: 50%;
   }
   .login_form {
     display: flex;

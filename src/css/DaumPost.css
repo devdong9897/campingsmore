@@ -1,0 +1,23 @@
+@charset "utf-8";
+.daum_post_modal {
+  position: fixed;
+  z-index: 99999999999;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background: rgb(0, 0, 0, 0.7);
+}
+
+.postCodeStyle {
+  display: block;
+  position: absolute;
+  z-index: 9999999;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px !important;
+  height: 600px !important;
+  padding: 7px;
+  border: 2px solid #666;
+}
