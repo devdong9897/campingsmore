@@ -29,7 +29,7 @@ const OrderDetail = () => {
       setOrderDetail(data);
       console.log("이거나옵d니까?", data);
     } catch (err) {
-      console.log("오더디테일 에러", err);
+      console.log("오더디테수정일 에러", err);
     }
   };
 
