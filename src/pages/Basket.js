@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { BasketWrapper } from "../css/basket-style";
-import {
-  deleteBasketItem,
-  getBasketList,
-  getBasketQuantity,
-} from "../api/basketFetch";
-import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { basketMinus } from "../reducers/basketSlice";
+import { useNavigate } from "react-router";
+import { deleteBasketItem } from "../api/basketFetch";
 import BasketModal from "../components/modal/BasketModal";
+import { BasketWrapper } from "../css/basket-style";
 
 const Basket = () => {
   const navigate = useNavigate();
