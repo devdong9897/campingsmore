@@ -11,6 +11,7 @@ const FindID = () => {
   const [Fbirth, setFBirth] = useState();
   const [FindInfo, setFindInfo] = useState();
 
+  // 아이디찾기할 정보를 전달하고
   const getFindAccountData = async FindIDInfo => {
     try {
       const data = getFindAccount(FindIDInfo);
@@ -19,6 +20,11 @@ const FindID = () => {
       console.log(err);
     }
   };
+
+  // 아이디찾을 결과 값을 받아라
+
+
+
 
   const handleidResult = e => {
     e.preventDefault();
@@ -31,6 +37,7 @@ const FindID = () => {
       alert("입력란을 전부 입력하세요");
     } else {
       getFindAccountData(FindIdInfo);
+      navigate("/idresult");
     }
   };
 

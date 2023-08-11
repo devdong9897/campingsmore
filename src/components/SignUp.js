@@ -4,7 +4,7 @@ import { SignupFetch } from "../api/userFatch";
 import DaumPost from "../api/DaumPost";
 import { useNavigate } from "react-router";
 
-const SignUp = ({ setDaumPost, fullad }) => {
+const SignUp = ({ setDaumPost, fullAddress }) => {
   const [selectedGender, setSelectedGender] = useState("");
   const [selectedRole, setSelectedRole] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -50,7 +50,7 @@ const SignUp = ({ setDaumPost, fullad }) => {
     }
   };
 
-  const handleSignup = e => {
+  const handleSignup = async e => {
     e.preventDefault();
     passCheck();
     const newUser = {
@@ -61,15 +61,14 @@ const SignUp = ({ setDaumPost, fullad }) => {
       birth_date: birth,
       phone: phonenum,
       gender: selectedGender,
-      user_address: address,
+      user_address: fullAddress,
       role: selectedRole,
     };
     if (Object.values(newUser).some(value => !value)) {
       alert("모든 필드를 입력하세요");
-      console.log("비어있는것 찾아버리기", newUser);
     } else {
-      SignupFetch(newUser);
-      navigate("/main");
+      const result = await SignupFetch(newUser);
+      navigate("/");
     }
   };
 
@@ -92,7 +91,7 @@ const SignUp = ({ setDaumPost, fullad }) => {
                 value="0"
                 name="gender"
                 id="gender_male"
-                checked={selectedGender === "0"} // 선택된 성별과 일치할 때 체크
+                checked={selectedGender === "0"}
                 onChange={handleGenderChange}
               />
             </label>
@@ -188,7 +187,7 @@ const SignUp = ({ setDaumPost, fullad }) => {
                 placeholder="주소를 입력하세요"
                 className="phone_number"
                 onClick={handleAddressCall}
-                value={fullad}
+                value={fullAddress}
               ></input>
             </div>
             <div className="input_phone">

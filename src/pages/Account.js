@@ -12,11 +12,11 @@ import { useState } from "react";
 
 const Account = () => {
   const [daumPost, setDaumPost] = useState(false);
-  const [fullad, setFulladState] = useState("");
+  const [fullAddress, setFullAddress] = useState("");
   return (
     <AccoutWrapper>
       {daumPost ? (
-        <DaumPost setFulladState={setFulladState} setDaumPost={setDaumPost} />
+        <DaumPost setFullAddress={setFullAddress} setDaumPost={setDaumPost} />
       ) : (
         ""
       )}
@@ -26,7 +26,9 @@ const Account = () => {
           <Route path="/" element={<Login />}></Route>
           <Route
             path="/signup"
-            element={<SignUp setDaumPost={setDaumPost} fullad={fullad} />}
+            element={
+              <SignUp setDaumPost={setDaumPost} fullAddress={fullAddress} />
+            }
           ></Route>
           <Route path="/findpassword" element={<FindPassWord />}></Route>
           <Route path="/passchange" element={<PassChange />}></Route>

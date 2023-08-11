@@ -51,6 +51,7 @@ const OrderDetail = () => {
       price: goodPrice,
       quantity: quantity,
     };
+    console.log()
   };
 
   const handleGoToPayment = () => {

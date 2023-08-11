@@ -7,8 +7,11 @@ import {
   faSquarePen,
   faUnlockKeyhole,
 } from "@fortawesome/free-solid-svg-icons";
+import { useSelector } from "react-redux";
+import { AccoutwithdrawalFetch } from "../api/userFatch";
 
-const EditInformation = () => {
+const EditInformation = ({ isWithdrawal }) => {
+
   const [fixPass, setfixPass] = useState("");
   const [fixEmail, setFixEmail] = useState("");
   const [fixName, setFixName] = useState("");
@@ -28,6 +31,10 @@ const EditInformation = () => {
   const editSubmit = e => {
     e.preventDefault();
     setSomething(false);
+  };
+
+  const handlewWithDrawal = () => {
+    isWithdrawal(true);
   };
   return (
     <EditWrapper something={something}>
@@ -137,7 +144,7 @@ const EditInformation = () => {
         </div>
       </div>
       <div className="withdrawal_account">
-        <button>회원탈퇴</button>
+        <button onClick={handlewWithDrawal}>회원탈퇴</button>
       </div>
     </EditWrapper>
   );

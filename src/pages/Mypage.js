@@ -14,15 +14,22 @@ import {
   getPurchaseData,
 } from "../api/mypageFatch";
 import { useDispatch, useSelector } from "react-redux";
+import WithdrawalModal from "../components/modal/WithdrawalModal";
 
 const Mypage = () => {
   const [menuindex, setMenuIndex] = useState(0);
   const accessToken = getCookie("accessToken");
   const [isLoggedIn, setIsLoggedIn] = useState(accessToken ? true : false);
 
+  // 회원탈퇴 모달 state
+  const [withdrawal, isWithdrawal] = useState(false);
+
   // 디스패치!
   const dispatch = useDispatch();
+  // 유저데이터
   const userData = useSelector(state => state.user.UserProFileArr);
+  // IUSER 값
+  const userIuser = useSelector(state => state.user.UserProFileArr.iuser);
 
   console.log("유저데이터??!?!", userData);
 
@@ -105,7 +112,7 @@ const Mypage = () => {
   // };
 
   const menuComponents = [
-    () => <EditInformation />,
+    () => <EditInformation isWithdrawal={isWithdrawal} />,
     () => <PurchaseHistory purchase={purchase} />,
     () => <ReviewHistory review={review} />,
     () => <WritingHistory comulist={comulist} />,
@@ -117,6 +124,11 @@ const Mypage = () => {
   }, []);
   return (
     <MypageWrapper menuindex={menuindex}>
+      {withdrawal ? (
+        <WithdrawalModal userIuser={userIuser} isWithdrawal={isWithdrawal} />
+      ) : (
+        ""
+      )}
       <div className="mypage_inner">
         <div className="my_menu">
           <span className="my_menu_title">마이페이지</span>

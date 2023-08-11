@@ -1,3 +1,5 @@
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
 
@@ -66,11 +68,13 @@ const KakaoMap = () => {
   };
 
   return (
-    <>
-      <input type="text" id="keyword" placeholder="장소검색"></input>
-      <button id="searchBtn" onClick={handleSearch}>
-        검색
-      </button>
+    <div className="kakao_map">
+      <div className="map_search">
+        <input type="text" id="keyword" placeholder="장소검색"></input>
+        <button id="searchBtn" onClick={handleSearch}>
+          <FontAwesomeIcon icon={faMagnifyingGlass} />
+        </button>
+      </div>
       <Map // 로드뷰를 표시할 Container
         center={{
           lat: 37.566826,
@@ -79,6 +83,7 @@ const KakaoMap = () => {
         style={{
           width: "100%",
           height: "800px",
+          borderRadius: "15px",
         }}
         level={3}
         onCreate={setMap}
@@ -95,7 +100,7 @@ const KakaoMap = () => {
           </MapMarker>
         ))}
       </Map>
-    </>
+    </div>
   );
 };
 

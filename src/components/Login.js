@@ -36,10 +36,10 @@ const Login = () => {
     <Logininner>
       <div className="login_logo"></div>
       <form className="login_form">
-        <span>이메일</span>
+        <span>아이디</span>
         <input
           type="text"
-          placeholder="이메일을 입력하세요"
+          placeholder="아이디를 입력하세요"
           onChange={e => setId(e.target.value)}
         ></input>
         <span>비밀번호</span>

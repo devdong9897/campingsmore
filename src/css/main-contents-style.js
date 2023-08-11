@@ -124,7 +124,39 @@ export const MainContentsWrapper = styled.div`
       height: 800px;
       overflow: hidden;
       border-radius: 15px;
-      background: green;
+      .kakao_map {
+        .map_search {
+          position: relative;
+          margin-top: 15px;
+          margin-bottom: 30px;
+          display: flex;
+          width: 100%;
+          height: 65px;
+          overflow: hidden;
+          border-radius: 100px;
+          box-shadow: 0px 0px 2px 1px black inset;
+          #keyword {
+            width: 100%;
+            height: 100%;
+            padding-left: 30px;
+            background: none;
+            border: none;
+            font-size: 18px;
+          }
+          #searchBtn {
+            position: absolute;
+            width: 100px;
+            height: 100%;
+            right: 0px;
+            top: 0px;
+            border-top-right-radius: 25%;
+            background: #d2b48c;
+            border: none;
+            color: #fff;
+            font-size: 30px;
+          }
+        }
+      }
     }
   }
   .recommned_menu {

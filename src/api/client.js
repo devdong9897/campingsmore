@@ -25,7 +25,7 @@ axios.interceptors.request.use(
 // 쿠키 set 하기
 export const fetchLogin = async (email, pw) => {
   try {
-    const res = await axios.post(`/sign-api/sign-in`, {
+    const res = await axios.post(`/api/oauth/authorize`, {
       uid: email,
       upw: pw,
     });

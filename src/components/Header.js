@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getBasketList } from "../api/basketFetch";
 import { UserLogout } from "../reducers/userSlice";
 import { basketItemEmpty } from "../reducers/basketSlice";
+import { LogoutFetch } from "../api/userFatch";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -47,6 +48,7 @@ const Header = () => {
     dispatch(UserLogout(LogoutEmpty));
     dispatch(basketItemEmpty(basketEmpty));
     navigate("/");
+    LogoutFetch();
     window.location.reload();
   };
 
