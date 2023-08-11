@@ -45,7 +45,7 @@ const getOrderListSearch = async () => {
 
 const getOrderDetailPage = async iitem => {
   try {
-    const res = await axios.get(`/api/item/detail?iitem=${iitem}&page=1&row=5`);
+    const res = await axios.get(`/api/item/detail/${iitem}?page=1&row=5`);
     const result = res.data;
     console.log("getOrderDetail 요청완료");
     console.log(result);
@@ -85,9 +85,9 @@ const getOrderCateSearch = async cateID => {
 };
 
 export {
+  getOrderCateSearch,
   getOrderDetailPage,
+  getOrderListPage,
   getOrderListSearch,
   getbestitem,
-  getOrderListPage,
-  getOrderCateSearch,
 };

@@ -16,14 +16,16 @@ const OrderDetail = () => {
   const [goodPicListImg, setGoodPicListImg] = useState(null);
   const [quantity, setQuantity] = useState(1);
 
+  console.log("봅시다", iitem);
   useEffect(() => {
     const getOrderDetail = async () => {
       try {
         const data = await getOrderDetailPage(iitem);
-        setGoodImg(data.item.pic)
+        setGoodImg(data.item.pic);
         setGoodName(data.item.name);
         setGoodPrice(data.item.price);
         setGoodPicListImg(data.item.picList);
+        console.log("마데이타", data);
       } catch (err) {
         console.log("오더디테일 에러", err);
       }
@@ -142,4 +144,3 @@ const OrderDetail = () => {
 };
 
 export default OrderDetail;
-
