@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { SignUpForm } from "../css/signup-style";
 import { SignupFetch } from "../api/userFatch";
 import DaumPost from "../api/DaumPost";
+import { useNavigate } from "react-router";
 
 const SignUp = ({ setDaumPost, fullad }) => {
   const [selectedGender, setSelectedGender] = useState("");
@@ -19,6 +20,8 @@ const SignUp = ({ setDaumPost, fullad }) => {
   const [nickname, setNickname] = useState("");
   const [phonenum, setPhonenum] = useState("");
   const [role, setRole] = useState("0");
+
+  const navigate = useNavigate();
 
   const handleAddressCall = () => {
     setDaumPost(true);
@@ -47,8 +50,6 @@ const SignUp = ({ setDaumPost, fullad }) => {
     }
   };
 
-  console.log("패스워드", password);
-  console.log("패스워드확인", passconfirm);
   const handleSignup = e => {
     e.preventDefault();
     passCheck();
@@ -63,7 +64,13 @@ const SignUp = ({ setDaumPost, fullad }) => {
       user_address: address,
       role: selectedRole,
     };
-    SignupFetch(newUser);
+    if (Object.values(newUser).some(value => !value)) {
+      alert("모든 필드를 입력하세요");
+      console.log("비어있는것 찾아버리기", newUser);
+    } else {
+      SignupFetch(newUser);
+      navigate("/main");
+    }
   };
 
   return (
@@ -118,10 +125,7 @@ const SignUp = ({ setDaumPost, fullad }) => {
               ></input>
             </div>
             <div className="input_password">
-              <span>
-                비밀번호
-                <p>{password === passMatch ? "일치합니다" : "불일치"}</p>
-              </span>
+              <span>비밀번호</span>
               <input
                 type="password"
                 placeholder="비밀번호를 입력하세요"
@@ -130,10 +134,7 @@ const SignUp = ({ setDaumPost, fullad }) => {
               ></input>
             </div>
             <div className="input_password_check">
-              <span>
-                비밀번호 확인
-                <p>{password === passMatch ? "일치합니다" : "불일치"}</p>
-              </span>
+              <span>비밀번호 확인</span>
               <input
                 type="password"
                 placeholder="비밀번호를 다시 입력해주세요"

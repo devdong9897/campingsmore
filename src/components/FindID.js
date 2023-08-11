@@ -1,12 +1,37 @@
 import React from "react";
 import { FindidForm } from "../css/FindID-style";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { getFindAccount } from "../api/userFatch";
 
 const FindID = () => {
   const navigate = useNavigate();
+  const [Fname, setFName] = useState();
+  const [phone, setPhone] = useState();
+  const [Fbirth, setFBirth] = useState();
+  const [FindInfo, setFindInfo] = useState();
 
-  const handleidResult = () => {
-    navigate("/idresult");
+  const getFindAccountData = async FindIDInfo => {
+    try {
+      const data = getFindAccount(FindIDInfo);
+      setFindInfo(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleidResult = e => {
+    e.preventDefault();
+    const FindIdInfo = {
+      name: Fname,
+      phone: phone,
+      birth: Fbirth,
+    };
+    if (Object.values(FindIdInfo).some(value => !value)) {
+      alert("입력란을 전부 입력하세요");
+    } else {
+      getFindAccountData(FindIdInfo);
+    }
   };
 
   return (
@@ -17,9 +42,42 @@ const FindID = () => {
       </div>
       <form className="id_find_form">
         <span>이름</span>
-        <input type="text" placeholder="이름을 입력하세요"></input>
+        <input
+          type="text"
+          placeholder="이름을 입력하세요"
+          onChange={e => setFName(e.target.value)}
+        ></input>
         <span>전화번호</span>
-        <input type="number" placeholder="전화번호를 입력하세요"></input>
+        <input
+          type="text"
+          placeholder="전화번호를 입력하세요"
+          maxLength="8"
+          value={phone}
+          onChange={e => {
+            const inputText = e.target.value;
+            if (/^\d*$/.test(inputText) && inputText.length <= 8) {
+              setPhone(inputText);
+            } else {
+              alert("숫자만 입력해주세요");
+              setPhone("");
+            }
+          }}
+        ></input>
+        <span>생년월일</span>
+        <input
+          type="text"
+          placeholder="생년월일을 입력하세요"
+          value={Fbirth}
+          onChange={e => {
+            const inputText = e.target.value;
+            if (/^\d*$/.test(inputText) && inputText.length <= 8) {
+              setFBirth(inputText);
+            } else {
+              alert("숫자만 입력해주세요");
+              setFBirth("");
+            }
+          }}
+        ></input>
       </form>
       <button className="find_id_comfirm" onClick={handleidResult}>
         아이디 찾기

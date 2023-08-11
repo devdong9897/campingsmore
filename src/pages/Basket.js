@@ -80,11 +80,11 @@ const Basket = () => {
 
   const handleRemoveItem = async icart => {
     try {
-      await deleteBasket(icart)
+      await deleteBasketItem(icart);
       const updatedBasketList = basketList.filter(item => item.icart !== icart);
       setBasketList(updatedBasketList);
-    }catch(err){
-      console.log(err)
+    } catch (err) {
+      console.log(err);
     }
   };
 

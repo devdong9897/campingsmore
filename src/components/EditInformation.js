@@ -136,6 +136,9 @@ const EditInformation = () => {
           </div>
         </div>
       </div>
+      <div className="withdrawal_account">
+        <button>회원탈퇴</button>
+      </div>
     </EditWrapper>
   );
 };

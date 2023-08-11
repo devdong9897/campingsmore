@@ -1,5 +1,5 @@
 import axios from "axios";
-import {UserAdd} from "../reducers/userSlice";
+import { UserAdd } from "../reducers/userSlice";
 
 const getUserData = async dispatch => {
   try {
@@ -21,4 +21,18 @@ const SignupFetch = async newUser => {
   }
 };
 
-export { SignupFetch, getUserData };
+const getFindAccount = async FindIDInfo => {
+  try {
+    const res = await axios.get(
+      `/sign-api/search-id?name=${FindIDInfo.name}&phone=${FindIDInfo.phone}&birth=${FindIDInfo.birth}`,
+    );
+    const result = res.data;
+    console.log("아이디찾기 요청완료");
+    return result;
+  } catch (err) {
+    console.log(err);
+  }
+  return [];
+};
+
+export { SignupFetch, getUserData, getFindAccount };
