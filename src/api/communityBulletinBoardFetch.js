@@ -15,10 +15,21 @@ import axios from 'axios'
 // }
 // export default createPost;
 
-const getCommunityBulletinBoard = async () => {
-    try {
+// const getCommunityBulletinBoard = async () => {
+//     try {
         
+//     }catch(err){
+//         console.log(err)
+//     }
+// }
+const getFetchData = async () => {
+    try{
+        const res = await axios.get(`/api/community/boardDetail`)
+        const data = res.data
+        console.log(res.data)
+        return data
     }catch(err){
-        console.log(err)
+        console.log("게시글 디테일보기 요청실패",err)
     }
 }
+export default getFetchData;

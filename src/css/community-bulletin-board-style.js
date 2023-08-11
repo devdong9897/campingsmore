@@ -22,38 +22,20 @@ export const CommunityBulletinBoardWrapper = styled.div`
   .community_bulletin_board_line {
     margin: 20px 0 20px 0;
   }
-  .community_bulletin_board_regi {
-    float: right;
-    background-color: #D2B48C;
-    border-radius: 15px;
-    border: none;
-    width: 130px;
-    height: 30px;
-    color: white;
-    display: block;
+  .community_bulletin_board_topbox {
+    width: 100%;
+    height:auto;
+    h1{
+      float:left;
+    }
+    p{
+      display:block;
+      float:right;
+      font-weight:bold;
+    }
+    
   }
-  .community_bulletin_board_edit {
-    float: right;
-    background-color: #D2B48C;
-    border-radius: 15px;
-    border: none;
-    width: 80px;
-    height: 30px;
-    color: white;
-    display: block;
-    margin-right:10px;
-  }
-  .community_bulletin_board_del {
-    float: right;
-    background-color: #D2B48C;
-    border-radius: 15px;
-    border: none;
-    width: 80px;
-    height: 30px;
-    color: white;
-    display: block;
-    margin-right:10px;
-  }
+
   .community_bulletin_board_title {
     width: 100%;
     height: 60px;

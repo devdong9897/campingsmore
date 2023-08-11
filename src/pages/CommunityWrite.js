@@ -6,6 +6,7 @@ import createPost from "../api/communityWriteFetch";
 import { useRef } from "react";
 import { useEffect } from "react";
 import { useMemo } from "react";
+import DOMPurify from "dompurify";
 
 const CommunityWrite = () => {
   const [comutitle, setComuTitle] = useState("");
@@ -189,8 +190,12 @@ useEffect(() => {
       <div style={{ background: "#fff" }}>
         <ReactQuill ref={quillRef} onChange={setValue} modules={modules} />
       </div>
-      <div>실제값 : {value}</div>
-      <h2>html 출력하기 : </h2>
+      <div>
+            <h2>html 출력하기 : </h2>
+            <div
+              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(value) }}
+            />
+          </div>
 
           {/* <ReactQuill
             theme="snow"
