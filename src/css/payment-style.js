@@ -27,11 +27,11 @@ export const PaymentWrapper = styled.div`
         margin-bottom: 35px;
         width: 100%;
         height: 50px;
-        background: #D2B48C;
+        background: #d2b48c;
         border-radius: 15px;
         overflow: hidden;
         padding: 0px 20px;
-        color:white;
+        color: white;
         .payment_order_cate {
           display: grid;
           grid-template-columns: 150px 2fr 1fr 1fr 1fr 0.5fr;
@@ -51,13 +51,65 @@ export const PaymentWrapper = styled.div`
         }
       }
       .payment_order_list {
-        margin-bottom: 50px;
+        /* margin-bottom: 50px;
         display: flex;
         flex-direction: column;
         gap: 20px;
         width: 100%;
         overflow: hidden;
+        border-radius: 15px; */
+        width: 100%;
+        height: 200px;
+        margin-top: 20px;
+        margin-bottom: 50px;
+        border: 1px solid #cd853f;
         border-radius: 15px;
+        .information {
+          display: flex;
+          .img {
+            width: 150px;
+            height: 150px;
+            background-image: url("${path}/image/food.jpg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            border-radius: 15px;
+            margin-top: 25px;
+            margin-left: 20px;
+          }
+          .title {
+            h1 {
+              margin-top: 30px;
+              margin-left: 20px;
+              font-size: 30px;
+            }
+            p {
+              margin-left: 20px;
+              font-size: 15px;
+            }
+            .date {
+              margin-top: 55px;
+            }
+          }
+          .판매자 {
+            margin-top: 100px;
+            margin-left: 250px;
+            font-size: 20px;
+            font-weight: 700;
+          }
+          .수량 {
+            margin-top: 100px;
+            margin-left: 150px;
+            font-size: 20px;
+            font-weight: 700;
+          }
+          .price {
+            margin-top: 100px;
+            margin-left: 200px;
+            font-size: 20px;
+            font-weight: 700;
+          }
+        }
         li {
           display: grid;
           grid-template-columns: 150px 2fr 1fr 1fr 1fr 0.5fr;
@@ -65,13 +117,6 @@ export const PaymentWrapper = styled.div`
           height: 180px;
           background: #f2f2f2;
           padding: 20px 20px;
-          div {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            text-align: center;
-            font-size: 18px;
-          }
           .product_img {
             position: relative;
             height: 100%;
@@ -111,10 +156,10 @@ export const PaymentWrapper = styled.div`
               border: none;
               cursor: pointer;
               width: 120px;
-              margin:0 auto;
+              margin: 0 auto;
             }
             button:hover {
-              background: #CD853F;
+              background: #cd853f;
             }
           }
         }
@@ -123,7 +168,7 @@ export const PaymentWrapper = styled.div`
         width: 100%;
         height: auto;
         background-color: white;
-        border: 2px solid #D2B48C;
+        border: 2px solid #d2b48c;
         border-radius: 15px;
         margin-bottom: 50px;
 
@@ -140,10 +185,10 @@ export const PaymentWrapper = styled.div`
           width: 300px;
         }
         .payment_add {
-          font-size:12px;
-          color:red;
+          font-size: 12px;
+          color: red;
         }
-        
+
         .payment_username {
           margin-left: 50px;
           width: 300px;
@@ -238,17 +283,17 @@ export const PaymentWrapper = styled.div`
           width: 100px;
           height: 30px;
           margin-top: 39px;
-          border: 1px solid #D2B48C;
+          border: 1px solid #d2b48c;
           border-radius: 5px;
           background-color: white;
           font-size: 17px;
         }
         .payment_all_point:hover {
-          border: 1px solid #FF4500;
+          border: 1px solid #ff4500;
         }
         .payment_box {
           display: block;
-          background-color: #D2B48C;
+          background-color: #d2b48c;
           width: 200px;
           height: 40px;
           color: white;
@@ -261,7 +306,7 @@ export const PaymentWrapper = styled.div`
           cursor: pointer;
         }
         .payment_box:hover {
-          background: #CD853F;
+          background: #cd853f;
         }
       }
     }

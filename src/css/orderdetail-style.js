@@ -206,7 +206,6 @@ export const OrderDetailWrapper = styled.div`
       }
     }
 
-    .top_line,
     .botton_line {
       border-bottom: 1px solid #c0c0c0;
       margin-top: 250px;
