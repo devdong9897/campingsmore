@@ -130,6 +130,12 @@ const OrderList = () => {
     getOrderPage(index + 1);
   };
 
+  const handleKeyPress = event => {
+    if (event.key === "Enter") {
+      handleSearch(event);
+    }
+  };
+
   useEffect(() => {
     getOrderListCategory();
   }, []);
@@ -143,6 +149,7 @@ const OrderList = () => {
             placeholder="찾으시는 캠핑음식이 있으신가요?"
             value={searchText}
             onChange={e => setSearchText(e.target.value)}
+            onKeyPress={handleKeyPress}
           />
           <button className="search_submit" onClick={handleSearch}>
             <FontAwesomeIcon icon={faMagnifyingGlass} />
