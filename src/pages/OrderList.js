@@ -112,9 +112,7 @@ const OrderList = () => {
 
   const something = iitem => {
     console.log("클릭한 값 인덱스", iitem);
-    // getOrderDetailPage(iitem);
     navigate(`/main/orderdetail?iitem=${iitem}`);
-    // return <OrderDetail iitem={iitem} />;
   };
 
   const getOrderPage = async index => {
