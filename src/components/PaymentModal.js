@@ -8,7 +8,9 @@ const PaymentModal = () => {
   const handleToGoMain = () => {
     navigate("/main")
   }
-
+  const handleToGoOrderlist = () => {
+    navigate("/main/orderlist")
+  }
   return (
     <PaymentModalWrapper>
         <div className="top_payment_modal_contents">
@@ -37,7 +39,7 @@ const PaymentModal = () => {
 
               <div className="payment_modal_check">
                 <button onClick={handleToGoMain}>메인</button>
-                <button >뒤로가기</button>
+                <button onClick={handleToGoOrderlist}>뒤로가기</button>
                 
               </div>
             </div>
