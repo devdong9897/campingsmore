@@ -4,6 +4,9 @@ import "../css/DaumPost.css";
 const PopupPostCode = ({
   setFullAddress,
   setDaumPost,
+  setUserAddress,
+  isDaumModal,
+  daumModal,
   daumPost,
   mypageDaum,
   setMypageDaum,
@@ -27,6 +30,9 @@ const PopupPostCode = ({
     if (daumPost) {
       setFullAddress(fullAddress);
       setDaumPost(false);
+    } else if (daumModal) {
+      setUserAddress(fullAddress);
+      isDaumModal(false);
     } else if (mypageDaum) {
       setFixAddress(fullAddress);
       setMypageDaum(false);

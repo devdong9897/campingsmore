@@ -1,14 +1,14 @@
+import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import Login from "../components/Login";
-import SignUp from "../components/SignUp";
+import DaumPost from "../api/DaumPost";
+import FindID from "../components/FindID";
 import FindPassWord from "../components/FindPassWord";
+import IdResult from "../components/IdResult";
+import Login from "../components/Login";
 import PassChange from "../components/PassChange";
 import PassWordResult from "../components/PassWordResult";
-import FindID from "../components/FindID";
-import IdResult from "../components/IdResult";
-import DaumPost from "../api/DaumPost";
+import SignUp from "../components/SignUp";
 import { AccoutWrapper } from "../css/acoount-style";
-import { useState } from "react";
 
 const Account = () => {
   const [daumPost, setDaumPost] = useState(false);
