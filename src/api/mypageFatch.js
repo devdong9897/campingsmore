@@ -52,9 +52,29 @@ const getMyProfileData = async () => {
   }
 };
 
+const postMyProfileData = async fixData => {
+  try {
+    const res = await axios.post("/api/user/update-profile", {
+      uid: fixData.uid,
+      upw: fixData.upw,
+      email: fixData.email,
+      name: fixData.name,
+      birth_date: fixData.birth_date,
+      phone: fixData.phone,
+      user_address: fixData.user_address,
+      user_address_detail: "not_yet",
+    });
+    const result = res.data;
+    console.log("postMyProfileData 전송완료", result);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 export {
   getMypageReviewData,
   getPurchaseData,
   getCommunityData,
   getMyProfileData,
+  postMyProfileData,
 };

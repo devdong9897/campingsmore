@@ -16,7 +16,11 @@ const Account = () => {
   return (
     <AccoutWrapper>
       {daumPost ? (
-        <DaumPost setFullAddress={setFullAddress} setDaumPost={setDaumPost} />
+        <DaumPost
+          setFullAddress={setFullAddress}
+          setDaumPost={setDaumPost}
+          daumPost={daumPost}
+        />
       ) : (
         ""
       )}

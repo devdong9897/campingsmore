@@ -23,9 +23,6 @@ const FindID = () => {
 
   // 아이디찾을 결과 값을 받아라
 
-
-
-
   const handleidResult = e => {
     e.preventDefault();
     const FindIdInfo = {
@@ -39,6 +36,9 @@ const FindID = () => {
       getFindAccountData(FindIdInfo);
       navigate("/idresult");
     }
+  };
+  const handleprevPage = () => {
+    navigate("/");
   };
 
   return (
@@ -90,7 +90,9 @@ const FindID = () => {
         아이디 찾기
       </button>
       <div className="to_back">
-        <button className="to_back_btn">뒤로가기</button>
+        <button className="to_back_btn" onClick={handleprevPage}>
+          뒤로가기
+        </button>
       </div>
     </FindidForm>
   );
