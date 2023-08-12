@@ -100,9 +100,6 @@ const Community = () => {
     };
     fetchData();
   }, [selectedCategory]);
-
-  // const bbb = communityData.map(el => <div key={el.title}>{el.title} {el.information} {el.writer}</div>)
-
   return (
     <CommunityWrapper>
       <div className="top_community_contents">

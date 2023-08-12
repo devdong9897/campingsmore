@@ -133,6 +133,16 @@ export const BasketWrapper = styled.div`
       margin-left: 30px;
       cursor: pointer;
     }
+    .basket_choice_del {
+      float:right;
+      background-color: white;
+      margin-top:10px;
+      padding:5px 10px;
+      border-radius: 10px;
+      border:1px solid #d2b48c;
+      color:#d2b48c;
+    }
+    
     .basket_box {
       display: block;
       background-color: #d2b48c;
