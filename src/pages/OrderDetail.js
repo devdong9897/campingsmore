@@ -1,19 +1,22 @@
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link, Navigate } from "react-router-dom";
 import { useSearchParams } from "react-router-dom/dist";
 import { getOrderDetailPage } from "../api/itemFatch";
 import { OrderDetailWrapper } from "../css/orderdetail-style";
+import { OrderItemAdd } from "../reducers/orderItemSlice";
 
 const OrderDetail = () => {
+  const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
   const iitem = searchParams.get("iitem");
-
   const [goodImg, setGoodImg] = useState(null);
   const [goodName, setGoodName] = useState(null);
   const [goodPrice, setGoodPrice] = useState(0);
   const [goodPicListImg, setGoodPicListImg] = useState(null);
+  const [Allprice, setAllprice] = useState(0);
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
@@ -23,6 +26,7 @@ const OrderDetail = () => {
         setGoodImg(data.item.pic);
         setGoodName(data.item.name);
         setGoodPrice(data.item.price);
+        setAllprice(data.item.price);
         setGoodPicListImg(data.item.picList);
       } catch (err) {
         console.log("오더디테일 에러", err);
@@ -34,14 +38,23 @@ const OrderDetail = () => {
 
   const handleIncreaseQuantity = () => {
     setQuantity(quantity + 1);
+    AllpriceGet(quantity + 1);
+  };
+
+  const AllpriceGet = newQuantity => {
+    const newAllprice = newQuantity * goodPrice;
+    setAllprice(newAllprice);
+    console.log("전체가격", newAllprice, newQuantity);
   };
 
   const handleDecreaseQuantity = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
+      AllpriceGet(quantity - 1);
     }
   };
 
+  // 장바구니 담기 하지만 아직 담아지는 로직은 없습니다.
   const handleAddToCart = () => {
     const cartItem = {
       id: iitem,
@@ -49,7 +62,15 @@ const OrderDetail = () => {
       price: goodPrice,
       quantity: quantity,
     };
-    console.log()
+    console.log();
+  };
+
+  const   handelbuy = () => {
+    const orderItem = {
+      iitemId: iitem,
+      quantitys: quantity,
+    };
+    dispatch(OrderItemAdd(orderItem));
   };
 
   const handleGoToPayment = () => {
@@ -91,18 +112,18 @@ const OrderDetail = () => {
                 <p className="one">{quantity}</p>
                 <button onClick={handleIncreaseQuantity}>+</button>
                 <div className="number">
-                  <p>{goodPrice * quantity}원</p>
+                  <p>{Allprice}원</p>
                 </div>
               </div>
             </div>
             <div className="total">
               <p className="total_price">총 상품 금액</p>
-              <p className="orderdetail_price">{goodPrice * quantity}원</p>
+              <p className="orderdetail_price">{Allprice}원</p>
             </div>
             <button className="left" onClick={handleAddToCart}>
               장바구니담기
             </button>
-            <button className="right">
+            <button className="right" onClick={handelbuy}>
               <Link to="/main/payment" className="payrig">
                 구매하기
               </Link>

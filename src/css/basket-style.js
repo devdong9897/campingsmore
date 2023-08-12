@@ -21,7 +21,7 @@ export const BasketWrapper = styled.div`
       width: 100%;
       height: 65px;
       margin-top: 67px;
-      background: #f6f1bc;
+      background: #D2B48C;
       border-radius: 15px;
       .basket_topline_list {
         width: 100%;
@@ -30,7 +30,7 @@ export const BasketWrapper = styled.div`
         grid-template-columns: 0.2fr 1fr 1fr 1fr 1fr 0.2fr;
         margin-top: 10px;
         vertical-align: middle;
-        color: black;
+        color: #fff;
         font-size: 20px;
         padding: 20px 0px;
         li {
@@ -39,7 +39,7 @@ export const BasketWrapper = styled.div`
           flex-direction: column;
           justify-content: center;
           text-align: center;
-          border-right: 1px solid #9ab685;
+          border-right: 1px solid #fff;
           &:last-child {
             border-right: none;
           }

@@ -206,10 +206,11 @@ export const OrderListWrapper = styled.div`
         align-items: center;
         width: 50px;
         height: 50px;
-        border-radius: 100%;
-        background: skyblue;
+        border-radius: 25px;
+        background: #a9a9a9;
         font-weight: bold;
         font-size: 18px;
+        cursor: pointer;
       }
     }
   }

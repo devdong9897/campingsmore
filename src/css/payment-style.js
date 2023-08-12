@@ -69,19 +69,23 @@ export const PaymentWrapper = styled.div`
           .img {
             width: 150px;
             height: 150px;
-            background-image: url("${path}/image/food.jpg");
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
             border-radius: 15px;
             margin-top: 25px;
             margin-left: 20px;
+            img {
+              width: 100%;
+              height: 100% ;
+            }
           }
           .title {
+            position: relative;
             h1 {
               margin-top: 30px;
               margin-left: 20px;
-              font-size: 30px;
+              font-size: 25px;
             }
             p {
               margin-left: 20px;
@@ -91,21 +95,17 @@ export const PaymentWrapper = styled.div`
               margin-top: 55px;
             }
           }
-          .판매자 {
-            margin-top: 100px;
-            margin-left: 250px;
-            font-size: 20px;
-            font-weight: 700;
-          }
-          .수량 {
-            margin-top: 100px;
-            margin-left: 150px;
+          .quantity {
+            position: absolute;
+            top: 30%;
+            left: 26%;
             font-size: 20px;
             font-weight: 700;
           }
           .price {
-            margin-top: 100px;
-            margin-left: 200px;
+            position: absolute;
+            top: 35%;
+            left: 26%;
             font-size: 20px;
             font-weight: 700;
           }
@@ -171,13 +171,14 @@ export const PaymentWrapper = styled.div`
         border: 2px solid #d2b48c;
         border-radius: 15px;
         margin-bottom: 50px;
+        padding-left: 50px;
 
         h1 {
-          margin: 50px 0 0 50px;
+          margin: 50px 0 0 0px;
           font-size: 25px;
         }
         p {
-          margin: 20px 0 5px 50px;
+          margin: 20px 0 5px 0px;
           font-size: 20px;
         }
         .payment_address {
@@ -190,7 +191,6 @@ export const PaymentWrapper = styled.div`
         }
 
         .payment_username {
-          margin-left: 50px;
           width: 300px;
           height: 40px;
           border-radius: 15px;
@@ -198,8 +198,7 @@ export const PaymentWrapper = styled.div`
           font-size: 20px;
         }
         .payment_first_usernumber {
-          margin-left: 50px;
-          width: 70px;
+          width: 200px;
           height: 40px;
           border-radius: 15px;
           text-indent: 10px;
@@ -214,7 +213,6 @@ export const PaymentWrapper = styled.div`
           font-size: 20px;
         }
         .payment_postnumber {
-          margin-left: 50px;
           width: 90px;
           height: 40px;
           border-radius: 15px;
@@ -229,11 +227,11 @@ export const PaymentWrapper = styled.div`
         }
         .payment_postnumber_btn:hover {
           background-color: black;
+          border-radius: 5px;
           color: white;
           border: none;
         }
         .payment_address {
-          margin-left: 50px;
           width: 400px;
           height: 40px;
           border-radius: 15px;
@@ -241,8 +239,14 @@ export const PaymentWrapper = styled.div`
           font-size: 20px;
           margin-top: 5px;
         }
+        .payment_address_detail {
+          width: 350px;
+          height: 40px;
+          border-radius: 15px;
+          padding-left: 10px;
+          margin-top: 5px;
+        }
         .payment_memo {
-          margin-left: 50px;
           width: 800px;
           height: 40px;
           border-radius: 15px;
