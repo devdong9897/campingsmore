@@ -1,8 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import DaumPostcode from "react-daum-postcode";
 import "../css/DaumPost.css";
-const PopupPostCode = ({ setFullAddress, setDaumPost }) => {
-  // 우편번호 검색 후 주소 클릭 시 실행될 함수, data callback 용
+const PopupPostCode = ({
+  setFullAddress,
+  setDaumPost,
+  setUserAddress,
+  isDaumModal,
+  daumModal,
+  daumPost,
+}) => {
+  // 우편번호 검색 후 주소 클릭 시 실행될 함수, data callback 용\
   const handlePostCode = data => {
     let fullAddress = data.address;
     let extraAddress = "";
@@ -17,8 +24,13 @@ const PopupPostCode = ({ setFullAddress, setDaumPost }) => {
       }
       fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
     }
-    setFullAddress(fullAddress);
-    setDaumPost(false);
+    if (daumPost) {
+      setFullAddress(fullAddress);
+      setDaumPost(false);
+    } else if (daumModal) {
+      setUserAddress(fullAddress);
+      isDaumModal(false);
+    }
     console.log(fullAddress);
     console.log(data);
     console.log("엄청나구만", fullAddress);

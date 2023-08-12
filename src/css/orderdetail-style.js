@@ -41,7 +41,7 @@ export const OrderDetailWrapper = styled.div`
 
       .second_box {
         width: 700px;
-        height: 700px;
+        height: 670px;
         border: 1px solid black;
         border-radius: 20px;
 
@@ -77,7 +77,6 @@ export const OrderDetailWrapper = styled.div`
         .points {
           display: flex;
 
-          .way,
           .earned {
             width: 270px;
             height: 260px;
