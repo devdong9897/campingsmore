@@ -8,6 +8,9 @@ const PopupPostCode = ({
   isDaumModal,
   daumModal,
   daumPost,
+  mypageDaum,
+  setMypageDaum,
+  setFixAddress,
 }) => {
   // 우편번호 검색 후 주소 클릭 시 실행될 함수, data callback 용\
   const handlePostCode = data => {
@@ -30,6 +33,9 @@ const PopupPostCode = ({
     } else if (daumModal) {
       setUserAddress(fullAddress);
       isDaumModal(false);
+    } else if (mypageDaum) {
+      setFixAddress(fullAddress);
+      setMypageDaum(false);
     }
     console.log(fullAddress);
     console.log(data);
