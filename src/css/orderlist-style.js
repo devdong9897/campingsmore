@@ -206,7 +206,7 @@ export const OrderListWrapper = styled.div`
         align-items: center;
         width: 50px;
         height: 50px;
-        border-radius: 25px;
+        border-radius: 100%;
         background: #a9a9a9;
         font-weight: bold;
         font-size: 18px;

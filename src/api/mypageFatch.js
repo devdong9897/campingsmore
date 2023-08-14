@@ -27,7 +27,6 @@ const getPurchaseData = async () => {
 };
 
 // 작성 게시글 요청
-
 const getCommunityData = async () => {
   try {
     const res = await axios.get("/api/community");
@@ -40,6 +39,7 @@ const getCommunityData = async () => {
   }
 };
 
+// 프로필데이터 요청
 const getMyProfileData = async () => {
   try {
     const res = await axios.get("/sign-api/myinfo");
@@ -52,6 +52,7 @@ const getMyProfileData = async () => {
   }
 };
 
+// 프로필데이터 수정하기 전송
 const postMyProfileData = async fixData => {
   try {
     const res = await axios.post("/api/user/update-profile", {
@@ -71,10 +72,25 @@ const postMyProfileData = async fixData => {
   }
 };
 
+const postReview = async submitdata => {
+  try {
+    const res = await axios.post("/api/review", submitdata, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const result = res.data;
+    console.log("리뷰등록 전송완료?", result);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 export {
   getMypageReviewData,
   getPurchaseData,
   getCommunityData,
   getMyProfileData,
   postMyProfileData,
+  postReview,
 };

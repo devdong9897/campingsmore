@@ -41,10 +41,8 @@ export const OrderDetailWrapper = styled.div`
 
       .second_box {
         width: 700px;
-        height: 670px;
-        border: 1px solid black;
-        border-radius: 20px;
-
+        height: 650px;
+   
         .title {
           h1 {
             font-size: 35px;
@@ -53,18 +51,12 @@ export const OrderDetailWrapper = styled.div`
             margin-top: 10px;
             margin-left: 37px;
           }
-
-          p {
-            margin-left: 37px;
-          }
-
           .meddle_title {
             font-size: 20px;
             font-weight: 900;
             color: #bfbfbf;
             margin-top: 8px;
           }
-
           .price {
             font-size: 50px;
             font-weight: 900;
@@ -76,12 +68,6 @@ export const OrderDetailWrapper = styled.div`
 
         .points {
           display: flex;
-
-          .earned {
-            width: 270px;
-            height: 260px;
-          }
-
           .way {
             .point_earned {
               font-size: 25px;
@@ -99,10 +85,8 @@ export const OrderDetailWrapper = styled.div`
               color: black;
             }
           }
-
           .earned {
             margin-left: 75px;
-
             .max_point {
               font-size: 15px;
               margin-top: 150px;
@@ -112,7 +96,6 @@ export const OrderDetailWrapper = styled.div`
                 color: red;
               }
             }
-
             .min_point {
               font-size: 15px;
               margin-top: 8px;
@@ -121,7 +104,6 @@ export const OrderDetailWrapper = styled.div`
             }
           }
         }
-
         .qantity {
           .free {
             font-size: 20px;
@@ -132,8 +114,6 @@ export const OrderDetailWrapper = styled.div`
           }
           .num {
             display: flex;
-            margin-left: 5px;
-            margin-bottom: 5px;
 
             button {
               width: 55px;
@@ -208,51 +188,60 @@ export const OrderDetailWrapper = styled.div`
     .botton_line {
       border-bottom: 1px solid #c0c0c0;
       margin-top: 250px;
+      margin-bottom: 20px;
     }
 
     .detailed_image {
-      width: 70%;
+      width: 50%;
       height: auto;
       margin: 0 auto;
     }
     .profile_box {
+      border-top: 1px solid #f0f0f0;
+      padding-top: 30px;
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
       width: 100%;
       height: auto;
-      .profile {
-        display: flex;
-        margin-top: 50px;
-        margin-left: 30px;
-
-        .profile_img {
-          width: 150px;
-          height: 150px;
-          background-image: url("${path}/image/profile.jpg");
-          background-position: center;
-          background-repeat: no-repeat;
-          background-size: cover;
-          border-radius: 50%;
+      h1 {
+        color: #000;
+      }
+      li {
+        color: #000;
+        background: #f0f0f0;
+        border-radius: 5px;
+        .profile {
+          padding-top: 10px;
+          padding-left: 10px;
+          display: flex;
+          .profile_name {
+            gap: 5px;
+            display: flex;
+            font-size: 20px;
+            color: black;
+            .starrating {
+              display: flex;
+            }
+          }
         }
-
-        .profile_name {
-          font-size: 20px;
-          margin-top: 20px;
-          margin-left: 20px;
+        .profile_content {
+          padding-top: 10px;
+          padding-left: 10px;
+          width: 100%;
+          height: 100px;
           color: black;
+          .profile_title {
+            margin-top: 20px;
+          }
+          .content {
+            margin-top: 20px;
+          }
         }
       }
-      .profile_content {
-        font-size: 20px;
-        color: black;
-        margin-left: 30px;
-
-        .profile_title {
-          display: inline-block;
-          margin-top: 20px;
-        }
-
-        .content {
-          margin-top: 20px;
-        }
+      .empty_text {
+        color: #000;
       }
     }
   }

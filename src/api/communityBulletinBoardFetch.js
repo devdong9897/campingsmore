@@ -24,6 +24,14 @@ export const postComment = async postData => {
   }
 };
 
-// 댓글 수정 put
-// 댓글 삭제 put
+const getFetchData = async () => {
+    try{
+        const res = await axios.get(`/api/community/boardDetail`)
+        const data = res.data
+        console.log(res.data)
+        return data
+    }catch(err){
+        console.log("게시글 디테일보기 요청실패",err)
+    }
+}
 export default getFetchData;

@@ -15,8 +15,11 @@ import {
 } from "../api/mypageFatch";
 import { useDispatch, useSelector } from "react-redux";
 import WithdrawalModal from "../components/modal/WithdrawalModal";
+import { useSearchParams } from "react-router-dom";
 
 const Mypage = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const reviewCode = searchParams.get("review");
   const [menuindex, setMenuIndex] = useState(0);
   const accessToken = getCookie("accessToken");
   const [isLoggedIn, setIsLoggedIn] = useState(accessToken ? true : false);
@@ -56,6 +59,15 @@ const Mypage = () => {
     }
     if (index == 1) {
       getPurchase();
+    }
+  };
+
+  // 구매하고 들어왔을 때 실행
+  const linkto = reviewCode => {
+    if (reviewCode) {
+      setMenuIndex(reviewCode);
+    } else {
+      return;
     }
   };
 
@@ -117,7 +129,8 @@ const Mypage = () => {
 
   useEffect(() => {
     getPurchase();
-  }, []);
+    linkto(reviewCode);
+  }, [reviewCode]);
   return (
     <MypageWrapper menuindex={menuindex}>
       {withdrawal ? (
