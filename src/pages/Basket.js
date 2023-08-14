@@ -71,9 +71,11 @@ const Basket = () => {
   };
 
   const handleSelectItem = index => {
-    const updatedBasketList = [...BasketData];
+    // const updatedBasketList = [...BasketData];
+    const updatedBasketList = [...basketList];
     updatedBasketList[index].selected = !updatedBasketList[index].selected;
-    setCheckedItem(updatedBasketList);
+    // setCheckedItem(updatedBasketList);
+    setBasketList(updatedBasketList);
   };
 
   const handleRemoveItem = async icart => {

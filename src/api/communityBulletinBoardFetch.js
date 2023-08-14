@@ -1,36 +1,29 @@
-import axios from 'axios'
+import axios from "axios";
 
-// const baseURL = 'http://192.168.0.144:5005/api/community/board'
-// const instance = axios.create({
-//     baseURL:baseURL,
-// })
+const getFetchData = async iboard => {
+  try {
+    const res = await axios.get(`/api/community/boardDetail/${iboard}`);
+    const result = res.data;
+    console.log("게시글 데이터 요청완료", result);
+    return result.boardDevo;
+  } catch (err) {
+    console.log(err);
+  }
+  return {};
+};
 
-// const createPost = async (postData) => {
-//     try{
-//         const res = await instance.post('/',postData)
-//         return res.data
-//     }catch(error) {
-//         throw new Error('게시글 작성 실패')
-//     }
-// }
-// export default createPost;
+// 댓글 등록 post
+export const postComment = async postData => {
+  try {
+    const res = await axios.post(`/api/comment`, postData);
+    const data = res.data;
+    console.log("댓글 등록 요청 성공");
+    return data;
+  } catch (err) {
+    console.log("댓글 등록 요청 실패!");
+  }
+};
 
-// const getCommunityBulletinBoard = async () => {
-//     try {
-        
-//     }catch(err){
-//         console.log(err)
-//     }
-// }
-const getFetchData = async (iboard) => {
-    try{
-        const res = await axios.get(`/api/community/boardDetail/${iboard}`)
-        const result = res.data
-        console.log(result)
-        return result
-    }catch(err){
-        console.log("게시글 디테일보기 요청실패",err)
-        return null
-    }
-}
+// 댓글 수정 put
+// 댓글 삭제 put
 export default getFetchData;

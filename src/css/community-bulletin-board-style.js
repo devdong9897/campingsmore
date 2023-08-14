@@ -59,7 +59,7 @@ export const CommunityBulletinBoardWrapper = styled.div`
   }
   .community_bulletin_board_comment_box {
     width: 100%;
-    height:250px;
+    height:200px;
     border-radius: 10px;
     background-color: white;
  
@@ -80,7 +80,7 @@ export const CommunityBulletinBoardWrapper = styled.div`
       padding-top:20px;      
     }
     }
-    textarea {
+    .board_date {
       margin-top:20px;
       width: 100%;
       height:110px;
@@ -91,15 +91,19 @@ export const CommunityBulletinBoardWrapper = styled.div`
       resize:none;
     }
     button {
+      
+    }
+  }
+  .community_bulletin_board_resi{
       float:right;
       width: 70px;
       height:30px;
       border-radius:5px;
       background-color: white;
+      margin-top:20px;
     }
-    button:hover {
+    .community_bulletin_board_resi:hover {
       background-color: black;
       color:white;
     }
-  }
 `;
