@@ -41,7 +41,7 @@ export const OrderDetailWrapper = styled.div`
 
       .second_box {
         width: 700px;
-        height: 670px;
+        height: 700px;
         border: 1px solid black;
         border-radius: 20px;
 
@@ -77,6 +77,7 @@ export const OrderDetailWrapper = styled.div`
         .points {
           display: flex;
 
+          .way,
           .earned {
             width: 270px;
             height: 260px;
@@ -216,43 +217,51 @@ export const OrderDetailWrapper = styled.div`
       margin: 0 auto;
     }
     .profile_box {
+      border-top: 1px solid #f0f0f0;
+      padding-top: 30px;
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
       width: 100%;
       height: auto;
-      .profile {
-        display: flex;
-        margin-top: 50px;
-        margin-left: 30px;
-
-        .profile_img {
-          width: 150px;
-          height: 150px;
-          background-image: url("${path}/image/profile.jpg");
-          background-position: center;
-          background-repeat: no-repeat;
-          background-size: cover;
-          border-radius: 50%;
+      h1 {
+        color: #000;
+      }
+      li {
+        color: #000;
+        background: #f0f0f0;
+        border-radius: 5px;
+        .profile {
+          padding-top: 10px;
+          padding-left: 10px;
+          display: flex;
+          .profile_name {
+            gap: 5px;
+            display: flex;
+            font-size: 20px;
+            color: black;
+            .starrating {
+              display: flex;
+            }
+          }
         }
-
-        .profile_name {
-          font-size: 20px;
-          margin-top: 20px;
-          margin-left: 20px;
+        .profile_content {
+          padding-top: 10px;
+          padding-left: 10px;
+          width: 100%;
+          height: 100px;
           color: black;
+          .profile_title {
+            margin-top: 20px;
+          }
+          .content {
+            margin-top: 20px;
+          }
         }
       }
-      .profile_content {
-        font-size: 20px;
-        color: black;
-        margin-left: 30px;
-
-        .profile_title {
-          display: inline-block;
-          margin-top: 20px;
-        }
-
-        .content {
-          margin-top: 20px;
-        }
+      .empty_text {
+        color: #000;
       }
     }
   }

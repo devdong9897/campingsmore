@@ -1,52 +1,64 @@
 import React from "react";
-import { PaymentModalWrapper } from "../css/payment-modal.style";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+import { PaymentModalWrapper } from "../css/payment-modal.style";
 
-const PaymentModal = () => {
-
+const PaymentModal = ({
+  setpaymentModalState,
+  userName,
+  userAddress,
+  userPhoneNumber,
+}) => {
   const navigate = useNavigate();
+
+  const userData = useSelector(state => state.user.UserProFileArr);
   const handleToGoMain = () => {
-    navigate("/main")
-  }
+    const reviewCode = 1;
+    navigate(`/main/mypage?review=${reviewCode}`);
+  };
   const handleToGoOrderlist = () => {
-    navigate("/main/orderlist")
-  }
+    navigate("/main/orderlist");
+    setpaymentModalState(false);
+  };
   return (
     <PaymentModalWrapper>
-        <div className="top_payment_modal_contents">
-          <div className="payment_modal_contents_inner">
-            <div className="payment_modal_box">
-              <div className="payment_modal_title">
-                <h1>주문이 정상적으로 <span>완료 되었습니다.</span></h1>
-              </div>  
-
-              <hr />
-
-              <div className="payment_modal_order_info">
+      <div className="top_payment_modal_contents">
+        <div className="payment_modal_contents_inner">
+          <div className="payment_modal_box">
+            <div className="payment_modal_title">
+              <h1>
+                주문이 정상적으로 <span>완료 되었습니다.</span>
+              </h1>
+            </div>
+            <hr />
+            <div className="payment_modal_order_info">
               <div className="payment_modal_order_cate">
-                <p>배송지 정보</p>
-                <p>결제 금액</p>
+                <h3>주문정보</h3>
+                <ul className="order_info">
+                  <li>
+                    <span>이름</span>
+                    <span>{userName}</span>
+                  </li>
+                  <li>
+                    <span>전화번호</span>
+                    <span>{userPhoneNumber}</span>
+                  </li>
+                  <li>
+                    <span>주소</span>
+                    <span>{userAddress}</span>
+                  </li>
+                </ul>
               </div>
-              
-              <div className="payment_modal_indi_info">
-                <p>신형만</p>
-                <p>000-0000-0000</p>
-                <p>경기도 짱구시 짱구군</p>
-                <p>짱구 공원로 123-1 짱구아파트 101동 101호</p>
-                <p>2500원</p>
-                </div>
-              </div>
-
-              <div className="payment_modal_check">
-                <button onClick={handleToGoMain}>메인</button>
-                <button onClick={handleToGoOrderlist}>뒤로가기</button>
-                
-              </div>
+            </div>
+            <div className="payment_modal_check">
+              <button onClick={handleToGoMain}>주문내역</button>
+              <button onClick={handleToGoOrderlist}>더 보기</button>
             </div>
           </div>
         </div>
+      </div>
     </PaymentModalWrapper>
-  )
+  );
 };
 
 export default PaymentModal;

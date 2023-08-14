@@ -16,12 +16,8 @@ const OrderDetail = () => {
   const [goodName, setGoodName] = useState(null);
   const [goodPrice, setGoodPrice] = useState(0);
   const [goodPicListImg, setGoodPicListImg] = useState(null);
-  const [quantity, setQuantity] = useState(1);
   const [Allprice, setAllprice] = useState(0);
-  const [reviewPage, setReviewPage] = useState("");
-  const [reviewList, setReviewList] = useState([]);
-
-
+  const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     const getOrderDetail = async () => {
@@ -30,9 +26,8 @@ const OrderDetail = () => {
         setGoodImg(data.item.pic);
         setGoodName(data.item.name);
         setGoodPrice(data.item.price);
+        setAllprice(data.item.price);
         setGoodPicListImg(data.item.picList);
-        setReviewPage(parseInt(data.review.maxPage, 10));
-        setReviewList(data.review.list);
       } catch (err) {
         console.log("오더디테일 에러", err);
       }
@@ -40,8 +35,6 @@ const OrderDetail = () => {
 
     getOrderDetail();
   }, [iitem]);
-
-  const pagenation = Array.from({ length: reviewPage }, (_, index) => index);
 
   const handleIncreaseQuantity = () => {
     setQuantity(quantity + 1);
@@ -72,7 +65,7 @@ const OrderDetail = () => {
     console.log();
   };
 
-  const handelbuy = () => {
+  const   handelbuy = () => {
     const orderItem = {
       iitemId: iitem,
       quantitys: quantity,
@@ -119,13 +112,13 @@ const OrderDetail = () => {
                 <p className="one">{quantity}</p>
                 <button onClick={handleIncreaseQuantity}>+</button>
                 <div className="number">
-                  <p>{goodPrice * quantity}원</p>
+                  <p>{Allprice}원</p>
                 </div>
               </div>
             </div>
             <div className="total">
               <p className="total_price">총 상품 금액</p>
-              <p className="orderdetail_price">{goodPrice * quantity}원</p>
+              <p className="orderdetail_price">{Allprice}원</p>
             </div>
             <button className="left" onClick={handleAddToCart}>
               장바구니담기
@@ -145,41 +138,26 @@ const OrderDetail = () => {
               <img key={index} src={imgUrl} alt={`Detail ${index}`} />
             ))}
         </div>
-        <ul className="profile_box">
-          <h1>구매자 평점</h1>
-          {reviewList.length ? (
-            <>
-              {reviewList.map((item, index) => (
-                <li key={index}>
-                  <div className="profile">
-                    <div className="profile_name">
-                      <div>{item.name}</div>
-                      <ul className="starrating">
-                        {Array.from(
-                          { length: item.starRating },
-                          (_, starIndex) => (
-                            <li key={starIndex}>
-                              <FontAwesomeIcon
-                                icon={faStar}
-                                style={{ color: "#ffea00" }}
-                              />
-                            </li>
-                          ),
-                        )}
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="profile_content">
-                    <span className="profile_title">{item.reviewCtnt}</span>
-                    <span className="prifle_ctnt"></span>
-                  </div>
-                </li>
-              ))}
-            </>
-          ) : (
-            <div className="empty_text">구매자 평점이 없습니다.</div>
-          )}
-        </ul>
+        <div className="profile_box">
+          <div className="profile">
+            <div className="profile_img"></div>
+            <div className="profile_name">
+              <p>신형만</p>
+              <p>
+                <FontAwesomeIcon icon={faStar} style={{ color: "#ffea00" }} />
+                <FontAwesomeIcon icon={faStar} style={{ color: "#ffea00" }} />
+                <FontAwesomeIcon icon={faStar} style={{ color: "#ffea00" }} />
+                <FontAwesomeIcon icon={faStar} style={{ color: "#ffea00" }} />
+                <FontAwesomeIcon icon={faStar} style={{ color: "#ffea00" }} />
+              </p>
+            </div>
+          </div>
+          <div className="profile_content">
+            <span className="profile_title">
+              <p className="content"></p>
+            </span>
+          </div>
+        </div>
       </div>
     </OrderDetailWrapper>
   );

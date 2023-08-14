@@ -21,7 +21,7 @@ export const BasketWrapper = styled.div`
       width: 100%;
       height: 65px;
       margin-top: 67px;
-      background: #D2B48C;
+      background: #f6f1bc;
       border-radius: 15px;
       .basket_topline_list {
         width: 100%;
@@ -30,7 +30,7 @@ export const BasketWrapper = styled.div`
         grid-template-columns: 0.2fr 1fr 1fr 1fr 1fr 0.2fr;
         margin-top: 10px;
         vertical-align: middle;
-        color: #fff;
+        color: black;
         font-size: 20px;
         padding: 20px 0px;
         li {
@@ -39,7 +39,7 @@ export const BasketWrapper = styled.div`
           flex-direction: column;
           justify-content: center;
           text-align: center;
-          border-right: 1px solid #fff;
+          border-right: 1px solid #9ab685;
           &:last-child {
             border-right: none;
           }
@@ -133,16 +133,6 @@ export const BasketWrapper = styled.div`
       margin-left: 30px;
       cursor: pointer;
     }
-    .basket_choice_del {
-      float:right;
-      background-color: white;
-      margin-top:10px;
-      padding:5px 10px;
-      border-radius: 10px;
-      border:1px solid #d2b48c;
-      color:#d2b48c;
-    }
-    
     .basket_box {
       display: block;
       background-color: #d2b48c;

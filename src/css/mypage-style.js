@@ -77,47 +77,29 @@ export const EditWrapper = styled.div`
     height: auto;
     padding: 15px;
     border-radius: 15px;
-    background: #fff;
+    background: #d9d9d9;
     overflow: hidden;
     .security_title {
       margin-bottom: 30px;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      width: 100%;
-      height: 32px;
       padding: 0px 10px;
       font-size: 23px;
       font-weight: bold;
-      .security_btns {
-        display: flex;
-        flex-direction: row-reverse;
-        gap: 10px;
+      button {
         width: auto;
-        height: 100%;
-        button {
-          width: auto;
-          height: 100%;
-          padding: 0px 30px;
-          border-radius: 15px;
-          border: none;
-          color: #fff;
-          background: #999898;
-          cursor: pointer;
-          &:hover {
-            background: #f5f5dc;
-            color: #000;
-          }
-        }
-        .edit_all_btn {
-          display: ${props => (props.something ? "none" : "block")};
-        }
-        .edit_submit_btn {
-          display: ${props => (!props.something ? "none" : "block")};
-        }
-        .edit_cancel {
-          display: ${props => (!props.something ? "none" : "block")};
-        }
+        padding: 0px 30px;
+        border-radius: 15px;
+        border: none;
+        color: #fff;
+        background: #999898;
+      }
+      .edit_all_btn {
+        display: ${props => (props.something ? "none" : "block")};
+      }
+      .edit_submit_btn {
+        display: ${props => (!props.something ? "none" : "block")};
       }
     }
     .setting_box {
@@ -125,7 +107,7 @@ export const EditWrapper = styled.div`
       width: 100%;
       height: 45px;
       padding: 5px 0px;
-      border-bottom: 1px solid #dbdbdb;
+      border-bottom: 1px solid #a5a5a5;
       display: flex;
       justify-content: space-between;
       .setting {
@@ -155,7 +137,6 @@ export const EditWrapper = styled.div`
           height: 100%;
           border-radius: 15px;
           border: none;
-          background: #f0f0f0;
         }
       }
       button {
@@ -172,7 +153,7 @@ export const EditWrapper = styled.div`
     height: auto;
     padding: 15px;
     border-radius: 15px;
-    background: #fff;
+    background: #d9d9d9;
     overflow: hidden;
     .info_set_title {
       font-size: 23px;
@@ -183,7 +164,7 @@ export const EditWrapper = styled.div`
       width: 100%;
       height: 45px;
       padding: 5px 0px;
-      border-bottom: 1px solid #dbdbdb;
+      border-bottom: 1px solid #a5a5a5;
       display: flex;
       justify-content: space-between;
       .setting {
@@ -192,15 +173,13 @@ export const EditWrapper = styled.div`
         align-items: center;
         width: 100%;
         height: 100%;
-        padding-left: 20px;
         .icon {
-          margin-right: 30px;
           display: flex;
-          justify-content: flex-end;
+          justify-content: center;
           align-items: center;
           width: 50px;
           height: 50px;
-          font-size: 16px;
+          font-size: 25px;
         }
         .setting_name {
           display: ${props => (props.something ? "none" : "block")};
@@ -223,7 +202,6 @@ export const EditWrapper = styled.div`
         height: 100%;
         border-radius: 15px;
         border: none;
-        background: #f0f0f0;
       }
     }
   }

@@ -4,8 +4,6 @@ import { useNavigate } from "react-router";
 import { deleteBasketItem } from "../api/basketFetch";
 import BasketModal from "../components/modal/BasketModal";
 import { BasketWrapper } from "../css/basket-style";
-import { basketItem } from "../reducers/basketSlice";
-import { basketpay } from "../reducers/basketPaySlice";
 
 const Basket = () => {
   const navigate = useNavigate();
@@ -18,7 +16,6 @@ const Basket = () => {
   const [basketQuantity, setBasketQuantity] = useState(null);
   const [modal, isModal] = useState(false);
   const [cartCount, setCartCount] = useState("");
-  const [checkedItem, setCheckedItem] = useState([]);
 
   const getBasketData = async () => {
     try {
@@ -71,9 +68,9 @@ const Basket = () => {
   };
 
   const handleSelectItem = index => {
-    const updatedBasketList = [...BasketData];
+    const updatedBasketList = [...basketList];
     updatedBasketList[index].selected = !updatedBasketList[index].selected;
-    setCheckedItem(updatedBasketList);
+    setBasketList(updatedBasketList);
   };
 
   const handleRemoveItem = async icart => {
@@ -91,7 +88,6 @@ const Basket = () => {
   };
 
   const handleGoToPayment = () => {
-    dispatch(basketpay(basketList));
     navigate("/main/payment");
   };
 
@@ -142,6 +138,7 @@ const Basket = () => {
                         />
                       </div>
                       <div className="basket_product_img">
+                        {/* <img src="#" alt="" />{item.pic} */}
                         <img src={item.pic} alt="" />
                       </div>
                       <div>
@@ -174,7 +171,6 @@ const Basket = () => {
                 </div>
               </li>
             ))}
-            <button className="basket_choice_del">선택삭제</button>
             <button onClick={handleGoToPayment} className="basket_box">
               결제
             </button>

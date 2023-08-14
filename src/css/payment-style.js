@@ -77,7 +77,7 @@ export const PaymentWrapper = styled.div`
             margin-left: 20px;
             img {
               width: 100%;
-              height: 100% ;
+              height: 100%;
             }
           }
           .title {

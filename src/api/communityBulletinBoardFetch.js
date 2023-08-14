@@ -22,15 +22,14 @@ import axios from 'axios'
 //         console.log(err)
 //     }
 // }
-const getFetchData = async (iboard) => {
+const getFetchData = async () => {
     try{
-        const res = await axios.get(`/api/community/boardDetail/${iboard}`)
-        const result = res.data
-        console.log(result)
-        return result
+        const res = await axios.get(`/api/community/boardDetail`)
+        const data = res.data
+        console.log(res.data)
+        return data
     }catch(err){
         console.log("게시글 디테일보기 요청실패",err)
-        return null
     }
 }
 export default getFetchData;
