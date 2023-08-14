@@ -34,3 +34,4 @@ const PostPayMent = async newPaymentData => {
 };
 
 export { PostPayMent, getPayMent };
+

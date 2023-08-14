@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import DaumPost from "../api/DaumPost";
-import { getPayMent } from "../api/paymentFetch";
-import PaymentModal from "../components/PaymentModal";
+import { PostPayMent, getPayMent } from "../api/paymentFetch";
 import { PaymentWrapper } from "../css/payment-style";
 
 const Payment = () => {
@@ -22,8 +21,6 @@ const Payment = () => {
   const [pointMoneyBox2, setPointMoneyBox2] = useState("");
   // 다음 주소 state
   const [daumModal, isDaumModal] = useState(false);
-  // 페이먼트 모달창 state
-  const [paymentModalState, setpaymentModalState] = useState(false);
 
   const userData = useSelector(state => state.user.UserProFileArr);
   const ItemData = useSelector(state => state.order.orderItemArr);
@@ -57,15 +54,6 @@ const Payment = () => {
   }, []);
 
   const handleToPayment = () => {
-    // 검증데이터
-    const inputtrue = {
-      name: userName,
-      phone: userPhoneNumber,
-      address: userAddress,
-      detail: userAddressDeatil,
-      memo: userMemo,
-    };
-    // 전송데이터
     const newPaymentData = {
       address: userAddress,
       addressDetail: userAddressDeatil,
@@ -80,20 +68,8 @@ const Payment = () => {
         },
       ],
     };
-    if (!inputtrue.name) {
-      alert("이름을 입력하세요");
-    } else if (!inputtrue.phone) {
-      alert("전화번호를 입력하세요");
-    } else if (!inputtrue.address) {
-      alert("주소를 입력하세요");
-    } else if (!inputtrue.detail) {
-      alert("상세주소를 입력하세요");
-    } else if (!inputtrue.memo) {
-      alert("메모가 없으요!");
-    } else {
-      setpaymentModalState(true);
-      // PostPayMent(newPaymentData);
-    }
+    console.log(newPaymentData);
+    PostPayMent(newPaymentData);
   };
 
   useEffect(() => {
@@ -107,18 +83,6 @@ const Payment = () => {
           setUserAddress={setUserAddress}
           isDaumModal={isDaumModal}
           daumModal={daumModal}
-        />
-      ) : (
-        ""
-      )}
-
-      {paymentModalState ? (
-        <PaymentModal
-          userPhoneNumber={userPhoneNumber}
-          userAddress={userAddress}
-          userName={userName}
-          setpaymentModalState={setpaymentModalState}
-          paymentModalState={paymentModalState}
         />
       ) : (
         ""
@@ -158,7 +122,6 @@ const Payment = () => {
               type="text"
               className="payment_first_usernumber"
               placeholder={userData.phone}
-              value={userPhoneNumber}
               onChange={e => setUserPhoneNumber(e.target.value)}
             />
             <p>배송지 주소</p>

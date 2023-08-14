@@ -33,6 +33,10 @@ const Mypage = () => {
 
   console.log("유저데이터??!?!", userData);
 
+  //마이페이지 정보 state
+  const [UserProFile, setUserProfile] = useState([]);
+  const [ProfileName, setProFileName] = useState("");
+  const [ProfileEmail, setProfileEmail] = useState("");
   // 구매내역 state
   const [purchase, setPurchase] = useState([]);
   // 리뷰목록 state
@@ -108,7 +112,7 @@ const Mypage = () => {
   // };
 
   const menuComponents = [
-    () => <EditInformation isWithdrawal={isWithdrawal} userData={userData} />,
+    () => <EditInformation isWithdrawal={isWithdrawal} />,
     () => <PurchaseHistory purchase={purchase} />,
     () => <ReviewHistory review={review} />,
     () => <WritingHistory comulist={comulist} />,
@@ -132,7 +136,6 @@ const Mypage = () => {
           <div className="profile_info">
             <span className="profile_name">{userData.name}</span>
             <span className="profile_email">{userData.email}</span>
-            <span className="profile_id">{userData.user_id}</span>
           </div>
           <ul className="my_menu_list">
             {["개인정보수정", "구매내역", "리뷰내역", "작성글", "찜하기"].map(
@@ -144,7 +147,28 @@ const Mypage = () => {
             )}
           </ul>
         </div>
-        <div className="my_contents">{menuComponents[menuindex]()}</div>
+        <div className="my_contents">
+          {menuComponents[menuindex]()}
+          {/* {purchase.map((item, index) => (
+            <li key={index}>
+              {item.itemList.map((subitem, subindex) => (
+                <div className="inner" key={subindex}>
+                  <div className="purchase_img">
+                    <img src={subitem.pic}></img>
+                  </div>
+                  <div className="purchase_info_box">
+                    <span className="purchase_date">2020-07-22</span>
+                    <span className="purchase_info">
+                      <p>BBQ 황금올리브</p>
+                      <p>여기게 뭐지?</p>
+                    </span>
+                    <span>12000원</span>
+                  </div>
+                </div>
+              ))}
+            </li>
+          ))} */}
+        </div>
       </div>
     </MypageWrapper>
   );

@@ -9,14 +9,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { postBasket } from "../api/basketFetch";
 import { getCookie } from "../api/cookie";
-import {
-  getOrderCateSearch,
-  getOrderDetailPage,
-  getOrderListCategory,
-  getOrderListPage,
-  getOrderListSearch,
-  getbestitem,
-} from "../api/itemFatch";
+import { getOrderCateSearch, getOrderListPage } from "../api/itemFatch";
 import { OrderListWrapper } from "../css/orderlist-style";
 
 const OrderList = () => {
@@ -28,6 +21,7 @@ const OrderList = () => {
   const [searchText, setSearchText] = useState("");
   const [orderPage, setOrderPage] = useState("");
   const [cateID, setCateId] = useState("");
+
 
   const getOrderListCategory = async () => {
     try {
