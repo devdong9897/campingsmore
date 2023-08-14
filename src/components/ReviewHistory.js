@@ -39,12 +39,17 @@ const ReviewHistory = ({ review }) => {
             </div>
           </li>
         ))}
+
         {/* {review((item, index) => (
           <li key={index}>
         
           </li>
         ))} */}
       </ul>
+      <div className="review_img">
+        <img src="../image/review.png" alt="" />
+        <p>리뷰내역이 없습니다.</p>
+      </div>
     </ReviewHistoryWrapper>
   );
 };

@@ -272,6 +272,21 @@ export const PurchaseWrapper = styled.div`
       }
     }
   }
+  .empty_img_box {
+    margin-left: 50%;
+    margin-top: 15%;
+    img {
+      width: 350px;
+      height: 300px;
+    }
+    p {
+      font-size: 25px;
+      color: #a9a9a9;
+      font-weight: 700;
+      margin-top: 20px;
+      margin-left: 50px;
+    }
+  }
 `;
 
 export const ReviewHistoryWrapper = styled.div`
@@ -337,6 +352,21 @@ export const ReviewHistoryWrapper = styled.div`
       }
     }
   }
+  .review_img {
+    margin-left: 50%;
+    margin-top: 15%;
+    img {
+      width: 250px;
+      height: 250px;
+    } 
+    p {
+      font-size: 25px;
+      color: #a9a9a9;
+      font-weight: 700;
+      margin-top: 20px;
+      margin-left: 50px;
+    }
+  }
 `;
 
 export const WritingWrapper = styled.div`
@@ -373,6 +403,21 @@ export const WritingWrapper = styled.div`
         overflow: hidden;
       }
     }
+    .write_img {
+      margin-left: 50%;
+      margin-top: 15%;
+      img {
+        width: 250px;
+        height: 250px;
+      }
+      p {
+        font-size: 25px;
+        color: #a9a9a9;
+        font-weight: 700;
+        margin-top: 20px;
+        margin-left: 25px;
+      }
+    }
   }
 `;
 
@@ -384,5 +429,20 @@ export const DibsWrapper = styled.div`
     flex-direction: column;
     width: 100%;
     height: 100%;
+  }
+  .dibs_img {
+    margin-left: 50%;
+    margin-top: 15%;
+    img {
+      width: 250px;
+      height: 250px;
+    }
+    p {
+      font-size: 25px;
+      color: #a9a9a9;
+      font-weight: 700;
+      margin-top: 20px;
+      margin-left: 50px;
+    }
   }
 `;

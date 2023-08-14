@@ -13,6 +13,10 @@ const WritingHistory = ({ comulist }) => {
             <div className="writing_text">{item.createdat}</div>
           </li>
         ))}
+        <div className="write_img">
+          <img src="../image/write.png" alt="" />
+          <p>작성글 내역이없습니다.</p>
+        </div>
       </ul>
     </WritingWrapper>
   );
