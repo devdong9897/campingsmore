@@ -4,13 +4,27 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAt,
   faIdCardClip,
+  faKey,
+  faReplyAll,
   faSquarePen,
   faUnlockKeyhole,
 } from "@fortawesome/free-solid-svg-icons";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AccoutwithdrawalFetch } from "../api/userFatch";
+import DaumPost from "../api/DaumPost";
+import EditConformModal from "./modal/EditConfirmModal";
 
-const EditInformation = ({ isWithdrawal }) => {
+const EditInformation = ({ isWithdrawal, userData }) => {
+  // 디스패치!!
+  const dispatch = useDispatch();
+  // 유저아이디 값
+  const UserInfo = useSelector(state => state.user.UserProFileArr);
+  // 다음POST 불러오기 state
+  const [mypageDaum, setMypageDaum] = useState(false);
+  // 최종확인 모달 state
+  const [EditconfirmState, seteditconfirmState] = useState(false);
+
+  console.log(userData);
 
   const [fixPass, setfixPass] = useState("");
   const [fixEmail, setFixEmail] = useState("");
@@ -18,6 +32,7 @@ const EditInformation = ({ isWithdrawal }) => {
   const [fixbirth, setFixBirth] = useState("");
   const [fixPhone, setFixPhone] = useState("");
   const [fixAddress, setFixAddress] = useState("");
+  const [fixData, setFixData] = useState([]);
 
   const [something, setSomething] = useState(false);
 
@@ -30,23 +45,70 @@ const EditInformation = ({ isWithdrawal }) => {
   // 수정완료 핸들러
   const editSubmit = e => {
     e.preventDefault();
-    setSomething(false);
+    const editUser = {
+      uid: userData.user_id,
+      upw: fixPass,
+      email: fixEmail !== "" ? fixEmail : userData.email,
+      name: fixName !== "" ? fixName : userData.name,
+      birth_date: fixbirth !== "" ? fixbirth : userData.birth_date,
+      phone: fixPhone !== "" ? fixPhone : userData.phone,
+      user_address: fixAddress !== "" ? fixAddress : userData.user_address,
+      user_address_detail: "not yet",
+    };
+    if (!editUser.upw) {
+      alert("비밀번호를 확인해주세요");
+    } else {
+      setFixData(editUser);
+      seteditconfirmState(true);
+      console.log(editUser);
+    }
   };
 
   const handlewWithDrawal = () => {
     isWithdrawal(true);
   };
+
+  const handlEditCancle = () => {
+    setSomething(false);
+  };
+
+  const handleDaumState = () => {
+    setMypageDaum(true);
+  };
   return (
     <EditWrapper something={something}>
+      {mypageDaum ? (
+        <DaumPost
+          mypageDaum={mypageDaum}
+          setMypageDaum={setMypageDaum}
+          setFixAddress={setFixAddress}
+        />
+      ) : (
+        ""
+      )}
+      {EditconfirmState ? (
+        <EditConformModal
+          seteditconfirmState={seteditconfirmState}
+          fixData={fixData}
+          setSomething={setSomething}
+        />
+      ) : (
+        ""
+      )}
       <div className="security_set">
         <div className="security_title">
           <span>기본보안설정</span>
-          <button className="edit_all_btn" onClick={editall}>
-            일괄수정
-          </button>
-          <button className="edit_submit_btn" onClick={editSubmit}>
-            수정완료
-          </button>
+          <div className="security_btns">
+            <button className="edit_cancel" onClick={handlEditCancle}>
+              <FontAwesomeIcon icon={faReplyAll} /> 취소
+            </button>
+            <button className="edit_submit_btn" onClick={editSubmit}>
+              개인정보수정 완료
+            </button>
+            <button className="edit_all_btn" onClick={editall}>
+              일괄수정
+            </button>
+          </div>
         </div>
         <div className="setting_box">
           <div className="setting">
@@ -61,39 +123,32 @@ const EditInformation = ({ isWithdrawal }) => {
               onChange={e => setfixPass(e.target.value)}
             ></input>
           </div>
-          {/* <button className="edit_button">수정</button>
-          <button className="comfrom_button">완료</button> */}
         </div>
         <div className="setting_box">
           <div className="setting">
             <span className="icon">
               <FontAwesomeIcon icon={faIdCardClip} />
             </span>
-            <span className="setting_name">이메일 설정</span>
+            <span className="setting_name">{userData.email}</span>
             <input
               type="text"
               className="email_input"
-              placeholder="이메일을 입력하세요"
+              placeholder={userData.email}
               onChange={e => setFixEmail(e.target.value)}
             ></input>
           </div>
-
-          {/* <button className="edit_button">수정</button>
-          <button className="comfrom_button">완료</button> */}
         </div>
       </div>
       <div className="info_set">
         <span className="info_set_title">개인정보설정</span>
         <div className="setting_box">
           <div className="setting">
-            <span className="icon">
-              <FontAwesomeIcon icon={faSquarePen} />
-            </span>
-            <span className="setting_name">이름</span>
+            <span className="icon">성함</span>
+            <span className="setting_name">{userData.name}</span>
             <input
               type="text"
               className="name_input"
-              placeholder="이름을 입력하세요"
+              placeholder={userData.name}
               onChange={e => setFixName(e.target.value)}
             ></input>
           </div>
@@ -102,15 +157,23 @@ const EditInformation = ({ isWithdrawal }) => {
         </div>
         <div className="setting_box">
           <div className="setting">
-            <span className="icon">
-              <FontAwesomeIcon icon={faSquarePen} />
-            </span>
-            <span className="setting_name">생년월일</span>
+            <span className="icon">생년월일</span>
+            <span className="setting_name">{userData.birth_date}</span>
             <input
-              type="number"
+              type="text"
               className="birth_input"
-              placeholder="생년월일을 입력하세요"
-              onChange={e => setFixBirth(e.target.value)}
+              placeholder={userData.birth_date}
+              maxLength="8"
+              value={fixbirth}
+              onChange={e => {
+                const inputText = e.target.value;
+                if (/^\d*$/.test(inputText) && inputText.length <= 8) {
+                  setFixBirth(inputText);
+                } else {
+                  alert("생년월일 형식은 숫자로 예)19960805 8자로 입력하세요");
+                  setFixBirth("");
+                }
+              }}
             ></input>
           </div>
           {/* <button className="edit_button">수정</button>
@@ -118,27 +181,35 @@ const EditInformation = ({ isWithdrawal }) => {
         </div>
         <div className="setting_box">
           <div className="setting">
-            <span className="icon">
-              <FontAwesomeIcon icon={faSquarePen} />
-            </span>
-            <span className="setting_name">전화번호</span>
+            <span className="icon">전화번호</span>
+            <span className="setting_name">{userData.phone}</span>
             <input
-              type="number"
+              type="text"
               className="phone_input"
-              placeholder="전화번호를 입력하세요"
+              placeholder={userData.phone}
+              value={fixPhone}
+              onChange={e => {
+                const inputText = e.target.value;
+                if (/^\d*$/.test(inputText) && inputText.length <= 12) {
+                  setFixPhone(inputText);
+                } else {
+                  alert("전화번호는 숫자로 입력해주세요");
+                  setFixPhone("");
+                }
+              }}
             ></input>
           </div>
         </div>
         <div className="setting_box">
           <div className="setting">
-            <span className="icon">
-              <FontAwesomeIcon icon={faSquarePen} />
-            </span>
-            <span className="setting_name">주소</span>
+            <span className="icon">주소</span>
+            <span className="setting_name">{userData.user_address}</span>
             <input
-              type="number"
+              type="text"
               className="phone_input"
-              placeholder="주소를 입력하세요"
+              placeholder={"주소를 입력하세요"}
+              onClick={handleDaumState}
+              value={fixAddress}
             ></input>
           </div>
         </div>
