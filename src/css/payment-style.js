@@ -82,6 +82,7 @@ export const PaymentWrapper = styled.div`
           }
           .title {
             position: relative;
+            color: #cd853f;
             h1 {
               margin-top: 30px;
               margin-left: 20px;
@@ -97,15 +98,15 @@ export const PaymentWrapper = styled.div`
           }
           .quantity {
             position: absolute;
-            top: 30%;
-            left: 26%;
+            top: 27%;
+            left: 28%;
             font-size: 20px;
             font-weight: 700;
           }
           .price {
             position: absolute;
-            top: 35%;
-            left: 26%;
+            top: 32%;
+            left: 28%;
             font-size: 20px;
             font-weight: 700;
           }
