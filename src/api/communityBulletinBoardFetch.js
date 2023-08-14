@@ -9,11 +9,11 @@ const getFetchData = async iboard => {
   } catch (err) {
     console.log(err);
   }
-  return {};
+  return [];
 };
 
 // 댓글 등록 post
-export const postComment = async postData => {
+const postComment = async postData => {
   try {
     const res = await axios.post(`/api/comment`, postData);
     const data = res.data;
@@ -24,14 +24,4 @@ export const postComment = async postData => {
   }
 };
 
-const getFetchData = async () => {
-    try{
-        const res = await axios.get(`/api/community/boardDetail`)
-        const data = res.data
-        console.log(res.data)
-        return data
-    }catch(err){
-        console.log("게시글 디테일보기 요청실패",err)
-    }
-}
-export default getFetchData;
+export { postComment, getFetchData };

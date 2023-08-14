@@ -3,7 +3,7 @@ import { CommunityBulletinBoardWrapper } from "../css/community-bulletin-board-s
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import "react-quill/dist/quill.snow.css";
-import getFetchData, { postComment } from "../api/communityBulletinBoardFetch";
+import { postComment, getFetchData } from "../api/communityBulletinBoardFetch";
 
 const CommunityBulletinBoard = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -54,7 +54,9 @@ const CommunityBulletinBoard = () => {
                   <p className="board_user">{boardDevo.name}</p>
                 </div>
               </div>
-              <div className="board_ctnt">{boardDevo.ctnt ? boardDevo.ctnt : ""}</div>
+              <div className="board_ctnt">
+                {boardDevo.ctnt ? boardDevo.ctnt : ""}
+              </div>
             </div>
           </div>
 
