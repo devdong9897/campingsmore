@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import DaumPost from "../api/DaumPost";
-import { getPayMent } from "../api/paymentFetch";
+import { PostPayMent, getPayMent } from "../api/paymentFetch";
 import PaymentModal from "../components/PaymentModal";
 import { PaymentWrapper } from "../css/payment-style";
 

@@ -9,47 +9,46 @@ const ReviewHistory = ({ review }) => {
       <h1>리뷰 내역</h1>
 
       <ul className="review_list">
-        {review.map((item, index) => (
-          <li key={index}>
-            <div className="review_img">
-              <img src={item.pic} alt="리뷰사진"></img>
-            </div>
-            <div className="review_info_box">
-              <div className="review_grade">
-                <span>고객평점</span>
-                <div className="review_grade_star">
-                  <p>
-                    <img src="/image/star.png"></img>
-                  </p>
-                  <p>
-                    <img src="/image/star.png"></img>
-                  </p>
-                  <p>
-                    <img src="/image/star.png"></img>
-                  </p>
-                  <p>
-                    <img src="/image/star.png"></img>
-                  </p>
-                  <p>
-                    <img src="/image/star.png"></img>
-                  </p>
+        {review.length ? (
+          <>
+            {review.map((item, index) => (
+              <li key={index}>
+                <div className="review_img">
+                  <img src={item.pic} alt="리뷰사진"></img>
                 </div>
-              </div>
-              <div className="review_text">{item.reviewCtnt}</div>
-            </div>
-          </li>
-        ))}
-
-        {/* {review((item, index) => (
-          <li key={index}>
-        
-          </li>
-        ))} */}
+                <div className="review_info_box">
+                  <div className="review_grade">
+                    <span>고객평점</span>
+                    <div className="review_grade_star">
+                      <p>
+                        <img src="/image/star.png"></img>
+                      </p>
+                      <p>
+                        <img src="/image/star.png"></img>
+                      </p>
+                      <p>
+                        <img src="/image/star.png"></img>
+                      </p>
+                      <p>
+                        <img src="/image/star.png"></img>
+                      </p>
+                      <p>
+                        <img src="/image/star.png"></img>
+                      </p>
+                    </div>
+                  </div>
+                  <div className="review_text">{item.reviewCtnt}</div>
+                </div>
+              </li>
+            ))}
+          </>
+        ) : (
+          <div className="review_img">
+            <img src="../image/review.png" alt="" />
+            <p>리뷰내역이 없습니다.</p>
+          </div>
+        )}
       </ul>
-      <div className="review_img">
-        <img src="../image/review.png" alt="" />
-        <p>리뷰내역이 없습니다.</p>
-      </div>
     </ReviewHistoryWrapper>
   );
 };

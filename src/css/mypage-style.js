@@ -268,25 +268,53 @@ export const PurchaseWrapper = styled.div`
         }
         .purchase_info_box {
           display: flex;
-          flex-direction: column;
           justify-content: space-between;
           width: 80%;
           height: 100%;
           font-size: 18px;
-          .purchase_date {
-            font-size: 16px;
-            color: #9d9d9d;
-          }
-          .purchase_info {
-            width: 100%;
+          .purchase_infos {
+            display: flex;
+            flex-direction: column;
+            width: 75%;
             height: 100%;
-            p {
-              &:first-of-type {
-                font-size: 25px;
-                font-weight: bold;
+            .purchase_date {
+              font-size: 16px;
+              color: #9d9d9d;
+            }
+            .purchase_info {
+              width: 100%;
+              height: 100%;
+              p {
+                &:first-of-type {
+                  font-size: 25px;
+                  font-weight: bold;
+                }
+                &:last-child {
+                  font-size: 18px;
+                }
               }
-              &:last-child {
-                font-size: 18px;
+            }
+          }
+          .purchase_func {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 10px;
+            width: 15%;
+            height: 100%;
+            button {
+              margin: 0 auto;
+              width: 100%;
+              height: 45px;
+              border-radius: 10px;
+              border: none;
+              background: #f0d7b6;
+              font-weight: 500;
+              font-family: "NanumSquare";
+              cursor: pointer;
+              &:hover {
+                color: #fff;
+                background: #cd853f;
               }
             }
           }
