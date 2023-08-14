@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { CommunityWriteWrapper } from "../css/community-write-style";
 import { useNavigate } from "react-router-dom";
 import ReactQuill from "react-quill";
-import createPost from "../api/communityWriteFetch";
+import createPost, { postOnePice } from "../api/communityWriteFetch";
 import { useRef } from "react";
 import { useEffect } from "react";
 import { useMemo } from "react";
@@ -14,22 +14,22 @@ const CommunityWrite = () => {
   const [content, setContent] = useState("");
   const [title, setTItle] = useState("");
 
-// ReactQull 태그 reference 저장
-const quillRef = useRef(null);
+  // ReactQull 태그 reference 저장
+  const quillRef = useRef(null);
 
-// Editor 에 담겨진 내용을 출력 state
-const [value, setValue] = useState();
-useEffect(() => {
-  console.log(value);
-}, [value]);
+  const navigate = useNavigate()
 
-
+  // Editor 에 담겨진 내용을 출력 state
+  const [value, setValue] = useState();
+  useEffect(() => {
+    console.log(value);
+  }, [value]);
 
   const imageHandler = () => {
     console.log("이미지 핸들링");
     // 1. reactQuill 에디터를 저장한다.
     const editor = quillRef.current.getEditor();
-    console.log("editor : ", editor);
+    // console.log("editor : ", editor);
     // 2. image 를 저장할 input type="file" 을 즉시 생성
     //   태그를 만듦 <input type="file" accept="image/*" />
     const input = document.createElement("input");
@@ -38,15 +38,22 @@ useEffect(() => {
     input.setAttribute("accept", "image/*");
     input.click(); // 강제로 클릭을 시켜줌.
     // 4. 이미지 선택시 즉, input 요소에 이미지 처리
-    input.addEventListener("change", () => {
+    input.addEventListener("change", async () => {
       console.log("온체인지");
       const file = input.files[0];
       const formData = new FormData();
       // formData.append("키", 값)
-      formData.append("img", file);
+      formData.append("pic", file);
       // 백엔드 이미지 서버로 전송을 실행한다.
       try {
-        console.log("서버로 이미지 전송 axios");
+        const result = await postOnePice(1, formData);
+        console.log("성공시 백엔드가 보내주는 데이터", result);
+        const IMG_URL = result;
+        const editor = quillRef.current.getEditor();
+        editor.root.innerHTML = 
+        editor.root.innerHTML + `<img src=${IMG_URL}/></br>`
+        const range = editor.getSelection()
+        editor.insertEmbed(range.index, "image",IMG_URL)
         // firebase Storage 에 업로드
         // storage 레퍼런스를 만든다.
         // ref(스토리지, 폴더명/파일명)
@@ -152,6 +159,7 @@ useEffect(() => {
     setContent(value);
   };
   const handleSubmit = async () => {
+    navigate("/main/community")
     try {
       const postData = {
         iboard: 0,
@@ -170,12 +178,14 @@ useEffect(() => {
     setTItle(e.target.value);
   };
 
+  const onClickHandleDel = () =>{
+    navigate("/main/community")
+  }
+
   return (
     <CommunityWriteWrapper>
       {/* <div dangerouslySetInnerHTML={{ __html: value }} /> */}
       {/* <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(value) }} /> */}
-
-
 
       <div className="top_communityWrite_contents">
         <div className="communityWrite_contents_inner">
@@ -187,11 +197,10 @@ useEffect(() => {
             placeholder="제목을 입력해 주세요"
             onChange={e => setComuTitle(e.target.value)}
           />
-      <div style={{ background: "#fff" }}>
-        <ReactQuill ref={quillRef} onChange={setValue} modules={modules} />
-      </div>
-      <div>
-            <h2>html 출력하기 : </h2>
+          <div style={{ background: "#fff" }}>
+            <ReactQuill ref={quillRef} onChange={setValue} modules={modules} />
+          </div>
+          <div>
             <div
               dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(value) }}
             />
@@ -221,12 +230,14 @@ useEffect(() => {
             placeholder="내용을 입력해 주세요"
             onChange={e => setComuCtnt(e.target.value)}
           ></textarea> */}
-          <button className="communityWrite_board_del">취소</button>
-          <button 
-            className="communityWrite_board_regi" 
+          <button onClick={onClickHandleDel} className="communityWrite_board_del">취소</button>
+          <button
+            className="communityWrite_board_regi"
             onClick={handleSubmit}
             // onClick={handleToGoCommunity}
-          >등록</button>
+          >
+            등록
+          </button>
         </div>
       </div>
     </CommunityWriteWrapper>

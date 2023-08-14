@@ -1,135 +1,83 @@
 import React, { useEffect } from "react";
 import { CommunityBulletinBoardWrapper } from "../css/community-bulletin-board-style";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import "react-quill/dist/quill.snow.css";
-import createPost from "../api/communityWriteFetch";
-import getFetchData from "../api/communityBulletinBoardFetch";
+import getFetchData, { postComment } from "../api/communityBulletinBoardFetch";
 
 const CommunityBulletinBoard = () => {
-  // const [communityBulletinBoardData, setCommunityBulletinBoardData] = useState()
-  const navigate = useNavigate();
-  const [boardData, setBoardData] = useState({});
-  const [picList, setPicList] = useState([]);
-  const [commentList, setCommentList] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const iboard = searchParams.get("iboard");
+  // 게시글 내용
+  const [boardDevo, setBoardDevo] = useState({});
+  // 게시글 댓글 리스트
+  const [commentList, setcommentList] = useState([]);
+  // 댓글 쓰는 state
+  const [commentText, setCommentText] = useState("");
 
+  const ComuBoardData = async () => {
+    try {
+      const data = await getFetchData(iboard);
+      console.log("데이터는 받아오나", data);
+      console.log("게시글 내용", data.boardDeVo);
+      console.log("게시글 댓글", data.commentList);
+      setBoardDevo(data.boardDevo);
+      setcommentList(data.commentList);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handlePostComment = async () => {
+    try {
+      await postComment(commentText);
+      setCommentText("");
+    } catch (err) {
+      console.log(err);
+    }
+  };
   useEffect(() => {
-    const fetchBoardData = async () => {
-      try {
-        const data = await getFetchData();
-        if (data) {
-          setBoardData(data.boardDevo);
-          setPicList(data.picList);
-          setCommentList(data.commentList.list);
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchBoardData();
+    ComuBoardData();
   }, []);
-
-  // const handleGoToCommunityBulletinBoard = () => {
-  //   navigate("/main/communitywrite");
-  // };
-
   return (
     <CommunityBulletinBoardWrapper>
       <div className="top_community_bulletin_board_contents">
         <div className="community_bulletin_board_contents_inner">
-          <h1>커뮤니티 게시글</h1>
+          <h1>{boardDevo.title !== undefined ? boardDevo.title : ""}</h1>
           <hr className="community_bulletin_board_line" />
-
-          {/* {bulletinList.map((item, index)=> (
-            <li key={index}>
-              <div className="community_bulletin_board_topbox">
-            <h1>[자유]</h1>
-            <p>2023-08-11</p><br/>
-            <p>YBJ</p>
-          </div>
-
-          <input
-            type="text"
-            className="community_bulletin_board_title"
-            placeholder="제목을 입력해 주세요"
-          />
-          <textarea
-            cols="30"
-            rows="10"
-            className="community_bulletin_board_detail"
-            placeholder="내용을 입력해 주세요"
-          ></textarea>
-            </li>
-          ))} */}
-                
-                  <div className="community_bulletin_board_topbox">
-                    <h1>{boardData.category}</h1>
-                    <p>{boardData.createdat}</p>
-                    <br />
-                    <p>{boardData.name}</p>
-                  </div>
-                  <h2>{boardData.title}</h2>
-                  <p>{boardData.ctnt}</p>
-
-
-
-          <input
-            type="text"
-            className="community_bulletin_board_title"
-            placeholder="제목을 입력해 주세요"
-          />
-          <textarea
-            cols="30"
-            rows="10"
-            className="community_bulletin_board_detail"
-            placeholder="내용을 입력해 주세요"
-          ></textarea>
-
-          {/* 이미지 목록 표시 */}
-          <div className="image-list">
-            {picList.map((pic, index) => (
-              <img key={index} src={pic.pic} alt={`Image ${index}`} />
-            ))}
-          </div>
-
-          <div className="comment-list">
-            {/* <h3>댓글 목록</h3> */}
-            {commentList.map(comment => (
-              <div key={comment.icomment}>
-                <p>{comment.name}</p>
-                <p>{comment.ctnt}</p>
-                <p>{comment.createdAt}</p>
+          <div>
+            <div className="community_bulletin_board_topbox">
+              <div className="board_info">
+                <span className="board_category">{boardDevo.category}</span>
+                <div className="board_create_info">
+                  <p className="board_date">{boardDevo.createdat}</p>
+                  <p className="board_user">{boardDevo.name}</p>
+                </div>
               </div>
-            ))}
-          </div>
-
-          {/* <h2>제목: {boardData.title}</h2>
-          <p>작성자: {boardData.name}</p>
-          <p>카테고리: {boardData.category}</p>
-          <p>내용: {boardData.ctnt}</p>
-          <p>날짜와 시간 : {boardData.createdat}</p>
-          <p>조회수 : {boardData.boardview}</p> */}
-
-          {/* <button
-            className="community_bulletin_board_regi"
-            onClick={handleGoToCommunityBulletinBoard}
-          >
-            게시글 등록
-          </button> */}
-
-          <h1>리뷰작성</h1>
-          <div className="community_bulletin_board_comment_box">
-            <div className="community_bulletin_board_comment">
-              <img
-                src="/image/profile.jpg"
-                alt="My Image"
-                className="community_bulletin_board_img"
-              />
-              <p>hyeongman1990</p>
-              <textarea cols="30" rows="10"></textarea>
-              <button>등록</button>
+              <div className="board_ctnt">{boardDevo.ctnt ? boardDevo.ctnt : ""}</div>
             </div>
           </div>
+
+          <div className="comment-list"></div>
+          <h1></h1>
+          <div className="community_bulletin_board_comment_box">
+            <div className="community_bulletin_board_comment">
+              <ul>
+                <textarea
+                  cols="20"
+                  rows="10"
+                  value={commentText}
+                  onChange={event => setCommentText(event.target.value)}
+                ></textarea>
+              </ul>
+            </div>
+          </div>
+          <button
+            onClick={handlePostComment}
+            className="community_bulletin_board_resi"
+          >
+            등록
+          </button>
         </div>
       </div>
     </CommunityBulletinBoardWrapper>

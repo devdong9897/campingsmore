@@ -16,6 +16,7 @@ const Community = () => {
   const [comuList, setComuList] = useState([]);
   const [comuPage, setcomuPage] = useState("");
   const [searchKeyword, setSearchKeyword] = useState("");
+  const [boardCategory, setBoardCategory] = useState();
 
   const [selectedCategory, setSelectedCategory] = useState("");
 
@@ -65,6 +66,7 @@ const Community = () => {
     // if(result) {
     //   setComuList(result.list)
     // }
+
     try {
       const result = await searchCommunityData(searchKeyword);
       if (result) {
@@ -101,7 +103,9 @@ const Community = () => {
     fetchData();
   }, [selectedCategory]);
 
-  // const bbb = communityData.map(el => <div key={el.title}>{el.title} {el.information} {el.writer}</div>)
+  const onClickHandleBoard = item => {
+    navigate(`/main/communitybulletinboard?iboard=${item}`);
+  };
 
   return (
     <CommunityWrapper>
@@ -154,7 +158,10 @@ const Community = () => {
             <div className="community_board_list_head">
               <ul className="community_board_bod">
                 {comuList.map((item, index) => (
-                  <li key={index}>
+                  <li
+                    key={index}
+                    onClick={e => onClickHandleBoard(item.iboard)}
+                  >
                     <div className="list_left">
                       <span className="list_item_cate">
                         <p>
@@ -166,8 +173,7 @@ const Community = () => {
                             ? "잡담"
                             : item.icategory === 4
                             ? "리뷰"
-                            : item.icategory === 5
-                            }
+                            : item.icategory === 5}
                         </p>
                       </span>
                       <span className="list_item_title">{item.title}</span>

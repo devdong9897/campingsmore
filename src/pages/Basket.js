@@ -68,6 +68,7 @@ const Basket = () => {
   };
 
   const handleSelectItem = index => {
+
     const updatedBasketList = [...basketList];
     updatedBasketList[index].selected = !updatedBasketList[index].selected;
     setBasketList(updatedBasketList);
