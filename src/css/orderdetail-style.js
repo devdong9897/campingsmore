@@ -41,10 +41,8 @@ export const OrderDetailWrapper = styled.div`
 
       .second_box {
         width: 700px;
-        height: 700px;
-        border: 1px solid black;
-        border-radius: 20px;
-
+        height: 650px;
+   
         .title {
           h1 {
             font-size: 35px;
@@ -53,18 +51,12 @@ export const OrderDetailWrapper = styled.div`
             margin-top: 10px;
             margin-left: 37px;
           }
-
-          p {
-            margin-left: 37px;
-          }
-
           .meddle_title {
             font-size: 20px;
             font-weight: 900;
             color: #bfbfbf;
             margin-top: 8px;
           }
-
           .price {
             font-size: 50px;
             font-weight: 900;
@@ -76,13 +68,6 @@ export const OrderDetailWrapper = styled.div`
 
         .points {
           display: flex;
-
-          .way,
-          .earned {
-            width: 270px;
-            height: 260px;
-          }
-
           .way {
             .point_earned {
               font-size: 25px;
@@ -100,10 +85,8 @@ export const OrderDetailWrapper = styled.div`
               color: black;
             }
           }
-
           .earned {
             margin-left: 75px;
-
             .max_point {
               font-size: 15px;
               margin-top: 150px;
@@ -113,7 +96,6 @@ export const OrderDetailWrapper = styled.div`
                 color: red;
               }
             }
-
             .min_point {
               font-size: 15px;
               margin-top: 8px;
@@ -122,7 +104,6 @@ export const OrderDetailWrapper = styled.div`
             }
           }
         }
-
         .qantity {
           .free {
             font-size: 20px;
@@ -133,8 +114,6 @@ export const OrderDetailWrapper = styled.div`
           }
           .num {
             display: flex;
-            margin-left: 5px;
-            margin-bottom: 5px;
 
             button {
               width: 55px;
@@ -209,10 +188,11 @@ export const OrderDetailWrapper = styled.div`
     .botton_line {
       border-bottom: 1px solid #c0c0c0;
       margin-top: 250px;
+      margin-bottom: 20px;
     }
 
     .detailed_image {
-      width: 70%;
+      width: 50%;
       height: auto;
       margin: 0 auto;
     }

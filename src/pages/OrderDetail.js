@@ -21,8 +21,6 @@ const OrderDetail = () => {
   const [reviewPage, setReviewPage] = useState("");
   const [reviewList, setReviewList] = useState([]);
 
-
-
   useEffect(() => {
     const getOrderDetail = async () => {
       try {
@@ -69,7 +67,7 @@ const OrderDetail = () => {
       price: goodPrice,
       quantity: quantity,
     };
-    console.log();
+    console.log("쫌 나오라고!!!!!!", cartItem);
   };
 
   const handelbuy = () => {

@@ -92,7 +92,7 @@ const Payment = () => {
       alert("메모가 없으요!");
     } else {
       setpaymentModalState(true);
-      // PostPayMent(newPaymentData);
+      PostPayMent(newPaymentData);
     }
   };
 
