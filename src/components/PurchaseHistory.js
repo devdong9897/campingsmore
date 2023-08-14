@@ -33,7 +33,10 @@ const PurchaseHistory = ({ purchase }) => {
           </ul>
         </>
       ) : (
-        <div className="empty_img_box"></div>
+        <div className="empty_img_box">
+          <img src="../image/cart.png" alt="" />
+          <p>구매내역이 없습니다.</p>
+        </div>
       )}
     </PurchaseWrapper>
   );
