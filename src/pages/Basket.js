@@ -126,7 +126,9 @@ const Basket = () => {
                 <li>상품금액</li>
               </ul>
             </div>
-            {basketList.map((item, index) => (
+            {basketList.length ? (
+              <>
+                          {basketList.map((item, index) => (
               <li key={index}>
                 <div className="basket_list">
                   <ul className="basket_goods_list">
@@ -175,6 +177,14 @@ const Basket = () => {
             <button onClick={handleGoToPayment} className="basket_box">
               결제
             </button>
+              </>
+            ):(<div className="basket_empty">
+              <div className="basket_empty-img">
+                <img src="/image/cart.png"></img>
+                <span>장바구니에 담은 목록이 없습니다.</span>
+              </div>
+            </div>)}
+
           </div>
         </BasketWrapper>
       ) : (

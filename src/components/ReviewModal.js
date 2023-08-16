@@ -27,11 +27,16 @@ const ReviewModal = ({ thisiorder, thisItem, setisReviewModal, purchase }) => {
   const starRatingShow = Array.from({ length: 5 }, (_, index) => index);
 
   const handleSubmit = async () => {
+    const data = {
+      dto:{
+        iorder:thisItem,
+        iitem:thisiorder,
+        reviewCtnt:reviewCtnt,
+        starRating:selectedStars
+      }
+    }
     const formData = new FormData();
-    formData.append("iorder", thisItem);
-    formData.append("iitem", thisiorder);
-    formData.append("reviewCtnt", reviewCtnt);
-    formData.append("starRating", selectedStars);
+    formData.append('dto', JSON.stringify(data.dto));
 
     try {
       const res = await axios.post("/api/review", formData);

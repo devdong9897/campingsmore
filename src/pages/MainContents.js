@@ -51,6 +51,10 @@ const MainContents = () => {
     }
   };
 
+  const handleThisitem = (iitem) => {
+    navigate(`/main/orderdetail?iitem=${iitem}`)
+  }
+
   useEffect(() => {
     getbestitemFetch();
     getOrderList();
@@ -99,7 +103,7 @@ const MainContents = () => {
         <div className="recommned_inner">
           <ul className="recommned_list">
             {bestitem.map((item, index) => (
-              <li key={index}>
+              <li key={index} onClick={e => handleThisitem(item.iitem)}>
                 <div className="reco_item_pic">
                   <img src={item.pic} alt="추천상품이미지"></img>
                 </div>

@@ -36,4 +36,18 @@ const deleteBasketItem = async icart => {
   }
 };
 
-export { getBasketList, postBasket, deleteBasketItem };
+const postBasketCount = async (iitem, quantity) => {
+  try {
+    const res = await axios.post(`/api/cart`, {
+      iitem: iitem,
+      quantity: quantity,
+    });
+    console.log("postbasket 실행완료");
+    return res.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
+export { getBasketList, postBasket, deleteBasketItem ,postBasketCount };
