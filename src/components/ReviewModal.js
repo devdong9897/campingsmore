@@ -3,6 +3,7 @@ import { ReviewModalWrapper } from "../css/review-modal-style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { postReview } from "../api/mypageFatch";
+import axios from "axios";
 
 const ReviewModal = ({ thisiorder, thisItem, setisReviewModal, purchase }) => {
   const [thispurchase, setthispurchase] = useState("");
@@ -19,20 +20,26 @@ const ReviewModal = ({ thisiorder, thisItem, setisReviewModal, purchase }) => {
     const itemmatch = purchase.filter(item => item.iorder === thisItem);
     setThisdata(itemmatch);
     setThisItem(itemmatch[0].itemList);
-    console.log("아이템매치 새끼야!", itemmatch);
+    console.log("아이템매치", itemmatch);
     console.log("야아아!", itemmatch[0].itemList);
   };
 
   const starRatingShow = Array.from({ length: 5 }, (_, index) => index);
 
-  const handleSubmit = () => {
-    const submitdata = {
-      iorder: thisItem,
-      iitem: thisiorder,
-      reviewCtnt: reviewCtnt,
-      starRating: selectedStars,
-    };
-    postReview(submitdata);
+  const handleSubmit = async () => {
+    const formData = new FormData();
+    formData.append("iorder", thisItem);
+    formData.append("iitem", thisiorder);
+    formData.append("reviewCtnt", reviewCtnt);
+    formData.append("starRating", selectedStars);
+
+    try {
+      const res = await axios.post("/api/review", formData);
+      console.log(res);
+      console.log("리뷰등록 전송완료?", res);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handelRevieCancel = () => {
@@ -62,12 +69,12 @@ const ReviewModal = ({ thisiorder, thisItem, setisReviewModal, purchase }) => {
             </li>
           ))}
         </div>
-        <input
+        {/* <input
           className="review_modal_title"
           placeholder="제목을 입력하세요"
           value={reviewTitle}
           onChange={e => setreviewTitle(e.target.value)}
-        ></input>
+        ></input> */}
         <textarea
           rows="20"
           className="review_modal_detail"
