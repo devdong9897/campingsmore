@@ -9,6 +9,7 @@ import { Provider } from "react-redux";
 import ScrollToTop from "./components/ScrollUp";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+document.title = "Camping Smore"; 
 root.render(
   <Provider store={store}>
     <CookiesProvider>
