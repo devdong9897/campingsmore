@@ -11,10 +11,17 @@ import { postBasket } from "../api/basketFetch";
 import { getCookie } from "../api/cookie";
 import { getOrderCateSearch, getOrderListPage } from "../api/itemFatch";
 import { OrderListWrapper } from "../css/orderlist-style";
+import BasketFromListModal from "../components/modal/BasketFromListModal";
 
 const OrderList = () => {
   const accessToken = getCookie("accessToken");
   const [isLoggedIn, setIsLoggedIn] = useState(accessToken ? true : false);
+  // 모달창 state
+  const [isBasketModal , setIsBasketModal] = useState(false);
+  // 모달에 전달할 데이터
+  const [sendDataToModal ,setSendDataToModal] = useState({});
+  // 선택된 아이템 고유번호
+  const [selcetItem , setselcetItem] = useState("");
   const navigate = useNavigate();
   const [orderlist, setOrderList] = useState([]);
   const [orderListitem, setOrderListItem] = useState([]);
@@ -95,12 +102,20 @@ const OrderList = () => {
     setCateId(categoryId);
   };
 
-  const handleCart = iitem => {
-    postBasket(iitem);
-    if (isLoggedIn) {
-      postBasket(iitem);
-    } else {
-      alert("마");  
+  const handleCart = item => {
+    if(isLoggedIn){
+      setIsBasketModal(true);
+      setselcetItem(item.iitem);
+      const cartItem = {
+        icart: parseInt(item.iitem),
+        pic: item.pic,
+        name: item.name,
+        price: item.price,
+        quantity: 1,
+      };
+      setSendDataToModal(cartItem);
+    }else {
+      alert("로그인이 되지않았습니다.");  
     }
   };
 
@@ -136,6 +151,10 @@ const OrderList = () => {
 
   return (
     <OrderListWrapper>
+      {isBasketModal ? (
+              <BasketFromListModal setIsBasketModal={setIsBasketModal} selcetItem={selcetItem} sendDataToModal={sendDataToModal}  />
+      ):("")}
+
       <div className="orderlist_inner">
         <div className="orderlist_search">
           <input
@@ -182,7 +201,7 @@ const OrderList = () => {
                 <div className="orderlist_btn">
                   <button
                     className="shopping_basket"
-                    onClick={e => handleCart(item.iitem)}
+                    onClick={e => handleCart(item)}
                   >
                     장바구니 담기
                     <FontAwesomeIcon icon={faCartShopping} />

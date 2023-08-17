@@ -7,16 +7,21 @@ import { useSearchParams } from "react-router-dom/dist";
 import { getOrderDetailPage } from "../api/itemFatch";
 import { OrderDetailWrapper } from "../css/orderdetail-style";
 import { OrderItemAdd } from "../reducers/orderItemSlice";
+import { postBasket, postBasketCount } from "../api/basketFetch";
+import { basketAdd } from "../reducers/basketSlice";
+import BasketCompleteModal from "../components/modal/BasketCompleteModal";
 
 const OrderDetail = () => {
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
+  // 장바구니 담는 모달창 staet
+  const [isModal ,setIsModal] = useState(false);
   const iitem = searchParams.get("iitem");
+  const [quantity, setQuantity] = useState(1);
   const [goodImg, setGoodImg] = useState(null);
   const [goodName, setGoodName] = useState(null);
   const [goodPrice, setGoodPrice] = useState(0);
   const [goodPicListImg, setGoodPicListImg] = useState(null);
-  const [quantity, setQuantity] = useState(1);
   const [Allprice, setAllprice] = useState(0);
   const [reviewPage, setReviewPage] = useState("");
   const [reviewList, setReviewList] = useState([]);
@@ -59,15 +64,20 @@ const OrderDetail = () => {
     }
   };
 
-  // 장바구니 담기 하지만 아직 담아지는 로직은 없습니다.
-  const handleAddToCart = () => {
+  // 디테일 장바구니 담기
+  const handleAddToCart = async() => {
+    setIsModal(true);
     const cartItem = {
-      id: iitem,
+      icart: parseInt(iitem),
+      pic: goodImg,
       name: goodName,
       price: goodPrice,
       quantity: quantity,
     };
-    console.log("아 쫌!!!!!", cartItem);
+    // console.log("아 쫌!!!!!", cartItem);
+    const re = await postBasketCount(iitem, quantity);
+    // 카운트 올리기 (Redux 활용)
+    dispatch(basketAdd(cartItem));
   };
 
   const handelbuy = () => {
@@ -84,6 +94,9 @@ const OrderDetail = () => {
 
   return (
     <OrderDetailWrapper>
+      {isModal ? (
+      <BasketCompleteModal setIsModal={setIsModal} />
+      ):("") }
       <div className="orderdetail_inner">
         <div className="main">
           <div className="first_box">

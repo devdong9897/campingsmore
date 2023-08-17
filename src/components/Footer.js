@@ -35,8 +35,8 @@ const Footer = () => {
           </ul>
           <div className="site_address">
             <span>
-              <p>(주) 팀명</p>
-              <p>대표이사:한경원</p>
+              <p>(주) 캠핑이지</p>
+              <p>대표이사: 캠핑족</p>
               <p>미국 워싱턴주 벨뷰</p>
             </span>
             <span>

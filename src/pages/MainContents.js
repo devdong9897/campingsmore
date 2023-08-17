@@ -9,6 +9,7 @@ import SwiperFade from "../components/SwiperFade";
 import { getOrderListCategory, getbestitem } from "../api/itemFatch";
 import { cookies } from "../api/cookie";
 import { useNavigate } from "react-router-dom";
+import SwiperSlice from "../components/SwiperSlice";
 
 const MainContents = () => {
   const navigate = useNavigate();
@@ -51,6 +52,10 @@ const MainContents = () => {
     }
   };
 
+  const handleThisitem = (iitem) => {
+    navigate(`/main/orderdetail?iitem=${iitem}`)
+  }
+
   useEffect(() => {
     getbestitemFetch();
     getOrderList();
@@ -81,6 +86,9 @@ const MainContents = () => {
               <li key={index}>{item.name}</li>
             ))}
           </ul>
+          <div className="select_slide">
+            <SwiperSlice bestitem={bestitem} />
+          </div>
         </div>
       </div>
       <div className="kakao_map_wrap">
@@ -99,7 +107,7 @@ const MainContents = () => {
         <div className="recommned_inner">
           <ul className="recommned_list">
             {bestitem.map((item, index) => (
-              <li key={index}>
+              <li key={index} onClick={e => handleThisitem(item.iitem)}>
                 <div className="reco_item_pic">
                   <img src={item.pic} alt="추천상품이미지"></img>
                 </div>

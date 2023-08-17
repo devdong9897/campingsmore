@@ -53,7 +53,7 @@ export const MypageWrapper = styled.div`
           width: 70%;
           padding: 10px 0px;
           text-align: center;
-          background: #999898;
+          background: #b2b2b2;
           color: #fff;
           font-size: 17px;
           border-radius: 25px;
@@ -402,7 +402,7 @@ export const ReviewHistoryWrapper = styled.div`
       }
     }
   }
-  .review_img {
+  .review_empty_img {
     margin-left: 50%;
     margin-top: 15%;
     img {

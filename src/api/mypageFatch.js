@@ -3,7 +3,7 @@ import axios from "axios";
 // 리뷰리스트 요청
 const getMypageReviewData = async () => {
   try {
-    const res = await axios.get("/api/mypage/review-list");
+    const res = await axios.get("/api/mypage/reviewlist");
     const result = res.data;
     console.log("getmypagereview 요청완료");
     return result;
@@ -72,15 +72,17 @@ const postMyProfileData = async fixData => {
   }
 };
 
-const postReview = async submitdata => {
+// 리뷰작성
+const postReview = async dto => {
+  console.log(dto);
   try {
-    const res = await axios.post("/api/review", submitdata, {
+    const res = await axios.post("/api/review", dto, {
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "multipart/form-data",
       },
     });
-    const result = res.data;
-    console.log("리뷰등록 전송완료?", result);
+    console.log(res);
+    console.log("리뷰등록 전송완료?", res);
   } catch (err) {
     console.log(err);
   }

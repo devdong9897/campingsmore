@@ -4,7 +4,7 @@ import 'swiper/css';
 import 'swiper/css/effect-fade';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import "../css/Swiper.css"
+import "../css/Swiper.scss"
 
 import { Autoplay,  EffectFade, Navigation, Pagination } from 'swiper/modules';
 

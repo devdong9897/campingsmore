@@ -33,6 +33,7 @@ const Mypage = () => {
   const userData = useSelector(state => state.user.UserProFileArr);
   // IUSER 값
   const userIuser = useSelector(state => state.user.UserProFileArr.iuser);
+  const [selected, setselected] =useState("");
 
   console.log("유저데이터??!?!", userData);
 
@@ -44,6 +45,7 @@ const Mypage = () => {
   const [comulist, setComuList] = useState([]);
 
   const handleMenuChange = index => {
+    setselected(true);
     setMenuIndex(index);
     if (index == 1) {
       getPurchase();
@@ -132,7 +134,7 @@ const Mypage = () => {
     linkto(reviewCode);
   }, [reviewCode]);
   return (
-    <MypageWrapper menuindex={menuindex}>
+    <MypageWrapper selected={selected}>
       {withdrawal ? (
         <WithdrawalModal userIuser={userIuser} isWithdrawal={isWithdrawal} />
       ) : (

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { deleteBasketItem } from "../api/basketFetch";
+import { deleteBasketItem, getBasketList } from "../api/basketFetch";
 import BasketModal from "../components/modal/BasketModal";
 import { BasketWrapper } from "../css/basket-style";
+import { basketDelete } from "../reducers/basketSlice";
 
 const Basket = () => {
   const navigate = useNavigate();
@@ -19,10 +20,12 @@ const Basket = () => {
 
   const getBasketData = async () => {
     try {
+      const data = await getBasketList();
       const basketWithQuantity = BasketData.map(item => ({
         ...item,
         quantity: 1,
       }));
+      console.log("사용자 장바구니 데이터",data);
       setBasketList(basketWithQuantity);
       setBasketList(BasketData);
     } catch (err) {
@@ -30,9 +33,6 @@ const Basket = () => {
     }
   };
 
-  useEffect(() => {
-    getBasketData();
-  }, []);
 
   const onHandleClickPlus = index => {
     setBasketList(prevBasketList => {
@@ -77,8 +77,10 @@ const Basket = () => {
   const handleRemoveItem = async icart => {
     try {
       await deleteBasketItem(icart);
-      const updatedBasketList = basketList.filter(item => item.icart !== icart);
+      const updatedBasketList = BasketData.filter(item => item.icart !== icart);
       setBasketList(updatedBasketList);
+      window.location.reload();
+      // dispatch(basketDelete(updatedBasketList));
     } catch (err) {
       console.log(err);
     }
@@ -91,6 +93,10 @@ const Basket = () => {
   const handleGoToPayment = () => {
     navigate("/main/payment");
   };
+
+  useEffect(() => {
+    getBasketData();
+  }, []);
 
   return (
     <>
@@ -126,7 +132,9 @@ const Basket = () => {
                 <li>상품금액</li>
               </ul>
             </div>
-            {basketList.map((item, index) => (
+            {BasketData.length ? (
+              <>
+                          {BasketData.map((item, index) => (
               <li key={index}>
                 <div className="basket_list">
                   <ul className="basket_goods_list">
@@ -175,6 +183,14 @@ const Basket = () => {
             <button onClick={handleGoToPayment} className="basket_box">
               결제
             </button>
+              </>
+            ):(<div className="basket_empty">
+              <div className="basket_empty-img">
+                <img src="/image/cart.png"></img>
+                <span>장바구니에 담은 목록이 없습니다.</span>
+              </div>
+            </div>)}
+
           </div>
         </BasketWrapper>
       ) : (

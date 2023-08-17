@@ -134,12 +134,12 @@ const Payment = () => {
               <div className="img">
                 <img src={selectedItem.pic}></img>
               </div>
-              <div className="title">
+              <div className="item_info">
                 <h1>{selectedItem.name}</h1>
+                <p className="quantity">수량: {selectedItem.quantity}</p>
+                <p className="price">총 금액: {selectedItem.totalPrice}</p>
               </div>
-              <p className="quantity">수량: {selectedItem.quantity}</p>
-              <p className="price">총 금액: {selectedItem.totalPrice}</p>
-              <p>{selectedItem.selectedItem}</p>
+
             </div>
           </div>
 
@@ -195,21 +195,6 @@ const Payment = () => {
               있습니다.
             </p>
             <hr />
-            {/* <h1>포인트</h1>
-            <span className="payment_point_money">포인트 머니</span>
-            <input
-              type="text"
-              className="payment_point_money_box"
-              value={pointMoney}
-              onChange={e => setPointMoney(e.target.value)}
-            />
-            <input
-              type="text"
-              className="payment_point_money_box2"
-              value={pointMoneyBox2}
-              onChange={e => setPointMoneyBox2(e.target.value)}
-            />
-            <button className="payment_all_point">전액사용</button> */}
             <button className="payment_box" onClick={handleToPayment}>
               결제하기
             </button>
