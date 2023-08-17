@@ -8,26 +8,18 @@ import FindID from "../components/FindID";
 import IdResult from "../components/IdResult";
 import DaumPost from "../api/DaumPost";
 import { AccoutWrapper } from "../css/acoount-style";
-import { useState } from "react";
 
 const Account = () => {
-  const [daumPost, setDaumPost] = useState(false);
-  const [fullAddress, setFullAddress] = useState("");
+
   return (
     <AccoutWrapper>
-      {daumPost ? (
-        <DaumPost setFullAddress={setFullAddress} setDaumPost={setDaumPost} />
-      ) : (
-        ""
-      )}
-      {/* <DaumPost /> */}
       <div className="account_inner">
         <Routes>
           <Route path="/" element={<Login />}></Route>
           <Route
             path="/signup"
             element={
-              <SignUp setDaumPost={setDaumPost} fullAddress={fullAddress} />
+              <SignUp />
             }
           ></Route>
           <Route path="/findpassword" element={<FindPassWord />}></Route>

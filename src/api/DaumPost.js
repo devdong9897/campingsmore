@@ -4,19 +4,28 @@ import "../css/DaumPost.css";
 const PopupPostCode = ({
   setFullAddress,
   setDaumPost,
-  setUserAddress,
-  isDaumModal,
-  daumModal,
   daumPost,
   mypageDaum,
   setMypageDaum,
   setFixAddress,
+  daumModal,
+  isDaumModal,
+  setUserAddress,
 }) => {
   // 우편번호 검색 후 주소 클릭 시 실행될 함수, data callback 용\
   const handlePostCode = data => {
     let fullAddress = data.address;
     let extraAddress = "";
-
+    if(daumPost) {
+      setDaumPost(false);
+      setFullAddress(fullAddress);
+    } else if(mypageDaum) {
+      setMypageDaum(false);
+      setFixAddress(fullAddress);
+    } else if(daumModal){
+      isDaumModal(false);
+      setUserAddress(fullAddress);
+    }
     if (data.addressType === "R") {
       if (data.bname !== "") {
         extraAddress += data.bname;
@@ -26,16 +35,6 @@ const PopupPostCode = ({
           extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
       }
       fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
-    }
-    if (daumPost) {
-      setFullAddress(fullAddress);
-      setDaumPost(false);
-    } else if (daumModal) {
-      setUserAddress(fullAddress);
-      isDaumModal(false);
-    } else if (mypageDaum) {
-      setFixAddress(fullAddress);
-      setMypageDaum(false);
     }
     console.log(fullAddress);
     console.log(data);

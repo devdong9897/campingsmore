@@ -4,7 +4,7 @@ import { SignupFetch } from "../api/userFatch";
 import DaumPost from "../api/DaumPost";
 import { useNavigate } from "react-router";
 
-const SignUp = ({ setDaumPost, fullAddress }) => {
+const SignUp = () => {
   const [selectedGender, setSelectedGender] = useState("");
   const [selectedRole, setSelectedRole] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -20,6 +20,10 @@ const SignUp = ({ setDaumPost, fullAddress }) => {
   const [nickname, setNickname] = useState("");
   const [phonenum, setPhonenum] = useState("");
   const [role, setRole] = useState("0");
+
+
+  const [daumPost, setDaumPost] = useState(false);
+  const [fullAddress, setFullAddress] = useState("");
 
   const navigate = useNavigate();
 
@@ -74,6 +78,11 @@ const SignUp = ({ setDaumPost, fullAddress }) => {
 
   return (
     <SignUpForm>
+            {daumPost ? (
+        <DaumPost setFullAddress={setFullAddress} setDaumPost={setDaumPost} daumPost={daumPost} />
+      ) : (
+        ""
+      )}
       <div className="signup_title">회원가입</div>
       <form className="signup_form">
         <div className="select_gender">
@@ -196,10 +205,11 @@ const SignUp = ({ setDaumPost, fullAddress }) => {
                 type="text"
                 placeholder="전화번호를 입력하세요"
                 className="phone_number"
+                maxLength="12"
                 value={phonenum}
                 onChange={e => {
                   const inputText = e.target.value;
-                  if (/^\d*$/.test(inputText) && inputText.length <= 8) {
+                  if (/^\d*$/.test(inputText) && inputText.length <= 12) {
                     setPhonenum(inputText);
                   } else {
                     alert("숫자만 입력해주세요");
