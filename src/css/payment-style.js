@@ -51,13 +51,6 @@ export const PaymentWrapper = styled.div`
         }
       }
       .payment_order_list {
-        /* margin-bottom: 50px;
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        width: 100%;
-        overflow: hidden;
-        border-radius: 15px; */
         width: 100%;
         height: 200px;
         margin-top: 20px;
@@ -66,50 +59,32 @@ export const PaymentWrapper = styled.div`
         border-radius: 15px;
         .information {
           display: flex;
+          gap: 20px;
+          padding: 20px;
           .img {
-            width: 150px;
-            height: 150px;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
+            width: 160px;
+            height: 160px;
             border-radius: 15px;
-            margin-top: 25px;
-            margin-left: 20px;
             img {
               width: 100%;
               height: 100%;
             }
           }
-          .title {
-            position: relative;
-            color: #cd853f;
-            h1 {
-              margin-top: 30px;
-              margin-left: 20px;
-              font-size: 25px;
+          .item_info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            h1{
+              color: #cd853f;
             }
             p {
-              margin-left: 20px;
-              font-size: 15px;
+              font-size: 18px;
             }
             .date {
               margin-top: 55px;
             }
           }
-          .quantity {
-            position: absolute;
-            top: 27%;
-            left: 28%;
-            font-size: 20px;
-            font-weight: 700;
-          }
-          .price {
-            position: absolute;
-            top: 32%;
-            left: 28%;
-            font-size: 20px;
-            font-weight: 700;
-          }
+
         }
         li {
           display: grid;

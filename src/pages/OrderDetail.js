@@ -67,7 +67,7 @@ const OrderDetail = () => {
       price: goodPrice,
       quantity: quantity,
     };
-    console.log("쫌 나오라고!!!!!!", cartItem);
+    console.log("아 쫌!!!!!", cartItem);
   };
 
   const handelbuy = () => {
