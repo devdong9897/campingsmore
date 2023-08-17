@@ -27,8 +27,9 @@ const Community = () => {
 
   const getCommunityData = async () => {
     try {
-      const data = await getCommunityList();
-      setCommunityList(data);
+      const data = await getCommunityList();     
+      // setCommunityList(data);
+      // 게시글 목록
       setComuList(data.list);
       setcomuPage(parseInt(data.maxPage, 10));
     } catch (err) {
@@ -84,18 +85,26 @@ const Community = () => {
     }
   };
 
-  useEffect(() => {
+  // 최초 목록 호출
+  useEffect( () => {
     getCommunityData();
+  }, [])
+
+  // 카테고리 목록 호출
+  useEffect(() => {
+    // getCommunityData();
 
     const fetchData = async () => {
       try {
         let data;
         if (selectedCategory) {
           data = await getCommunityCategoryList(selectedCategory);
-        } else {
-          data = await getCommunityCategoryList();
+          setComuList(data.list);
         }
-        setComuList(data.list);
+        //  else {
+        //   // 유병준 체크 : 고민해 볼 필요성 있음. undefined 출력됨(웹브라우저에서)
+        //   data = await getCommunityCategoryList();
+        // }
       } catch (err) {
         console.log(err);
       }
@@ -125,9 +134,11 @@ const Community = () => {
                   분류
                 </option>
                 <option value="1">공지</option>
-                <option value="2">게시글</option>
-                <option value="3">잡담</option>
+                <option value="2">자유</option>
+                <option value="3">중고거래</option>
                 <option value="4">리뷰</option>
+                <option value="5">잡담</option>
+                <option value="6">공유</option>
               </select>
               <form className="community_input_from" onSubmit={handleSearch}>
                 <input
@@ -168,12 +179,16 @@ const Community = () => {
                           {item.icategory === 1
                             ? "공지"
                             : item.icategory === 2
-                            ? "게시글"
+                            ? "자유"
                             : item.icategory === 3
-                            ? "잡담"
+                            ? "중고거래"
                             : item.icategory === 4
                             ? "리뷰"
-                            : item.icategory === 5}
+                            : item.icategory === 5
+                            ? "잡담"
+                            : item.icategory === 6
+                            ? "공유"
+                            : item.icategory === 7}
                         </p>
                       </span>
                       <span className="list_item_title">{item.title}</span>

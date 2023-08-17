@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { CommunityWriteWrapper } from "../css/community-write-style";
 import { useNavigate } from "react-router-dom";
 import ReactQuill from "react-quill";
-import createPost, { postOnePice } from "../api/communityWriteFetch";
+import createPost, { getIBoard, postOnePice } from "../api/communityWriteFetch";
 import { useRef } from "react";
 import { useEffect } from "react";
 import { useMemo } from "react";
@@ -11,8 +11,8 @@ import DOMPurify from "dompurify";
 const CommunityWrite = () => {
   const [comutitle, setComuTitle] = useState("");
   // const [comuCtnt, setComuCtnt] = useState("");
-  const [content, setContent] = useState("");
-  const [title, setTItle] = useState("");
+
+  const iboardRef = useRef(null);
 
   // ReactQull 태그 reference 저장
   const quillRef = useRef(null);
@@ -25,8 +25,17 @@ const CommunityWrite = () => {
     console.log(value);
   }, [value]);
 
+  // iboard 키값 받아오기
+  const getIBoardCall = async () => {
+    const res = await getIBoard();
+    iboardRef.current = res;
+  }
+  useEffect(() => {
+    getIBoardCall();
+  }, []);
+
   const imageHandler = () => {
-    console.log("이미지 핸들링");
+    // console.log("이미지 핸들링", iboardRef);
     // 1. reactQuill 에디터를 저장한다.
     const editor = quillRef.current.getEditor();
     // console.log("editor : ", editor);
@@ -39,53 +48,23 @@ const CommunityWrite = () => {
     input.click(); // 강제로 클릭을 시켜줌.
     // 4. 이미지 선택시 즉, input 요소에 이미지 처리
     input.addEventListener("change", async () => {
-      console.log("온체인지");
+      // console.log("온체인지");
       const file = input.files[0];
+      // console.log("file : ", file)
       const formData = new FormData();
       // formData.append("키", 값)
       formData.append("pic", file);
       // 백엔드 이미지 서버로 전송을 실행한다.
       try {
-        const result = await postOnePice(1, formData);
+        console.log(formData, iboardRef.current)
+        const result = await postOnePice(iboardRef.current, formData);
         console.log("성공시 백엔드가 보내주는 데이터", result);
-        const IMG_URL = result;
+        const IMG_URL = `http://192.168.0.144:5005/img/${result}`;
         const editor = quillRef.current.getEditor();
-        editor.root.innerHTML = 
-        editor.root.innerHTML + `<img src=${IMG_URL}/></br>`
+        // editor.root.innerHTML = 
+        // editor.root.innerHTML + `<img src=${IMG_URL}/></br>`
         const range = editor.getSelection()
-        editor.insertEmbed(range.index, "image",IMG_URL)
-        // firebase Storage 에 업로드
-        // storage 레퍼런스를 만든다.
-        // ref(스토리지, 폴더명/파일명)
-        // const storageRef = ref(appStorage, `files/${file.name}`);
-        // const uploadTask = uploadBytesResumable(storageRef, file);
-        // uploadTask.on("state_changed", 성공함수, 실패함수, 완료함수);
-        // uploadTask.on(
-        //   "state_changed",
-        //   snapshot => {
-        //     // 업로드 상태(%) 출력
-        //     const progress = Math.round(
-        //       (snapshot.bytesTransferred / snapshot.totalBytes) * 100,
-        //     );
-        //     console.log("업로드 상태", progress);
-        //   },
-        //   err => {
-        //     alert(err);
-        //   },
-        //   () => {
-        //     console.log("업로드 완료");
-        //     // 업로드된 이미지의 URL 을 알아냄
-        //     getDownloadURL(uploadTask.snapshot.ref).then(downloadUrl => {
-        //       console.log(downloadUrl);
-        //       // 에디터에 코드를 삽입한다.
-        //       // <img src=downloadUrl>
-        //       // editor.root.innerHTML = editor.root.innerHTML + `<img src=${downloadUrl} />`
-        //       // 현재 마우스 커서 위치를 알아내서 뒷쪽에 배치한다.
-        //       const range = editor.getSelection();
-        //       editor.insertEmbed(range.index, "image", downloadUrl);
-        //     });
-        //   },
-        // );
+        editor.insertEmbed(range.index, "image", IMG_URL)        
       } catch (err) {
         console.log(err);
       }
@@ -155,27 +134,23 @@ const CommunityWrite = () => {
     [],
   );
 
-  const handleContentChange = value => {
-    setContent(value);
-  };
+ 
   const handleSubmit = async () => {
-    navigate("/main/community")
     try {
       const postData = {
-        iboard: 0,
-        icategory: 0,
-        title: title,
-        ctnt: content,
+        iboard: iboardRef.current,
+        // 유병준 체크 : 카테고리를 선택할 수 있게 해야함.
+        icategory: 1,
+        title: comutitle,
+        ctnt: value,
       };
       await createPost(postData);
-      setContent("");
-      setTItle("");
+      setValue("");
+      setComuTitle("");
+      navigate("/main/community")
     } catch (error) {
       console.error(error.message);
     }
-  };
-  const handleTitleChange = e => {
-    setTItle(e.target.value);
   };
 
   const onClickHandleDel = () =>{
@@ -200,11 +175,12 @@ const CommunityWrite = () => {
           <div style={{ background: "#fff" }}>
             <ReactQuill ref={quillRef} onChange={setValue} modules={modules} />
           </div>
-          <div>
+          {/* <div>
             <div
               dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(value) }}
             />
-          </div>
+          </div> */}
+
 
           {/* <ReactQuill
             theme="snow"

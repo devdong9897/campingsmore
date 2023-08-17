@@ -1,5 +1,12 @@
 import axios from "axios";
 
+// iboard 값 받기
+export const getIBoard = async getIBoardData => {
+  const res = await axios.get(`/api/community/iboard`);
+  console.log("iboard 값 받기 요청 : ", res.data);
+  return res.data;
+};
+
 // 게시글 작성 post 요청
 const createPost = async postData => {
   const res = await axios.post(`/api/community/board`, postData);
@@ -7,6 +14,9 @@ const createPost = async postData => {
   return res.data;
 };
 export default createPost;
+
+// 게시글 작성 취소 delete 요청
+// const deleteBoard = async 
 
 // 이미지 1장 업로드하기
 export const postOnePice = async (_iboard, postData) => {

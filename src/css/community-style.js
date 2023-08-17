@@ -19,7 +19,7 @@ export const CommunityWrapper = styled.div`
       }
       .community_input_area {
         width: 100%;
-        height: auti;
+        height: auto;
         .community_form {
           display: flex;
           justify-content: space-between;

@@ -4,7 +4,7 @@ const path = process.env.PUBLIC_URL;
 
 export const CommunityWriteWrapper = styled.div`
   width: 100%;
-  height: auto;
+  height: 1500px;
   .top_communityWrite_contents {
     width: 100%;
     height: 1000px;
@@ -14,8 +14,7 @@ export const CommunityWriteWrapper = styled.div`
     position: absolute;
     width: 1300px;
     margin: 0 auto;
-    height: 100%;
-    top: 70%;
+    top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
@@ -50,6 +49,7 @@ export const CommunityWriteWrapper = styled.div`
     border: 1px solid #D2B48C;
     border-radius: 10px;
     resize:none;
+
   }
   
   .communityWrite_board_cancel {

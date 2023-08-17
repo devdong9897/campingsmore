@@ -25,15 +25,27 @@ export const CommunityBulletinBoardWrapper = styled.div`
   .community_bulletin_board_topbox {
     width: 100%;
     height:auto;
-    h1{
-      float:left;
+    .board_info {
+    .board_category {
+      border-radius: 15px;
+      }
+      .board_create_info{
+        float:right
+        display: block;
+        background:green;
+        p{
+          float:right;
+        } 
+        p:first-child {
+          margin-left:10px;
+        }
+      }
     }
-    p{
-      display:block;
-      float:right;
-      font-weight:bold;
+    .board_ctnt{
+      width: 100%;
+      border-radius:5px;
+      margin-top:10px;
     }
-    
   }
 
   .community_bulletin_board_title {
@@ -61,15 +73,16 @@ export const CommunityBulletinBoardWrapper = styled.div`
     width: 100%;
     height:200px;
     border-radius: 10px;
-    background-color: white;
- 
+    background-color: gray;
   .community_bulletin_board_comment {
     width: 90%;
     height:180px;
     margin:0 auto;
-    background-color: white;
     position:relative;
     top:20px;
+    textarea{
+      resize:none
+    }
     img {
       width: 50px;
       height:50px;
@@ -89,9 +102,6 @@ export const CommunityBulletinBoardWrapper = styled.div`
       background-color: lightgray;
       text-indent:10px;
       resize:none;
-    }
-    button {
-      
     }
   }
   .community_bulletin_board_resi{

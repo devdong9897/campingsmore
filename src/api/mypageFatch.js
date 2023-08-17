@@ -39,6 +39,28 @@ const getCommunityData = async () => {
   }
 };
 
+// 작성 게시글 삭제
+const updateCommunityData = async (iboard, updatedData) => {
+  try{
+    const res = await axios.put(`/api/community/${iboard}`, updatedData)
+    const result = res.data
+    console.log("게시글 업데이트 요청 성공",result)
+  }catch(err) {
+    console.log("게시글 업데이트 요청 실패",err)
+  }
+}
+
+// 작성 게시글 수정
+const editCommunityData = async (iboard, updatedData) => {
+  try{
+    const res = await axios.put(`/api/community/${iboard}`, updatedData)
+    const result = res.data
+    console.log("게시글 업데이트 요청 성공",result)
+  }catch(err) {
+    console.log("게시글 업데이트 요청 실패",err)
+  }
+}
+
 // 프로필데이터 요청
 const getMyProfileData = async () => {
   try {
@@ -72,17 +94,15 @@ const postMyProfileData = async fixData => {
   }
 };
 
-// 리뷰작성
-const postReview = async dto => {
-  console.log(dto);
+const postReview = async submitdata => {
   try {
-    const res = await axios.post("/api/review", dto, {
+    const res = await axios.post("/api/review", submitdata, {
       headers: {
-        "Content-Type": "multipart/form-data",
+        "Content-Type": "application/json",
       },
     });
-    console.log(res);
-    console.log("리뷰등록 전송완료?", res);
+    const result = res.data;
+    console.log("리뷰등록 전송완료?", result);
   } catch (err) {
     console.log(err);
   }
@@ -95,4 +115,5 @@ export {
   getMyProfileData,
   postMyProfileData,
   postReview,
+  updateCommunityData
 };

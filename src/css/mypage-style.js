@@ -464,6 +464,7 @@ export const WritingWrapper = styled.div`
       border-radius: 15px;
       overflow: hidden;
       background-color: #fff;
+      position:relative;
       box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
       .writing_title {
         font-size: 18px;
@@ -474,6 +475,26 @@ export const WritingWrapper = styled.div`
         width: 100%;
         height: 80%;
         overflow: hidden;
+      }
+      .writing_box {
+        float:right;
+        right:10px;
+        position:absolute;
+      }
+      .writing_del{
+        width:30px;
+        margin-left:10px;
+        border-radius:5px;
+        border:none;
+        background:#999898;
+        color:white;
+      }
+      .writing_edit{
+        width:30px;
+        border-radius:5px;
+        border:none;
+        background:#999898;
+        color:white;
       }
     }
     .write_img {
