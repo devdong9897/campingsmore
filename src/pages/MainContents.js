@@ -9,6 +9,7 @@ import SwiperFade from "../components/SwiperFade";
 import { getOrderListCategory, getbestitem } from "../api/itemFatch";
 import { cookies } from "../api/cookie";
 import { useNavigate } from "react-router-dom";
+import SwiperSlice from "../components/SwiperSlice";
 
 const MainContents = () => {
   const navigate = useNavigate();
@@ -85,6 +86,9 @@ const MainContents = () => {
               <li key={index}>{item.name}</li>
             ))}
           </ul>
+          <div className="select_slide">
+            <SwiperSlice bestitem={bestitem} />
+          </div>
         </div>
       </div>
       <div className="kakao_map_wrap">

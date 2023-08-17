@@ -402,7 +402,7 @@ export const ReviewHistoryWrapper = styled.div`
       }
     }
   }
-  .review_img {
+  .review_empty_img {
     margin-left: 50%;
     margin-top: 15%;
     img {

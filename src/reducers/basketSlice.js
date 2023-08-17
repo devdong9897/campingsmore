@@ -28,6 +28,7 @@ const basketSlice = createSlice({
     },
     // 장바구니 목록 선택 삭제하기
     basketDelete: (state, action) => {
+      state.basketArr.splice(action.payload);
       console.log("장바구니 항목 한개 삭제");
     },
     // 장바구니 목록 전체 목록 삭제하기

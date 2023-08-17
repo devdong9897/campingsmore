@@ -29,7 +29,7 @@ export const MainContentsWrapper = styled.div`
     .main_contents_inner {
       z-index: 300;
       position: absolute;
-      top: 40%;
+      top: 58%;
       left: 50%;
       transform: translate(-50%, -50%);
       width: 1000px;
@@ -89,6 +89,13 @@ export const MainContentsWrapper = styled.div`
           font-size: 17px;
           color: #fff;
         }
+      }
+      .select_slide
+      {
+        margin-top: 200px;
+        width: 100%;
+        height: 300px;
+
       }
     }
   }

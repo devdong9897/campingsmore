@@ -7,9 +7,9 @@ import { useDispatch } from 'react-redux';
 const BasketFromListModal = ({setIsBasketModal ,selcetItem ,sendDataToModal}) => {
   const dispatch = useDispatch();
   const handleBasket = async() => {
-    await postBasket(selcetItem);
+    await postBasket(selcetItem ,sendDataToModal);
     setIsBasketModal(false);
-    dispatch(basketAdd(sendDataToModal))
+    dispatch(basketAdd(sendDataToModal));
     window.location.reload();
   }
 

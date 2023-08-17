@@ -1,5 +1,5 @@
 import axios from "axios";
-import { basketItem } from "../reducers/basketSlice";
+import { basketDelete, basketItem } from "../reducers/basketSlice";
 
 const getBasketList = async dispatch => {
   try {
@@ -36,7 +36,7 @@ const deleteBasketItem = async icart => {
   }
 };
 
-const postBasketCount = async (iitem, quantity) => {
+const postBasketCount = async (iitem, quantity , dispatch) => {
   try {
     const res = await axios.post(`/api/cart`, {
       iitem: iitem,
