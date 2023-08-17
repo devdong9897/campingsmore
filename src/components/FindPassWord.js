@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { FindPassWordForm } from "../css/FindPassWord-style";
 import { useNavigate } from "react-router";
+import { FindPasswordFetch } from "../api/userFatch";
 
 const FindPassWord = () => {
   const navigate = useNavigate();
+  const [id,setId] = useState("");
+  const [name,setName] = useState("");
+  const [email,setemail] = useState("");
 
-  const handletoChangepass = () => {
-    navigate("/passchange");
+  const handletoChangepass = async() => {
+    const FindPw = {
+      id:id,
+      name:name,
+      email:email
+    }
+    try{
+      const data = await FindPasswordFetch(FindPw);
+      // navigate("/passchange");
+    }catch(err){
+      console.log(err);
+    }
   };
   return (
     <FindPassWordForm>
@@ -18,11 +32,11 @@ const FindPassWord = () => {
       </div>
       <form className="password_find_form">
         <span>아이디</span>
-        <input type="text" placeholder="아이디를 입력하세요"></input>
+        <input type="text" placeholder="아이디를 입력하세요" value={id} onChange={e => setId(e.target.value)}></input>
         <span>이름</span>
-        <input type="text" placeholder="이름을 입력하세요"></input>
-        <span>전화번호</span>
-        <input type="number" placeholder="전화번호를 입력하세요"></input>
+        <input type="text" placeholder="이름을 입력하세요" value={name} onChange={e => setName(e.target.value)}></input>
+        <span>이메일</span>
+        <input type="text" placeholder="이메일을 입력하세요" value={email} onChange ={ e => setemail(e.target.value)}></input>
       </form>
       <button className="find_password_comfirm" onClick={handletoChangepass}>
         비밀번호 찾기

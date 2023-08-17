@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const BasketModalWrapper = styled.div`
+export const SignUpModalWrapper = styled.div`
   position: fixed;
   top: 0px;
   left: 0px;
@@ -8,22 +8,31 @@ export const BasketModalWrapper = styled.div`
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   z-index: 9999999;
-  .basket_modal_inner {
+  .Signup_modal_inner {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -80%);
     width: 500px;
-    height: 200px;
+    height: auto;
     background: rgba(210, 180, 140, 0.9);
     border-radius: 35px;
     padding: 20px;
     .warning_text {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
       margin-top: 30px;
       width: 100%;
       height: auto;
-      font-size: 25px;
       text-align: center;
+      color:#fff;
+      .warning_text_text{
+        color:#ffa7a1;
+        text-shadow: 1px 1px 1px black;
+        font-weight: bold;
+        font-size: 20px;
+      }
     }
     .modal_buttons {
       margin-top: 35px;

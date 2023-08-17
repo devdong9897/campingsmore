@@ -61,7 +61,7 @@ const Login = () => {
           <Link to="/findid">아이디 찾기</Link>
         </span>
         <span>
-          <Link to="/passwordresult">비밀번호 찾기</Link>
+          <Link to="/findpassword">비밀번호 찾기</Link>
         </span>
       </div>
       <div className="do_login">

@@ -20,12 +20,20 @@ export const MypageWrapper = styled.div`
         font-weight: bold;
       }
       .profile_img_box {
+        position: relative;
         margin: 0 auto;
         margin-top: 25px;
         width: 150px;
         height: 150px;
         border-radius: 30px;
         background: gainsboro;
+        img{
+          position: absolute;
+          top:50%;
+          left:50%;
+          transform: translate(-50%,-50%);
+          width: 80%;
+        }
       }
       .profile_info {
         margin-top: 15px;
@@ -226,6 +234,21 @@ export const EditWrapper = styled.div`
         background: #f0f0f0;
       }
     }
+  }
+  .withdrawal_account{
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    .withdrawal_btn{
+      width: 80px;
+      height: 35px;
+      border: none;
+      background: #999898;
+      color:#fff;
+      border-radius: 10px;
+    }
+
   }
 `;
 

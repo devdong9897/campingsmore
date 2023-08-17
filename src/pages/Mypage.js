@@ -143,7 +143,9 @@ const Mypage = () => {
       <div className="mypage_inner">
         <div className="my_menu">
           <span className="my_menu_title">마이페이지</span>
-          <div className="profile_img_box"></div>
+          <div className="profile_img_box">
+            <img src="/image/logo3.png"></img>
+          </div>
           <div className="profile_info">
             <span className="profile_name">{userData.name}</span>
             <span className="profile_email">{userData.email}</span>

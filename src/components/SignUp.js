@@ -3,6 +3,7 @@ import { SignUpForm } from "../css/signup-style";
 import { SignupFetch } from "../api/userFatch";
 import DaumPost from "../api/DaumPost";
 import { useNavigate } from "react-router";
+import SignModal from "./modal/SignModal";
 
 const SignUp = () => {
   const [selectedGender, setSelectedGender] = useState("");
@@ -20,10 +21,15 @@ const SignUp = () => {
   const [nickname, setNickname] = useState("");
   const [phonenum, setPhonenum] = useState("");
   const [role, setRole] = useState("0");
+  // 입력한 회원가입 정보
+  const [SignUpData, setSignUpData] = useState({});
 
-
+  // 다음 모달 State
   const [daumPost, setDaumPost] = useState(false);
+  // 다음 모달에서 받은 주소 데이터
   const [fullAddress, setFullAddress] = useState("");
+  // 회원가입 모달 State
+  const [SignupModal, isSignupModal] = useState(false);
 
   const navigate = useNavigate();
 
@@ -70,16 +76,29 @@ const SignUp = () => {
     };
     if (Object.values(newUser).some(value => !value)) {
       alert("모든 필드를 입력하세요");
+      console.log(newUser.birth_date);
     } else {
-      const result = await SignupFetch(newUser);
-      navigate("/");
+      // const result = await SignupFetch(newUser);
+      isSignupModal(true);
+      setSignUpData(newUser);
+      // navigate("/");
     }
   };
 
   return (
     <SignUpForm>
-            {daumPost ? (
-        <DaumPost setFullAddress={setFullAddress} setDaumPost={setDaumPost} daumPost={daumPost} />
+      {SignupModal ? (
+        <SignModal isSignupModal={isSignupModal} SignUpData={SignUpData} />
+      ) : (
+        ""
+      )}
+
+      {daumPost ? (
+        <DaumPost
+          setFullAddress={setFullAddress}
+          setDaumPost={setDaumPost}
+          daumPost={daumPost}
+        />
       ) : (
         ""
       )}
@@ -173,20 +192,21 @@ const SignUp = () => {
             <div className="input_birth">
               <span>생년월일</span>
               <input
-                type="text"
+                type="date"
                 placeholder="생년월일을 입력하세요"
                 className="phone_number"
                 maxLength="8"
                 value={birth}
-                onChange={e => {
-                  const inputText = e.target.value;
-                  if (/^\d*$/.test(inputText) && inputText.length <= 8) {
-                    setBirth(inputText);
-                  } else {
-                    alert("숫자만 입력해주세요");
-                    setBirth("");
-                  }
-                }}
+                onChange = { e => setBirth(e.target.value)}
+                // onChange={e => {
+                //   const inputText = e.target.value;
+                //   if (/^\d*$/.test(inputText) && inputText.length <= 8) {
+                //     setBirth(inputText);
+                //   } else {
+                //     alert("숫자만 입력해주세요");
+                //     setBirth("");
+                //   }
+                // }}
               ></input>
             </div>
             <div className="input_address">

@@ -166,7 +166,7 @@ const EditInformation = ({ isWithdrawal, userData }) => {
               maxLength="8"
               value={fixbirth}
               onChange={e => {
-                const inputText = e.target.value;
+                const inputText = e.target.value; 
                 if (/^\d*$/.test(inputText) && inputText.length <= 8) {
                   setFixBirth(inputText);
                 } else {
@@ -215,7 +215,7 @@ const EditInformation = ({ isWithdrawal, userData }) => {
         </div>
       </div>
       <div className="withdrawal_account">
-        <button onClick={handlewWithDrawal}>회원탈퇴</button>
+        <button onClick={handlewWithDrawal} className="withdrawal_btn">회원탈퇴</button>
       </div>
     </EditWrapper>
   );

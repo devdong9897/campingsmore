@@ -49,6 +49,23 @@ const LogoutFetch = async () => {
   }
 };
 
+const FindPasswordFetch = async (FindPw) => {
+  try{
+    console.log(FindPw);
+    const res = await axios.get(`/api/search/pw?id=${FindPw.name}&name=${FindPw.name}&email=${FindPw.email}`);
+    const result = res.data;
+    console.log("비밀번호 찾기 요청",result);
+    return result;
+  }catch(err){
+    console.log(err);
+  }
+  return [];
+}
+
+
+
+
+
 const AccoutwithdrawalFetch = async userIuser => {
   try {
     const res = await axios.delete("/api/user/delete", {
@@ -69,4 +86,5 @@ export {
   getFindAccount,
   LogoutFetch,
   AccoutwithdrawalFetch,
+  FindPasswordFetch
 };
