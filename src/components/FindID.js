@@ -77,11 +77,16 @@ const FindID = () => {
           value={Fbirth}
           onChange={e => {
             const inputText = e.target.value;
-            if (/^\d*$/.test(inputText) && inputText.length <= 8) {
+            if (/^\d*$/.test(inputText) && inputText.length <= 7) {
+              console.log(inputText.length)
               setFBirth(inputText);
             } else {
-              alert("숫자만 입력해주세요");
-              setFBirth("");
+              const year = inputText.substring(0, 4);
+              const month = inputText.substring(4, 6);
+              const day = inputText.substring(6, 8);
+              const formatted = `${year}-${month}-${day}`;
+              // alert("숫자만 입력해주세요");
+              setFBirth(formatted);
             }
           }}
         ></input>
