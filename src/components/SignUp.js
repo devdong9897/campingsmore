@@ -72,7 +72,7 @@ const SignUp = () => {
       phone: phonenum,
       gender: selectedGender,
       user_address: fullAddress,
-      role: selectedRole,
+      role: "USER",
     };
     if (Object.values(newUser).some(value => !value)) {
       alert("모든 필드를 입력하세요");
@@ -84,6 +84,9 @@ const SignUp = () => {
       // navigate("/");
     }
   };
+  const handleToBack = () => {
+    navigate("/");
+  }
 
   return (
     <SignUpForm>
@@ -240,7 +243,7 @@ const SignUp = () => {
             </div>
           </div>
         </div>
-        <div className="input_role">
+        {/* <div className="input_role">
           <span>사용자 유형</span>
           <div className="role_box">
             <label
@@ -276,13 +279,13 @@ const SignUp = () => {
               />
             </label>
           </div>
-        </div>
+        </div> */}
       </form>
       <div className="confirm_box">
         <button className="signup_confirm" onClick={handleSignup}>
           회원가입
         </button>
-        <button className="back">뒤로가기</button>
+        <button className="back" onClick={handleToBack}>뒤로가기</button>
       </div>
     </SignUpForm>
   );

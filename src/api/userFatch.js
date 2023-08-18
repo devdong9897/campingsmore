@@ -52,7 +52,7 @@ const LogoutFetch = async () => {
 const FindPasswordFetch = async (FindPw) => {
   try{
     console.log(FindPw);
-    const res = await axios.get(`/api/search/pw?id=${FindPw.name}&name=${FindPw.name}&email=${FindPw.email}`);
+    const res = await axios.post(`/api/search/pw?id=${FindPw.name}&name=${FindPw.name}&email=${FindPw.email}`);
     const result = res.data;
     console.log("비밀번호 찾기 요청",result);
     return result;

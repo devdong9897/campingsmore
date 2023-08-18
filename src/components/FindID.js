@@ -22,10 +22,6 @@ const FindID = () => {
   };
 
   // 아이디찾을 결과 값을 받아라
-
-
-
-
   const handleidResult = e => {
     e.preventDefault();
     const FindIdInfo = {
@@ -40,6 +36,10 @@ const FindID = () => {
       navigate("/idresult");
     }
   };
+
+  const handleToBack = () => {
+    navigate("/")
+  }
 
   return (
     <FindidForm>
@@ -58,11 +58,11 @@ const FindID = () => {
         <input
           type="text"
           placeholder="전화번호를 입력하세요"
-          maxLength="8"
+          maxLength="16"
           value={phone}
           onChange={e => {
             const inputText = e.target.value;
-            if (/^\d*$/.test(inputText) && inputText.length <= 8) {
+            if (/^\d*$/.test(inputText) && inputText.length <= 16) {
               setPhone(inputText);
             } else {
               alert("숫자만 입력해주세요");
@@ -90,7 +90,7 @@ const FindID = () => {
         아이디 찾기
       </button>
       <div className="to_back">
-        <button className="to_back_btn">뒤로가기</button>
+        <button className="to_back_btn" onClick={handleToBack}>뒤로가기</button>
       </div>
     </FindidForm>
   );

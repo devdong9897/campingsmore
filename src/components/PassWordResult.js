@@ -15,9 +15,9 @@ const PassWordResult = () => {
       </div>
       <div className="passcom_box">
         <span>
-          회원님의 비밀번호가
+          회원님의 임시 비밀번호가
           <br />
-          성공적으로 변경되었습니다.
+          메일로 전송되었습니다.
         </span>
       </div>
       <div className="to_login">

@@ -47,9 +47,9 @@ export const Logininner = styled.div`
     border-bottom: 1px solid #fff;
     span {
       font-weight: bold;
-      color: #8b4513;
+      color: #fff;
       a {
-        color: #fff;
+        color: #f0ff7d;
       }
     }
   }
@@ -62,7 +62,7 @@ export const Logininner = styled.div`
     color: #fff;
     span {
       a {
-        color: #8b4513;
+        color: #f0ff7d;
       }
     }
   }

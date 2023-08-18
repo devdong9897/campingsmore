@@ -3,9 +3,8 @@ import styled from "@emotion/styled";
 export const Passcomplete = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 525px;
   height: auto;
-  background: rgba(154, 182, 133, 0.7);
   padding: 20px;
   border-radius: 20px;
   overflow: hidden;

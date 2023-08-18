@@ -6,6 +6,7 @@ import { fetchLogin } from "../api/client";
 import { useDispatch } from "react-redux";
 import { getBasketList } from "../api/basketFetch";
 import { getCookie } from "../api/cookie";
+import { useEffect } from "react";
 
 const Login = () => {
   const accessToken = getCookie("accessToken");
@@ -17,7 +18,7 @@ const Login = () => {
 
   const handleLogin = async e => {
     if (id === "" || pass === "") {
-      alert("아이디와 비밀번호를 입력해주세요");
+      alert("아이디와 비밀번호를 입력해주세요!!");
     }
     try {
       e.preventDefault();
@@ -32,6 +33,16 @@ const Login = () => {
       console.log(err);
     }
   };
+
+  const Loginfucntion = () => {
+    if(isLoggedIn){
+      navigate("/main");
+    }
+  }
+
+  useEffect(() => {
+    Loginfucntion();
+  },[])
   return (
     <Logininner>
       <div className="login_logo"></div>
