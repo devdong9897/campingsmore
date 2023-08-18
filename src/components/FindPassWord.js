@@ -17,11 +17,10 @@ const FindPassWord = () => {
     }
     try{
       const data = await FindPasswordFetch(FindPw);
-      // navigate("/passchange");
     }catch(err){
       console.log(err);
     }
-    navigate("/passwordresult")
+    navigate(`/passwordresult?mail=${FindPw.email}`)
 
   };
   const handleToBack = () => {
