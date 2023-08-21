@@ -27,7 +27,6 @@ const Login = () => {
       await getBasketList(dispatch);
       setId("");
       setPass("");
-      navigate("/main");
       window.location.reload();
     } catch (err) {
       console.log(err);

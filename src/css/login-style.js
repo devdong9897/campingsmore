@@ -47,7 +47,7 @@ export const Logininner = styled.div`
     border-bottom: 1px solid #fff;
     span {
       font-weight: bold;
-      color: #fff;
+      color: #8b4513;
       a {
         color: #f0ff7d;
       }

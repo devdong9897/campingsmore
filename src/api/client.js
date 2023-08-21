@@ -53,7 +53,3 @@ export const deleteCookie = () => {
   cookies.remove("accessToken");
   cookies.remove("refreshToken");
 };
-
-// export const fetchLogout = () => {
-//   cookies.remove("token");
-// };
