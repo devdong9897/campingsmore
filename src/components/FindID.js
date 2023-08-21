@@ -10,19 +10,20 @@ const FindID = () => {
   const [phone, setPhone] = useState();
   const [Fbirth, setFBirth] = useState();
   const [FindInfo, setFindInfo] = useState();
+  const [findResult, setFindResult] = useState("");
 
-  // 아이디찾기할 정보를 전달하고
-  const getFindAccountData = async FindIDInfo => {
-    try {
-      const data = getFindAccount(FindIDInfo);
-      setFindInfo(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // // 아이디찾기할 정보를 전달하고
+  // const getFindAccountData = async FindIDInfo => {
+  //   try {
+  //     const data = getFindAccount(FindIDInfo);
+  //     setFindInfo(data);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   // 아이디찾을 결과 값을 받아라
-  const handleidResult = e => {
+  const handleidResult = async e => {
     e.preventDefault();
     const FindIdInfo = {
       name: Fname,
@@ -32,14 +33,20 @@ const FindID = () => {
     if (Object.values(FindIdInfo).some(value => !value)) {
       alert("입력란을 전부 입력하세요");
     } else {
-      getFindAccountData(FindIdInfo);
-      navigate("/idresult");
+      try {
+        const data = await getFindAccount(FindIdInfo);
+        setFindResult(data);
+        console.log(data);
+        navigate(`/idresult?findid=${data}`);
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
 
   const handleToBack = () => {
-    navigate("/")
-  }
+    navigate("/");
+  };
 
   return (
     <FindidForm>
@@ -78,7 +85,7 @@ const FindID = () => {
           onChange={e => {
             const inputText = e.target.value;
             if (/^\d*$/.test(inputText) && inputText.length <= 7) {
-              console.log(inputText.length)
+              console.log(inputText.length);
               setFBirth(inputText);
             } else {
               const year = inputText.substring(0, 4);
@@ -95,7 +102,9 @@ const FindID = () => {
         아이디 찾기
       </button>
       <div className="to_back">
-        <button className="to_back_btn" onClick={handleToBack}>뒤로가기</button>
+        <button className="to_back_btn" onClick={handleToBack}>
+          뒤로가기
+        </button>
       </div>
     </FindidForm>
   );

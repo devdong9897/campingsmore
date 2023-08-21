@@ -17,23 +17,25 @@ const OrderList = () => {
   const accessToken = getCookie("accessToken");
   const [isLoggedIn, setIsLoggedIn] = useState(accessToken ? true : false);
   // 모달창 state
-  const [isBasketModal , setIsBasketModal] = useState(false);
+  const [isBasketModal, setIsBasketModal] = useState(false);
   // 모달에 전달할 데이터
-  const [sendDataToModal ,setSendDataToModal] = useState({});
+  const [sendDataToModal, setSendDataToModal] = useState({});
   // 선택된 아이템 고유번호
-  const [selcetItem , setselcetItem] = useState("");
+  const [selcetItem, setselcetItem] = useState("");
   const navigate = useNavigate();
   const [orderlist, setOrderList] = useState([]);
   const [orderListitem, setOrderListItem] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [orderPage, setOrderPage] = useState("");
   const [cateID, setCateId] = useState("");
-
+  // 현재 활성화된 카테고리 ID
+  const [activeCategory, setActiveCategory] = useState("");
 
   const getOrderListCategory = async () => {
     try {
       const res = await axios.get("/api/item/category");
-      setOrderList(res.data);
+      const allCategory = { iitemCategory: "all", name: "전체" };
+      setOrderList([allCategory, ...res.data]);
       getOrderListSearch("");
     } catch (err) {
       console.log(err);
@@ -98,12 +100,17 @@ const OrderList = () => {
   };
 
   const handleCategoryClick = async categoryId => {
-    getOrderCateSearchData(categoryId);
-    setCateId(categoryId);
+    if (categoryId === "all") {
+      getOrderListSearch("");
+      setCateId("");
+    } else {
+      getOrderCateSearchData(categoryId);
+      setCateId(categoryId);
+    }
+    setActiveCategory(categoryId);
   };
-
   const handleCart = item => {
-    if(isLoggedIn){
+    if (isLoggedIn) {
       setIsBasketModal(true);
       setselcetItem(item.iitem);
       const cartItem = {
@@ -114,8 +121,8 @@ const OrderList = () => {
         quantity: 1,
       };
       setSendDataToModal(cartItem);
-    }else {
-      alert("로그인이 되지않았습니다.");  
+    } else {
+      alert("로그인이 되지않았습니다.");
     }
   };
 
@@ -152,8 +159,14 @@ const OrderList = () => {
   return (
     <OrderListWrapper>
       {isBasketModal ? (
-              <BasketFromListModal setIsBasketModal={setIsBasketModal} selcetItem={selcetItem} sendDataToModal={sendDataToModal}  />
-      ):("")}
+        <BasketFromListModal
+          setIsBasketModal={setIsBasketModal}
+          selcetItem={selcetItem}
+          sendDataToModal={sendDataToModal}
+        />
+      ) : (
+        ""
+      )}
 
       <div className="orderlist_inner">
         <div className="orderlist_search">
@@ -178,6 +191,7 @@ const OrderList = () => {
           {orderlist.map((item, index) => (
             <li
               key={index}
+              className={`${item.iitemCategory === cateID ? "active" : ""}`}
               onClick={() => handleCategoryClick(item.iitemCategory)}
             >
               {item.name}

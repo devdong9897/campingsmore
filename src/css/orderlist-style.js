@@ -76,7 +76,8 @@ export const OrderListWrapper = styled.div`
         font-size: 25px;
         color: #eee;
         cursor: pointer;
-        &:hover {
+        .order_category list.active,
+        .order_category li:hover {
           background: #8b4513;
         }
       }

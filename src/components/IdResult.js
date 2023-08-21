@@ -1,9 +1,13 @@
 import React from "react";
 import { IdResultForm } from "../css/IdResult-style";
 import { useNavigate } from "react-router";
+import { useSearchParams } from "react-router-dom";
 
 const IDResult = () => {
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const idresult = searchParams.get("findid");
+  console.log(idresult);
 
   const handleToLogin = () => {
     navigate("/");
@@ -20,11 +24,9 @@ const IDResult = () => {
       </div>
       <div className="id_result_box">
         <span>
-          회원님의 아이디는
+          회원님의 아이디찾기 결과 입니다.
           <br />
-          {}
-          <br />
-          입니다.
+          <p className="id_result">{idresult}</p>
         </span>
       </div>
       <button className="find_password" onClick={handleToFps}>

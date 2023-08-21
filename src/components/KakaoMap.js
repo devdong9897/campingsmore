@@ -1,7 +1,22 @@
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
+import { kakaoMapDataAdd } from "../reducers/KakaoMapSlice";
+
+const getAllianceMap = async dispatch => {
+  try {
+    const res = await axios.get("/api/dataset/kakao");
+    const result = res.data;
+    console.log("제휴 카카오위치 데이터 요청");
+    dispatch(kakaoMapDataAdd(result));
+    console.log(result);
+  } catch (err) {
+    console.log(err);
+  }
+  return [];
+};
 
 const { kakao } = window;
 
@@ -11,10 +26,12 @@ const KakaoMap = () => {
   const [map, setMap] = useState();
 
   useEffect(() => {
+    getAllianceMap();
     if (!map) return;
     const ps = new kakao.maps.services.Places();
 
-    ps.keywordSearch("이태원 맛집", (data, status, _pagination) => {
+    ps.keywordSearch(" ", (data, status, _pagination) => {
+      console.log("이쪽데이터인가?", data);
       if (status === kakao.maps.services.Status.OK) {
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
         // LatLngBounds 객체에 좌표를 추가합니다
@@ -34,7 +51,7 @@ const KakaoMap = () => {
           bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
         }
         setMarkers(markers);
-
+        console.log("이게뭔디");
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
         map.setBounds(bounds);
       }
@@ -42,6 +59,7 @@ const KakaoMap = () => {
   }, [map]);
 
   const placesSearchCB = (data, status, _pagination) => {
+    console.log("여기임?", data);
     if (status === kakao.maps.services.Status.OK) {
       const bounds = new kakao.maps.LatLngBounds();
       let markers = [];

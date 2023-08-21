@@ -5,7 +5,6 @@ export const IdResultForm = styled.div`
   flex-direction: column;
   width: 525px;
   height: auto;
-  background: rgba(154, 182, 133, 0.7);
   padding: 20px;
   border-radius: 20px;
   overflow: hidden;
@@ -36,6 +35,10 @@ export const IdResultForm = styled.div`
       font-size: 18px;
       text-align: center;
       color: #fff;
+      .id_result {
+        margin-top: 10px;
+        font-size: 25px;
+      }
     }
   }
   .find_password {
