@@ -27,7 +27,7 @@ const MainContents = () => {
   const handleSearch = () => {
     const queryString = encodeURIComponent(search);
     setQusearch(queryString);
-    console.log(queryString);
+    navigate(`/main/orderlist?search=${queryString}`);
     // getOrderSearch(queryString);
   };
 
@@ -52,9 +52,14 @@ const MainContents = () => {
     }
   };
 
-  const handleThisitem = (iitem) => {
-    navigate(`/main/orderdetail?iitem=${iitem}`)
-  }
+  // 카테고리 눌러서 검색결과창 가기
+  const handleCateResult = catecode => {
+    navigate(`/main/orderlist?catecode=${catecode}`);
+  };
+
+  const handleThisitem = iitem => {
+    navigate(`/main/orderdetail?iitem=${iitem}`);
+  };
 
   useEffect(() => {
     getbestitemFetch();
@@ -83,7 +88,12 @@ const MainContents = () => {
           </div>
           <ul className="main_category">
             {orderlist.map((item, index) => (
-              <li key={index}>{item.name}</li>
+              <li
+                key={index}
+                onClick={e => handleCateResult(item.iitemCategory)}
+              >
+                {item.name}
+              </li>
             ))}
           </ul>
           <div className="select_slide">

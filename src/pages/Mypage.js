@@ -33,7 +33,7 @@ const Mypage = () => {
   const userData = useSelector(state => state.user.UserProFileArr);
   // IUSER 값
   const userIuser = useSelector(state => state.user.UserProFileArr.iuser);
-  const [selected, setselected] =useState("");
+  const [selected, setselected] = useState("");
 
   console.log("유저데이터??!?!", userData);
 
@@ -43,6 +43,7 @@ const Mypage = () => {
   const [review, setReview] = useState([]);
   // 게시글 목록 state
   const [comulist, setComuList] = useState([]);
+  const baseUrl = "http://192.168.0.144:5005/img";
 
   const handleMenuChange = index => {
     setselected(true);
@@ -107,20 +108,6 @@ const Mypage = () => {
     }
   };
 
-  // // 프로필데이터 실행
-  // const getMyProfile = async () => {
-  //   try {
-  //     const data = await getMyProfileData();
-  //     setUserProfile(data);
-  //     console.log(data);
-  //     console.log("유저데이터 받았니?", data);
-  //     setProFileName(data.name);
-  //     setProfileEmail(data.email);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-
   const menuComponents = [
     () => <EditInformation isWithdrawal={isWithdrawal} userData={userData} />,
     () => <PurchaseHistory purchase={purchase} />,
@@ -144,7 +131,7 @@ const Mypage = () => {
         <div className="my_menu">
           <span className="my_menu_title">마이페이지</span>
           <div className="profile_img_box">
-            <img src="/image/logo3.png"></img>
+            <img src={baseUrl + userData.pic}></img>
           </div>
           <div className="profile_info">
             <span className="profile_name">{userData.name}</span>

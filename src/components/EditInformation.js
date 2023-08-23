@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AccoutwithdrawalFetch } from "../api/userFatch";
 import DaumPost from "../api/DaumPost";
 import EditConformModal from "./modal/EditConfirmModal";
+import { json } from "react-router";
 
 const EditInformation = ({ isWithdrawal, userData }) => {
   // 디스패치!!
@@ -33,6 +34,7 @@ const EditInformation = ({ isWithdrawal, userData }) => {
   const [fixPhone, setFixPhone] = useState("");
   const [fixAddress, setFixAddress] = useState("");
   const [fixData, setFixData] = useState([]);
+  const [fixImg, setFixImg] = useState("");
 
   const [something, setSomething] = useState(false);
 
@@ -55,16 +57,24 @@ const EditInformation = ({ isWithdrawal, userData }) => {
       user_address: fixAddress !== "" ? fixAddress : userData.user_address,
       user_address_detail: "not yet",
     };
-    if (!editUser.upw) {
-      alert("비밀번호를 확인해주세요");
-    } else {
-      setFixData(editUser);
-      seteditconfirmState(true);
-      console.log(editUser);
-    }
+    // const formData = new FormData();
+    // formData.append("updateUserInfoDto", JSON.stringify(editUser));
+    // formData.append("pic", fixImg);
+    setFixData(editUser);
+    seteditconfirmState(true);
+  };
+
+  // 이미지 업로드하면 이렇게 담김
+  const imageHandler = e => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append("pic", file);
+    console.log("폼데이터가 뭔디", formData);
+    setFixImg(file);
   };
 
   const handlewWithDrawal = () => {
+    // console.log(UserInfo);
     isWithdrawal(true);
   };
 
@@ -75,6 +85,7 @@ const EditInformation = ({ isWithdrawal, userData }) => {
   const handleDaumState = () => {
     setMypageDaum(true);
   };
+
   return (
     <EditWrapper something={something}>
       {mypageDaum ? (
@@ -91,6 +102,7 @@ const EditInformation = ({ isWithdrawal, userData }) => {
           seteditconfirmState={seteditconfirmState}
           fixData={fixData}
           setSomething={setSomething}
+          fixImg={fixImg}
         />
       ) : (
         ""
@@ -166,7 +178,7 @@ const EditInformation = ({ isWithdrawal, userData }) => {
               maxLength="8"
               value={fixbirth}
               onChange={e => {
-                const inputText = e.target.value; 
+                const inputText = e.target.value;
                 if (/^\d*$/.test(inputText) && inputText.length <= 8) {
                   setFixBirth(inputText);
                 } else {
@@ -213,9 +225,17 @@ const EditInformation = ({ isWithdrawal, userData }) => {
             ></input>
           </div>
         </div>
+        <div className="setting_box">
+          <div className="setting">
+            <span className="icon">프로필 이미지</span>
+            <input type="file" onChange={imageHandler}></input>
+          </div>
+        </div>
       </div>
       <div className="withdrawal_account">
-        <button onClick={handlewWithDrawal} className="withdrawal_btn">회원탈퇴</button>
+        <button onClick={handlewWithDrawal} className="withdrawal_btn">
+          회원탈퇴
+        </button>
       </div>
     </EditWrapper>
   );

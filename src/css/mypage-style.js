@@ -27,11 +27,11 @@ export const MypageWrapper = styled.div`
         height: 150px;
         border-radius: 30px;
         background: gainsboro;
-        img{
+        img {
           position: absolute;
-          top:50%;
-          left:50%;
-          transform: translate(-50%,-50%);
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
           width: 80%;
         }
       }
@@ -70,7 +70,7 @@ export const MypageWrapper = styled.div`
     }
     .my_contents {
       width: 75%;
-      height: 100%;
+      height: auto;
       padding: 100px;
     }
   }
@@ -235,26 +235,25 @@ export const EditWrapper = styled.div`
       }
     }
   }
-  .withdrawal_account{
+  .withdrawal_account {
     margin-top: 10px;
     display: flex;
     justify-content: flex-end;
     width: 100%;
-    .withdrawal_btn{
+    .withdrawal_btn {
       width: 80px;
       height: 35px;
       border: none;
       background: #999898;
-      color:#fff;
+      color: #fff;
       border-radius: 10px;
     }
-
   }
 `;
 
 export const PurchaseWrapper = styled.div`
   width: 100%;
-  height: 100%;
+  height: auto;
   h1 {
     margin-bottom: 20px;
   }
@@ -267,9 +266,8 @@ export const PurchaseWrapper = styled.div`
     height: 100%;
     li {
       width: 100%;
-      height: 150px;
+      height: auto;
       border-radius: 15px;
-      background-color: #fff;
       box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
       .inner {
         position: relative;
@@ -464,7 +462,7 @@ export const WritingWrapper = styled.div`
       border-radius: 15px;
       overflow: hidden;
       background-color: #fff;
-      position:relative;
+      position: relative;
       box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
       .writing_title {
         font-size: 18px;
@@ -477,24 +475,24 @@ export const WritingWrapper = styled.div`
         overflow: hidden;
       }
       .writing_box {
-        float:right;
-        right:10px;
-        position:absolute;
+        float: right;
+        right: 10px;
+        position: absolute;
       }
-      .writing_del{
-        width:30px;
-        margin-left:10px;
-        border-radius:5px;
-        border:none;
-        background:#999898;
-        color:white;
+      .writing_del {
+        width: 30px;
+        margin-left: 10px;
+        border-radius: 5px;
+        border: none;
+        background: #999898;
+        color: white;
       }
-      .writing_edit{
-        width:30px;
-        border-radius:5px;
-        border:none;
-        background:#999898;
-        color:white;
+      .writing_edit {
+        width: 30px;
+        border-radius: 5px;
+        border: none;
+        background: #999898;
+        color: white;
       }
     }
     .write_img {

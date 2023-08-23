@@ -11,7 +11,7 @@ export const MainContentsWrapper = styled.div`
     flex-direction: column;
     position: relative;
     width: 100%;
-    height: 100vh;
+    height: 980px;
     background: #000;
     .slide_area {
       position: absolute;
@@ -88,14 +88,13 @@ export const MainContentsWrapper = styled.div`
           background: #d2b48c;
           font-size: 17px;
           color: #fff;
+          cursor: pointer;
         }
       }
-      .select_slide
-      {
+      .select_slide {
         margin-top: 200px;
         width: 100%;
         height: 300px;
-
       }
     }
   }

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { deleteBasketItem } from "../api/basketFetch";
+import { deleteBasketItem, postBasketPay } from "../api/basketFetch";
 import BasketModal from "../components/modal/BasketModal";
 import { BasketWrapper } from "../css/basket-style";
+import { basketpayData } from "../reducers/basketPaySlice";
 
 const Basket = () => {
   const navigate = useNavigate();
@@ -16,6 +17,8 @@ const Basket = () => {
   const [basketQuantity, setBasketQuantity] = useState(null);
   const [modal, isModal] = useState(false);
   const [cartCount, setCartCount] = useState("");
+  // 포스트해서 돌려 받은 데이터 받는 stae
+  const [payBasketResult, setPayBasketResult] = useState([]);
 
   const getBasketData = async () => {
     try {
@@ -87,8 +90,27 @@ const Basket = () => {
     return item.quantity * item.price;
   };
 
+  const basketPay = async basketData => {
+    const basketTrue = 1;
+    try {
+      const data = await postBasketPay(basketData);
+      console.log("데이터받앗니", data);
+      setPayBasketResult(data);
+      dispatch(basketpayData(data));
+      navigate(`/main/payment?basket=${basketTrue}`);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // 결제하기 버튼이다 이말이에요
   const handleGoToPayment = () => {
-    navigate("/main/payment");
+    const basketIcart = BasketData.map(item => item.icart);
+    console.log(basketIcart);
+    const basketData = {
+      icart: BasketData.map(item => item.icart),
+    };
+    basketPay(basketData);
   };
 
   return (
@@ -127,56 +149,58 @@ const Basket = () => {
             </div>
             {BasketData.length ? (
               <>
-              {basketList.map((item, index) => (
-              <li key={index}>
-                <div className="basket_list">
-                  <ul className="basket_goods_list">
-                    <li>
-                      <div className="basket_choice_box">
-                        <input
-                          type="checkbox"
-                          checked={item.selected}
-                          onChange={() => handleSelectItem(index)}
-                        />
-                      </div>
-                      <div className="basket_product_img">
-                        {/* <img src="#" alt="" />{item.pic} */}
-                        <img src={item.pic} alt="" />
-                      </div>
-                      <div>
-                        {/* <p>{item.name}허니 머시기 후라이드 치킨</p> */}
-                        <p>{item.name}</p>
-                      </div>
-                      <div>
-                        <button onClick={() => onHandleClickMinus(index)}>
-                          -
-                        </button>
-                        {/* <button>-</button> */}
-                        {/* <span>{item.quantity}1</span> */}
-                        <span>{item.quantity}</span>
-                        {/* <span>{count}</span> */}
-                        <button onClick={() => onHandleClickPlus(index)}>
-                          +
-                        </button>
-                        {/* <button>+</button> */}
-                      </div>
-                      {/* <div>{item.price}10000원</div> */}
-                      <div>{calculateItemTotal(item)}</div>
-                      {/* <div>{item.price}</div> */}
-                      <div>
-                        <button onClick={() => handleRemoveItem(item.icart)}>
-                          x
-                        </button>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-            ))}
-            <button className="basket_del_box">선택 삭제</button>
-            <button onClick={handleGoToPayment} className="basket_box">
-              결제
-            </button>
+                {basketList.map((item, index) => (
+                  <li key={index}>
+                    <div className="basket_list">
+                      <ul className="basket_goods_list">
+                        <li>
+                          <div className="basket_choice_box">
+                            <input
+                              type="checkbox"
+                              checked={item.selected}
+                              onChange={() => handleSelectItem(index)}
+                            />
+                          </div>
+                          <div className="basket_product_img">
+                            {/* <img src="#" alt="" />{item.pic} */}
+                            <img src={item.pic} alt="" />
+                          </div>
+                          <div>
+                            {/* <p>{item.name}허니 머시기 후라이드 치킨</p> */}
+                            <p>{item.name}</p>
+                          </div>
+                          <div>
+                            <button onClick={() => onHandleClickMinus(index)}>
+                              -
+                            </button>
+                            {/* <button>-</button> */}
+                            {/* <span>{item.quantity}1</span> */}
+                            <span>{item.quantity}</span>
+                            {/* <span>{count}</span> */}
+                            <button onClick={() => onHandleClickPlus(index)}>
+                              +
+                            </button>
+                            {/* <button>+</button> */}
+                          </div>
+                          {/* <div>{item.price}10000원</div> */}
+                          <div>{calculateItemTotal(item)}</div>
+                          {/* <div>{item.price}</div> */}
+                          <div>
+                            <button
+                              onClick={() => handleRemoveItem(item.icart)}
+                            >
+                              x
+                            </button>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                ))}
+                <button className="basket_del_box">선택 삭제</button>
+                <button onClick={handleGoToPayment} className="basket_box">
+                  결제하기
+                </button>
               </>
             ) : (
               <>
@@ -188,7 +212,6 @@ const Basket = () => {
                 </div>
               </>
             )}
-            
           </div>
         </BasketWrapper>
       ) : (

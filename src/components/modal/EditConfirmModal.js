@@ -2,11 +2,25 @@ import React from "react";
 import { EditconfirmWrapper } from "../../css/EditconfirmModal-style";
 import { postMyProfileData } from "../../api/mypageFatch";
 
-const EditConfirmModal = ({ seteditconfirmState, fixData, setSomething }) => {
-  const editconfirm = () => {
+const EditConfirmModal = ({
+  seteditconfirmState,
+  fixData,
+  fixImg,
+  setSomething,
+}) => {
+  const editconfirm = async () => {
     setSomething(false);
     seteditconfirmState(false);
-    postMyProfileData(fixData);
+    try {
+      const formData = new FormData();
+      formData.append("updateUserInfoDto", JSON.stringify(fixData));
+      formData.append("pic", fixImg);
+      const result = await postMyProfileData(formData);
+      console.log("성공시 백앤드 보여주는 데이터", result);
+    } catch (err) {
+      console.log(err);
+    }
+
     window.location.reload();
   };
   const editconfirmCancel = () => {

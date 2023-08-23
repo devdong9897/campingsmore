@@ -17,7 +17,7 @@ const CommunityWrite = () => {
   // ReactQull 태그 reference 저장
   const quillRef = useRef(null);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   // Editor 에 담겨진 내용을 출력 state
   const [value, setValue] = useState();
@@ -29,7 +29,7 @@ const CommunityWrite = () => {
   const getIBoardCall = async () => {
     const res = await getIBoard();
     iboardRef.current = res;
-  }
+  };
   useEffect(() => {
     getIBoardCall();
   }, []);
@@ -54,17 +54,18 @@ const CommunityWrite = () => {
       const formData = new FormData();
       // formData.append("키", 값)
       formData.append("pic", file);
+      console.log("폼데이터가 뭔데예", formData);
       // 백엔드 이미지 서버로 전송을 실행한다.
       try {
-        console.log(formData, iboardRef.current)
+        console.log(formData, iboardRef.current);
         const result = await postOnePice(iboardRef.current, formData);
         console.log("성공시 백엔드가 보내주는 데이터", result);
         const IMG_URL = `http://192.168.0.144:5005/img/${result}`;
         const editor = quillRef.current.getEditor();
-        // editor.root.innerHTML = 
+        // editor.root.innerHTML =
         // editor.root.innerHTML + `<img src=${IMG_URL}/></br>`
-        const range = editor.getSelection()
-        editor.insertEmbed(range.index, "image", IMG_URL)        
+        const range = editor.getSelection();
+        editor.insertEmbed(range.index, "image", IMG_URL);
       } catch (err) {
         console.log(err);
       }
@@ -134,7 +135,6 @@ const CommunityWrite = () => {
     [],
   );
 
- 
   const handleSubmit = async () => {
     try {
       const postData = {
@@ -147,15 +147,15 @@ const CommunityWrite = () => {
       await createPost(postData);
       setValue("");
       setComuTitle("");
-      navigate("/main/community")
+      navigate("/main/community");
     } catch (error) {
       console.error(error.message);
     }
   };
 
-  const onClickHandleDel = () =>{
-    navigate("/main/community")
-  }
+  const onClickHandleDel = () => {
+    navigate("/main/community");
+  };
 
   return (
     <CommunityWriteWrapper>
@@ -181,7 +181,6 @@ const CommunityWrite = () => {
             />
           </div> */}
 
-
           {/* <ReactQuill
             theme="snow"
             value={content}
@@ -206,7 +205,12 @@ const CommunityWrite = () => {
             placeholder="내용을 입력해 주세요"
             onChange={e => setComuCtnt(e.target.value)}
           ></textarea> */}
-          <button onClick={onClickHandleDel} className="communityWrite_board_del">취소</button>
+          <button
+            onClick={onClickHandleDel}
+            className="communityWrite_board_del"
+          >
+            취소
+          </button>
           <button
             className="communityWrite_board_regi"
             onClick={handleSubmit}

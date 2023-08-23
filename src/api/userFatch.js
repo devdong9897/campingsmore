@@ -63,11 +63,7 @@ const FindPasswordFetch = async FindPw => {
 
 const AccoutwithdrawalFetch = async userIuser => {
   try {
-    const res = await axios.delete("/api/user/delete", {
-      data: {
-        iuser: userIuser,
-      },
-    });
+    const res = await axios.delete(`/api/user/delete?iuser=${userIuser}`);
     const result = res.data;
     console.log("회원탈퇴요청", result);
   } catch (err) {

@@ -4,51 +4,59 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
 import { kakaoMapDataAdd } from "../reducers/KakaoMapSlice";
-
-const getAllianceMap = async dispatch => {
-  try {
-    const res = await axios.get("/api/dataset/kakao");
-    const result = res.data;
-    console.log("제휴 카카오위치 데이터 요청");
-    dispatch(kakaoMapDataAdd(result));
-    console.log(result);
-  } catch (err) {
-    console.log(err);
-  }
-  return [];
-};
+import { useDispatch, useSelector } from "react-redux";
 
 const { kakao } = window;
 
 const KakaoMap = () => {
+  const dispatch = useDispatch();
   const [info, setInfo] = useState();
   const [markers, setMarkers] = useState([]);
   const [map, setMap] = useState();
+  const [MapallianceData, setMapallianceData] = useState([]);
+  const allianceData = useSelector(state => state.KakaoMap.kakaoMapData);
 
+  const getAllianceMap = async () => {
+    try {
+      const res = await axios.get("/api/dataset/kakao");
+      const result = res.data;
+      console.log("제휴 카카오위치 데이터 요청", result);
+      setMapallianceData(result);
+      dispatch(kakaoMapDataAdd(result));
+      console.log(result);
+    } catch (err) {
+      console.log(err);
+    }
+    return [];
+  };
+
+  console.log("아 힘들다", allianceData);
   useEffect(() => {
     getAllianceMap();
     if (!map) return;
     const ps = new kakao.maps.services.Places();
 
-    ps.keywordSearch(" ", (data, status, _pagination) => {
-      console.log("이쪽데이터인가?", data);
+    ps.keywordSearch("뭐고", (allianceData, status, _pagination) => {
+      console.log("이쪽데이터인가?", allianceData);
       if (status === kakao.maps.services.Status.OK) {
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
         // LatLngBounds 객체에 좌표를 추가합니다
         const bounds = new kakao.maps.LatLngBounds();
         let markers = [];
 
-        for (var i = 0; i < data.length; i++) {
+        for (var i = 0; i < allianceData.length; i++) {
           // @ts-ignore
           markers.push({
             position: {
-              lat: data[i].y,
-              lng: data[i].x,
+              lat: allianceData[i].y,
+              lng: allianceData[i].x,
             },
-            content: data[i].place_name,
+            content: allianceData[i].place_name,
           });
           // @ts-ignore
-          bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
+          bounds.extend(
+            new kakao.maps.LatLng(allianceData[i].y, allianceData[i].x),
+          );
         }
         setMarkers(markers);
         console.log("이게뭔디");
@@ -58,21 +66,23 @@ const KakaoMap = () => {
     });
   }, [map]);
 
-  const placesSearchCB = (data, status, _pagination) => {
-    console.log("여기임?", data);
+  const placesSearchCB = (allianceData, status, _pagination) => {
+    console.log("여기임?", allianceData);
     if (status === kakao.maps.services.Status.OK) {
       const bounds = new kakao.maps.LatLngBounds();
       let markers = [];
 
-      for (var i = 0; i < data.length; i++) {
+      for (var i = 0; i < allianceData.length; i++) {
         markers.push({
           position: {
-            lat: data[i].y,
-            lng: data[i].x,
+            lat: allianceData[i].y,
+            lng: allianceData[i].x,
           },
-          content: data[i].place_name,
+          content: allianceData[i].place_name,
         });
-        bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
+        bounds.extend(
+          new kakao.maps.LatLng(allianceData[i].y, allianceData[i].x),
+        );
       }
       setMarkers(markers);
       map.setBounds(bounds);

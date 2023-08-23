@@ -26,6 +26,18 @@ const postBasket = async iitem => {
   }
 };
 
+// 장바구니 아이템 결제 올리기(체크같은거 없다 뺸다)
+const postBasketPay = async basketData => {
+  try {
+    const res = await axios.post("/api/payment/order/cart", basketData);
+    const result = res.data;
+    console.log("장바구니 데이터 결제 포스트 완료!", result);
+    return result;
+  } catch (err) {
+    console.log(err);
+  }
+  return [];
+};
 
 const deleteBasketItem = async icart => {
   try {
@@ -36,7 +48,7 @@ const deleteBasketItem = async icart => {
   }
 };
 
-const postBasketCount = async (iitem, quantity , dispatch) => {
+const postBasketCount = async (iitem, quantity, dispatch) => {
   try {
     const res = await axios.post(`/api/cart`, {
       iitem: iitem,
@@ -49,5 +61,10 @@ const postBasketCount = async (iitem, quantity , dispatch) => {
   }
 };
 
-
-export { getBasketList, postBasket, deleteBasketItem ,postBasketCount };
+export {
+  getBasketList,
+  postBasket,
+  deleteBasketItem,
+  postBasketCount,
+  postBasketPay,
+};

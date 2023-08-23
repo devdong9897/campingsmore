@@ -1,6 +1,6 @@
 import React from "react";
 import { WithdrawalWrapper } from "../../css/WithdrawalModal-style";
-import { AccoutwithdrawalFetch, LogoutFetch } from "../../api/userFatch";
+import { AccoutwithdrawalFetch } from "../../api/userFatch";
 import { useNavigate } from "react-router";
 import { deleteCookie } from "../../api/client";
 import { basketItemEmpty } from "../../reducers/basketSlice";
@@ -14,15 +14,16 @@ const WithdrawalModal = ({ userIuser, isWithdrawal }) => {
     isWithdrawal(false);
   };
   const WithdrawalDO = () => {
+    console.log(userIuser);
     AccoutwithdrawalFetch(userIuser);
     deleteCookie();
     const LogoutEmpty = [];
     const basketEmpty = [];
     dispatch(UserLogout(LogoutEmpty));
     dispatch(basketItemEmpty(basketEmpty));
-    LogoutFetch();
+    // LogoutFetch();
     navigate("/");
-    window.location.reload();
+    // window.location.reload();
   };
   return (
     <WithdrawalWrapper>

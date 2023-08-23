@@ -51,92 +51,51 @@ export const PaymentWrapper = styled.div`
         }
       }
       .payment_order_list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
         width: 100%;
-        height: 200px;
+        height: auto;
         margin-top: 20px;
         margin-bottom: 50px;
         border: 1px solid #cd853f;
         border-radius: 15px;
-        .information {
-          display: flex;
-          gap: 20px;
-          padding: 20px;
-          .img {
-            width: 160px;
-            height: 160px;
-            border-radius: 15px;
-            img {
-              width: 100%;
-              height: 100%;
-            }
-          }
-          .item_info {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            h1{
-              color: #cd853f;
-            }
-            p {
-              font-size: 18px;
-            }
-            .date {
-              margin-top: 55px;
-            }
-          }
-
-        }
+        padding: 20px;
         li {
-          display: grid;
-          grid-template-columns: 150px 2fr 1fr 1fr 1fr 0.5fr;
           width: 100%;
-          height: 180px;
-          background: #f2f2f2;
-          padding: 20px 20px;
-          .product_img {
-            position: relative;
-            height: 100%;
-            border-radius: 15px;
-            overflow: hidden;
-            img {
-              position: absolute;
-              top: 50%;
-              left: 50%;
-              transform: translate(-50%, -50%);
+          height: 200px;
+          border-bottom: 1px solid #b5b5b5;
+          .information {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            .img {
+              width: 160px;
+              height: 160px;
               border-radius: 15px;
-              height: 100%;
+              img {
+                width: 100%;
+                height: 100%;
+                border-radius: 10px;
+              }
             }
-          }
-          .payment_moreinfo {
-            justify-content: space-between;
-            text-align: left;
-            padding-left: 20px;
-            .item_title {
+            .item_info {
+              display: flex;
+              flex-direction: column;
+              gap: 10px;
+              h1 {
+                color: #cd853f;
+              }
               p {
-                font-weight: bold;
-                font-size: 21px;
-                &:last-child {
-                  font-weight: 400;
-                  color: #6d6d6d;
-                }
+                font-size: 18px;
+              }
+              .date {
+                margin-top: 55px;
               }
             }
           }
-          .payment_cancel {
-            button {
-              background: #696969;
-              height: 35px;
-              color: #fff;
-              border-radius: 10px;
-              overflow: hidden;
-              border: none;
-              cursor: pointer;
-              width: 120px;
-              margin: 0 auto;
-            }
-            button:hover {
-              background: #cd853f;
-            }
+          &:last-child {
+            border: none;
           }
         }
       }

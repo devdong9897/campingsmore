@@ -9,13 +9,23 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { postBasket } from "../api/basketFetch";
 import { getCookie } from "../api/cookie";
-import { getOrderCateSearch, getOrderListPage } from "../api/itemFatch";
+import {
+  getDefaultOrderList,
+  getOrderCateSearch,
+  getOrderListPage,
+  getOrderSearch,
+} from "../api/itemFatch";
 import { OrderListWrapper } from "../css/orderlist-style";
 import BasketFromListModal from "../components/modal/BasketFromListModal";
+import { useSearchParams } from "react-router-dom";
 
 const OrderList = () => {
   const accessToken = getCookie("accessToken");
   const [isLoggedIn, setIsLoggedIn] = useState(accessToken ? true : false);
+
+  // 메인 -> 파람즈
+  const [searchParams, setSearchParams] = useSearchParams();
+
   // 모달창 state
   const [isBasketModal, setIsBasketModal] = useState(false);
   // 모달에 전달할 데이터
@@ -24,39 +34,96 @@ const OrderList = () => {
   const [selcetItem, setselcetItem] = useState("");
   const navigate = useNavigate();
   const [orderlist, setOrderList] = useState([]);
+  // 카테고리만 불러오자
   const [orderListitem, setOrderListItem] = useState([]);
+  // 검색state
   const [searchText, setSearchText] = useState("");
   const [orderPage, setOrderPage] = useState("");
   const [cateID, setCateId] = useState("");
+
   // 현재 활성화된 카테고리 ID
   const [activeCategory, setActiveCategory] = useState("");
 
+  // 그냥 장너보기 눌렀을때 나오는것
+  const getOrderList = async () => {
+    try {
+      const res = await getDefaultOrderList();
+      setOrderList(res.itemList);
+      console.log("그냥 장터보기 눌럿을때 나오는거!", res.itemList);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // 카테고리만 불러옵시다.
   const getOrderListCategory = async () => {
     try {
       const res = await axios.get("/api/item/category");
       const allCategory = { iitemCategory: "all", name: "전체" };
-      setOrderList([allCategory, ...res.data]);
-      getOrderListSearch("");
+      setOrderListItem([allCategory, ...res.data]);
+      // setOrderListItem([allCategory, ...res.data]);
+      // console.log("이게 그거냐?", res.data);
+      // setOrderListItem(res.data);
     } catch (err) {
       console.log(err);
     }
   };
 
-  // 검색 하는거고
-  const getOrderListSearch = async text => {
+  // 메인에서 검색하고 들어올떄
+  const getFromMainSearch = async () => {
+    const search = searchParams.get("search");
     try {
-      const res = await axios.get(`/api/item/search?text=${text}`);
-      setOrderListItem(res.data.itemList);
+      const res = await axios.get(`/api/item/search?text=${search}`);
+      setOrderList(res.data.itemList);
       setOrderPage(parseInt(res.data.maxPage, 10));
+      console.log("메인에서 검색하고 들어올때다", search);
     } catch (err) {
       console.log(err);
     }
   };
 
+  // 메인에서 카테고리 클릭하고 들어올떄
+  const getFromMainCate = async () => {
+    const catecode = searchParams.get("catecode");
+    try {
+      const data = await getOrderCateSearch(catecode);
+      setOrderList(data.itemList);
+      setOrderPage(data.maxPage);
+      console.log(data.maxPage);
+      console.log("메인에서 카테고리 눌럿을때 나오는 데이터", data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // 검색을 했을때 불러오기!
+  const getOrderSearchData = async searchText => {
+    try {
+      const data = await getOrderSearch(searchText);
+      console.log("검색한결과닷!", data);
+      setOrderList(data.itemList);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // 카테고리 눌럿을때 나오는것
+  const getOrderCateSearchData = async categoryId => {
+    try {
+      const data = await getOrderCateSearch(categoryId);
+      setOrderList(data.itemList);
+      setOrderPage(data.maxPage);
+      console.log(data.maxPage);
+      console.log("카테고리 눌럿을때 나오는 데이터", data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  // 페이지네이션
   const pagenation = Array.from({ length: orderPage }, (_, index) => index);
 
   const handleSearch = () => {
-    getOrderListSearch(searchText);
+    getOrderSearchData(searchText);
   };
 
   const handleSort = sortType => {
@@ -87,28 +154,18 @@ const OrderList = () => {
     setOrderListItem(sortedItems);
   };
 
-  const getOrderCateSearchData = async categoryId => {
-    try {
-      const data = await getOrderCateSearch(categoryId);
-      setOrderListItem(data.itemList);
-      setOrderPage(data.maxPage);
-      console.log(data.maxPage);
-      console.log("카테고리 눌럿을때 나오는 데이터", data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const handleCategoryClick = async categoryId => {
+  // 카테고리 클릭
+  const handleCategoryClick = async (categoryId, name) => {
+    console.log("클릭한것 이름", name);
     if (categoryId === "all") {
-      getOrderListSearch("");
-      setCateId("");
+      getOrderList();
     } else {
       getOrderCateSearchData(categoryId);
       setCateId(categoryId);
     }
-    setActiveCategory(categoryId);
+    setActiveCategory(name);
   };
+
   const handleCart = item => {
     if (isLoggedIn) {
       setIsBasketModal(true);
@@ -135,7 +192,7 @@ const OrderList = () => {
     console.log(index, cateID);
     try {
       const data = await getOrderListPage(index, cateID);
-      setOrderListItem(data.itemList);
+      setOrderList(data.itemList);
       console.log("페이지네이션", data);
     } catch (err) {
       console.log(err);
@@ -153,7 +210,25 @@ const OrderList = () => {
   };
 
   useEffect(() => {
+    const search = searchParams.get("search");
+    const catecode = searchParams.get("catecode");
+    if (search) {
+      getFromMainSearch();
+    } else if (catecode) {
+      getFromMainCate();
+    } else if (catecode === null && search === null) {
+      getOrderList();
+    }
     getOrderListCategory();
+    // getOrderListCategory();
+    // if (search) {
+    //
+    // } else if (catecode) {
+    //
+    // } else {
+    //   getOrderListCategory();
+    //   getOrderList();
+    // }
   }, []);
 
   return (
@@ -188,18 +263,18 @@ const OrderList = () => {
           <button onClick={() => handleSort("LowPrice")}>낮은가격순</button>
         </div>
         <ul className="order_category">
-          {orderlist.map((item, index) => (
+          {orderListitem.map((item, index) => (
             <li
               key={index}
-              className={`${item.iitemCategory === cateID ? "active" : ""}`}
-              onClick={() => handleCategoryClick(item.iitemCategory)}
+              className={`${item.name === activeCategory ? "active" : ""}`}
+              onClick={() => handleCategoryClick(item.iitemCategory, item.name)}
             >
               {item.name}
             </li>
           ))}
         </ul>
         <ul className="order_item_list">
-          {orderListitem.map((item, index) => (
+          {orderlist.map((item, index) => (
             <li key={index}>
               <div className="img">
                 <img src={item.pic} alt="" />

@@ -2,14 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = { basketpayArr: [] };
 const BasketPaySlice = createSlice({
-  name: "BasketPay",
+  name: "BasketPaySlice",
   initialState,
   reducers: {
-    basketpay: (state, action) => {
+    basketpayData: (state, action) => {
       state.basketpayArr = action.payload;
     },
   },
 });
 
 export default BasketPaySlice;
-export const { basketpay } = BasketPaySlice.actions;
+export const { basketpayData } = BasketPaySlice.actions;

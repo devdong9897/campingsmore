@@ -27,10 +27,8 @@ const getbestitem = async () => {
   return [];
 };
 
-export { getOrderListCategory };
-
 // 아이템 검색리스트 get
-const getOrderListSearch = async () => {
+const getDefaultOrderList = async () => {
   try {
     const res = await axios.get("/api/item/search");
     const result = res.data;
@@ -70,6 +68,19 @@ const getOrderListPage = async (index, cataID) => {
   }
 };
 
+// 검색할떄 나오는 엑시오스
+const getOrderSearch = async searchText => {
+  try {
+    const res = await axios.get(`/api/item/search?text=${searchText}`);
+    const result = res.data;
+    console.log("getOrderSearch요청완료", result);
+    return result;
+  } catch (err) {
+    console.log(err);
+  }
+  return [];
+};
+
 const getOrderCateSearch = async cateID => {
   try {
     const res = await axios.get(
@@ -85,9 +96,11 @@ const getOrderCateSearch = async cateID => {
 };
 
 export {
+  getOrderSearch,
+  getOrderListCategory,
+  getDefaultOrderList,
   getOrderCateSearch,
   getOrderDetailPage,
   getOrderListPage,
-  getOrderListSearch,
   getbestitem,
 };

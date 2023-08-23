@@ -41,25 +41,25 @@ const getCommunityData = async () => {
 
 // 작성 게시글 삭제
 const updateCommunityData = async (iboard, updatedData) => {
-  try{
-    const res = await axios.put(`/api/community/${iboard}`, updatedData)
-    const result = res.data
-    console.log("게시글 업데이트 요청 성공",result)
-  }catch(err) {
-    console.log("게시글 업데이트 요청 실패",err)
+  try {
+    const res = await axios.put(`/api/community/${iboard}`, updatedData);
+    const result = res.data;
+    console.log("게시글 업데이트 요청 성공", result);
+  } catch (err) {
+    console.log("게시글 업데이트 요청 실패", err);
   }
-}
+};
 
 // 작성 게시글 수정
 const editCommunityData = async (iboard, updatedData) => {
-  try{
-    const res = await axios.put(`/api/community/${iboard}`, updatedData)
-    const result = res.data
-    console.log("게시글 업데이트 요청 성공",result)
-  }catch(err) {
-    console.log("게시글 업데이트 요청 실패",err)
+  try {
+    const res = await axios.put(`/api/community/${iboard}`, updatedData);
+    const result = res.data;
+    console.log("게시글 업데이트 요청 성공", result);
+  } catch (err) {
+    console.log("게시글 업데이트 요청 실패", err);
   }
-}
+};
 
 // 프로필데이터 요청
 const getMyProfileData = async () => {
@@ -75,18 +75,9 @@ const getMyProfileData = async () => {
 };
 
 // 프로필데이터 수정하기 전송
-const postMyProfileData = async fixData => {
+const postMyProfileData = async formData => {
   try {
-    const res = await axios.post("/api/user/update-profile", {
-      uid: fixData.uid,
-      upw: fixData.upw,
-      email: fixData.email,
-      name: fixData.name,
-      birth_date: fixData.birth_date,
-      phone: fixData.phone,
-      user_address: fixData.user_address,
-      user_address_detail: "not_yet",
-    });
+    const res = await axios.post("/api/user/update-profile", formData);
     const result = res.data;
     console.log("postMyProfileData 전송완료", result);
   } catch (err) {
@@ -115,5 +106,5 @@ export {
   getMyProfileData,
   postMyProfileData,
   postReview,
-  updateCommunityData
+  updateCommunityData,
 };
