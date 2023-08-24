@@ -159,9 +159,6 @@ const CommunityWrite = () => {
 
   return (
     <CommunityWriteWrapper>
-      {/* <div dangerouslySetInnerHTML={{ __html: value }} /> */}
-      {/* <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(value) }} /> */}
-
       <div className="top_communityWrite_contents">
         <div className="communityWrite_contents_inner">
           <h1 className="top_communityWrite_title">커뮤니티 게시글 작성</h1>
@@ -175,36 +172,6 @@ const CommunityWrite = () => {
           <div style={{ background: "#fff" }}>
             <ReactQuill ref={quillRef} onChange={setValue} modules={modules} />
           </div>
-          {/* <div>
-            <div
-              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(value) }}
-            />
-          </div> */}
-
-          {/* <ReactQuill
-            theme="snow"
-            value={content}
-            // modules={quillModules}
-            // formats={quillFormats}
-            onChange={handleContentChange}
-            placeholder="게시글 작성"
-            className="communityWrite_board_quill"
-          /> */}
-          {/* <input
-          type="text"
-          value={title}
-          onChange={handleTitleChange}
-          placeholder="제목을 입력해주세요"
-          /> */}
-          {/* <button onClick={handleSubmit}>작성 완료</button> */}
-
-          {/* <textarea
-            cols="30"
-            rows="10"
-            className="communityWrite_board_detail"
-            placeholder="내용을 입력해 주세요"
-            onChange={e => setComuCtnt(e.target.value)}
-          ></textarea> */}
           <button
             onClick={onClickHandleDel}
             className="communityWrite_board_del"

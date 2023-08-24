@@ -57,11 +57,12 @@ const EditInformation = ({ isWithdrawal, userData }) => {
       user_address: fixAddress !== "" ? fixAddress : userData.user_address,
       user_address_detail: "not yet",
     };
-    // const formData = new FormData();
-    // formData.append("updateUserInfoDto", JSON.stringify(editUser));
-    // formData.append("pic", fixImg);
-    setFixData(editUser);
-    seteditconfirmState(true);
+    if (!editUser.upw) {
+      alert("비밀번호를 입력해주세요");
+    } else {
+      seteditconfirmState(true);
+      setFixData(editUser);
+    }
   };
 
   // 이미지 업로드하면 이렇게 담김

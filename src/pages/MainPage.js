@@ -10,6 +10,8 @@ import OrderHistory from "./OrderHistory";
 import OrderDetail from "./OrderDetail";
 import Reservation from "./Reservation";
 import MainContents from "./MainContents";
+import NotFound from "./NotFound";
+import About from "./About";
 import { Route, Routes } from "react-router-dom";
 import PaymentModal from "../components/PaymentModal";
 import ReviewModal from "../components/ReviewModal";
@@ -46,6 +48,8 @@ const MainPage = () => {
         <Route path="/orderdetail" element={<OrderDetail />}></Route>
         <Route path="/reservation" element={<Reservation />}></Route>
         <Route path="/mypage" element={<Mypage />}></Route>
+        <Route path="/about" element={<About />}></Route>
+        <Route path="*" element={<NotFound />}></Route>
       </Routes>
       <Footer />
     </MainWarp>

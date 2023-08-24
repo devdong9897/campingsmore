@@ -27,12 +27,13 @@ export const MypageWrapper = styled.div`
         height: 150px;
         border-radius: 30px;
         background: gainsboro;
+        overflow: hidden;
         img {
           position: absolute;
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          width: 80%;
+          height: 100%;
         }
       }
       .profile_info {
@@ -453,6 +454,7 @@ export const WritingWrapper = styled.div`
     width: 100%;
     height: 100%;
     li {
+      position: relative;
       display: flex;
       flex-direction: column;
       width: 100%;
@@ -462,7 +464,6 @@ export const WritingWrapper = styled.div`
       border-radius: 15px;
       overflow: hidden;
       background-color: #fff;
-      position: relative;
       box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
       .writing_title {
         font-size: 18px;
@@ -479,20 +480,18 @@ export const WritingWrapper = styled.div`
         right: 10px;
         position: absolute;
       }
-      .writing_del {
-        width: 30px;
-        margin-left: 10px;
-        border-radius: 5px;
-        border: none;
-        background: #999898;
-        color: white;
+      .writing_view {
       }
-      .writing_edit {
-        width: 30px;
-        border-radius: 5px;
+      button {
+        width: 70px;
+        height: 30px;
         border: none;
-        background: #999898;
-        color: white;
+        background: #f0d7b6;
+        border-radius: 5px;
+        color: #000;
+      }
+      .writing_del {
+        margin-left: 10px;
       }
     }
     .write_img {

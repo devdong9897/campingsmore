@@ -87,6 +87,9 @@ const Header = () => {
             <li>
               <Link to="/main/community">커뮤니티</Link>
             </li>
+            <li>
+              <Link to="/main/about">ABOUT</Link>
+            </li>
           </ul>
         </div>
         <div className="account">

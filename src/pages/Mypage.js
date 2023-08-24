@@ -112,7 +112,7 @@ const Mypage = () => {
     () => <EditInformation isWithdrawal={isWithdrawal} userData={userData} />,
     () => <PurchaseHistory purchase={purchase} />,
     () => <ReviewHistory review={review} />,
-    () => <WritingHistory comulist={comulist} />,
+    () => <WritingHistory comulist={comulist} getCommunity={getCommunity} />,
     () => <DibsList />,
   ];
 
