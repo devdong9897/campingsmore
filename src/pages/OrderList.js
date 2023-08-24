@@ -128,7 +128,7 @@ const OrderList = () => {
 
   const handleSort = sortType => {
     // orderListitem을 정렬하는 로직 추가
-    let sortedItems = [...orderListitem];
+    let sortedItems = [...orderlist];
 
     switch (sortType) {
       case "LatestOrder":
@@ -151,9 +151,8 @@ const OrderList = () => {
         break;
     }
 
-    setOrderListItem(sortedItems);
+    setOrderList(sortedItems);
   };
-
   // 카테고리 클릭
   const handleCategoryClick = async (categoryId, name) => {
     console.log("클릭한것 이름", name);

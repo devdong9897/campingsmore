@@ -17,9 +17,14 @@ export default createPost;
 
 // 게시글 작성 취소 delete 요청
 export const deleteBoard = async _iboard => {
-  const res = await axios.put(`/api/community/${_iboard}`);
-  console.log("게시글 삭제 요청 성공");
-  return res.data;
+  try {
+    const res = await axios.put(`/api/community/${_iboard}`);
+    console.log("게시글 삭제 요청 성공");
+    return res.data;
+  } catch (err) {
+    console.log(err);
+  }
+  return [];
 };
 
 // 이미지 1장 업로드하기

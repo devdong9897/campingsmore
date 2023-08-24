@@ -33,6 +33,7 @@ const EditInformation = ({ isWithdrawal, userData }) => {
   const [fixbirth, setFixBirth] = useState("");
   const [fixPhone, setFixPhone] = useState("");
   const [fixAddress, setFixAddress] = useState("");
+  const [fixdetailAddress, setFixdetailAddress] = useState("");
   const [fixData, setFixData] = useState([]);
   const [fixImg, setFixImg] = useState("");
 
@@ -55,7 +56,10 @@ const EditInformation = ({ isWithdrawal, userData }) => {
       birth_date: fixbirth !== "" ? fixbirth : userData.birth_date,
       phone: fixPhone !== "" ? fixPhone : userData.phone,
       user_address: fixAddress !== "" ? fixAddress : userData.user_address,
-      user_address_detail: "not yet",
+      user_address_detail:
+        fixdetailAddress !== ""
+          ? fixdetailAddress
+          : userData.user_address_detail,
     };
     if (!editUser.upw) {
       alert("비밀번호를 입력해주세요");
@@ -68,9 +72,9 @@ const EditInformation = ({ isWithdrawal, userData }) => {
   // 이미지 업로드하면 이렇게 담김
   const imageHandler = e => {
     const file = e.target.files[0];
-    const formData = new FormData();
-    formData.append("pic", file);
-    console.log("폼데이터가 뭔디", formData);
+    // const formData = new FormData();
+    // formData.append("pic", file);
+    // console.log("폼데이터가 뭔디", formData);
     setFixImg(file);
   };
 
@@ -223,6 +227,19 @@ const EditInformation = ({ isWithdrawal, userData }) => {
               placeholder={"주소를 입력하세요"}
               onClick={handleDaumState}
               value={fixAddress}
+            ></input>
+          </div>
+        </div>
+        <div className="setting_box">
+          <div className="setting">
+            <span className="icon">상세주소</span>
+            <span className="setting_name">{userData.user_address_detail}</span>
+            <input
+              type="text"
+              className="phone_input"
+              placeholder={"상세주소를 입력하세요"}
+              onChange={e => setFixdetailAddress(e.target.value)}
+              value={fixdetailAddress}
             ></input>
           </div>
         </div>
