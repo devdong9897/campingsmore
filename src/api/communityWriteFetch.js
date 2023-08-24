@@ -16,7 +16,11 @@ const createPost = async postData => {
 export default createPost;
 
 // 게시글 작성 취소 delete 요청
-// const deleteBoard = async 
+export const deleteBoard = async _iboard => {
+  const res = await axios.put(`/api/community/${_iboard}`);
+  console.log("게시글 삭제 요청 성공");
+  return res.data;
+};
 
 // 이미지 1장 업로드하기
 export const postOnePice = async (_iboard, postData) => {

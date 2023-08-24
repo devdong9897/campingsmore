@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASE_URL = '/api/community/icategory'
+const BASE_URL = "/api/community/icategory";
 
 const postCommunity = async () => {
   try {
@@ -39,9 +39,9 @@ const getCommunityPage = async _index => {
   }
   return [];
 };
-const searchCommunityData = async (searchKeyword) => {
+const searchCommunityData = async searchKeyword => {
   try {
-    const encodedSearchKeyword = encodeURIComponent(searchKeyword)
+    const encodedSearchKeyword = encodeURIComponent(searchKeyword);
     const res = await axios.get(
       `/api/community/title?title=${encodedSearchKeyword}&page=1&row=15`,
     );
@@ -56,14 +56,16 @@ const searchCommunityData = async (searchKeyword) => {
 };
 
 // 카테고리별 게시글 리스트보기
-  const getCommunityCategoryList = async (category) => {
-    try { 
-      const res = await axios.get(`${BASE_URL}?icategory=${category}&page=1&row=15`)
-      return res.data;
-    }catch(error){
-      throw new Error('Error fetching community list:' + error.message)
-    }
+const getCommunityCategoryList = async category => {
+  try {
+    const res = await axios.get(
+      `${BASE_URL}?icategory=${category}&page=1&row=15`,
+    );
+    return res.data;
+  } catch (error) {
+    throw new Error("Error fetching community list:" + error.message);
   }
+};
 
 export {
   postCommunity,

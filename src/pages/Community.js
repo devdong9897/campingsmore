@@ -27,7 +27,7 @@ const Community = () => {
 
   const getCommunityData = async () => {
     try {
-      const data = await getCommunityList();     
+      const data = await getCommunityList();
       // setCommunityList(data);
       // 게시글 목록
       setComuList(data.list);
@@ -86,9 +86,9 @@ const Community = () => {
   };
 
   // 최초 목록 호출
-  useEffect( () => {
+  useEffect(() => {
     getCommunityData();
-  }, [])
+  }, []);
 
   // 카테고리 목록 호출
   useEffect(() => {
@@ -102,7 +102,7 @@ const Community = () => {
           setComuList(data.list);
         }
         //  else {
-        //   // 유병준 체크 : 고민해 볼 필요성 있음. undefined 출력됨(웹브라우저에서)
+        // undefined 출력됨(웹브라우저에서)
         //   data = await getCommunityCategoryList();
         // }
       } catch (err) {
@@ -136,11 +136,15 @@ const Community = () => {
                 <option value="1">공지</option>
                 <option value="2">자유</option>
                 <option value="3">중고거래</option>
-                <option value="4">리뷰</option>
-                <option value="5">잡담</option>
-                <option value="6">공유</option>
+                <option value="4">질문</option>
+                <option value="5">지역</option>
               </select>
               <form className="community_input_from" onSubmit={handleSearch}>
+                <FontAwesomeIcon
+                  icon={faMagnifyingGlass}
+                  className="community_icon"
+                  onClick={handleSearch}
+                />
                 <input
                   type="text"
                   className="community_search"
@@ -148,11 +152,6 @@ const Community = () => {
                   value={searchKeyword}
                   onChange={handleSearchKeywordChange}
                   onKeyPress={handleKeyPress}
-                />
-                <FontAwesomeIcon
-                  icon={faMagnifyingGlass}
-                  className="community_icon"
-                  onClick={handleSearch}
                 />
               </form>
             </div>
@@ -183,11 +182,11 @@ const Community = () => {
                             : item.icategory === 3
                             ? "중고거래"
                             : item.icategory === 4
-                            ? "리뷰"
+                            ? "질문"
                             : item.icategory === 5
-                            ? "잡담"
+                            ? "지역"
                             : item.icategory === 6
-                            ? "공유"
+                            ? ""
                             : item.icategory === 7}
                         </p>
                       </span>

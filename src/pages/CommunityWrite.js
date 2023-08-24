@@ -1,15 +1,52 @@
 import React, { useState } from "react";
 import { CommunityWriteWrapper } from "../css/community-write-style";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import ReactQuill from "react-quill";
-import createPost, { getIBoard, postOnePice } from "../api/communityWriteFetch";
+import createPost, {
+  deleteBoard,
+  getIBoard,
+  postOnePice,
+} from "../api/communityWriteFetch";
 import { useRef } from "react";
 import { useEffect } from "react";
 import { useMemo } from "react";
 import DOMPurify from "dompurify";
 
 const CommunityWrite = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  // 글 등록을 눌렀는지,취소를 했는지, 뒤로가기를 했는지 체크 state
+  const [checkBack, setCheckBack] = useState(0);
+
+  // 글 제목, 내용이 비었을시 버튼 비 활성화
+  // const [isButtonDisabled, setIsButtonDisabled] = useState(true)
+  // useEffect(()=> {
+  //   if(comutitle.trim() !== "" && value.trim() !== "") {
+  //     setIsButtonDisabled(false)
+  //   }else{
+  //     setIsButtonDisabled(true)
+  //   }
+  // },[comutitle, value])
+
+  useEffect(() => {
+    const handleGoBack = () => {
+      console.log("뒤로가기");
+    };
+    // 웹브라우저의 뒤로가기 버튼 클릭 이벤트 리스너 등록
+    window.addEventListener("popstate", handleGoBack);
+
+    // 컴포넌트 언마운트시 이벤트 리스너 제거
+    return () => {
+      if (checkBack === 0) {
+        console.log("게시글 취소, 또는 뒤로가기");
+      } else {
+        console.log("게시글 정상 등록해서 이동");
+      }
+      window.removeEventListener("popstate", handleGoBack);
+    };
+  }, [location]);
   const [comutitle, setComuTitle] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState(1);
   // const [comuCtnt, setComuCtnt] = useState("");
 
   const iboardRef = useRef(null);
@@ -17,12 +54,10 @@ const CommunityWrite = () => {
   // ReactQull 태그 reference 저장
   const quillRef = useRef(null);
 
-  const navigate = useNavigate();
-
   // Editor 에 담겨진 내용을 출력 state
   const [value, setValue] = useState();
   useEffect(() => {
-    console.log(value);
+    // console.log(value);
   }, [value]);
 
   // iboard 키값 받아오기
@@ -32,6 +67,21 @@ const CommunityWrite = () => {
   };
   useEffect(() => {
     getIBoardCall();
+  }, []);
+
+  // 리액트에서 웹브라우저 종료시 처리
+  useEffect(() => {
+    const handleBeforeUnload = event => {
+      // 사용자에게 경고 메세지를 표시
+      event.preventDefault();
+      event.returnValue = ""; // 이 부분은 브라우저에 따라 동작하지 않을수 있음
+      localStorage.setItem("pk", iboardRef.current);
+    };
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+      // localStorage.removeItem("pk")
+    };
   }, []);
 
   const imageHandler = () => {
@@ -54,7 +104,6 @@ const CommunityWrite = () => {
       const formData = new FormData();
       // formData.append("키", 값)
       formData.append("pic", file);
-      console.log("폼데이터가 뭔데예", formData);
       // 백엔드 이미지 서버로 전송을 실행한다.
       try {
         console.log(formData, iboardRef.current);
@@ -135,16 +184,23 @@ const CommunityWrite = () => {
     [],
   );
 
+  // const handleCategoryChange = (event) => {
+  //   const selectedValue = event.target.value;
+  //   setSelectedCategory(selectedValue)
+  // }
+
   const handleSubmit = async () => {
     try {
       const postData = {
         iboard: iboardRef.current,
-        // 유병준 체크 : 카테고리를 선택할 수 있게 해야함.
-        icategory: 1,
+        // 카테고리를 선택할 수 있게 해야함.
+        icategory: selectedCategory,
         title: comutitle,
         ctnt: value,
       };
       await createPost(postData);
+      // 정상 등록
+      setCheckBack(1);
       setValue("");
       setComuTitle("");
       navigate("/main/community");
@@ -153,25 +209,78 @@ const CommunityWrite = () => {
     }
   };
 
-  const onClickHandleDel = () => {
+  const onClickHandleDel = async () => {
+    // 취소한 경우 게시물 제거
+    await deleteBoard(iboardRef.current);
+    // 등록 취소
+    setCheckBack(0);
     navigate("/main/community");
+  };
+
+  const editorStyle = {
+    height: "400px",
   };
 
   return (
     <CommunityWriteWrapper>
+      {/* <div dangerouslySetInnerHTML={{ __html: value }} /> */}
+      {/* <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(value) }} /> */}
+
       <div className="top_communityWrite_contents">
         <div className="communityWrite_contents_inner">
           <h1 className="top_communityWrite_title">커뮤니티 게시글 작성</h1>
           <hr className="communityWrite_line" />
+          <select
+            className="communityWrite_select"
+            onChange={e => setSelectedCategory(e.target.value)}
+            value={selectedCategory}
+          >
+            <option value={1}>공지</option>
+            <option value={2}>자유</option>
+            <option value={3}>중고거래</option>
+            <option value={4}>질문</option>
+            <option value={5}>지역</option>
+          </select>
           <input
             type="text"
             className="communityWrite_board_title"
             placeholder="제목을 입력해 주세요"
             onChange={e => setComuTitle(e.target.value)}
+            value={comutitle}
           />
-          <div style={{ background: "#fff" }}>
+          <div style={{ background: "#fff", editorStyle }}>
             <ReactQuill ref={quillRef} onChange={setValue} modules={modules} />
           </div>
+          {/* <div>
+            <div
+              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(value) }}
+            />
+          </div> */}
+
+          {/* <ReactQuill
+            theme="snow"
+            value={content}
+            // modules={quillModules}
+            // formats={quillFormats}
+            onChange={handleContentChange}
+            placeholder="게시글 작성"
+            className="communityWrite_board_quill"
+          /> */}
+          {/* <input
+          type="text"
+          value={title}
+          onChange={handleTitleChange}
+          placeholder="제목을 입력해주세요"
+          /> */}
+          {/* <button onClick={handleSubmit}>작성 완료</button> */}
+
+          {/* <textarea
+            cols="30"
+            rows="10"
+            className="communityWrite_board_detail"
+            placeholder="내용을 입력해 주세요"
+            onChange={e => setComuCtnt(e.target.value)}
+          ></textarea> */}
           <button
             onClick={onClickHandleDel}
             className="communityWrite_board_del"
