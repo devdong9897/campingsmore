@@ -5,19 +5,16 @@ const path = process.env.PUBLIC_URL;
 export const CommunityBulletinBoardWrapper = styled.div`
   width: 100%;
   height: auto;
+  padding-top:150px;
+  padding-bottom:80px;
   .top_community_bulletin_board_contents {
     width: 100%;
-    height: 1000px;
-    position: relative;
+    height: auto;
   }
   .community_bulletin_board_contents_inner {
-    position: absolute;
-    width: 1300px;
     margin: 0 auto;
-    height: 100%;
-    top: 70%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    width: 1300px;
+    height: auto;
   }
   .community_bulletin_board_line {
     margin: 20px 0 20px 0;
@@ -30,14 +27,9 @@ export const CommunityBulletinBoardWrapper = styled.div`
       border-radius: 15px;
       }
       .board_create_info{
-        float:right
+        float:right;
         display: block;
-        background:green;
-        p{
-          float:right;
-        } 
         p:first-child {
-          margin-left:10px;
         }
       }
     }
@@ -72,16 +64,19 @@ export const CommunityBulletinBoardWrapper = styled.div`
   .community_bulletin_board_comment_box {
     width: 100%;
     height:200px;
-    border-radius: 10px;
-    background-color: gray;
+    background-color: lightgray;
   .community_bulletin_board_comment {
     width: 90%;
     height:180px;
     margin:0 auto;
     position:relative;
-    top:20px;
+    top:22px;
     textarea{
-      resize:none
+      resize:none;
+      text-indent: 10px;
+      border-radius: 10px;
+      background-color: white;
+      border:1px solid white;
     }
     img {
       width: 50px;
@@ -116,4 +111,4 @@ export const CommunityBulletinBoardWrapper = styled.div`
       background-color: black;
       color:white;
     }
-`;
+`

@@ -4,19 +4,17 @@ const path = process.env.PUBLIC_URL;
 
 export const CommunityWriteWrapper = styled.div`
   width: 100%;
-  height: 1500px;
+  height: auto;
+  padding-top:150px;
+  padding-bottom:90px;
   .top_communityWrite_contents {
-    width: 100%;
-    height: 1000px;
-    position: relative;
+    width: 1300px;
+    height: auto;
+    margin:0 auto;
   }
   .communityWrite_contents_inner {
-    position: absolute;
-    width: 1300px;
-    margin: 0 auto;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    width: 100%;
+    height:auto;
   }
   .communityWrite_line {
     margin: 20px 0 20px 0;
@@ -37,6 +35,7 @@ export const CommunityWriteWrapper = styled.div`
     height: 60px;
     font-size: 20px;
     text-indent: 15px;
+    margin-top:20px;
     margin-bottom: 20px;
     border:1px solid #cccccc;
   }
@@ -70,7 +69,7 @@ export const CommunityWriteWrapper = styled.div`
     width: 80px;
     height: 30px;
     color: white;
-    margin-top:15px;
+    margin-top:30px;
     margin-left:10px;
   }
 `;

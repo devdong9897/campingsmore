@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { editComment } from '../api/communityBulletinBoardFetch'
+import { CommentListWrapper } from '../css/comment-list-style';
 
     
 
@@ -36,7 +37,8 @@ const CommentList = ({item, handleEditComment, handleDeleteComment, userDataName
     }
     
   return (
-    <>
+    
+    <CommentListWrapper>
         <li>
             <div className="comment_user">
                 <span>{item.name}</span>
@@ -45,25 +47,25 @@ const CommentList = ({item, handleEditComment, handleDeleteComment, userDataName
             <div className="comment_ctnt">
                 {commentSelectID === item.icomment ? (
                     <textarea className='edit_comment_area' value={ctnt} onChange={handleChange}/>
-                ):(
-                    <span>{ctntSave}</span>
-                )}
+                    ):(
+                        <span>{ctntSave}</span>
+                        )}
                 {/* {item.icomment === icomment ? 
                     (<textarea className="edit_comment_area">{item.ctnt}</textarea>):(<span>{item.ctnt}</span>)} */}
             </div>
-            <div>
+            <div className='editLine'>
                 {item.name === userDataName ? (
-                <>
+                    <>
                 {commentSelectID === item.icomment ? (
-                    <>
-                    <button onClick={handleCompleteComment}>완료</button>
-                        <button onClick={e => handleCancelComment(item.icomment)}>취소</button>
-                    </>
+                    <div >
+                        <button className='editBt' onClick={handleCompleteComment}>완료</button>
+                        <button className='deleteBt' onClick={e => handleCancelComment(item.icomment)}>취소</button>
+                    </div>
                 ):(
-                    <>
-                        <button onClick={toggleEditMode}>수정</button>
-                        <button onClick={e => handleDeleteComment(item.icomment)}>삭제</button>
-                    </>
+                    <div>
+                        <button className='editBt' onClick={toggleEditMode}>수정</button>
+                        <button className='deleteBt'onClick={e => handleDeleteComment(item.icomment)}>삭제</button>
+                    </div>
                 )}
                 </>
                 ):(
@@ -71,7 +73,7 @@ const CommentList = ({item, handleEditComment, handleDeleteComment, userDataName
                 )}
             </div>
         </li>
-    </>
+    </CommentListWrapper>
   )
 }
 

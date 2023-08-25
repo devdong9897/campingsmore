@@ -115,8 +115,8 @@ const CommunityBulletinBoard = () => {
               <div className="board_info">
                 <p className="board_category">[{boardDevoCategory}]</p>
                 <div className="board_create_info">
-                  <p className="board_date">{boardDevoCreatedat}</p>
                   <p className="board_user">{boardDevoName}</p>
+                  <p className="board_date">{boardDevoCreatedat}</p>
                 </div>
               </div>
             </div>
@@ -131,7 +131,6 @@ const CommunityBulletinBoard = () => {
           </div>
 
           <div className="comment-list"></div>
-          <h1>댓글 작성</h1>
           {/* <hr className="community_bulletin_board_line" /> */}
           <ul className="community_bulletin_comment_list">
             {commentListData.map((item, index) => (
@@ -147,6 +146,8 @@ const CommunityBulletinBoard = () => {
               />
             ))}
           </ul>
+          <h1>댓글 등록</h1>
+          <hr className="community_bulletin_board_line"/>
           <div className="community_bulletin_board_comment_box">
             <div className="community_bulletin_board_comment">
               <ul className="community_bulletin_ul">
