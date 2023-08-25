@@ -13,20 +13,24 @@ import { useMemo } from "react";
 import DOMPurify from "dompurify";
 
 const CommunityWrite = () => {
+  const [comutitle, setComuTitle] = useState("");
+  const [value, setValue] = useState("");
+
+
   const navigate = useNavigate();
   const location = useLocation();
   // 글 등록을 눌렀는지,취소를 했는지, 뒤로가기를 했는지 체크 state
   const [checkBack, setCheckBack] = useState(0);
 
   // 글 제목, 내용이 비었을시 버튼 비 활성화
-  // const [isButtonDisabled, setIsButtonDisabled] = useState(true)
-  // useEffect(()=> {
-  //   if(comutitle.trim() !== "" && value.trim() !== "") {
-  //     setIsButtonDisabled(false)
-  //   }else{
-  //     setIsButtonDisabled(true)
-  //   }
-  // },[comutitle, value])
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true)
+  useEffect(()=> {
+    if(comutitle.trim() !== "" && value.trim() !== "") {
+      setIsButtonDisabled(false)
+    }else{
+      setIsButtonDisabled(true)
+    }
+  },[comutitle, value])
 
   useEffect(() => {
     const handleGoBack = () => {
@@ -45,7 +49,6 @@ const CommunityWrite = () => {
       window.removeEventListener("popstate", handleGoBack);
     };
   }, [location]);
-  const [comutitle, setComuTitle] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(1);
   // const [comuCtnt, setComuCtnt] = useState("");
 
@@ -55,7 +58,6 @@ const CommunityWrite = () => {
   const quillRef = useRef(null);
 
   // Editor 에 담겨진 내용을 출력 state
-  const [value, setValue] = useState();
   useEffect(() => {
     // console.log(value);
   }, [value]);
@@ -190,7 +192,7 @@ const CommunityWrite = () => {
   // }
 
   const handleSubmit = async () => {
-    try {
+      try {
       const postData = {
         iboard: iboardRef.current,
         // 카테고리를 선택할 수 있게 해야함.
@@ -217,9 +219,6 @@ const CommunityWrite = () => {
     navigate("/main/community");
   };
 
-  const editorStyle = {
-    height: "400px",
-  };
 
   return (
     <CommunityWriteWrapper>
@@ -248,8 +247,8 @@ const CommunityWrite = () => {
             onChange={e => setComuTitle(e.target.value)}
             value={comutitle}
           />
-          <div style={{ background: "#fff", editorStyle }}>
-            <ReactQuill ref={quillRef} onChange={setValue} modules={modules} />
+          <div style={{ background: "#fff",height:"340px" }}>
+            <ReactQuill ref={quillRef} onChange={setValue} modules={modules} style={{height:"300px"}}/>
           </div>
           {/* <div>
             <div
@@ -291,6 +290,7 @@ const CommunityWrite = () => {
             className="communityWrite_board_regi"
             onClick={handleSubmit}
             // onClick={handleToGoCommunity}
+            disabled={isButtonDisabled}
           >
             등록
           </button>

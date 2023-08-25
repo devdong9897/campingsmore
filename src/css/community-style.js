@@ -33,10 +33,6 @@ export const CommunityWrapper = styled.div`
             margin-right: 10px;
             margin-bottom: 20px;
           }
-          .community_board_menu:focus,
-          .community_board_menu:hover {
-            border: 1px solid #8b4513;
-          }
           .community_input_from {
             width: 300px;
             height: 30px;
@@ -45,9 +41,6 @@ export const CommunityWrapper = styled.div`
               height: 30px;
               margin-right: 10px;
               text-indent: 10px;
-              &:hover {
-                border: 1px solid #8b4513;
-              }
             }
             .community_icon {
               width: 20px;
@@ -56,6 +49,7 @@ export const CommunityWrapper = styled.div`
               padding: 4px;
               border-radius: 10px;
               float: right;
+              cursor: pointer;
             }
           }
         }
@@ -91,7 +85,6 @@ export const CommunityWrapper = styled.div`
               display: flex;
               justify-content: space-between;
               border-top: 1px solid #000;
-              border-bottom: 1px solid #000;
               width: 100%;
               height: 80px;
               background: #ffffff;
@@ -140,6 +133,12 @@ export const CommunityWrapper = styled.div`
                   text-align: right;
                 }
               }
+            }
+            li:last-child {
+              border-bottom:1px solid #000;
+            }
+            li:hover{
+              background-color: #e8fffd;
             }
           }
         }
