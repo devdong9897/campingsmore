@@ -72,7 +72,9 @@ const Header = () => {
   return (
     <HeaderContainer scrollOver={scrollOver}>
       <div className="inner">
-        <div className="logo"></div>
+        <Link to="/main">
+          <div className="logo"></div>
+        </Link>
         <div className="gnb_area">
           <ul className="gnb_list">
             <li>

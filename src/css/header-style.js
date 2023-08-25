@@ -31,6 +31,7 @@ export const HeaderContainer = styled.div`
       background-position: center;
       background-size: 115px;
       margin-top: 5px;
+      cursor: pointer;
     }
     .gnb_area {
       display: flex;
