@@ -47,7 +47,15 @@ const ReviewHistory = ({ review }) => {
       ) : (
         ""
       )}
-      {isEditReviewModal ? <ReviewModal editReviewData={editReviewData} /> : ""}
+      {isEditReviewModal ? (
+        <ReviewModal
+          editReviewData={editReviewData}
+          setisEditReviewModal={setisEditReviewModal}
+          isEditReviewModal={isEditReviewModal}
+        />
+      ) : (
+        ""
+      )}
       <h1>리뷰 내역</h1>
 
       <ul className="review_list">

@@ -12,6 +12,8 @@ const ReviewModal = ({
   purchase,
   setIsReviewConfirm,
   editReviewData,
+  isEditReviewModal,
+  setisEditReviewModal,
 }) => {
   const [thisData, setThisdata] = useState([]);
   const [thisitem, setThisItem] = useState([]);
@@ -54,7 +56,9 @@ const ReviewModal = ({
     try {
       const formData = new FormData();
       formData.append("dto", JSON.stringify(data.dto));
-      formData.append("pic", uploadImage);
+      if (uploadImage) {
+        formData.append("pic", uploadImage);
+      }
       const res = await axios.post("/api/review", formData);
       console.log(res);
       console.log("리뷰등록 전송완료?", res);
@@ -71,7 +75,11 @@ const ReviewModal = ({
   };
 
   const handelRevieCancel = () => {
-    setisReviewModal(false);
+    if (isEditReviewModal) {
+      setisEditReviewModal(false);
+    } else {
+      setisReviewModal(false);
+    }
   };
 
   const handleRating = index => {
@@ -79,7 +87,11 @@ const ReviewModal = ({
   };
 
   useEffect(() => {
-    doit();
+    if (editReviewData) {
+      fromEditReview();
+    } else {
+      doit();
+    }
   }, []);
   return (
     <ReviewModalWrapper>
@@ -103,6 +115,7 @@ const ReviewModal = ({
         )}
         {editReviewData ? (
           <>
+            <h3>리뷰내용을 수정해주세요</h3>
             <textarea
               rows="20"
               className="review_modal_detail"
@@ -128,6 +141,9 @@ const ReviewModal = ({
               ></input>
             </div>
             <p className="review_modal_eval">이 상품에 대한 평가를 해주세요</p>
+            <p className="notice_text">
+              새로운 이미지를 등록하면 등록한 이미지가 갱신됩니다.
+            </p>
             <div className="review_modal_star">
               {starRatingShow.map((item, index) => (
                 <li key={index} onClick={e => handleRating(index)}>
