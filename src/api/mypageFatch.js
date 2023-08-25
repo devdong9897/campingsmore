@@ -84,11 +84,21 @@ const postMyProfileData = async formData => {
   }
 };
 
-const postReview = async submitdata => {
+const deleteReview = async thisReview => {
   try {
-    const res = await axios.post("/api/review", submitdata, {
+    const res = await axios.delete(`/api/review?ireview=${thisReview}`);
+    const result = res.data;
+    console.log("리뷰삭제요처완료?", result);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const postReview = async formData => {
+  try {
+    const res = await axios.post("/api/review", formData, {
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "multipart/form-data",
       },
     });
     const result = res.data;
@@ -98,7 +108,20 @@ const postReview = async submitdata => {
   }
 };
 
+const getPaymentDetail = async iorder => {
+  try {
+    const res = await axios.get(`/api/payment/${iorder}`);
+    const result = res.data;
+    console.log("단일 결제 내역보기 성공?", result);
+    return result;
+  } catch (err) {
+    console.log(err);
+  }
+  return [];
+};
+
 export {
+  getPaymentDetail,
   getMypageReviewData,
   getPurchaseData,
   getCommunityData,
@@ -106,4 +129,5 @@ export {
   postMyProfileData,
   postReview,
   updateCommunityData,
+  deleteReview,
 };

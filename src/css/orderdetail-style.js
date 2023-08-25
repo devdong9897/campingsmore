@@ -42,7 +42,7 @@ export const OrderDetailWrapper = styled.div`
       .second_box {
         width: 700px;
         height: 650px;
-   
+
         .title {
           h1 {
             font-size: 35px;
@@ -227,16 +227,33 @@ export const OrderDetailWrapper = styled.div`
           }
         }
         .profile_content {
-          padding-top: 10px;
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          padding-top: 15px;
+          padding-bottom: 15px;
           padding-left: 10px;
           width: 100%;
-          height: 100px;
+          min-height: 125px;
+          height: auto;
           color: black;
+          .profile_ctnt {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 15px;
+            img {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              height: 100%;
+              transform: translate(-50%, -50%);
+            }
+          }
           .profile_title {
             margin-top: 20px;
-          }
-          .content {
-            margin-top: 20px;
+            font-size: 20px;
           }
         }
       }

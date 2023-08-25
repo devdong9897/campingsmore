@@ -77,6 +77,14 @@ export const ReviewModalWrapper = styled.div`
     background: #f0f0f0;
     resize: none;
   }
+  .review_upload_box {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    padding: 20px 40px;
+  }
   .review_modal_eval {
     text-align: center;
     padding-top: 10px;

@@ -324,6 +324,20 @@ export const PurchaseWrapper = styled.div`
             gap: 10px;
             width: 15%;
             height: 100%;
+            span {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              font-size: 13px;
+              text-align: center;
+              width: 100%;
+              height: 45px;
+              border-radius: 10px;
+              border: none;
+              background: rgba(184, 166, 149, 0.3);
+              font-weight: 500;
+              font-family: "NanumSquare";
+            }
             button {
               margin: 0 auto;
               width: 100%;
@@ -339,6 +353,24 @@ export const PurchaseWrapper = styled.div`
                 background: #cd853f;
               }
             }
+          }
+        }
+      }
+      .purchase_detail {
+        border-top: 1px solid #000;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 20px 0px;
+        .detail_list {
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+          li {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            box-shadow: none;
+            padding: 0px 10px;
           }
         }
       }
@@ -396,7 +428,7 @@ export const ReviewHistoryWrapper = styled.div`
         display: flex;
         flex-direction: column;
         gap: 10px;
-        width: 90%;
+        width: 80%;
         height: 100%;
         .review_grade {
           display: flex;
@@ -419,6 +451,28 @@ export const ReviewHistoryWrapper = styled.div`
                 height: 18px;
               }
             }
+          }
+        }
+      }
+      .review_fuc {
+        display: flex;
+        flex-direction: column;
+        width: 15%;
+        height: 100%;
+        gap: 10px;
+        button {
+          margin: 0 auto;
+          width: 100%;
+          height: 45px;
+          border-radius: 10px;
+          border: none;
+          background: #f0d7b6;
+          font-weight: 500;
+          font-family: "NanumSquare";
+          cursor: pointer;
+          &:hover {
+            color: #fff;
+            background: #cd853f;
           }
         }
       }

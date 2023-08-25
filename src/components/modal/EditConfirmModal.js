@@ -14,7 +14,10 @@ const EditConfirmModal = ({
     try {
       const formData = new FormData();
       formData.append("updateUserInfoDto", JSON.stringify(fixData));
-      formData.append("pic", fixImg);
+      if (fixImg) {
+        formData.append("pic", fixImg);
+      }
+      console.log("보내주는 것들", formData);
       const result = await postMyProfileData(formData);
       console.log("성공시 백앤드 보여주는 데이터", result);
     } catch (err) {

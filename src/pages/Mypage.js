@@ -43,7 +43,7 @@ const Mypage = () => {
   const [review, setReview] = useState([]);
   // 게시글 목록 state
   const [comulist, setComuList] = useState([]);
-  const baseUrl = "http://192.168.0.144:5005/img";
+  const baseUrl = "http://192.168.0.144:5005/img/";
 
   const handleMenuChange = index => {
     setselected(true);

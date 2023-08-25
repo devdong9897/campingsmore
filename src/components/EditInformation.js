@@ -72,9 +72,6 @@ const EditInformation = ({ isWithdrawal, userData }) => {
   // 이미지 업로드하면 이렇게 담김
   const imageHandler = e => {
     const file = e.target.files[0];
-    // const formData = new FormData();
-    // formData.append("pic", file);
-    // console.log("폼데이터가 뭔디", formData);
     setFixImg(file);
   };
 
@@ -247,6 +244,7 @@ const EditInformation = ({ isWithdrawal, userData }) => {
           <div className="setting">
             <span className="icon">프로필 이미지</span>
             <input type="file" onChange={imageHandler}></input>
+            <span>일괄수정을 눌러주세요</span>
           </div>
         </div>
       </div>

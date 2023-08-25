@@ -15,7 +15,7 @@ const OrderDetail = () => {
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
   // 장바구니 담는 모달창 staet
-  const [isModal ,setIsModal] = useState(false);
+  const [isModal, setIsModal] = useState(false);
   const iitem = searchParams.get("iitem");
   const [quantity, setQuantity] = useState(1);
   const [goodImg, setGoodImg] = useState(null);
@@ -25,6 +25,7 @@ const OrderDetail = () => {
   const [Allprice, setAllprice] = useState(0);
   const [reviewPage, setReviewPage] = useState("");
   const [reviewList, setReviewList] = useState([]);
+  const baseUrl = "http://192.168.0.144:5005/img/";
 
   useEffect(() => {
     const getOrderDetail = async () => {
@@ -65,7 +66,7 @@ const OrderDetail = () => {
   };
 
   // 디테일 장바구니 담기
-  const handleAddToCart = async() => {
+  const handleAddToCart = async () => {
     setIsModal(true);
     const cartItem = {
       icart: parseInt(iitem),
@@ -94,9 +95,7 @@ const OrderDetail = () => {
 
   return (
     <OrderDetailWrapper>
-      {isModal ? (
-      <BasketCompleteModal setIsModal={setIsModal} />
-      ):("") }
+      {isModal ? <BasketCompleteModal setIsModal={setIsModal} /> : ""}
       <div className="orderdetail_inner">
         <div className="main">
           <div className="first_box">
@@ -182,7 +181,13 @@ const OrderDetail = () => {
                   </div>
                   <div className="profile_content">
                     <span className="profile_title">{item.reviewCtnt}</span>
-                    <span className="prifle_ctnt"></span>
+                    {item.pic ? (
+                      <span className="profile_ctnt">
+                        <img src={baseUrl + item.pic}></img>
+                      </span>
+                    ) : (
+                      ""
+                    )}
                   </div>
                 </li>
               ))}
