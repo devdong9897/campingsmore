@@ -120,6 +120,13 @@ const getPaymentDetail = async iorder => {
   return [];
 };
 
+// const getPaymentItemDetail = async () => {
+//   try {
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
+
 export {
   getPaymentDetail,
   getMypageReviewData,

@@ -27,21 +27,22 @@ const Login = () => {
       await getBasketList(dispatch);
       setId("");
       setPass("");
-      window.location.reload();
+      navigate("/main");
+      // window.location.reload();
     } catch (err) {
       console.log(err);
     }
   };
 
   const Loginfucntion = () => {
-    if(isLoggedIn){
+    if (isLoggedIn) {
       navigate("/main");
     }
-  }
+  };
 
   useEffect(() => {
     Loginfucntion();
-  },[])
+  }, []);
   return (
     <Logininner>
       <div className="login_logo"></div>

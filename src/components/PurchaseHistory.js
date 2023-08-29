@@ -22,11 +22,12 @@ const PurchaseHistory = ({ purchase }) => {
   };
 
   // 구매상세보기
-  const handleItemDatail = iorder => {
-    setPurchaseDetail(true);
-    setThispurchaseIndex(iorder);
+  const handleItemDatail = (iorder, iitem) => {
+    // setPurchaseDetail(true);
+    // setThispurchaseIndex(iorder);
     console.log("아이오더값", iorder);
-    getPurchaseData(iorder);
+    console.log("아이템 값", iitem);
+    // getPurchaseData(iorder);
   };
 
   // 구매상세값요청
@@ -103,7 +104,12 @@ const PurchaseHistory = ({ purchase }) => {
                       ) : (
                         <button
                           className="purchage_detail"
-                          onClick={e => handleItemDatail(item.iorder)}
+                          onClick={e =>
+                            handleItemDatail(
+                              item.iorder,
+                              item.itemList[subindex].iitem,
+                            )
+                          }
                         >
                           구매상세
                         </button>
@@ -112,30 +118,6 @@ const PurchaseHistory = ({ purchase }) => {
                   </div>
                 </div>
               ))}
-              {purchaseDetail && thispurchaseIndex === item.iorder ? (
-                <div className="purchase_detail">
-                  <ul className="detail_list">
-                    <li>
-                      <span>배송주소:</span>
-                      <span>{paymentDetail.address}</span>
-                    </li>
-                    <li>
-                      <span>배송상세주소:</span>
-                      <span>{paymentDetail.addressDetail}</span>
-                    </li>
-                    <li>
-                      <span>배송메모</span>
-                      <span>{paymentDetail.shippingMemo}</span>
-                    </li>
-                    <li>
-                      <span>총 주문가격</span>
-                      <span>{paymentDetail.totalPrice}</span>
-                    </li>
-                  </ul>
-                </div>
-              ) : (
-                ""
-              )}
             </li>
           ))}
         </ul>
