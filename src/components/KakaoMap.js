@@ -16,23 +16,23 @@ const KakaoMap = () => {
   const [MapallianceData, setMapallianceData] = useState([]);
   const allianceData = useSelector(state => state.KakaoMap.kakaoMapData);
 
-  const getAllianceMap = async () => {
-    try {
-      const res = await axios.get("/api/dataset/kakao");
-      const result = res.data;
-      console.log("제휴 카카오위치 데이터 요청", result);
-      setMapallianceData(result);
-      dispatch(kakaoMapDataAdd(result));
-      console.log(result);
-    } catch (err) {
-      console.log(err);
-    }
-    return [];
-  };
+  // const getAllianceMap = async () => {
+  //   try {
+  //     const res = await axios.get("/api/dataset/kakao");
+  //     const result = res.data;
+  //     console.log("제휴 카카오위치 데이터 요청", result);
+  //     setMapallianceData(result);
+  //     dispatch(kakaoMapDataAdd(result));
+  //     console.log(result);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  //   return [];
+  // };
 
   console.log("아 힘들다", allianceData);
   useEffect(() => {
-    getAllianceMap();
+    // getAllianceMap();
     if (!map) return;
     const ps = new kakao.maps.services.Places();
 

@@ -112,14 +112,14 @@ export const MainContentsWrapper = styled.div`
   .kakao_map_wrap {
     position: relative;
     width: 100%;
-    height: 1000px;
+    height: 800px;
     margin-top: 30px;
-    span {
+    .map_title {
+      display: block;
       font-size: 40px;
       text-align: center;
       color: #d2b48c;
       font-weight: 900;
-      margin-left: 37%;
     }
     .kakao_map_area {
       position: absolute;
@@ -127,39 +127,54 @@ export const MainContentsWrapper = styled.div`
       left: 50%;
       transform: translate(-50%, -50%);
       width: 1300px;
-      height: 800px;
+      height: 600px;
       overflow: hidden;
       border-radius: 15px;
-      .kakao_map {
-        .map_search {
-          position: relative;
-          margin-top: 15px;
-          margin-bottom: 30px;
-          display: flex;
+      .slide_inner {
+        position: relative;
+        display: flex;
+        width: 100%;
+        height: 100%;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 30px;
+        .camping_img {
+          position: absolute;
+          top: 0px;
+          left: 0px;
           width: 100%;
-          height: 65px;
-          overflow: hidden;
-          border-radius: 100px;
-          box-shadow: 0px 0px 2px 1px black inset;
-          #keyword {
+          height: 100%;
+          z-index: 0;
+          img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             width: 100%;
             height: 100%;
-            padding-left: 30px;
-            background: none;
-            border: none;
-            font-size: 18px;
           }
-          #searchBtn {
-            position: absolute;
-            width: 100px;
-            height: 100%;
-            right: 0px;
-            top: 0px;
-            border-top-right-radius: 25%;
-            background: #d2b48c;
-            border: none;
+        }
+        .camping_detail {
+          position: absolute;
+          bottom: 0px;
+          left: 0px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: 5px;
+          width: 100%;
+          height: 30%;
+          background: rgba(54, 54, 54, 0.7);
+          .name {
+            font-size: 25px;
+            font-weight: bold;
+          }
+          span {
+            text-align: center;
             color: #fff;
-            font-size: 30px;
+            a {
+              color: #fff;
+            }
           }
         }
       }

@@ -147,7 +147,7 @@ const CommunityBulletinBoard = () => {
             ))}
           </ul>
           <h1>댓글 등록</h1>
-          <hr className="community_bulletin_board_line"/>
+          <hr className="community_bulletin_board_line" />
           <div className="community_bulletin_board_comment_box">
             <div className="community_bulletin_board_comment">
               <ul className="community_bulletin_ul">

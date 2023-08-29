@@ -26,6 +26,7 @@ const ReviewModal = ({
   console.log(thisiorder);
   console.log(thisItem);
 
+  // 리뷰수정할때 실행
   const fromEditReview = () => {
     if (editReviewData) {
       setReviewCtnt(editReviewData.reviewCtnt);
@@ -33,6 +34,7 @@ const ReviewModal = ({
     }
   };
 
+  // 리뷰작성할때 실행
   const doit = () => {
     const itemmatch = purchase.filter(item => item.iorder === thisItem);
     setThisdata(itemmatch);
@@ -43,6 +45,7 @@ const ReviewModal = ({
 
   const starRatingShow = Array.from({ length: 5 }, (_, index) => index);
 
+  // 리뷰작성할때 실행
   const handleSubmit = async () => {
     const data = {
       dto: {
@@ -60,6 +63,36 @@ const ReviewModal = ({
         formData.append("pic", uploadImage);
       }
       const res = await axios.post("/api/review", formData);
+      console.log(res);
+      console.log("리뷰등록 전송완료?", res);
+      setIsReviewConfirm(true);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // 리뷰수정할때 실행
+  const handleEditReview = async () => {
+    const data = {
+      dto: {
+        ireview: editReviewData.ireview,
+        reviewCtnt: reviewCtnt,
+        starRating: selectedStars,
+      },
+    };
+    try {
+      console.log("수정데이터@?", data);
+      const formData = new FormData();
+      formData.append("dto", JSON.stringify(data.dto));
+      if (uploadImage) {
+        formData.append("pic", uploadImage);
+      }
+      console.log("수정한데이터?", formData);
+      const res = await axios.put("/api/review", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
       console.log(res);
       console.log("리뷰등록 전송완료?", res);
       setIsReviewConfirm(true);
@@ -155,8 +188,11 @@ const ReviewModal = ({
                 </li>
               ))}
             </div>
-            <button className="review_modal_complete" onClick={handleSubmit}>
-              작성완료
+            <button
+              className="review_modal_complete"
+              onClick={handleEditReview}
+            >
+              리뷰수정완료
             </button>
             <button className="review_cancel" onClick={handelRevieCancel}>
               취소

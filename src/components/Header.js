@@ -49,12 +49,7 @@ const Header = () => {
     dispatch(basketItemEmpty(basketEmpty));
     navigate("/");
     LogoutFetch();
-    window.location.reload();
   };
-
-  // useEffect(() => {
-  //   basketCountData();
-  // }, []);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);

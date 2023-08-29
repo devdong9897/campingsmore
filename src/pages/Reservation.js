@@ -1,24 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import { ReservationWrapper } from "../css/reservation-style";
+import { useSelector } from "react-redux";
+import { getMapData } from "../api/mapDataFetch";
 
-function Reservation() {
+const Reservation = () => {
+  const kakoMapdata = useSelector(state => state.KakaoData.kakaoDataArr);
+  console.log(kakoMapdata);
+
+  // const getMapdata = async () => {
+  //   try {
+  //     const data = getMapData();
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
   return (
     <ReservationWrapper>
       <div className="reservation_inner">
-        <div className="logo_img"></div>
-        <div className="announcement">
-          <h1>
-            서비스 <span>준비중</span> 입니다.
-          </h1>
-          <p>
-            빠른시일에 완료하여 정상적인 서비스를 제공하겠습니다.
-            <br />
-            이용에 불편을 드려 죄송합니다.
-          </p>
+        <div className="reser_frame">
+          <div className="camping_list_area">
+            <span className="capming_list_title">캠핑장 목록</span>
+            <ul className="camping_list">
+              {kakoMapdata.documents.map((item, index) => (
+                <li key={index}>
+                  <div className="camping_info_box">
+                    <div className="camping_img">
+                      <img src="/image/bg.jpg"></img>
+                    </div>
+                    <div className="camping_info">
+                      <span className="camping_name">{item.place_name}</span>
+                      <span className="camping_address">
+                        {item.road_address_name}
+                      </span>
+                      <span className="camping_phone">{item.phone}</span>
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="kakaoMap"></div>
         </div>
       </div>
     </ReservationWrapper>
   );
-}
+};
 
 export default Reservation;
