@@ -38,7 +38,23 @@ const postBasketPay = async basketData => {
   }
   return [];
 };
+// 장바구니 목록을 선택하여 삭제
+const deleteBasketItemList = async icartArr => {
+  let str="";
+  icartArr.forEach(item => {
+    let tt = `icart=${item}&`;
+    str += tt;
+  })
+  console.log(str)
+  try{
+    const res = await axios.delete(`/api/cart?${str}`)
+  }catch (err) {
+    console.log(err);
+  }
+}
 
+
+// 장바구니 목록 삭제
 const deleteBasketItem = async icart => {
   try {
     const res = await axios.delete(`/api/cart/${icart}`);
@@ -64,6 +80,7 @@ const postBasketCount = async (iitem, quantity, dispatch) => {
 export {
   getBasketList,
   postBasket,
+  deleteBasketItemList,
   deleteBasketItem,
   postBasketCount,
   postBasketPay,

@@ -42,6 +42,10 @@ export const CommunityWrapper = styled.div`
               margin-right: 10px;
               text-indent: 10px;
             }
+            .community_search:focus {
+              border:2px solid #333;
+              cursor: pointer;
+            }
             .community_icon {
               width: 20px;
               height: 20px;

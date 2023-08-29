@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { deleteBasketItem, postBasketPay } from "../api/basketFetch";
+import { deleteBasketItem, deleteBasketItemList, postBasketPay } from "../api/basketFetch";
 import BasketModal from "../components/modal/BasketModal";
 import { BasketWrapper } from "../css/basket-style";
 import { basketpayData } from "../reducers/basketPaySlice";
+import { basketCheckDelete, basketDelete } from "../reducers/basketSlice";
 
 const Basket = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const UserAdd = useSelector(state => state.user.UserProFileArr);
-  const BasketData = useSelector(state => state.basket.basketArr);
+  const basketData = useSelector(state => state.basket.basketArr);
   const [basketList, setBasketList] = useState([]);
   const [count, setCount] = useState(1);
   const [selectAll, setSelectAll] = useState(false);
@@ -21,13 +22,12 @@ const Basket = () => {
   const [payBasketResult, setPayBasketResult] = useState([]);
 
   const getBasketData = async () => {
-    try {
-      const basketWithQuantity = BasketData.map(item => ({
+    try {   
+      const checkAddBasetData = basketData.map(item => ({
         ...item,
-        quantity: 1,
-      }));
-      setBasketList(basketWithQuantity);
-      setBasketList(BasketData);
+        isCheck: false,
+      })) 
+      setBasketList(checkAddBasetData);
     } catch (err) {
       console.log(err);
     }
@@ -35,7 +35,7 @@ const Basket = () => {
 
   useEffect(() => {
     getBasketData();
-  }, []);
+  }, [basketData]);
 
   const onHandleClickPlus = index => {
     setBasketList(prevBasketList => {
@@ -70,10 +70,17 @@ const Basket = () => {
   //   setBasketList(updatedBasketList);
   // };
 
-  const handleSelectItem = index => {
-    const updatedBasketList = [...basketList];
-    updatedBasketList[index].selected = !updatedBasketList[index].selected;
-    setBasketList(updatedBasketList);
+  // 체크 박스 관련한 처리
+  const [checkArr, setCheckArr] = useState([]);
+
+  const handleSelectItem = _icart => {
+    const newList = basketList.map(item => {
+      if(item.icart === _icart) {
+        item.isCheck = !item.isCheck;
+      }
+      return item;
+    })
+    setBasketList(newList);
   };
 
   const handleRemoveItem = async icart => {
@@ -90,12 +97,45 @@ const Basket = () => {
     return item.quantity * item.price;
   };
 
+  // 선택 삭제 버튼 처리
+  const handleDelete = async () => {
+    try {
+      const deleteCartArr = basketList.filter(item => item.isCheck);
+      const arr = deleteCartArr.map(item => item.icart)
+      console.log(arr);
+      await deleteBasketItemList(arr);
+     
+      
+      // 체크 박스 안된 목록만 남긴다.
+      const basketNowIcart = basketList.filter(item => !item.isCheck); 
+      // state 는 남은 목록으로 업데이트
+      dispatch(basketCheckDelete(basketNowIcart));
+
+    } catch (err) {
+      console.log(err);
+    }
+    
+  }
+  // 결제하기 버튼이다 이말이에요
+  const handleGoToPayment = () => {
+    // 체크 박스된 것만 찾기
+    const basketIcart = basketList.filter(item => item.isCheck);
+    // console.log(basketIcart)
+    // 체크된 배열에서 icart 값만 뽑아서 배열만들기
+    const basketIcartData = {
+      icart: basketIcart.map(item => item.icart),
+    };
+    basketPay(basketIcartData);
+  };
+
   const basketPay = async basketData => {
+    console.log("basketPay basketData : ", basketData)
+    // 이건 뭔지 파악이 필요하다. 용도는 코딩한 사람 머리에만 있다. 주석을 달아주세요.
     const basketTrue = 1;
     try {
       const data = await postBasketPay(basketData);
-      console.log("데이터받앗니", data);
-      setPayBasketResult(data);
+      // console.log("데이터받앗니", data);
+      // setPayBasketResult(data);
       dispatch(basketpayData(data));
       navigate(`/main/payment?basket=${basketTrue}`);
     } catch (err) {
@@ -103,19 +143,11 @@ const Basket = () => {
     }
   };
 
-  // 결제하기 버튼이다 이말이에요
-  const handleGoToPayment = () => {
-    const basketIcart = BasketData.map(item => item.icart);
-    console.log(basketIcart);
-    const basketData = {
-      icart: BasketData.map(item => item.icart),
-    };
-    basketPay(basketData);
-  };
+  
 
   return (
     <>
-      {BasketData ? (
+      {basketData ? (
         <BasketWrapper>
           {modal ? (
             <>
@@ -147,7 +179,7 @@ const Basket = () => {
                 <li>상품금액</li>
               </ul>
             </div>
-            {BasketData.length ? (
+            {basketData.length ? (
               <>
                 {basketList.map((item, index) => (
                   <li key={index}>
@@ -157,8 +189,8 @@ const Basket = () => {
                           <div className="basket_choice_box">
                             <input
                               type="checkbox"
-                              checked={item.selected}
-                              onChange={() => handleSelectItem(index)}
+                              checked={item.isCheck}
+                              onChange={() => handleSelectItem(item.icart)}
                             />
                           </div>
                           <div className="basket_product_img">
@@ -197,7 +229,7 @@ const Basket = () => {
                     </div>
                   </li>
                 ))}
-                <button className="basket_del_box">선택 삭제</button>
+                <button className="basket_del_box" onClick={handleDelete}>선택 삭제</button>
                 <button onClick={handleGoToPayment} className="basket_box">
                   결제하기
                 </button>

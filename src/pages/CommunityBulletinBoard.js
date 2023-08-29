@@ -110,10 +110,10 @@ const CommunityBulletinBoard = () => {
           <h1>커뮤니티 게시글 상세보기</h1>
           <hr className="community_bulletin_board_line" />
           <div className="community_bulletin_board_topbox">
-            <h1>{boardDevoTitle}</h1>
+                <p className="board_category">[{boardDevoCategory}]</p>
+            <p className="community_bulletin_board_title">{boardDevoTitle}</p>
             <div>
               <div className="board_info">
-                <p className="board_category">[{boardDevoCategory}]</p>
                 <div className="board_create_info">
                   <p className="board_user">{boardDevoName}</p>
                   <p className="board_date">{boardDevoCreatedat}</p>

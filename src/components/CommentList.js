@@ -10,6 +10,10 @@ const CommentList = ({item, handleEditComment, handleDeleteComment, userDataName
     // 댓글의 내용을 설정
     const [ctnt, setCtnt] = useState(null); // 편집중 임시 내용
     const [ctntSave, setCtntSave] = useState(null); // 최종 완료 내용
+
+    // textarea 줄바꿈
+    const [inputText, setInputText] = useState('')
+
     useEffect(() => {
         setCtnt(item.ctnt);
         setCtntSave(item.ctnt);
@@ -21,6 +25,9 @@ const CommentList = ({item, handleEditComment, handleDeleteComment, userDataName
     const handleChange = (e) => {
         // console.log(e.target.value)
         setCtnt(e.target.value);
+
+        // 줄바꿈
+        setInputText(e.target.value)
     }
     // 댓글 수정 취소
     const handleCancelComment = () => {
@@ -36,6 +43,15 @@ const CommentList = ({item, handleEditComment, handleDeleteComment, userDataName
 
     }
     
+    const handleKeyDown = async (e) => {
+        if (e.key === "Enter" && !e.shiftKey){
+            e.preventDefault()
+            await handleCompleteComment()
+        }
+    }
+
+    
+
   return (
     
     <CommentListWrapper>
@@ -46,7 +62,7 @@ const CommentList = ({item, handleEditComment, handleDeleteComment, userDataName
             </div>
             <div className="comment_ctnt">
                 {commentSelectID === item.icomment ? (
-                    <textarea className='edit_comment_area' value={ctnt} onChange={handleChange}/>
+                    <textarea className='edit_comment_area' value={ctnt} onChange={handleChange} onKeyDown={handleKeyDown}></textarea>
                     ):(
                         <span>{ctntSave}</span>
                         )}
@@ -58,13 +74,13 @@ const CommentList = ({item, handleEditComment, handleDeleteComment, userDataName
                     <>
                 {commentSelectID === item.icomment ? (
                     <div >
-                        <button className='editBt' onClick={handleCompleteComment}>완료</button>
-                        <button className='deleteBt' onClick={e => handleCancelComment(item.icomment)}>취소</button>
+                        <button className='completeEditBt' onClick={handleCompleteComment}>완료</button>
+                        <button className='cancelDeleteBt' onClick={e => handleCancelComment(item.icomment)}>취소</button>
                     </div>
                 ):(
                     <div>
-                        <button className='editBt' onClick={toggleEditMode}>수정</button>
-                        <button className='deleteBt'onClick={e => handleDeleteComment(item.icomment)}>삭제</button>
+                        <button className='completeEditBt' onClick={toggleEditMode}>수정</button>
+                        <button className='cancelDeleteBt'onClick={e => handleDeleteComment(item.icomment)}>삭제</button>
                     </div>
                 )}
                 </>

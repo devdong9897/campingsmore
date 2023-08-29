@@ -31,6 +31,11 @@ const basketSlice = createSlice({
       state.basketArr.splice(action.payload);
       console.log("장바구니 항목 한개 삭제");
     },
+    // 장바구니 체크된 목록 삭제
+    basketCheckDelete: (state,action) => {
+      state.basketArr = action.payload;
+      console.log("장바구니 체크된 목록 삭제")
+    },
     // 장바구니 목록 전체 목록 삭제하기
     basketAllDelete: (state, action) => {
       console.log("장바구니 전체 비우기");
@@ -43,6 +48,7 @@ export default basketSlice;
 export const {
   basketAdd,
   basketDelete,
+  basketCheckDelete,
   basketAllDelete,
   basketItem,
   basketItemEmpty,

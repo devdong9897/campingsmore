@@ -234,6 +234,7 @@ const CommunityWrite = () => {
             onChange={e => setSelectedCategory(e.target.value)}
             value={selectedCategory}
           >
+            <option value="" disabled>분류</option>
             <option value={1}>공지</option>
             <option value={2}>자유</option>
             <option value={3}>중고거래</option>
@@ -247,8 +248,8 @@ const CommunityWrite = () => {
             onChange={e => setComuTitle(e.target.value)}
             value={comutitle}
           />
-          <div style={{ background: "#fff",height:"340px" }}>
-            <ReactQuill ref={quillRef} onChange={setValue} modules={modules} style={{height:"300px"}}/>
+          <div style={{ background: "#fff",height:"460px" }}>
+            <ReactQuill ref={quillRef} onChange={setValue} modules={modules} style={{height:"420px"}}/>
           </div>
           {/* <div>
             <div
