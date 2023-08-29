@@ -29,8 +29,6 @@ const KakaoMap = () => {
   //   }
   //   return [];
   // };
-
-  console.log("아 힘들다", allianceData);
   useEffect(() => {
     // getAllianceMap();
     if (!map) return;
@@ -89,20 +87,20 @@ const KakaoMap = () => {
     }
   };
 
-  const handleSearch = () => {
-    const keyword = document.getElementById("keyword").value;
-    const ps = new kakao.maps.services.Places();
-    ps.keywordSearch(keyword, placesSearchCB); // 사용자 입력 키워드로 검색
-  };
+  // const handleSearch = () => {
+  //   const keyword = document.getElementById("keyword").value;
+  //   const ps = new kakao.maps.services.Places();
+  //   ps.keywordSearch(keyword, placesSearchCB); // 사용자 입력 키워드로 검색
+  // };
 
   return (
     <div className="kakao_map">
-      <div className="map_search">
+      {/* <div className="map_search">
         <input type="text" id="keyword" placeholder="장소검색"></input>
         <button id="searchBtn" onClick={handleSearch}>
           <FontAwesomeIcon icon={faMagnifyingGlass} />
         </button>
-      </div>
+      </div> */}
       <Map // 로드뷰를 표시할 Container
         center={{
           lat: 37.566826,
@@ -110,8 +108,7 @@ const KakaoMap = () => {
         }}
         style={{
           width: "100%",
-          height: "800px",
-          borderRadius: "15px",
+          height: "835px",
         }}
         level={3}
         onCreate={setMap}

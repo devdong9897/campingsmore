@@ -108,11 +108,25 @@ const postReview = async formData => {
   }
 };
 
-const getPaymentDetail = async iorder => {
+// const getPaymentDetail = async iorder => {
+//   try {
+//     const res = await axios.get(`/api/payment/${iorder}`);
+//     const result = res.data;
+//     console.log("단일 결제 내역보기 성공?", result);
+//     return result;
+//   } catch (err) {
+//     console.log(err);
+//   }
+//   return [];
+// };
+
+const getPaymentItemDetail = async (iorder, iitem) => {
   try {
-    const res = await axios.get(`/api/payment/${iorder}`);
+    const res = await axios.get(
+      `/api/payment/paymentList/detail/${iorder}?iitem=${iitem}`,
+    );
     const result = res.data;
-    console.log("단일 결제 내역보기 성공?", result);
+    console.log("상세 결제 내역 성공", result);
     return result;
   } catch (err) {
     console.log(err);
@@ -120,15 +134,8 @@ const getPaymentDetail = async iorder => {
   return [];
 };
 
-// const getPaymentItemDetail = async () => {
-//   try {
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
-
 export {
-  getPaymentDetail,
+  getPaymentItemDetail,
   getMypageReviewData,
   getPurchaseData,
   getCommunityData,

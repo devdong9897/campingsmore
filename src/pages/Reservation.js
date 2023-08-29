@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { ReservationWrapper } from "../css/reservation-style";
 import { useSelector } from "react-redux";
 import { getMapData } from "../api/mapDataFetch";
+import KakaoMap from "../components/KakaoMap";
 
 const Reservation = () => {
   const kakoMapdata = useSelector(state => state.KakaoData.kakaoDataArr);
-  console.log(kakoMapdata);
+  console.log("어이!", kakoMapdata);
 
   // const getMapdata = async () => {
   //   try {
@@ -21,7 +22,7 @@ const Reservation = () => {
           <div className="camping_list_area">
             <span className="capming_list_title">캠핑장 목록</span>
             <ul className="camping_list">
-              {kakoMapdata.documents.map((item, index) => (
+              {kakoMapdata.documents?.map((item, index) => (
                 <li key={index}>
                   <div className="camping_info_box">
                     <div className="camping_img">
@@ -33,13 +34,16 @@ const Reservation = () => {
                         {item.road_address_name}
                       </span>
                       <span className="camping_phone">{item.phone}</span>
+                      <span className="place_url">캠핑상세주소</span>
                     </div>
                   </div>
                 </li>
               ))}
             </ul>
           </div>
-          <div className="kakaoMap"></div>
+          <div className="kakaoMap">
+            <KakaoMap />
+          </div>
         </div>
       </div>
     </ReservationWrapper>

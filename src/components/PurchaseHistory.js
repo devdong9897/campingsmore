@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { PurchaseWrapper } from "../css/mypage-style";
-import { getPaymentDetail, getPurchaseData } from "../api/mypageFatch";
+import {
+  getPaymentDetail,
+  getPurchaseData,
+  getPaymentItemDetail,
+} from "../api/mypageFatch";
 import ReviewModal from "./ReviewModal";
 import ReviewCompletedModal from "./modal/ReviewCompletedModal";
 
@@ -14,6 +18,7 @@ const PurchaseHistory = ({ purchase }) => {
   const [purchaseDetail, setPurchaseDetail] = useState(false);
   const [thispurchaseIndex, setThispurchaseIndex] = useState(null);
   const [paymentDetail, setpaymentDetail] = useState({});
+  const [listIndex, setListIndex] = useState("");
 
   const handleReviewWrite = (itemiorder, subitemiitem) => {
     setThisItem(itemiorder);
@@ -21,25 +26,19 @@ const PurchaseHistory = ({ purchase }) => {
     setisReviewModal(true);
   };
 
-  // 구매상세보기
-  const handleItemDatail = (iorder, iitem) => {
-    // setPurchaseDetail(true);
-    // setThispurchaseIndex(iorder);
-    console.log("아이오더값", iorder);
-    console.log("아이템 값", iitem);
-    // getPurchaseData(iorder);
-  };
-
-  // 구매상세값요청
-  const getPurchaseData = async iorder => {
+  // 구매상세보기 버튼
+  const handleItemDatail = async (iorder, iitem, subindex) => {
+    console.log(iorder, iitem, subindex);
+    setPurchaseDetail(true);
+    setThispurchaseIndex(iorder);
+    setListIndex(subindex);
     try {
-      const data = await getPaymentDetail(iorder);
+      const data = await getPaymentItemDetail(iorder, iitem);
       setpaymentDetail(data);
     } catch (err) {
       console.log(err);
     }
   };
-
   const handleDetailClose = () => {
     setPurchaseDetail(false);
   };
@@ -68,54 +67,111 @@ const PurchaseHistory = ({ purchase }) => {
             <li key={index}>
               {item.itemList.map((subitem, subindex) => (
                 <div className="inner" key={subindex}>
-                  <div className="purchase_img">
-                    <img src={subitem.pic} alt={subitem.name} />
-                  </div>
-                  <div className="purchase_info_box">
-                    <div className="purchase_infos">
-                      <span className="purchase_date">
-                        {subitem.paymentDate}
-                      </span>
-                      <span className="purchase_info">
-                        <p>{subitem.name}</p>
-                      </span>
-                      <span>{subitem.totalPrice} 원</span>
+                  <div className="purchase_info">
+                    <div className="purchase_img">
+                      <img src={subitem.pic} alt={subitem.name} />
                     </div>
-                    <div className="purchase_func">
-                      {subitem.reviewYn === 0 ? (
-                        <button
-                          className="write_review"
-                          onClick={() =>
-                            handleReviewWrite(item.iorder, subitem.iitem)
-                          }
-                        >
-                          리뷰작성
-                        </button>
-                      ) : (
-                        <span className="written_review">작성된 리뷰</span>
-                      )}
-                      {purchaseDetail && thispurchaseIndex === item.iorder ? (
-                        <button
-                          className="purchage_datail_close"
-                          onClick={handleDetailClose}
-                        >
-                          닫기
-                        </button>
-                      ) : (
-                        <button
-                          className="purchage_detail"
-                          onClick={e =>
-                            handleItemDatail(
-                              item.iorder,
-                              item.itemList[subindex].iitem,
-                            )
-                          }
-                        >
-                          구매상세
-                        </button>
-                      )}
+                    <div className="purchase_info_box">
+                      <div className="purchase_infos">
+                        <span className="purchase_date">
+                          {subitem.paymentDate}
+                        </span>
+                        <span className="purchase_info">
+                          <p>{subitem.name}</p>
+                        </span>
+                        <span>{subitem.totalPrice} 원</span>
+                      </div>
+                      <div className="purchase_func">
+                        {subitem.reviewYn === 0 ? (
+                          <button
+                            className="write_review"
+                            onClick={() =>
+                              handleReviewWrite(item.iorder, subitem.iitem)
+                            }
+                          >
+                            리뷰작성
+                          </button>
+                        ) : (
+                          <span className="written_review">작성된 리뷰</span>
+                        )}
+                        {purchaseDetail &&
+                        thispurchaseIndex === item.iorder &&
+                        listIndex === subindex ? (
+                          <button
+                            className="purchage_datail_close"
+                            onClick={handleDetailClose}
+                          >
+                            닫기
+                          </button>
+                        ) : (
+                          <button
+                            className="purchage_detail"
+                            onClick={e =>
+                              handleItemDatail(
+                                item.iorder,
+                                item.itemList[subindex].iitem,
+                                subindex,
+                              )
+                            }
+                          >
+                            구매상세
+                          </button>
+                        )}
+                      </div>
                     </div>
                   </div>
+                  {purchaseDetail &&
+                  thispurchaseIndex === item.iorder &&
+                  listIndex === subindex ? (
+                    <div className="purchase_detail">
+                      <span className="detail_title">상세결제내역</span>
+                      <div className="detail_list_info">
+                        <ul className="detail_list_left">
+                          <li>
+                            <span>결제품명</span>
+                            <span>{paymentDetail.name}</span>
+                          </li>
+                          <li>
+                            <span>결제가격</span>
+                            <span>{paymentDetail.price}</span>
+                          </li>
+                          <li>
+                            <span>결제 총가격</span>
+                            <span>{paymentDetail.totalPrice}</span>
+                          </li>
+                          <li>
+                            <span>배송메모</span>
+                            <span>{paymentDetail.shippingMemo}</span>
+                          </li>
+                        </ul>
+                        <ul className="detail_list_right">
+                          <li>
+                            <span>결제일</span>
+                            <span>{paymentDetail.paymentDate}</span>
+                          </li>
+                          <li>
+                            <span>배송주소</span>
+                            <span>{paymentDetail.address}</span>
+                          </li>
+                          <li>
+                            <span>상세주소</span>
+                            <span>{paymentDetail.addressDetail}</span>
+                          </li>
+                          <li>
+                            <span>배송가격</span>
+                            <span>{paymentDetail.shippingPrice}</span>
+                          </li>
+                        </ul>
+                      </div>
+                      <div className="purchase_cancel">
+                        <button className="purchase_cancel_btn">
+                          결제취소
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    ""
+                  )}
                 </div>
               ))}
             </li>

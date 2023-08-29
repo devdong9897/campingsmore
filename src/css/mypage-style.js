@@ -273,104 +273,144 @@ export const PurchaseWrapper = styled.div`
       .inner {
         position: relative;
         display: flex;
-        gap: 15px;
-        justify-content: space-between;
+        flex-direction: column;
+        gap: 5px;
         width: 100%;
-        height: 100%;
-        padding: 10px;
-        .purchase_img {
-          width: 150px;
-          height: 100%;
-          border-radius: 15px;
-          overflow: hidden;
-          img {
-            width: 100%;
-            height: 100%;
-          }
-        }
-        .purchase_info_box {
+        height: auto;
+        .purchase_info {
           display: flex;
+          gap: 15px;
           justify-content: space-between;
-          width: 80%;
-          height: 100%;
-          font-size: 18px;
-          .purchase_infos {
-            display: flex;
-            flex-direction: column;
-            width: 75%;
+          width: 100%;
+          height: 150px;
+          padding: 10px;
+          .purchase_img {
+            width: 150px;
             height: 100%;
-            .purchase_date {
-              font-size: 16px;
-              color: #9d9d9d;
-            }
-            .purchase_info {
+            border-radius: 15px;
+            overflow: hidden;
+            img {
               width: 100%;
               height: 100%;
-              p {
-                &:first-of-type {
-                  font-size: 25px;
-                  font-weight: bold;
-                }
-                &:last-child {
-                  font-size: 18px;
+            }
+          }
+          .purchase_info_box {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            height: 100%;
+            font-size: 18px;
+            .purchase_infos {
+              display: flex;
+              flex-direction: column;
+              width: 75%;
+              height: 100%;
+              .purchase_date {
+                font-size: 16px;
+                color: #9d9d9d;
+              }
+              .purchase_info {
+                width: 100%;
+                height: 100%;
+                p {
+                  &:first-of-type {
+                    font-size: 25px;
+                    font-weight: bold;
+                  }
+                  &:last-child {
+                    font-size: 18px;
+                  }
                 }
               }
             }
-          }
-          .purchase_func {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 10px;
-            width: 15%;
-            height: 100%;
-            span {
+            .purchase_func {
               display: flex;
               flex-direction: column;
               justify-content: center;
-              font-size: 13px;
-              text-align: center;
-              width: 100%;
-              height: 45px;
-              border-radius: 10px;
-              border: none;
-              background: rgba(184, 166, 149, 0.3);
-              font-weight: 500;
-              font-family: "NanumSquare";
-            }
-            button {
-              margin: 0 auto;
-              width: 100%;
-              height: 45px;
-              border-radius: 10px;
-              border: none;
-              background: #f0d7b6;
-              font-weight: 500;
-              font-family: "NanumSquare";
-              cursor: pointer;
-              &:hover {
-                color: #fff;
-                background: #cd853f;
+              gap: 10px;
+              width: 15%;
+              height: 100%;
+              span {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                font-size: 13px;
+                text-align: center;
+                width: 100%;
+                height: 45px;
+                border-radius: 10px;
+                border: none;
+                background: rgba(184, 166, 149, 0.3);
+                font-weight: 500;
+                font-family: "NanumSquare";
+              }
+              button {
+                margin: 0 auto;
+                width: 100%;
+                height: 45px;
+                border-radius: 10px;
+                border: none;
+                background: #f0d7b6;
+                font-weight: 500;
+                font-family: "NanumSquare";
+                cursor: pointer;
+                &:hover {
+                  color: #fff;
+                  background: #cd853f;
+                }
               }
             }
           }
         }
-      }
-      .purchase_detail {
-        border-top: 1px solid #000;
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        padding: 20px 0px;
-        .detail_list {
+        .purchase_detail {
+          border-top: 1px solid #000;
           display: flex;
           flex-direction: column;
-          gap: 5px;
-          li {
-            display: grid;
-            grid-template-columns: 100px 1fr;
-            box-shadow: none;
-            padding: 0px 10px;
+          width: 100%;
+          padding: 15px;
+          .detail_title {
+            display: block;
+            width: 100%;
+            font-size: 18px;
+          }
+          .detail_list_info {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            height: auto;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+            ul {
+              display: flex;
+              flex-direction: column;
+              gap: 5px;
+              width: 50%;
+              padding: 10px 0px;
+              li {
+                display: flex;
+                flex-direction: column;
+                box-shadow: none;
+                span {
+                  &:first-child {
+                    font-weight: bold;
+                  }
+                }
+              }
+            }
+          }
+          .purchase_cancel {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 10px;
+            width: 100%;
+            .purchase_cancel_btn {
+              font-family: "NanumSquare";
+              width: 15%;
+              height: 35px;
+              border: none;
+              background-color: #c97575;
+              color: #fff;
+              border-radius: 10px;
+            }
           }
         }
       }
