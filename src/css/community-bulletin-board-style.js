@@ -22,6 +22,17 @@ export const CommunityBulletinBoardWrapper = styled.div`
   .community_bulletin_board_topbox {
     width: 100%;
     height:auto;
+    .community_bulletin_board_title{
+    font-size:30px;
+    width: auto;
+    height: auto;
+    margin-bottom:10px;
+    font-size: 20px;
+    border:none;
+    border-radius:10px;
+    resize:none;
+    float:left;
+    }
     .board_info {
     .board_category {
       border-radius: 15px;
@@ -29,27 +40,15 @@ export const CommunityBulletinBoardWrapper = styled.div`
       .board_create_info{
         float:right;
         display: block;
-        p:first-child {
-        }
       }
     }
     .board_ctnt{
       width: 100%;
       border-radius:5px;
       margin-top:10px;
+      overflow: hidden;
+      background-color: lightgray;
     }
-  }
-
-  .community_bulletin_board_title {
-    width: 100%;
-    height: 60px;
-    font-size: 20px;
-    text-indent: 15px;
-    margin-top:20px;
-    margin-bottom: 20px;
-    border:none;
-    border-radius:10px;
-    resize:none;
   }
   .community_bulletin_board_detail {
     width: 1300px;
@@ -111,4 +110,5 @@ export const CommunityBulletinBoardWrapper = styled.div`
       background-color: black;
       color:white;
     }
+
 `
