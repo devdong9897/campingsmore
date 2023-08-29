@@ -21,12 +21,14 @@ import CommunityBulletinBoard from "./CommunityBulletinBoard";
 import { getUserData } from "../api/userFatch";
 import { useDispatch } from "react-redux";
 import { getBasketList } from "../api/basketFetch";
+import { getMapData } from "../api/mapDataFetch";
 
 const MainPage = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     getUserData(dispatch);
     getBasketList(dispatch);
+    getMapData(dispatch);
   }, []);
   return (
     <MainWarp>

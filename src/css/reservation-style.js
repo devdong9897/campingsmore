@@ -4,48 +4,88 @@ const path = process.env.PUBLIC_URL;
 
 export const ReservationWrapper = styled.div`
   width: 100%;
-  height: 100%px;
-  background: white;
-  color: #eee;
-  background-image: url("${path}/image/bg.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  height: 100vh;
+  padding-top: 120px;
   .reservation_inner {
     position: relative;
-    padding-top: 100px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     position: relative;
     width: 100%;
-    height: 3000px;
-    background: rgba(217, 217, 217, 0.5);
-    .logo_img {
-      width: 500px;
-      height: 500px;
-      background: url("${path}/image/logo2.png");
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: 500px;
-      margin: 0 auto;
-    }
-    .announcement {
-      text-align: center;
-      font-size: 24px;
-      margin-top: 20px;
-      color: #eee;
-      font-weight: bold;
-      h1 {
-        font-size: 90px;
-        font-weight: 900;
+    height: 100%;
+    .reser_frame {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      height: 100%;
+      .camping_list_area {
+        width: 550px;
+        height: 100%;
+        overflow: hidden;
+        .capming_list_title {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          padding: 15px 0px;
+          height: 10%;
+          font-size: 20px;
+        }
+        .camping_list {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          height: 90%;
+          overflow-y: scroll;
+          li {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            border-top: 1px solid #000;
+            padding: 20px 10px;
+            width: 100%;
+            min-height: 200px;
+            .camping_info_box {
+              display: flex;
+              gap: 10px;
+              width: 100%;
+              height: 80%;
+              .camping_img {
+                position: relative;
+                width: 40%;
+                height: 100%;
+                background: gold;
+                border-radius: 10px;
+                overflow: hidden;
+                img {
+                  position: absolute;
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -50%);
+                  width: 100%;
+                }
+              }
+              .camping_info {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                width: 60%;
+                height: 100%;
+                .camping_name {
+                  font-weight: bold;
+                  font-size: 20px;
+                }
+              }
+            }
+          }
+        }
       }
-      span {
-        color: red;
-        font-weight: 900;
-      }
-      p {
-        font-size: 40px;
+      .kakaoMap {
+        width: calc(100% - 550px);
+        height: 100%;
+        background: darkcyan;
       }
     }
   }

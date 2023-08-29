@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import KakaoMap from "../components/KakaoMap";
 import { MainContentsWrapper } from "../css/main-contents-style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,18 +10,29 @@ import { getOrderListCategory, getbestitem } from "../api/itemFatch";
 import { cookies } from "../api/cookie";
 import { useNavigate } from "react-router-dom";
 import SwiperSlice from "../components/SwiperSlice";
+import { getMapData } from "../api/mapDataFetch";
+import SwiperMap from "../components/SwiperMap";
+import { useDispatch, useSelector } from "react-redux";
+import { KakaoDataAdd } from "../reducers/KakaoDataSlice";
 
 const MainContents = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const kakoMapdata = useSelector(state => state.KakaoData.kakaoDataArr);
   // 추천상품 state
   const [bestitem, setBestitem] = useState([]);
   // 카테고리 상품 state
   const [orderlist, setOrderList] = useState([]);
   // 검색 state
   const [search, setSearch] = useState("");
-
   // 검색 쿼리스트링 state
   const [qusearch, setQusearch] = useState("");
+  // 가져온데이타 맵 데이터 stae
+  const [kmapData, setKmapData] = useState([]);
+
+  const SwiperFadeMemoized = React.memo(SwiperFade);
+  const SwiperSliceMemoized = React.memo(SwiperSlice);
+  const SwiperMapMemoized = React.memo(SwiperMap);
 
   // 검색기능 핸들러
   const handleSearch = () => {
@@ -31,46 +42,47 @@ const MainContents = () => {
     // getOrderSearch(queryString);
   };
 
-  // 카테고리 상품 가져오기
-  const getOrderList = async () => {
+  // 메인컨텐츠 모든 데이터 가져오기
+  const getAlldata = async () => {
     try {
-      const data = await getOrderListCategory();
-      setOrderList(data);
-      console.log("얌마!", orderlist.itemList);
-    } catch (err) {
-      console.log("오더리스트 에러", err);
-    }
-  };
-
-  // 추천상품 가져오기
-  const getbestitemFetch = async () => {
-    try {
+      const orderData = await getOrderListCategory();
+      setOrderList(orderData);
       const bestitemJson = await getbestitem();
       setBestitem(bestitemJson);
-    } catch (error) {
-      console.log(error);
+      const mapData = await getMapData(dispatch);
+      setKmapData(mapData);
+      console.log("카테고리 상품", orderData);
+      console.log("추천상품", bestitemJson);
+      console.log("맵데이터", mapData);
+    } catch (err) {
+      console.log(err);
     }
   };
 
   // 카테고리 눌러서 검색결과창 가기
-  const handleCateResult = catecode => {
-    navigate(`/main/orderlist?catecode=${catecode}`);
-  };
+  const handleCateResult = useCallback(
+    catecode => {
+      navigate(`/main/orderlist?catecode=${catecode}`);
+    },
+    [navigate],
+  );
 
-  const handleThisitem = iitem => {
-    navigate(`/main/orderdetail?iitem=${iitem}`);
-  };
+  const handleThisitem = useCallback(
+    iitem => {
+      navigate(`/main/orderdetail?iitem=${iitem}`);
+    },
+    [navigate],
+  );
 
   useEffect(() => {
-    getbestitemFetch();
-    getOrderList();
+    getAlldata();
   }, []);
 
   return (
     <MainContentsWrapper>
       <div className="top_main_contents">
         <div className="slide_area">
-          <SwiperFade />
+          <SwiperFadeMemoized />
         </div>
         <div className="main_contents_inner">
           <span className="main_title">
@@ -87,7 +99,7 @@ const MainContents = () => {
             </button>
           </div>
           <ul className="main_category">
-            {orderlist.map((item, index) => (
+            {orderlist?.map((item, index) => (
               <li
                 key={index}
                 onClick={e => handleCateResult(item.iitemCategory)}
@@ -97,14 +109,14 @@ const MainContents = () => {
             ))}
           </ul>
           <div className="select_slide">
-            <SwiperSlice bestitem={bestitem} />
+            <SwiperSliceMemoized bestitem={bestitem} />
           </div>
         </div>
       </div>
       <div className="kakao_map_wrap">
-        <span>최적의 캠핑 장소를 찾아보세요</span>
+        <span className="map_title">최적의 캠핑 장소를 찾아보세요</span>
         <div className="kakao_map_area">
-          <KakaoMap />
+          {kmapData ? <SwiperMapMemoized kmapData={kmapData} /> : ""}
         </div>
       </div>
       <div className="recommned_menu">
@@ -116,7 +128,7 @@ const MainContents = () => {
         </div>
         <div className="recommned_inner">
           <ul className="recommned_list">
-            {bestitem.map((item, index) => (
+            {bestitem?.map((item, index) => (
               <li key={index} onClick={e => handleThisitem(item.iitem)}>
                 <div className="reco_item_pic">
                   <img src={item.pic} alt="추천상품이미지"></img>
