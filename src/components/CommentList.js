@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { editComment } from '../api/communityBulletinBoardFetch'
 import { CommentListWrapper } from '../css/comment-list-style';
+import DOMPurify from 'dompurify';
 
     
 
@@ -36,19 +37,20 @@ const CommentList = ({item, handleEditComment, handleDeleteComment, userDataName
 
     // 댓글 수정 완료
     const handleCompleteComment = async () => {
-        await editComment(item.icomment, ctnt)
         // console.log("댓글 수정 완료")
-        setCtntSave(ctnt);
+        const textWithLineBreaks = ctnt.replace(/\n/g, '<br />')
+        await editComment(item.icomment, textWithLineBreaks)
+        setCtntSave(textWithLineBreaks);
         setCommentSelectID(null);
 
     }
     
-    const handleKeyDown = async (e) => {
-        if (e.key === "Enter" && !e.shiftKey){
-            e.preventDefault()
-            await handleCompleteComment()
-        }
-    }
+    // const handleKeyDown = async (e) => {
+    //     if (e.key === "Enter" && !e.shiftKey){
+    //         e.preventDefault()
+    //         await handleCompleteComment()
+    //     }
+    // }
 
     
 
@@ -56,18 +58,20 @@ const CommentList = ({item, handleEditComment, handleDeleteComment, userDataName
     
     <CommentListWrapper>
         <li>
-            <div className="comment_user">
-                <span>{item.name}</span>
-                <span>{item.createdAt}</span>
-            </div>
-            <div className="comment_ctnt">
-                {commentSelectID === item.icomment ? (
-                    <textarea className='edit_comment_area' value={ctnt} onChange={handleChange} onKeyDown={handleKeyDown}></textarea>
-                    ):(
-                        <span>{ctntSave}</span>
-                        )}
-                {/* {item.icomment === icomment ? 
-                    (<textarea className="edit_comment_area">{item.ctnt}</textarea>):(<span>{item.ctnt}</span>)} */}
+            <div className='comment_top'>
+                <div className="comment_user">
+                    <span>{item.name}</span>
+                    <span>{item.createdAt}</span>
+                </div>
+                <div className="comment_ctnt">
+                    {commentSelectID === item.icomment ? (
+                        <textarea className='edit_comment_area' value={ctnt} onChange={handleChange}></textarea>
+                        ):(<p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(ctntSave) }}/>
+                            
+                            )}
+                    {/* {item.icomment === icomment ? 
+                        (<textarea className="edit_comment_area">{item.ctnt}</textarea>):(<span>{item.ctnt}</span>)} */}
+                </div>
             </div>
             <div className='editLine'>
                 {item.name === userDataName ? (

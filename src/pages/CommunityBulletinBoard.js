@@ -11,6 +11,7 @@ import {
 import DOMPurify from "dompurify";
 import { useSelector } from "react-redux";
 import CommentList from "../components/CommentList";
+import CommentDeleteModal from "../components/modal/CommentDeleteModal";
 
 const CommunityBulletinBoard = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -39,7 +40,7 @@ const CommunityBulletinBoard = () => {
   const [commentDelete, setCommentDelete] = useState();
   const [icomment, setIcomment] = useState("");
 
-  console.log("내 계정데이터", userDataName);
+  // console.log("내 계정데이터", userDataName);
 
   // 댓글 관련 정보 기록
   // 수정중인 댓글의 icomment를 보관해두고, 같으면 편집중, 다르면 편집아님 표시
@@ -72,23 +73,14 @@ const CommunityBulletinBoard = () => {
     setCommentEdit(true);
   };
 
-  // 댓글 삭제
-  const handleDeleteComment = async _icomment => {
-    const result = await deleteComment(_icomment);
-    alert("삭제완료");
-    // setIcomment(_icomment)
-    // setCommentDelete(true)
-
-    // 목록 갱신
-    const arr = commentListData.filter(item => item.icomment !== _icomment);
-    setCommentListData(arr);
-  };
-
   // 댓글 등록
   const handlePostComment = async () => {
+    
+    const textWithLineBreaks = commentText.replace(/\n/g, '<br />');
+
     const commentPostData = {
       iboard: iboard,
-      ctnt: commentText,
+      ctnt: textWithLineBreaks,
     };
     try {
       await postComment(commentPostData);
@@ -103,8 +95,42 @@ const CommunityBulletinBoard = () => {
   useEffect(() => {
     ComuBoardData();
   }, []);
+
+  // 댓글 삭제 모달창
+  const [modalShow, setModalShow] = useState(false);
+  const [modalIcomment, setModalIcomment] = useState(null);
+
+  // 댓글 삭제
+  const handleDeleteComment = async _icomment => {
+
+    console.log("댓글 삭제 : ", _icomment)
+    setModalIcomment(_icomment)
+    setModalShow(true);
+
+   
+  };
+  const handleCancel = () => {
+    setModalShow(false);
+  }
+
+  const handleConfirm = async () => {  
+     const result = await deleteComment(modalIcomment);
+   
+    // // setIcomment(_icomment)
+    // // setCommentDelete(true)
+
+    // 목록 갱신
+    const arr = commentListData.filter(item => item.icomment !== modalIcomment);
+    setCommentListData(arr);  
+    setModalShow(false);
+  }
+
   return (
     <CommunityBulletinBoardWrapper>
+      {
+        modalShow ? <CommentDeleteModal handleCancel={handleCancel} handleConfirm={handleConfirm}/> : null
+      }
+      
       <div className="top_community_bulletin_board_contents">
         <div className="community_bulletin_board_contents_inner">
           <h1>커뮤니티 게시글 상세보기</h1>
@@ -147,7 +173,7 @@ const CommunityBulletinBoard = () => {
             ))}
           </ul>
           <h1>댓글 등록</h1>
-          <hr className="community_bulletin_board_line" />
+          <hr className="community_bulletin_board_line"/>
           <div className="community_bulletin_board_comment_box">
             <div className="community_bulletin_board_comment">
               <ul className="community_bulletin_ul">
