@@ -3,18 +3,17 @@ import { ReservationWrapper } from "../css/reservation-style";
 import { useSelector } from "react-redux";
 import { getMapData } from "../api/mapDataFetch";
 import KakaoMap from "../components/KakaoMap";
+import { useRef } from "react";
 
 const Reservation = () => {
+  const kakaoSearchRef = useRef();
+  const [searchAddress, setSearchAddress] = useState("");
   const kakoMapdata = useSelector(state => state.KakaoData.kakaoDataArr);
   console.log("어이!", kakoMapdata);
+  const handleFindPlace = address => {
+    setSearchAddress(address);
+  };
 
-  // const getMapdata = async () => {
-  //   try {
-  //     const data = getMapData();
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
   return (
     <ReservationWrapper>
       <div className="reservation_inner">
@@ -23,7 +22,10 @@ const Reservation = () => {
             <span className="capming_list_title">캠핑장 목록</span>
             <ul className="camping_list">
               {kakoMapdata.documents?.map((item, index) => (
-                <li key={index}>
+                <li
+                  key={index}
+                  onClick={e => handleFindPlace(item.road_address_name)}
+                >
                   <div className="camping_info_box">
                     <div className="camping_img">
                       <img src="/image/bg.jpg"></img>
@@ -37,12 +39,18 @@ const Reservation = () => {
                       <span className="place_url">캠핑상세주소</span>
                     </div>
                   </div>
+                  <div className="camping_reservation">
+                    <button>캠핑예약하기</button>
+                  </div>
                 </li>
               ))}
             </ul>
           </div>
           <div className="kakaoMap">
-            <KakaoMap />
+            <KakaoMap
+              searchAddress={searchAddress}
+              onSearch={handleFindPlace}
+            />
           </div>
         </div>
       </div>

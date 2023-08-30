@@ -399,9 +399,12 @@ export const PurchaseWrapper = styled.div`
           }
           .purchase_cancel {
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between;
             margin-top: 10px;
             width: 100%;
+            span {
+              font-size: 18px;
+            }
             .purchase_cancel_btn {
               font-family: "NanumSquare";
               width: 15%;

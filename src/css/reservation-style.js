@@ -47,6 +47,7 @@ export const ReservationWrapper = styled.div`
             padding: 20px 10px;
             width: 100%;
             min-height: 200px;
+            cursor: pointer;
             .camping_info_box {
               display: flex;
               gap: 10px;
@@ -78,6 +79,9 @@ export const ReservationWrapper = styled.div`
                   font-size: 20px;
                 }
               }
+            }
+            &:hover {
+              background-color: #ededed;
             }
           }
         }

@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const { kakao } = window;
 
-const KakaoMap = () => {
+const KakaoMap = ({ searchAddress, onSearchProp }) => {
   const dispatch = useDispatch();
   const [info, setInfo] = useState();
   const [markers, setMarkers] = useState([]);
@@ -16,26 +16,11 @@ const KakaoMap = () => {
   const [MapallianceData, setMapallianceData] = useState([]);
   const allianceData = useSelector(state => state.KakaoMap.kakaoMapData);
 
-  // const getAllianceMap = async () => {
-  //   try {
-  //     const res = await axios.get("/api/dataset/kakao");
-  //     const result = res.data;
-  //     console.log("제휴 카카오위치 데이터 요청", result);
-  //     setMapallianceData(result);
-  //     dispatch(kakaoMapDataAdd(result));
-  //     console.log(result);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  //   return [];
-  // };
   useEffect(() => {
-    // getAllianceMap();
     if (!map) return;
     const ps = new kakao.maps.services.Places();
 
     ps.keywordSearch("뭐고", (allianceData, status, _pagination) => {
-      console.log("이쪽데이터인가?", allianceData);
       if (status === kakao.maps.services.Status.OK) {
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
         // LatLngBounds 객체에 좌표를 추가합니다
@@ -87,11 +72,16 @@ const KakaoMap = () => {
     }
   };
 
-  // const handleSearch = () => {
-  //   const keyword = document.getElementById("keyword").value;
-  //   const ps = new kakao.maps.services.Places();
-  //   ps.keywordSearch(keyword, placesSearchCB); // 사용자 입력 키워드로 검색
-  // };
+  const onSearch = () => {
+    const ps = new kakao.maps.services.Places();
+    ps.keywordSearch(searchAddress, placesSearchCB); // 사용자 입력 키워드로 검색
+  };
+
+  useEffect(() => {
+    if (searchAddress !== "") {
+      onSearch();
+    }
+  }, [searchAddress]);
 
   return (
     <div className="kakao_map">

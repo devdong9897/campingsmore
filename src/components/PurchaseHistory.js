@@ -132,12 +132,12 @@ const PurchaseHistory = ({ purchase }) => {
                             <span>{paymentDetail.name}</span>
                           </li>
                           <li>
-                            <span>결제가격</span>
-                            <span>{paymentDetail.price}</span>
+                            <span>결제수량</span>
+                            <span>{paymentDetail.quantity}</span>
                           </li>
                           <li>
-                            <span>결제 총가격</span>
-                            <span>{paymentDetail.totalPrice}</span>
+                            <span>결제가격</span>
+                            <span>{paymentDetail.price}</span>
                           </li>
                           <li>
                             <span>배송메모</span>
@@ -164,6 +164,11 @@ const PurchaseHistory = ({ purchase }) => {
                         </ul>
                       </div>
                       <div className="purchase_cancel">
+                        <span>
+                          결제 총 가격 :{" "}
+                          {paymentDetail.totalPrice +
+                            paymentDetail.shippingPrice}
+                        </span>
                         <button className="purchase_cancel_btn">
                           결제취소
                         </button>
