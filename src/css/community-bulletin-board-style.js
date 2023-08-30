@@ -47,7 +47,7 @@ export const CommunityBulletinBoardWrapper = styled.div`
       border-radius:5px;
       margin-top:10px;
       overflow: hidden;
-      background-color: lightgray;
+      background-color: #fcfcfc;
     }
   }
   .community_bulletin_board_detail {

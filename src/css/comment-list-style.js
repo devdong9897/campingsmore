@@ -3,7 +3,11 @@ import styled from "@emotion/styled"
 export const CommentListWrapper = styled.div`
     width: 100%;
     height: auto;
-    background-color: aliceblue;
+    .comment_top {
+        height: auto;
+        border-radius:15px;
+        padding:5px;
+    }
     .comment_user {
         float:right;
     }
@@ -11,6 +15,7 @@ export const CommentListWrapper = styled.div`
         width: 300px;
         resize:none;
     }
+
     .comment_user span:first-child{
         margin-right:10px;
         display: block;
@@ -18,7 +23,7 @@ export const CommentListWrapper = styled.div`
     }
     .editLine {
         border-bottom:1px dotted #000;
-        margin-top:50px;
+        margin-top:20px;
         margin-bottom:20px;
     }
     .completeEditBt{
