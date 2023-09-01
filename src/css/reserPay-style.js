@@ -18,6 +18,7 @@ export const ReserPayWapper = styled.div`
       height: 60%;
       background: gold;
       overflow: hidden;
+      border-radius: 15px;
       img {
         position: absolute;
         top: 50%;
@@ -28,21 +29,36 @@ export const ReserPayWapper = styled.div`
     }
     .detail_info {
       display: flex;
-      flex-direction: column;
       justify-content: space-between;
       width: 100%;
       height: 40%;
+      gap: 1%;
       .thumbnail_list {
         position: relative;
         width: 50%;
         height: 100%;
         overflow: hidden;
+        border-radius: 10px;
         img {
           position: absolute;
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
           width: 100%;
+        }
+      }
+      .detail_info_desc {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        height: 100%;
+        background: #fff;
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+        padding: 15px;
+        .title {
+          font-size: 27px;
+          font-weight: bold;
         }
       }
     }

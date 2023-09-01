@@ -20,7 +20,15 @@ const ReservationPayment = () => {
           <div className="thumbnail_list">
             <img src="/image/bg3.jpg"></img>
           </div>
-          <div className="detail_info_desc"></div>
+          <div className="detail_info_desc">
+            <span className="title">캠핑시설 제목</span>
+            <ul>
+              <li>캠핑장 주소</li>
+              <li>캠핑장 도로명 주소</li>
+              <li>캠핑장 전화번호</li>
+              <li>웹사이트 주소</li>
+            </ul>
+          </div>
         </div>
       </div>
       <div className="calendar_area">
@@ -87,6 +95,9 @@ const ReservationPayment = () => {
             <span>네이버페이</span>
           </li>
         </ul>
+        <div className="payment_click">
+          <button>결제하기</button>
+        </div>
       </div>
     </ReserPayWapper>
   );

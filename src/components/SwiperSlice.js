@@ -25,14 +25,23 @@ const SwiperSlice = ({ bestitem }) => {
         modules={[Navigation, Pagination]}
         className="mySwiper-slice"
       >
-        {bestitem.map((item, index) => (
-          <SwiperSlide key={index} onClick={e => handleItemNumber(item.iitem)}>
-            <div className="slide_item_img">
-              <img src={item.pic} alt="추천상품이미지"></img>
-            </div>
-            <div className="slide_item_text">{item.name}</div>
-          </SwiperSlide>
-        ))}
+        {bestitem ? (
+          <>
+            {bestitem.map((item, index) => (
+              <SwiperSlide
+                key={index}
+                onClick={e => handleItemNumber(item.iitem)}
+              >
+                <div className="slide_item_img">
+                  <img src={item.pic} alt="추천상품이미지"></img>
+                </div>
+                <div className="slide_item_text">{item.name}</div>
+              </SwiperSlide>
+            ))}
+          </>
+        ) : (
+          <>추천 상품이 없습니다.</>
+        )}
       </Swiper>
     </>
   );
