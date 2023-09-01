@@ -1,5 +1,6 @@
 import axios from "axios";
 import { cookies, getCookie, setCookie } from "./cookie";
+import { useNavigate } from "react-router-dom";
 
 // export const client = axios.create({
 //   baseURL: "http://192.168.0.144:5005",
@@ -45,7 +46,8 @@ export const fetchLogin = async (email, pw) => {
     });
   } catch (error) {
     console.log(error);
-    alert("아이디 비밀번호가 일치하지 않습니다");
+
+    // alert("아이디 비밀번호가 일치하지 않습니다");
   }
 };
 

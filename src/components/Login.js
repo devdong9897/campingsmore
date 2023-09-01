@@ -19,18 +19,21 @@ const Login = () => {
   const handleLogin = async e => {
     if (id === "" || pass === "") {
       alert("아이디와 비밀번호를 입력해주세요!!");
+    } else if (e.key === "enter") {
+      alert("adawd");
     }
     try {
       e.preventDefault();
-      await fetchLogin(id, pass);
+      const login = await fetchLogin(id, pass);
+      const result = login;
       await getUserData(dispatch);
       await getBasketList(dispatch);
       setId("");
       setPass("");
-      navigate("/main");
-      // window.location.reload();
     } catch (err) {
       console.log(err);
+    } finally {
+      navigate("/main");
     }
   };
 
@@ -76,7 +79,12 @@ const Login = () => {
         </span>
       </div>
       <div className="do_login">
-        <button className="login_submit_btn" onClick={handleLogin}>
+        <button
+          type="submit"
+          className="login_submit_btn"
+          tabIndex="0"
+          onClick={handleLogin}
+        >
           로그인
         </button>
       </div>

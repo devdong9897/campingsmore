@@ -10,6 +10,7 @@ import OrderHistory from "./OrderHistory";
 import OrderDetail from "./OrderDetail";
 import Reservation from "./Reservation";
 import MainContents from "./MainContents";
+import ReservationPayment from "./ReservationPayment";
 import NotFound from "./NotFound";
 import About from "./About";
 import { Route, Routes } from "react-router-dom";
@@ -22,6 +23,7 @@ import { getUserData } from "../api/userFatch";
 import { useDispatch } from "react-redux";
 import { getBasketList } from "../api/basketFetch";
 import { getMapData } from "../api/mapDataFetch";
+import "../css/kakao-style.css";
 
 const MainPage = () => {
   const dispatch = useDispatch();
@@ -51,6 +53,10 @@ const MainPage = () => {
         <Route path="/reservation" element={<Reservation />}></Route>
         <Route path="/mypage" element={<Mypage />}></Route>
         <Route path="/about" element={<About />}></Route>
+        <Route
+          path="/reservationpayment"
+          element={<ReservationPayment />}
+        ></Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
       <Footer />

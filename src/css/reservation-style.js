@@ -23,27 +23,86 @@ export const ReservationWrapper = styled.div`
         width: 550px;
         height: 100%;
         overflow: hidden;
-        .capming_list_title {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          text-align: center;
-          padding: 15px 0px;
-          height: 10%;
-          font-size: 20px;
+        border-right: 5px solid rgba(0, 0, 0, 0.1);
+        .reservaion_info {
+          width: 100%;
+          height: 25%;
+          .capming_list_title {
+            margin: 15px 0px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0px 0px;
+            font-size: 28px;
+          }
+          .camping_search {
+            width: 100%;
+            padding: 0px 100px;
+            display: flex;
+            flex-direction: column;
+            span {
+              text-align: center;
+            }
+            .search_input_box {
+              position: relative;
+              width: 100%;
+              height: 35px;
+              background: red;
+              border-radius: 10px;
+              overflow: hidden;
+              border: 1px solid #b28e68;
+              input {
+                width: 100%;
+                height: 100%;
+                border: none;
+                padding-left: 10px;
+                padding-right: 60px;
+              }
+              .search_btn {
+                position: absolute;
+                top: 0px;
+                right: 0px;
+                width: 50px;
+                height: 100%;
+                z-index: 1;
+                border: none;
+                background: #b28e68;
+                color: #fff;
+              }
+            }
+          }
+          .camping_location {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+            width: 100%;
+            height: 80px;
+            padding: 0px 100px;
+            .select_location {
+              width: 100%;
+              height: 35px;
+              border-radius: 10px;
+              padding: 0px 10px;
+              border: 1px solid #b28e68;
+            }
+          }
         }
+
         .camping_list {
           display: flex;
           flex-direction: column;
           width: 100%;
-          height: 90%;
+          height: 70%;
           overflow-y: scroll;
           li {
             display: flex;
             flex-direction: column;
             gap: 10px;
-            border-top: 1px solid #000;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
             padding: 20px 10px;
             width: 100%;
             min-height: 200px;
@@ -77,6 +136,17 @@ export const ReservationWrapper = styled.div`
                 .camping_name {
                   font-weight: bold;
                   font-size: 20px;
+                }
+              }
+            }
+            .camping_reservation {
+              button {
+                border: none;
+                padding: 5px 10px;
+                border-radius: 5px;
+                background: #d2b48c;
+                &:hover {
+                  background: #a87f0f;
                 }
               }
             }

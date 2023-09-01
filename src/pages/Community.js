@@ -63,8 +63,8 @@ const Community = () => {
 
   const handleSearch = async event => {
     event.preventDefault();
-    if(searchKeyword.trim() === "") {
-      return
+    if (searchKeyword.trim() === "") {
+      return;
     }
     // const result = await searchCommunityData(searchKeyword)
     // if(result) {
@@ -87,7 +87,7 @@ const Community = () => {
       handleSearch(event);
     }
   };
-  
+
   // 최초 목록 호출
   useEffect(() => {
     getCommunityData();
@@ -188,8 +188,7 @@ const Community = () => {
                             ? "질문"
                             : item.icategory === 5
                             ? "지역"
-                            : item.icategory === 6
-                            }
+                            : item.icategory === 6}
                         </p>
                       </span>
                       <span className="list_item_title">{item.title}</span>

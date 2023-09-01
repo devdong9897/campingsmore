@@ -98,7 +98,7 @@ const KakaoMap = ({ searchAddress, onSearchProp }) => {
         }}
         style={{
           width: "100%",
-          height: "835px",
+          height: "100%",
         }}
         level={3}
         onCreate={setMap}

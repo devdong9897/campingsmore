@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getBasketList } from "../api/basketFetch";
 import { UserLogout } from "../reducers/userSlice";
 import { basketItemEmpty } from "../reducers/basketSlice";
-import { LogoutFetch } from "../api/userFatch";
+import { LogoutFetch, UserLogoutFetch } from "../api/userFatch";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -40,15 +40,19 @@ const Header = () => {
   };
 
   // 쿠키 로그아웃
-  const handleLogout = () => {
-    deleteCookie();
-    setIsLoggedIn(false);
-    const LogoutEmpty = [];
-    const basketEmpty = [];
-    dispatch(UserLogout(LogoutEmpty));
-    dispatch(basketItemEmpty(basketEmpty));
-    navigate("/");
-    LogoutFetch();
+  const handleLogout = async () => {
+    try {
+      deleteCookie();
+      setIsLoggedIn(false);
+      const LogoutEmpty = [];
+      const basketEmpty = [];
+      dispatch(UserLogout(LogoutEmpty));
+      dispatch(basketItemEmpty(basketEmpty));
+      navigate("/");
+      LogoutFetch();
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {
