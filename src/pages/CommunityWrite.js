@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { CommunityWriteWrapper } from "../css/community-write-style";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { createBrowserHistory } from "history";
+
 import ReactQuill from "react-quill";
 import createPost, {
   deleteBoard,
@@ -13,7 +15,30 @@ import { useMemo } from "react";
 import DOMPurify from "dompurify";
 import { getFetchData } from "../api/communityBulletinBoardFetch";
 
+// 글 등록을 눌렀는지,취소를 했는지, 뒤로가기를 했는지 체크 state
+let checkCheckWrite = 0;
+
 const CommunityWrite = () => {
+  // 히스토리
+  const history = createBrowserHistory();
+  useEffect(() => {
+    const listenBackEvent = () => {
+      // 뒤로가기 할 때 수행할 동작을 적는다
+      // console.log("해해해해")
+// 취소한 경우 게시물 제거
+     deleteBoard(iboardRef.current);
+    };
+
+    const unlistenHistoryEvent = history.listen(({ action }) => {
+      if (action === "POP") {
+        listenBackEvent();
+      }
+    });
+
+    return unlistenHistoryEvent;
+  }, []);
+
+
   const [searchParams, setSearchParams] = useSearchParams();
   const writeBoard = searchParams.get("iboard");
   // 수정하기로 들어올때 받아오는 작성된 게시글 데이타
@@ -45,14 +70,20 @@ const CommunityWrite = () => {
 
     // 컴포넌트 언마운트시 이벤트 리스너 제거
     return () => {
-      if (checkBack === 0) {
-        console.log("게시글 취소, 또는 뒤로가기");
+      // console.log("======================== checkBack .....: ", checkBack)
+      // console.log("======================== checkCheckWrite .....: ", checkCheckWrite)
+      if (checkCheckWrite === 0) {
+        // console.log("게시글 취소, 또는 뒤로가기");
+        // console.log("======================== 게시글 취소, 또는 뒤로가기.....: ")
+        // 취소한 경우 게시물 제거
+        deleteBoard(iboardRef.current);
       } else {
-        console.log("게시글 정상 등록해서 이동");
+        // console.log("게시글 정상 등록해서 이동");
       }
       window.removeEventListener("popstate", handleGoBack);
     };
   }, [location]);
+  
   const [selectedCategory, setSelectedCategory] = useState(1);
   // const [comuCtnt, setComuCtnt] = useState("");
 
@@ -76,21 +107,6 @@ const CommunityWrite = () => {
   }, []);
 
   // 리액트에서 웹브라우저 종료시 처리
-
-  // 마이페이지에서 게시글 수정해서 들어올때 실행
-
-  const getBoardData = async () => {
-    try {
-      const data = await getFetchData(writeBoard);
-      console.log("게시글 디테일 요청해서 받은 데이터", data.boardDeVo);
-      setboardData(data.boardDeVo);
-      setComuTitle(data.boardDeVo.title);
-      setValue(data.boardDeVo.ctnt);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   useEffect(() => {
     if (writeBoard) {
       getBoardData();
@@ -107,6 +123,23 @@ const CommunityWrite = () => {
       // localStorage.removeItem("pk")
     };
   }, []);
+
+
+  // 마이페이지에서 게시글 수정해서 들어올때 실행
+
+  const getBoardData = async () => {
+    try {
+      const data = await getFetchData(writeBoard);
+      console.log("게시글 디테일 요청해서 받은 데이터", data.boardDeVo);
+      setboardData(data.boardDeVo);
+      setComuTitle(data.boardDeVo.title);
+      setValue(data.boardDeVo.ctnt);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  
 
   const imageHandler = () => {
     // console.log("이미지 핸들링", iboardRef);
@@ -223,7 +256,9 @@ const CommunityWrite = () => {
         ctnt: value,
       };
       await createPost(postData);
+      console.log("======================== 글등록 함.....: ")
       // 정상 등록
+      checkCheckWrite = 1;
       setCheckBack(1);
       setValue("");
       setComuTitle("");
@@ -237,6 +272,7 @@ const CommunityWrite = () => {
     // 취소한 경우 게시물 제거
     await deleteBoard(iboardRef.current);
     // 등록 취소
+    checkCheckWrite = 0;
     setCheckBack(0);
     navigate("/main/community");
   };

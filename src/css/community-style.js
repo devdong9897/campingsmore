@@ -92,6 +92,7 @@ export const CommunityWrapper = styled.div`
               width: 100%;
               height: 80px;
               background: #ffffff;
+              cursor: pointer;
               .list_left {
                 display: flex;
                 justify-content: flex-start;
