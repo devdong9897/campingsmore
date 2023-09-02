@@ -3,15 +3,21 @@ import Calendar from "react-calendar";
 import moment from "moment";
 import "react-calendar/dist/Calendar.css";
 import { ReserPayWapper } from "../css/reserPay-style";
-import MyCalendar from "../components/MyfullCalender";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCreditCard } from "@fortawesome/free-solid-svg-icons";
+import ReserPayModal from "../components/modal/ReserPayModal";
 
 const ReservationPayment = () => {
+  const [payModal, setPayModal] = useState(false);
   const [value, onChange] = useState(new Date());
   console.log(moment(value).format("YYYY-MM-DD"));
+
+  const handleModal = () => {
+    setPayModal(true);
+  };
   return (
     <ReserPayWapper>
+      {payModal ? <ReserPayModal setPayModal={setPayModal} /> : ""}
       <div className="camping_info">
         <div className="main_thumbnail">
           <img src="/image/bg3.jpg"></img>
@@ -21,12 +27,28 @@ const ReservationPayment = () => {
             <img src="/image/bg3.jpg"></img>
           </div>
           <div className="detail_info_desc">
-            <span className="title">캠핑시설 제목</span>
-            <ul>
-              <li>캠핑장 주소</li>
-              <li>캠핑장 도로명 주소</li>
-              <li>캠핑장 전화번호</li>
-              <li>웹사이트 주소</li>
+            <span className="title">풍차국화 캠핑장</span>
+            <ul className="detail_info_list">
+              <li>
+                <span>주소</span>
+                <span>서울 마포구 상암동 495-81</span>
+              </li>
+              <li>
+                <span>도로명주소</span>
+                <span>서울 마포구 한강난지로 22</span>
+              </li>
+              <li>
+                <span>전화번호</span>
+                <span>02-373-2021</span>
+              </li>
+              <li>
+                <span>사이트주소</span>
+                <span>yeyak.seoul.go.kr</span>
+              </li>
+              <li>
+                <span>예약자리</span>
+                <span>10</span>
+              </li>
             </ul>
           </div>
         </div>
@@ -70,7 +92,7 @@ const ReservationPayment = () => {
             </div>
             <div className="input_box">
               <span>총 사용료</span>
-              <input type="text" placeholder="총 사용료"></input>
+              <input type="text" placeholder="총 사용료" value={57000}></input>
             </div>
           </li>
         </ul>
@@ -95,8 +117,10 @@ const ReservationPayment = () => {
             <span>네이버페이</span>
           </li>
         </ul>
-        <div className="payment_click">
-          <button>결제하기</button>
+        <div className="payment_check">
+          <button className="pay_btn" onClick={handleModal}>
+            결제하기
+          </button>
         </div>
       </div>
     </ReserPayWapper>

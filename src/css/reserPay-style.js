@@ -60,6 +60,18 @@ export const ReserPayWapper = styled.div`
           font-size: 27px;
           font-weight: bold;
         }
+        .detail_info_list {
+          margin-top: 10px;
+          display: flex;
+          flex-direction: column;
+          gap: 3px;
+          width: 100%;
+          li {
+            display: grid;
+            grid-template-columns: 15% 85%;
+            font-size: 16px;
+          }
+        }
       }
     }
   }
@@ -252,7 +264,7 @@ export const ReserPayWapper = styled.div`
     width: 100%;
     height: auto;
     padding: 5% 10%;
-    border-top: 1px solid #191919;
+    border-top: 5px solid rgba(0, 0, 0, 0.2);
     .title {
       display: block;
       font-size: 30px;
@@ -297,7 +309,7 @@ export const ReserPayWapper = styled.div`
       margin-top: 20px;
       display: flex;
       gap: 10%;
-      justify-content: space-between;
+      justify-content: center;
       li {
         width: 20%;
         height: 100px;
@@ -317,6 +329,24 @@ export const ReserPayWapper = styled.div`
           width: 100%;
           text-align: center;
         }
+      }
+    }
+    .payment_check {
+      display: flex;
+      justify-content: center;
+      margin: 0 auto;
+      margin-top: 50px;
+      width: 50%;
+      padding: 5% 0px;
+      border-top: 5px solid rgba(0, 0, 0, 0.2);
+      .pay_btn {
+        width: 200px;
+        height: 50px;
+        border: none;
+        border-radius: 15px;
+        font-size: 1.3rem;
+        color: #fff;
+        background: #d2b48c;
       }
     }
   }

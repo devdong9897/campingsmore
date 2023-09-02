@@ -18,13 +18,12 @@ const WritingHistory = ({ comulist, getCommunity }) => {
     setThisBoard(iboard);
   };
 
-  // const handleDetail = iboard => {
-  //   console.log("클릭한 보드 값", iboard);
-  //   navigate(`/main/communitybulletinboard?iboard=${iboard}`);
-  // };
+  const handleDetail = iboard => {
+    navigate(`/main/communitybulletinboard?iboard=${iboard}`);
+  };
 
   const handleClickEdit = iboard => {
-    navigate(`/main/communitywrite?iboard=${iboard}`);
+    navigate(`/main/communitybulletinboard?iboard=${iboard}`);
   };
 
   return (
@@ -61,7 +60,12 @@ const WritingHistory = ({ comulist, getCommunity }) => {
                     삭제
                   </button>
                 </div>
-                <div className="writing_view">게시글 상세보기</div>
+                <div
+                  className="writing_view"
+                  onClick={() => handleDetail(item.iboard)}
+                >
+                  게시글 상세보기
+                </div>
               </li>
             ))}
           </>

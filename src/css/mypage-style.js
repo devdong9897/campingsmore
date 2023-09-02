@@ -578,6 +578,10 @@ export const WritingWrapper = styled.div`
         position: absolute;
       }
       .writing_view {
+        cursor: pointer;
+        &:hover {
+          font-weight: bold;
+        }
       }
       button {
         width: 70px;

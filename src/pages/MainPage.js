@@ -24,6 +24,7 @@ import { useDispatch } from "react-redux";
 import { getBasketList } from "../api/basketFetch";
 import { getMapData } from "../api/mapDataFetch";
 import "../css/kakao-style.css";
+import ReservationResult from "./ReservationResult";
 
 const MainPage = () => {
   const dispatch = useDispatch();
@@ -51,6 +52,7 @@ const MainPage = () => {
         <Route path="/basket" element={<Basket />}></Route>
         <Route path="/orderdetail" element={<OrderDetail />}></Route>
         <Route path="/reservation" element={<Reservation />}></Route>
+        <Route path="/reserresult" element={<ReservationResult />}></Route>
         <Route path="/mypage" element={<Mypage />}></Route>
         <Route path="/about" element={<About />}></Route>
         <Route
