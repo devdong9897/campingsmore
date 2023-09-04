@@ -62,10 +62,13 @@ export const MypageWrapper = styled.div`
           width: 70%;
           padding: 10px 0px;
           text-align: center;
-          background: #b2b2b2;
-          color: #fff;
+          background: #e3e3e3;
+          color: #000;
           font-size: 17px;
           border-radius: 25px;
+          &:hover {
+            background: #b2b2b2;
+          }
         }
       }
     }

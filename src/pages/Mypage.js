@@ -139,13 +139,18 @@ const Mypage = () => {
             <span className="profile_id">{userData.user_id}</span>
           </div>
           <ul className="my_menu_list">
-            {["개인정보수정", "구매내역", "리뷰내역", "작성글", "찜하기"].map(
-              (menu, index) => (
-                <li key={index} onClick={() => handleMenuChange(index)}>
-                  {menu}
-                </li>
-              ),
-            )}
+            {[
+              "개인정보수정",
+              "구매내역",
+              "리뷰내역",
+              "작성글",
+              "찜내역",
+              "캠핑예약내역",
+            ].map((menu, index) => (
+              <li key={index} onClick={() => handleMenuChange(index)}>
+                {menu}
+              </li>
+            ))}
           </ul>
         </div>
         <div className="my_contents">{menuComponents[menuindex]()}</div>

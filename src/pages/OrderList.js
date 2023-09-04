@@ -1,5 +1,6 @@
 import {
   faCartShopping,
+  faHeart,
   faMagnifyingGlass,
   faTag,
 } from "@fortawesome/free-solid-svg-icons";
@@ -18,6 +19,7 @@ import {
 import { OrderListWrapper } from "../css/orderlist-style";
 import BasketFromListModal from "../components/modal/BasketFromListModal";
 import { useSearchParams } from "react-router-dom";
+import WishModal from "../components/modal/WishModal";
 
 const OrderList = () => {
   const accessToken = getCookie("accessToken");
@@ -30,6 +32,10 @@ const OrderList = () => {
   const [isBasketModal, setIsBasketModal] = useState(false);
   // 모달에 전달할 데이터
   const [sendDataToModal, setSendDataToModal] = useState({});
+
+  // 찜하기 모달 state
+  const [iswishModal, setIsWishModal] = useState(false);
+  const [wishitem, setWishItem] = useState("");
   // 선택된 아이템 고유번호
   const [selcetItem, setselcetItem] = useState("");
   const navigate = useNavigate();
@@ -43,6 +49,13 @@ const OrderList = () => {
 
   // 현재 활성화된 카테고리 ID
   const [activeCategory, setActiveCategory] = useState("");
+
+  // 찜하기 추가 핸들러
+
+  const handleWish = iitem => {
+    setIsWishModal(true);
+    setWishItem(iitem);
+  };
 
   // 그냥 장너보기 눌렀을때 나오는것
   const getOrderList = async () => {
@@ -242,6 +255,11 @@ const OrderList = () => {
         ""
       )}
 
+      {iswishModal ? (
+        <WishModal wishitem={wishitem} setIsWishModal={setIsWishModal} />
+      ) : (
+        ""
+      )}
       <div className="orderlist_inner">
         <div className="orderlist_search">
           <input
@@ -277,6 +295,9 @@ const OrderList = () => {
             <li key={index}>
               <div className="img">
                 <img src={item.pic} alt="" />
+                {/* <div className="wish" onClick={() => handleWish(item.iitem)}>
+                  <img src="../image/wish_border.png"></img>
+                </div> */}
               </div>
               <div className="product_desc">
                 <span className="name">{item.name}</span>

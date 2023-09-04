@@ -115,9 +115,34 @@ export const OrderListWrapper = styled.div`
             width: 125%;
             height: auto;
           }
+          .wish {
+            cursor: pointer;
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 5px;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            font-size: 18px;
+            border-top-right-radius: 15px;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            background: rgba(0, 0, 0, 0.3);
+            transition-duration: 0.1s;
+            color: #000;
+            img {
+              width: 65%;
+            }
+            &:hover {
+              background: #855555;
+            }
+          }
         }
         .product_desc {
-          padding: 20px;
+          padding: 20px 20px 10px 20px;
           height: 200px;
           display: flex;
           flex-direction: column;

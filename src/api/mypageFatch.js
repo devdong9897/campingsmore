@@ -1,5 +1,15 @@
 import axios from "axios";
 
+const postWishList = async wishitem => {
+  try {
+    const res = await axios.post(`/api/mypage/wishlist?iitem=${wishitem}`);
+    const result = res.data;
+    console.log("찜등록하기 포스트 성공", result);
+  } catch (err) {
+    console.log("찜등록하기 실패!", err);
+  }
+};
+
 // 리뷰리스트 요청
 const getMypageReviewData = async () => {
   try {
@@ -135,6 +145,7 @@ const getPaymentItemDetail = async (iorder, iitem) => {
 };
 
 export {
+  postWishList,
   getPaymentItemDetail,
   getMypageReviewData,
   getPurchaseData,
