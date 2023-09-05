@@ -11,7 +11,7 @@ export const Logininner = styled.div`
   .login_logo {
     width: 100%;
     height: 200px;
-    background-image: url("${path}/image/logo2.png");
+    background-image: url("../image/logo2.png");
     background-repeat: no-repeat;
     background-position: 50% 100%;
     background-size: 50%;

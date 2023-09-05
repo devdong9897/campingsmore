@@ -65,7 +65,7 @@ const Footer = () => {
             </li>
           </ul>
           <div className="footer_logo">
-            <img src="/image/word_logo.png"></img>
+            <img src="../image/word_logo.png"></img>
           </div>
         </div>
       </div>
