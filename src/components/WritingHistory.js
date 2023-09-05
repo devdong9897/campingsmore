@@ -23,7 +23,7 @@ const WritingHistory = ({ comulist, getCommunity }) => {
   };
 
   const handleClickEdit = iboard => {
-    navigate(`/main/communitybulletinboard?iboard=${iboard}`);
+    navigate(`/main/communitywrite?iboard=${iboard}`);
   };
 
   return (

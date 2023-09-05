@@ -25,8 +25,8 @@ const CommunityWrite = () => {
     const listenBackEvent = () => {
       // 뒤로가기 할 때 수행할 동작을 적는다
       // console.log("해해해해")
-      // 취소한 경우 게시물 제거
-      deleteBoard(iboardRef.current);
+// 취소한 경우 게시물 제거
+     deleteBoard(iboardRef.current);
     };
 
     const unlistenHistoryEvent = history.listen(({ action }) => {
@@ -37,6 +37,7 @@ const CommunityWrite = () => {
 
     return unlistenHistoryEvent;
   }, []);
+
 
   const [searchParams, setSearchParams] = useSearchParams();
   const writeBoard = searchParams.get("iboard");
@@ -82,7 +83,7 @@ const CommunityWrite = () => {
       window.removeEventListener("popstate", handleGoBack);
     };
   }, [location]);
-
+  
   const [selectedCategory, setSelectedCategory] = useState(1);
   // const [comuCtnt, setComuCtnt] = useState("");
 
@@ -123,6 +124,7 @@ const CommunityWrite = () => {
     };
   }, []);
 
+
   // 마이페이지에서 게시글 수정해서 들어올때 실행
 
   const getBoardData = async () => {
@@ -132,11 +134,12 @@ const CommunityWrite = () => {
       setboardData(data.boardDeVo);
       setComuTitle(data.boardDeVo.title);
       setValue(data.boardDeVo.ctnt);
-      console.log("게시글내용", data.boardDeVo.ctnt);
     } catch (err) {
       console.log(err);
     }
   };
+
+  
 
   const imageHandler = () => {
     // console.log("이미지 핸들링", iboardRef);
@@ -243,27 +246,6 @@ const CommunityWrite = () => {
   //   setSelectedCategory(selectedValue)
   // }
 
-  // 게시글 수정 함수
-  const handleEditSubmit = async () => {
-    try {
-      const editdata = {
-        iboard: writeBoard,
-        icategory: selectedCategory,
-        title: comutitle,
-        ctnt: value,
-      };
-      await createPost(editdata);
-      console.log("======================== 글수정 함.....: ");
-      checkCheckWrite = 1;
-      setCheckBack(1);
-      setValue("");
-      setComuTitle("");
-      navigate("/main/mypage");
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   const handleSubmit = async () => {
     try {
       const postData = {
@@ -274,7 +256,7 @@ const CommunityWrite = () => {
         ctnt: value,
       };
       await createPost(postData);
-      console.log("======================== 글등록 함.....: ");
+      console.log("======================== 글등록 함.....: ")
       // 정상 등록
       checkCheckWrite = 1;
       setCheckBack(1);
@@ -330,13 +312,41 @@ const CommunityWrite = () => {
               <div style={{ background: "#fff", height: "340px" }}>
                 <ReactQuill
                   ref={quillRef}
-                  value={value}
                   onChange={setValue}
                   modules={modules}
                   style={{ height: "300px" }}
                 />
               </div>
+              {/* <div>
+            <div
+              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(value) }}
+            />
+          </div> */}
 
+              {/* <ReactQuill
+            theme="snow"
+            value={content}
+            // modules={quillModules}
+            // formats={quillFormats}
+            onChange={handleContentChange}
+            placeholder="게시글 작성"
+            className="communityWrite_board_quill"
+          /> */}
+              {/* <input
+          type="text"
+          value={title}
+          onChange={handleTitleChange}
+          placeholder="제목을 입력해주세요"
+          /> */}
+              {/* <button onClick={handleSubmit}>작성 완료</button> */}
+
+              {/* <textarea
+            cols="30"
+            rows="10"
+            className="communityWrite_board_detail"
+            placeholder="내용을 입력해 주세요"
+            onChange={e => setComuCtnt(e.target.value)}
+          ></textarea> */}
               <button
                 onClick={onClickHandleDel}
                 className="communityWrite_board_del"
@@ -345,11 +355,11 @@ const CommunityWrite = () => {
               </button>
               <button
                 className="communityWrite_board_regi"
-                onClick={handleEditSubmit}
+                onClick={handleSubmit}
                 // onClick={handleToGoCommunity}
                 disabled={isButtonDisabled}
               >
-                게시글수정
+                등록
               </button>
             </>
           ) : (
