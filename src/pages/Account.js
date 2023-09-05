@@ -7,26 +7,22 @@ import PassWordResult from "../components/PassWordResult";
 import FindID from "../components/FindID";
 import IdResult from "../components/IdResult";
 import DaumPost from "../api/DaumPost";
+import SnsKakao from "../components/SnsKakao";
 import { AccoutWrapper } from "../css/acoount-style";
 
 const Account = () => {
-
   return (
     <AccoutWrapper>
       <div className="account_inner">
         <Routes>
           <Route path="/" element={<Login />}></Route>
-          <Route
-            path="/signup"
-            element={
-              <SignUp />
-            }
-          ></Route>
+          <Route path="/signup" element={<SignUp />}></Route>
           <Route path="/findpassword" element={<FindPassWord />}></Route>
           <Route path="/passchange" element={<PassChange />}></Route>
           <Route path="/passwordresult" element={<PassWordResult />}></Route>
           <Route path="/findid" element={<FindID />}></Route>
           <Route path="/idresult" element={<IdResult />}></Route>
+          <Route path="/kakaologin" element={<SnsKakao />}></Route>
         </Routes>
       </div>
     </AccoutWrapper>

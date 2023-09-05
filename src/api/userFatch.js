@@ -12,6 +12,16 @@ const getUserData = async dispatch => {
   }
 };
 
+// const kakaoLogin = async () => {
+//   try {
+//     const res = await axios.get("/api/sns-login/kakao");
+//     const result = res.data;
+//     console.log("카카오 로그인 포스트!", result);
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
+
 const SignupFetch = async newUser => {
   try {
     const res = await axios.post("/api/user", newUser);

@@ -55,3 +55,11 @@ export const deleteCookie = () => {
   cookies.remove("accessToken");
   cookies.remove("refreshToken");
 };
+
+export const deleteKakaoCookie = async () => {
+  try {
+    const res = await fetch("http://localhost:3000/kakaologout");
+  } catch (err) {
+    console.log(err);
+  }
+};
