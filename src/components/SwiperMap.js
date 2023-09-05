@@ -24,7 +24,7 @@ const SwiperMap = ({ kmapData }) => {
           <SwiperSlide key={index}>
             <div className="slide_inner">
               <div className="camping_img">
-                <img src="/image/bg4.jpg"></img>
+                <img src="../image/bg4.jpg"></img>
               </div>
               <div className="camping_detail">
                 <span className="name">{item.place_name}</span>

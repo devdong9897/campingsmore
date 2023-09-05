@@ -79,7 +79,7 @@ const Reservation = () => {
                 <li key={index}>
                   <div className="camping_info_box">
                     <div className="camping_img">
-                      <img src="/image/bg.jpg"></img>
+                      <img src="../image/bg.jpg"></img>
                     </div>
                     <div className="camping_info">
                       <span className="camping_name">{item.name}</span>

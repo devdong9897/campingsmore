@@ -20,11 +20,11 @@ const ReservationPayment = () => {
       {payModal ? <ReserPayModal setPayModal={setPayModal} /> : ""}
       <div className="camping_info">
         <div className="main_thumbnail">
-          <img src="/image/bg3.jpg"></img>
+          <img src="../image/bg3.jpg"></img>
         </div>
         <div className="detail_info">
           <div className="thumbnail_list">
-            <img src="/image/bg3.jpg"></img>
+            <img src="../image/bg3.jpg"></img>
           </div>
           <div className="detail_info_desc">
             <span className="title">풍차국화 캠핑장</span>

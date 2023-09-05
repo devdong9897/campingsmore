@@ -28,16 +28,16 @@ const SwiperFade = () => {
         className="mySwiper"
       >
         <SwiperSlide>
-          <img src={`${path}/image/bg.jpg`} alt="백그라운드" />
+          <img src={`../image/bg.jpg`} alt="백그라운드" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={`${path}/image/bg2.jpg`} alt="백그라운드" />
+          <img src={`../image/bg2.jpg`} alt="백그라운드" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={`${path}/image/bg3.jpg`} alt="백그라운드" />
+          <img src={`../image/bg3.jpg`} alt="백그라운드" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={`${path}/image/bg4.jpg`} alt="백그라운드" />
+          <img src={`../image/bg4.jpg`} alt="백그라운드" />
         </SwiperSlide>
       </Swiper>
     </>

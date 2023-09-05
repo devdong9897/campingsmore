@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { deleteBasketItem, deleteBasketItemList, postBasketPay } from "../api/basketFetch";
+import {
+  deleteBasketItem,
+  deleteBasketItemList,
+  postBasketPay,
+} from "../api/basketFetch";
 import BasketModal from "../components/modal/BasketModal";
 import { BasketWrapper } from "../css/basket-style";
 import { basketpayData } from "../reducers/basketPaySlice";
@@ -22,11 +26,11 @@ const Basket = () => {
   const [payBasketResult, setPayBasketResult] = useState([]);
 
   const getBasketData = async () => {
-    try {   
+    try {
       const checkAddBasetData = basketData.map(item => ({
         ...item,
         isCheck: false,
-      })) 
+      }));
       setBasketList(checkAddBasetData);
     } catch (err) {
       console.log(err);
@@ -75,11 +79,11 @@ const Basket = () => {
 
   const handleSelectItem = _icart => {
     const newList = basketList.map(item => {
-      if(item.icart === _icart) {
+      if (item.icart === _icart) {
         item.isCheck = !item.isCheck;
       }
       return item;
-    })
+    });
     setBasketList(newList);
   };
 
@@ -101,21 +105,18 @@ const Basket = () => {
   const handleDelete = async () => {
     try {
       const deleteCartArr = basketList.filter(item => item.isCheck);
-      const arr = deleteCartArr.map(item => item.icart)
+      const arr = deleteCartArr.map(item => item.icart);
       console.log(arr);
       await deleteBasketItemList(arr);
-     
-      
+
       // 체크 박스 안된 목록만 남긴다.
-      const basketNowIcart = basketList.filter(item => !item.isCheck); 
+      const basketNowIcart = basketList.filter(item => !item.isCheck);
       // state 는 남은 목록으로 업데이트
       dispatch(basketCheckDelete(basketNowIcart));
-
     } catch (err) {
       console.log(err);
     }
-    
-  }
+  };
   // 결제하기 버튼이다 이말이에요
   const handleGoToPayment = () => {
     // 체크 박스된 것만 찾기
@@ -129,7 +130,7 @@ const Basket = () => {
   };
 
   const basketPay = async basketData => {
-    console.log("basketPay basketData : ", basketData)
+    console.log("basketPay basketData : ", basketData);
     // 이건 뭔지 파악이 필요하다. 용도는 코딩한 사람 머리에만 있다. 주석을 달아주세요.
     const basketTrue = 1;
     try {
@@ -142,8 +143,6 @@ const Basket = () => {
       console.log(err);
     }
   };
-
-  
 
   return (
     <>
@@ -229,7 +228,9 @@ const Basket = () => {
                     </div>
                   </li>
                 ))}
-                <button className="basket_del_box" onClick={handleDelete}>선택 삭제</button>
+                <button className="basket_del_box" onClick={handleDelete}>
+                  선택 삭제
+                </button>
                 <button onClick={handleGoToPayment} className="basket_box">
                   결제하기
                 </button>
@@ -238,7 +239,7 @@ const Basket = () => {
               <>
                 <div className="basket_empty">
                   <div className="basket_empty-img">
-                    <img src="/image/cart.png"></img>
+                    <img src="../image/cart.png"></img>
                     <span>장바구니에 담은 목록이 없습니다.</span>
                   </div>
                 </div>

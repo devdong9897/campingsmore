@@ -7,7 +7,7 @@ export const FindWrapper = styled.div`
   width: 100%;
   height: 100vh;
   background: white;
-  background-image: url("${path}/image/bg.jpg");
+  background-image: url("../image/bg.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

@@ -18,7 +18,7 @@ export const AccoutWrapper = styled.div`
     content: "";
     height: 100%;
     opacity: 0.2;
-    background-image: url("${path}/image/dot_bg.png");
+    background-image: url("../image/dot_bg.png");
   }
   &::before {
     position: absolute;
@@ -27,7 +27,7 @@ export const AccoutWrapper = styled.div`
     content: "";
     width: 100%;
     height: 100%;
-    background-image: url("${path}/image/bg.jpg");
+    background-image: url("../image/bg.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

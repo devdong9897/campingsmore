@@ -17,29 +17,29 @@ export const BasketWrapper = styled.div`
       color: black;
       margin-top: 40px;
     }
-    .basket_empty{
+    .basket_empty {
       margin-top: 30px;
       display: flex;
       justify-content: center;
       align-items: center;
       width: 100%;
       height: 500px;
-      .basket_empty-img{
+      .basket_empty-img {
         display: flex;
         flex-direction: column;
         gap: 20px;
         width: 50%;
         height: 80%;
-        img{
+        img {
           margin: 0 auto;
           width: auto;
           height: 300px;
         }
-        span{
+        span {
           display: block;
           width: 100%;
           text-align: center;
-          color:#000;
+          color: #000;
           font-size: 20px;
         }
       }
@@ -131,7 +131,7 @@ export const BasketWrapper = styled.div`
             img {
               width: 100%;
               height: 100%;
-              background-image: url("${path}/image/food.jpg");
+              background-image: url("../image/food.jpg");
               background-repeat: no-repeat;
               background-size: cover;
               background-position: center;
@@ -161,13 +161,13 @@ export const BasketWrapper = styled.div`
       cursor: pointer;
     }
     .basket_del_box {
-      float:right;
+      float: right;
       background-color: white;
       border: 1px solid #d2b48c;
-      color:#d2b48c;
-      border-radius:5px;
-      margin-top:10px;
-      padding: 5px 10px
+      color: #d2b48c;
+      border-radius: 5px;
+      margin-top: 10px;
+      padding: 5px 10px;
     }
     .basket_box {
       display: block;

@@ -17,7 +17,7 @@ export const OrderHistorysWrapper = styled.div`
       width: 100%;
       height: 65px;
       margin-top: 67px;
-      background: #D2B48C;
+      background: #d2b48c;
       border-radius: 15px;
       .topline_list {
         width: 100%;
@@ -77,7 +77,7 @@ export const OrderHistorysWrapper = styled.div`
             img {
               width: 100%;
               height: 100%;
-              background-image: url("${path}/image/food.jpg");
+              background-image: url("../image/food.jpg");
               background-repeat: no-repeat;
               background-size: cover;
               background-position: center;
@@ -136,7 +136,7 @@ export const OrderHistorysWrapper = styled.div`
               cursor: pointer;
             }
             .write {
-              background: #D2B48C;
+              background: #d2b48c;
             }
             .cancel {
               background: #d9d9d9;

@@ -26,7 +26,7 @@ export const HeaderContainer = styled.div`
       flex-grow: 1;
       width: 150px;
       height: 100%;
-      background-image: url("${path}/image/logo2.png");
+      background-image: url("../image/logo2.png");
       background-repeat: no-repeat;
       background-position: center;
       background-size: 115px;
