@@ -77,7 +77,7 @@ export const OrderHistorysWrapper = styled.div`
             img {
               width: 100%;
               height: 100%;
-              background-image: url("../image/food.jpg");
+              background-image: url(${process.env.PUBLIC_URL}/image/food.jpg);
               background-repeat: no-repeat;
               background-size: cover;
               background-position: center;

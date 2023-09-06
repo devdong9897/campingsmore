@@ -6,15 +6,26 @@ import { ReserPayWapper } from "../css/reserPay-style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCreditCard } from "@fortawesome/free-solid-svg-icons";
 import ReserPayModal from "../components/modal/ReserPayModal";
+import { useSearchParams } from "react-router-dom";
 
 const ReservationPayment = () => {
   const [payModal, setPayModal] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const iitem = searchParams.get("icamp");
   const [value, onChange] = useState(new Date());
   const path = process.env.PUBLIC_URL;
   console.log(moment(value).format("YYYY-MM-DD"));
 
   const handleModal = () => {
     setPayModal(true);
+  };
+
+  const campingDetailData = () => {
+    try {
+      console.log("뭠마");
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <ReserPayWapper>

@@ -14,9 +14,9 @@ import BasketCompleteModal from "../components/modal/BasketCompleteModal";
 const OrderDetail = () => {
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
+  const iitem = searchParams.get("iitem");
   // 장바구니 담는 모달창 staet
   const [isModal, setIsModal] = useState(false);
-  const iitem = searchParams.get("iitem");
   const [quantity, setQuantity] = useState(1);
   const [goodImg, setGoodImg] = useState(null);
   const [goodName, setGoodName] = useState(null);

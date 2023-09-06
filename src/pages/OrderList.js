@@ -141,30 +141,19 @@ const OrderList = () => {
 
   const handleSort = sortType => {
     // orderListitem을 정렬하는 로직 추가
-    let sortedItems = [...orderlist];
-
+    // let sortedItems = [...orderlist];
     switch (sortType) {
-      case "LatestOrder":
-        sortedItems.sort(
-          (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
-        );
+      case "SalesRanking":
         break;
       case "OldOrder":
-        sortedItems.sort(
-          (a, b) => new Date(a.createdAt) - new Date(b.createdAt),
-        );
         break;
       case "HighPrice":
-        sortedItems.sort((a, b) => b.price - a.price);
         break;
       case "LowPrice":
-        sortedItems.sort((a, b) => a.price - b.price);
         break;
       default:
         break;
     }
-
-    setOrderList(sortedItems);
   };
   // 카테고리 클릭
   const handleCategoryClick = async (categoryId, name) => {
@@ -274,8 +263,11 @@ const OrderList = () => {
           </button>
         </div>
         <div className="btn">
-          <button onClick={() => handleSort("LatestOrder")}>최신순</button>
-          <button onClick={() => handleSort("OldOrder")}>오래된순</button>
+          <button onClick={() => handleSort("SalesRanking")}>
+            판매순 랭킹
+          </button>
+          <button onClick={() => handleSort("Latest")}>최신순</button>
+          <button onClick={() => handleSort("OldList")}>오래된순</button>
           <button onClick={() => handleSort("HighPrice")}>높은가격순</button>
           <button onClick={() => handleSort("LowPrice")}>낮은가격순</button>
         </div>

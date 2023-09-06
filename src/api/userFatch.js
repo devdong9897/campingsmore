@@ -90,7 +90,22 @@ const AccoutwithdrawalFetch = async userIuser => {
   }
 };
 
+// 카카오 로그인
+
+const kakaoAccoutPost = async Kdata => {
+  try {
+    const res = await axios.post("/api/kakao", Kdata);
+    const result = res.data;
+    console.log("카카오로그인 포스트 성공", result);
+    return [];
+  } catch (err) {
+    console.log(err);
+  }
+  return [];
+};
+
 export {
+  kakaoAccoutPost,
   UserLogoutFetch,
   SignupFetch,
   getUserData,

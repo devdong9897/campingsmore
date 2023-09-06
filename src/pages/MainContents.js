@@ -18,7 +18,6 @@ import { KakaoDataAdd } from "../reducers/KakaoDataSlice";
 const MainContents = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const kakoMapdata = useSelector(state => state.KakaoData.kakaoDataArr);
   // 추천상품 state
   const [bestitem, setBestitem] = useState([]);
   // 카테고리 상품 state
@@ -108,9 +107,13 @@ const MainContents = () => {
               </li>
             ))}
           </ul>
-          <div className="select_slide">
-            <SwiperSliceMemoized bestitem={bestitem} />
-          </div>
+          {bestitem.length ? (
+            <div className="select_slide">
+              <SwiperSliceMemoized bestitem={bestitem} />
+            </div>
+          ) : (
+            <div className="empty_box">추천 상품이 없습니다.</div>
+          )}
         </div>
       </div>
       <div className="kakao_map_wrap">
@@ -127,24 +130,28 @@ const MainContents = () => {
           </span>
         </div>
         <div className="recommned_inner">
-          <ul className="recommned_list">
-            {bestitem?.map((item, index) => (
-              <li key={index} onClick={e => handleThisitem(item.iitem)}>
-                <div className="reco_item_pic">
-                  <img src={item.pic} alt="추천상품이미지"></img>
-                </div>
-                <div className="reco_item_desc">
-                  <span className="reco_title">{item.name}</span>
-                  <span className="reco_price">{item.price} 원</span>
-                </div>
-                <ul className="option">
-                  <li>무료배송</li>
-                  <li>카드가능</li>
-                  <li>개인가능</li>
-                </ul>
-              </li>
-            ))}
-          </ul>
+          {bestitem.length ? (
+            <ul className="recommned_list">
+              {bestitem.map((item, index) => (
+                <li key={index} onClick={e => handleThisitem(item.iitem)}>
+                  <div className="reco_item_pic">
+                    <img src={item.pic} alt="추천상품이미지"></img>
+                  </div>
+                  <div className="reco_item_desc">
+                    <span className="reco_title">{item.name}</span>
+                    <span className="reco_price">{item.price} 원</span>
+                  </div>
+                  <ul className="option">
+                    <li>무료배송</li>
+                    <li>카드가능</li>
+                    <li>개인가능</li>
+                  </ul>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <div className="bestempty_box">추천상품데이터가 없습니다.</div>
+          )}
         </div>
       </div>
     </MainContentsWrapper>

@@ -25,7 +25,7 @@ const SwiperSlice = ({ bestitem }) => {
         modules={[Navigation, Pagination]}
         className="mySwiper-slice"
       >
-        {bestitem ? (
+        {bestitem.length ? (
           <>
             {bestitem.map((item, index) => (
               <SwiperSlide
@@ -40,7 +40,7 @@ const SwiperSlice = ({ bestitem }) => {
             ))}
           </>
         ) : (
-          <>추천 상품이 없습니다.</>
+          <div className="empty_box"></div>
         )}
       </Swiper>
     </>

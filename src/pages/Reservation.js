@@ -18,9 +18,10 @@ const Reservation = () => {
   const kakoMapdata = useSelector(state => state.KakaoData.kakaoDataArr);
   const baseUrl = "http://192.168.0.144:5005/img/";
   console.log("어이!", kakoMapdata);
-  const handlePayment = () => {
-    navigate("/main/reservationpayment");
+  const handleCampDetail = icamp => {
+    navigate(`/main/reservationpayment?icamp=${icamp}`);
   };
+
   const handleFindPlace = address => {
     setSearchAddress(address);
   };
@@ -124,7 +125,9 @@ const Reservation = () => {
                         </div>
                       </div>
                       <div className="camping_reservation">
-                        <button onClick={handlePayment}>캠핑예약하기</button>
+                        <button onClick={e => handleCampDetail(item.icamp)}>
+                          캠핑예약하기
+                        </button>
                       </div>
                     </li>
                   ))}

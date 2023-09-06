@@ -91,6 +91,17 @@ export const MainContentsWrapper = styled.div`
           cursor: pointer;
         }
       }
+      .empty_box {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        margin-top: 200px;
+        width: 100%;
+        height: 300px;
+        color: #fff;
+        background: rgba(0, 0, 0, 0.3);
+      }
       .select_slide {
         margin-top: 200px;
         width: 100%;
@@ -107,7 +118,7 @@ export const MainContentsWrapper = styled.div`
     height: 100%;
     content: "";
     opacity: 0.3;
-    background-image: url(${process.env.PUBLIC_URL}/image/dot_bg.png);
+    background-image: url(${path}/image/dot_bg.png);
   }
   .kakao_map_wrap {
     position: relative;
@@ -195,7 +206,7 @@ export const MainContentsWrapper = styled.div`
         width: 500px;
         height: 500px;
         margin-bottom: 30px;
-        background-image: url("${path}/image/food.jpg");
+        background-image: url(${path}/image/food.jpg);
       }
       .recommned_title {
         font-weight: bold;
@@ -276,6 +287,14 @@ export const MainContentsWrapper = styled.div`
             color: #696969;
           }
         }
+      }
+      .bestempty_box {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+        height: 300px;
       }
     }
   }
