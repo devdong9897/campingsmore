@@ -107,7 +107,7 @@ export const MainContentsWrapper = styled.div`
     height: 100%;
     content: "";
     opacity: 0.3;
-    background-image: url("${path}/image/dot_bg.png");
+    background-image: url(${process.env.PUBLIC_URL}/image/dot_bg.png);
   }
   .kakao_map_wrap {
     position: relative;

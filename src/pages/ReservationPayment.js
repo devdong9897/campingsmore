@@ -10,6 +10,7 @@ import ReserPayModal from "../components/modal/ReserPayModal";
 const ReservationPayment = () => {
   const [payModal, setPayModal] = useState(false);
   const [value, onChange] = useState(new Date());
+  const path = process.env.PUBLIC_URL;
   console.log(moment(value).format("YYYY-MM-DD"));
 
   const handleModal = () => {
@@ -20,11 +21,11 @@ const ReservationPayment = () => {
       {payModal ? <ReserPayModal setPayModal={setPayModal} /> : ""}
       <div className="camping_info">
         <div className="main_thumbnail">
-          <img src="../image/bg3.jpg"></img>
+          <img src={path + "/image/bg3.jpg"}></img>
         </div>
         <div className="detail_info">
           <div className="thumbnail_list">
-            <img src="../image/bg3.jpg"></img>
+            <img src={`${path}/image/bg3.jpg`}></img>
           </div>
           <div className="detail_info_desc">
             <span className="title">풍차국화 캠핑장</span>
