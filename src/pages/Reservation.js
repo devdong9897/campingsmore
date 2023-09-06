@@ -7,14 +7,16 @@ import { useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router";
-import { getCamingList } from "../api/campingFetch";
+import { getCamingList, getLocationCampingList } from "../api/campingFetch";
 
 const Reservation = () => {
   const navigate = useNavigate();
   const kakaoSearchRef = useRef();
   const [searchAddress, setSearchAddress] = useState("");
   const [campList, setCampList] = useState([]);
+  const [locationNum, setLocationNum] = useState("");
   const kakoMapdata = useSelector(state => state.KakaoData.kakaoDataArr);
+  const baseUrl = "http://192.168.0.144:5005/img/";
   console.log("어이!", kakoMapdata);
   const handlePayment = () => {
     navigate("/main/reservationpayment");
@@ -33,6 +35,28 @@ const Reservation = () => {
       console.log(err);
     }
   };
+
+  // 지역바꾸면 뜨는 리스트
+  const handleLocation = async e => {
+    setLocationNum(e.target.value);
+    console.log(e.target.value);
+    try {
+      const data = await getLocationCampingList(e.target.value);
+      setCampList(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // // 지역별 캠핑장 불러오기
+  // const locationCampingList = async () => {
+  //   try {
+  //     const data = await getLocationCampingList();
+  //     console.log("엠티");
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   useEffect(() => {
     campingList();
@@ -60,78 +84,54 @@ const Reservation = () => {
               </div>
               <div className="camping_location">
                 <span>지역을 선택해주세요</span>
-                <select className="select_location">
+                <select
+                  className="select_location"
+                  onChange={e => handleLocation(e)}
+                >
                   <option>전체</option>
-                  <option>서울</option>
-                  <option>경기도</option>
-                  <option>강원도</option>
-                  <option>충청북도</option>
-                  <option>충청남도</option>
-                  <option>경상남도</option>
-                  <option>경상북도</option>
-                  <option>전라북도</option>
-                  <option>전라남도</option>
+                  <option value="9">서울</option>
+                  <option value="1">경기도</option>
+                  <option value="2">강원도</option>
+                  <option value="5">충청북도</option>
+                  <option value="6">충청남도</option>
+                  <option value="4">경상남도</option>
+                  <option value="3">경상북도</option>
+                  <option value="7">전라북도</option>
+                  <option value="8">전라남도</option>
                 </select>
               </div>
             </div>
             <ul className="camping_list">
-              {campList.map((item, index) => (
-                <li key={index}>
-                  <div className="camping_info_box">
-                    <div className="camping_img">
-                      <img src="../image/bg.jpg"></img>
-                    </div>
-                    <div className="camping_info">
-                      <span className="camping_name">{item.name}</span>
-                      <span className="camping_address">{item.address}</span>
-                      <span className="camping_phone">{item.campPhone}</span>
-                    </div>
-                  </div>
-                  <div className="camping_reservation">
-                    <button onClick={handlePayment}>캠핑예약하기</button>
-                  </div>
-                </li>
-              ))}
-              {/* {campingList?.map((item, index) => (
-                <li key={index}>
-                  <div className="camping_info_box">
-                    <div className="camping_img">
-                      <img src="/image/bg.jpg"></img>
-                    </div>
-                    <div className="camping_info">
-                      <span className="camping_name">{item.name}</span>
-                      <span className="camping_address">{item.address}</span>
-                      <span className="camping_phone">{item.campPhone}</span>
-                    </div>
-                  </div>
-                  <div className="camping_reservation">
-                    <button onClick={handlePayment}>캠핑예약하기</button>
-                  </div>
-                </li>
-              ))} */}
-              {/* {kakoMapdata.documents?.map((item, index) => (
-                <li
-                  key={index}
-                  onClick={e => handleFindPlace(item.road_address_name)}
-                >
-                  <div className="camping_info_box">
-                    <div className="camping_img">
-                      <img src="/image/bg.jpg"></img>
-                    </div>
-                    <div className="camping_info">
-                      <span className="camping_name">{item.place_name}</span>
-                      <span className="camping_address">
-                        {item.road_address_name}
-                      </span>
-                      <span className="camping_phone">{item.phone}</span>
-                      <span className="place_url">캠핑상세주소</span>
-                    </div>
-                  </div>
-                  <div className="camping_reservation">
-                    <button onClick={handlePayment}>캠핑예약하기</button>
-                  </div>
-                </li>
-              ))} */}
+              {campList.length ? (
+                <>
+                  {campList.map((item, index) => (
+                    <li
+                      key={index}
+                      onClick={e => setSearchAddress(item.address)}
+                    >
+                      <div className="camping_info_box">
+                        <div className="camping_img">
+                          <img src={baseUrl + item.mainPic}></img>
+                        </div>
+                        <div className="camping_info">
+                          <span className="camping_name">{item.name}</span>
+                          <span className="camping_address">
+                            {item.address}
+                          </span>
+                          <span className="camping_phone">
+                            {item.campPhone}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="camping_reservation">
+                        <button onClick={handlePayment}>캠핑예약하기</button>
+                      </div>
+                    </li>
+                  ))}
+                </>
+              ) : (
+                "해당지역 캠핑장이 없습니다."
+              )}
             </ul>
           </div>
           <div className="kakaoMap">

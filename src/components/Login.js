@@ -90,9 +90,7 @@ const Login = () => {
       </div>
       <ul className="sub_login">
         <li>
-          <a href="/kakaologin">
-            <button className="kakao">카카오 로그인</button>
-          </a>
+          <button className="kakao">카카오 로그인</button>
         </li>
         <li>
           <button className="google">구글 로그인</button>
