@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router";
 import { getCamingList, getLocationCampingList } from "../api/campingFetch";
+import Loading from "../components/Loading";
 
 const Reservation = () => {
   const navigate = useNavigate();
@@ -15,9 +16,7 @@ const Reservation = () => {
   const [searchAddress, setSearchAddress] = useState("");
   const [campList, setCampList] = useState([]);
   const [locationNum, setLocationNum] = useState("");
-  const kakoMapdata = useSelector(state => state.KakaoData.kakaoDataArr);
   const baseUrl = "http://192.168.0.144:5005/img/";
-  console.log("어이!", kakoMapdata);
   const handleCampDetail = icamp => {
     navigate(`/main/reservationpayment?icamp=${icamp}`);
   };
@@ -42,22 +41,17 @@ const Reservation = () => {
     setLocationNum(e.target.value);
     console.log(e.target.value);
     try {
-      const data = await getLocationCampingList(e.target.value);
-      setCampList(data);
+      if (e.target.value === "0") {
+        const data = await getCamingList();
+        setCampList(data);
+      } else {
+        const data = await getLocationCampingList(e.target.value);
+        setCampList(data);
+      }
     } catch (err) {
       console.log(err);
     }
   };
-
-  // // 지역별 캠핑장 불러오기
-  // const locationCampingList = async () => {
-  //   try {
-  //     const data = await getLocationCampingList();
-  //     console.log("엠티");
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
 
   useEffect(() => {
     campingList();
@@ -89,7 +83,7 @@ const Reservation = () => {
                   className="select_location"
                   onChange={e => handleLocation(e)}
                 >
-                  <option>전체</option>
+                  <option value="0">전체</option>
                   <option value="9">서울</option>
                   <option value="1">경기도</option>
                   <option value="2">강원도</option>
@@ -133,7 +127,7 @@ const Reservation = () => {
                   ))}
                 </>
               ) : (
-                "해당지역 캠핑장이 없습니다."
+                <Loading />
               )}
             </ul>
           </div>

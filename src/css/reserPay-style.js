@@ -19,26 +19,12 @@ export const ReserPayWapper = styled.div`
       background: gold;
       overflow: hidden;
       border-radius: 15px;
-      img {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 100%;
-      }
-    }
-    .detail_info {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      height: 40%;
-      gap: 1%;
-      .thumbnail_list {
+      .slide_inner {
         position: relative;
-        width: 50%;
+        width: 100%;
         height: 100%;
+        background: red;
         overflow: hidden;
-        border-radius: 10px;
         img {
           position: absolute;
           top: 50%;
@@ -47,18 +33,26 @@ export const ReserPayWapper = styled.div`
           width: 100%;
         }
       }
+    }
+    .detail_info {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      height: 30%;
+      gap: 1%;
       .detail_info_desc {
         display: flex;
         flex-direction: column;
         width: 50%;
         height: 100%;
         background: #fff;
-        border-top-left-radius: 15px;
-        border-bottom-left-radius: 15px;
-        padding: 15px;
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+        padding: 20px;
         .title {
           font-size: 27px;
           font-weight: bold;
+          text-align: left;
         }
         .detail_info_list {
           margin-top: 10px;
@@ -67,10 +61,26 @@ export const ReserPayWapper = styled.div`
           gap: 3px;
           width: 100%;
           li {
-            display: grid;
-            grid-template-columns: 15% 85%;
-            font-size: 16px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+            font-size: 17px;
+            display: flex;
+            justify-content: space-between;
           }
+        }
+      }
+      .note {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        height: 100%;
+        background: #fff;
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+        padding: 20px;
+        .title {
+          font-size: 23px;
+          font-weight: bold;
+          text-align: left;
         }
       }
     }

@@ -5,13 +5,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import "swiper/css";
 import "swiper/css/effect-fade";
-import SwiperFade from "../components/SwiperFade";
+import SwiperFade from "../components/swiper/SwiperFade";
 import { getOrderListCategory, getbestitem } from "../api/itemFatch";
 import { cookies } from "../api/cookie";
 import { useNavigate } from "react-router-dom";
-import SwiperSlice from "../components/SwiperSlice";
+import SwiperSlice from "../components/swiper/SwiperSlice";
 import { getMapData } from "../api/mapDataFetch";
-import SwiperMap from "../components/SwiperMap";
+import SwiperMap from "../components/swiper/SwiperMap";
 import { useDispatch, useSelector } from "react-redux";
 import { KakaoDataAdd } from "../reducers/KakaoDataSlice";
 

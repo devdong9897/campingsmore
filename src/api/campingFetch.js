@@ -28,9 +28,9 @@ const getLocationCampingList = async e => {
 
 // 캠핑장 디테일 데이터
 
-const getcampDetail = async () => {
+const getcampDetail = async icamp => {
   try {
-    const res = await axios.get("/api/camp/detail-camping");
+    const res = await axios.get(`/api/camp/detail-camping?icamp=${icamp}`);
     const result = res.data;
     console.log("캠핑장 디테일 요청완료", result);
     return result;
