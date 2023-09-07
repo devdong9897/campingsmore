@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { EditWrapper } from "../css/mypage-style";
+import { EditWrapper } from "../css/myPageStyle/mypage-style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAt,

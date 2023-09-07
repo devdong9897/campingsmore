@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ReviewHistoryWrapper } from "../css/mypage-style";
+import { ReviewHistoryWrapper } from "../css/myPageStyle/mypage-style";
 import ReviewDeleteModal from "./modal/ReviewDeleteModal";
 import ReviewModal from "./ReviewModal";
 

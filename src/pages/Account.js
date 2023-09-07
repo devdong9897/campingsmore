@@ -8,7 +8,7 @@ import FindID from "../components/FindID";
 import IdResult from "../components/IdResult";
 import SnsKakao from "../components/SnsKakao";
 import DaumPost from "../api/DaumPost";
-import { AccoutWrapper } from "../css/acoount-style";
+import { AccoutWrapper } from "../css/accountStyle/acoount-style";
 
 const Account = () => {
   return (

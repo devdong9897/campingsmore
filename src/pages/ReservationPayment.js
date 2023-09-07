@@ -16,9 +16,18 @@ const ReservationPayment = () => {
   const [campDetail, setCampDetail] = useState([]);
   const icampParams = searchParams.get("icamp");
   const [dateValue, onChange] = useState(new Date());
+
+  // 인풋 state
   const [name, setName] = useState("");
+  const [pNumber, setPNumber] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  // public 폴더경로 가져오기
   const path = process.env.PUBLIC_URL;
-  console.log(moment(dateValue).format("YYYY-MM-DD"));
+  // 오늘날짜 가져오기
+  const today = new Date();
+  const tileDisabled = ({ date }) => {
+    return date < today;
+  };
 
   const handleModal = () => {
     setPayModal(true);
@@ -82,7 +91,11 @@ const ReservationPayment = () => {
       <div className="calendar_area">
         <span className="calender_title">예약일자를 선택하세요</span>
         {/* <MyCalendar /> */}
-        <Calendar onChange={onChange} value={dateValue} />
+        <Calendar
+          onChange={onChange}
+          value={dateValue}
+          tileDisabled={tileDisabled}
+        />
       </div>
       <div className="payment_area">
         <span className="title">캠핑예약정보</span>
@@ -90,17 +103,39 @@ const ReservationPayment = () => {
           <li>
             <div className="input_box">
               <span>예약자 성함</span>
-              <input type="text" placeholder="주문자를 입력해주세요"></input>
+              <input
+                type="text"
+                placeholder="주문자를 입력해주세요"
+                onChange={e => setName(e.target.value)}
+              ></input>
             </div>
             <div className="input_box">
               <span>예약인원</span>
-              <input type="number" placeholder="예약인원을 입력하세요"></input>
+              <select
+                onChange={e => setPNumber(e.target.value)}
+                className="person_number"
+              >
+                <option value={1}>1명</option>
+                <option value={2}>2명</option>
+                <option value={3}>3명</option>
+                <option value={4}>4명</option>
+                <option value={5}>5명</option>
+                <option value={6}>6명</option>
+                <option value={7}>7명</option>
+                <option value={8}>8명</option>
+                <option value={9}>9명</option>
+                <option value={10}>10명</option>
+              </select>
             </div>
           </li>
           <li>
             <div className="input_box">
               <span>전화번호</span>
-              <input type="number" placeholder="전화번호를 입력하세요"></input>
+              <input
+                type="text"
+                placeholder="전화번호를 입력하세요"
+                onChange={e => setPhoneNumber(e.target.value)}
+              ></input>
             </div>
             <div className="input_box">
               <span>예약날짜</span>

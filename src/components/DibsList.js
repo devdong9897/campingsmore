@@ -1,5 +1,5 @@
 import React from "react";
-import { DibsWrapper } from "../css/mypage-style";
+import { DibsWrapper } from "../css/myPageStyle/mypage-style";
 
 const DibsList = () => {
   const path = process.env.PUBLIC_URL;

@@ -1,5 +1,5 @@
 import React from "react";
-import { WritingWrapper } from "../css/mypage-style";
+import { WritingWrapper } from "../css/myPageStyle/mypage-style";
 import { updateCommunityData } from "../api/mypageFatch";
 import { useState } from "react";
 import { useEffect } from "react";

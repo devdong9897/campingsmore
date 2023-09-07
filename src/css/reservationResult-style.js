@@ -76,6 +76,13 @@ export const ReservationResultWrapper = styled.div`
             border: 1px solid #9ab685;
             padding-left: 10px;
           }
+          .person_number {
+            width: 100%;
+            height: 40px;
+            border-radius: 15px;
+            border: 1px solid #9ab685;
+            padding-left: 10px;
+          }
           .camping_way {
             width: 100%;
             height: 40px;

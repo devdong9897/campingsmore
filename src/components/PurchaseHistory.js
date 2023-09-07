@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { PurchaseWrapper } from "../css/mypage-style";
+import { PurchaseWrapper } from "../css/myPageStyle/mypage-style";
 import {
   getPaymentDetail,
   getPurchaseData,

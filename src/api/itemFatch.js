@@ -81,11 +81,10 @@ const getOrderSearch = async searchText => {
   return [];
 };
 
-
 const getOrderCateSearch = async cateID => {
   try {
     const res = await axios.get(
-      `/api/item/search?cate=${cateID}&page=1&row=15&sort=0`,
+      `/api/item/search?cate=${cateID}&page=0&size=15&sort=iitem%2CDESC`,
     );
     const result = res.data;
     console.log("getOrderCateSearch 요쳥완료");

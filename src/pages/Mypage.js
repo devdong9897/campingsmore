@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { MypageWrapper } from "../css/mypage-style";
+import { MypageWrapper } from "../css/myPageStyle/mypage-style";
 import EditInformation from "../components/EditInformation";
 import PurchaseHistory from "../components/PurchaseHistory";
 import ReviewHistory from "../components/ReviewHistory";
