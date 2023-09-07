@@ -95,7 +95,7 @@ const Login = () => {
           </a>
         </li>
         <li>
-          <a href="/kakaologout">
+          <a href="http://localhost:8080/oauth2/authorization/kakao?redirect_uri=http://localhost:8080/main">
             <button className="kakao">카카오 로그아웃</button>
           </a>
         </li>

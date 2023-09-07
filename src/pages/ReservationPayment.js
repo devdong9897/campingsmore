@@ -7,30 +7,62 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCreditCard } from "@fortawesome/free-solid-svg-icons";
 import ReserPayModal from "../components/modal/ReserPayModal";
 import { useSearchParams } from "react-router-dom";
-import { getcampDetail } from "../api/campingFetch";
+import {
+  getcampDetail,
+  geticampDay,
+  postCampReserve,
+} from "../api/campingFetch";
 import SwiperMapDetail from "../components/swiper/SwiperMapDetail";
 
 const ReservationPayment = () => {
   const [payModal, setPayModal] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const [campDetail, setCampDetail] = useState([]);
+  const [campiday, setCampiday] = useState([]);
   const icampParams = searchParams.get("icamp");
-  const [dateValue, onChange] = useState(new Date());
+  const [dateValue, setDateValue] = useState(new Date());
 
   // 인풋 state
-  const [name, setName] = useState("");
+  const [username, setUserName] = useState("");
   const [pNumber, setPNumber] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [thisiday, setThisiday] = useState("");
   // public 폴더경로 가져오기
   const path = process.env.PUBLIC_URL;
   // 오늘날짜 가져오기
-  const today = new Date();
+  // const today = new Date();
+  // const tileDisabled = ({ date }) => {
+  //   return date < today;
+  // };
+
+  const availableDates = new Set(campiday.map(item => item.date));
+
   const tileDisabled = ({ date }) => {
-    return date < today;
+    const formattedDate = moment(date).format("YYYY-MM-DD");
+    return !availableDates.has(formattedDate);
   };
 
-  const handleModal = () => {
-    setPayModal(true);
+  // 캠핑 결제 올리기
+  const handleModal = async () => {
+    const momentDate = moment(dateValue).format("YYYY-MM-DD");
+    const matchiday = campiday.find(item => item.date === momentDate);
+    if (matchiday) {
+      console.log(matchiday.iday);
+      setThisiday(matchiday.iday);
+    }
+    const senddata = {
+      reservation: momentDate,
+      name: username,
+      phone: phoneNumber,
+      payType: "KAKAO",
+      iday: thisiday,
+    };
+    try {
+      const data = await postCampReserve(senddata);
+      console.log("캠핑예약성공했냐?", data);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const campingDetailData = async () => {
@@ -38,7 +70,16 @@ const ReservationPayment = () => {
       const data = await getcampDetail(icampParams);
       console.log("디테일 캠핑?", data);
       setCampDetail(data);
-      console.log("뭠마");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const icampdayData = async () => {
+    try {
+      const data = await geticampDay(icampParams);
+      console.log("icamp의 day찾기", data);
+      setCampiday(data);
     } catch (err) {
       console.log(err);
     }
@@ -46,6 +87,7 @@ const ReservationPayment = () => {
 
   useEffect(() => {
     campingDetailData();
+    icampdayData();
   }, []);
   return (
     <ReserPayWapper>
@@ -92,8 +134,8 @@ const ReservationPayment = () => {
         <span className="calender_title">예약일자를 선택하세요</span>
         {/* <MyCalendar /> */}
         <Calendar
-          onChange={onChange}
-          value={dateValue}
+          onChange={setDateValue}
+          defaultValue={dateValue}
           tileDisabled={tileDisabled}
         />
       </div>
@@ -105,8 +147,9 @@ const ReservationPayment = () => {
               <span>예약자 성함</span>
               <input
                 type="text"
+                defaultValue={username}
                 placeholder="주문자를 입력해주세요"
-                onChange={e => setName(e.target.value)}
+                onChange={e => setUserName(e.target.value)}
               ></input>
             </div>
             <div className="input_box">
@@ -134,6 +177,7 @@ const ReservationPayment = () => {
               <input
                 type="text"
                 placeholder="전화번호를 입력하세요"
+                defaultValue={phoneNumber}
                 onChange={e => setPhoneNumber(e.target.value)}
               ></input>
             </div>
@@ -141,6 +185,7 @@ const ReservationPayment = () => {
               <span>예약날짜</span>
               <input
                 type="text"
+                readOnly
                 placeholder="예약날짜를 선택하세요"
                 value={moment(dateValue).format("YYYY-MM-DD")}
               ></input>

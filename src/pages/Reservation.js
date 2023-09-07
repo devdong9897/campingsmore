@@ -9,6 +9,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router";
 import { getCamingList, getLocationCampingList } from "../api/campingFetch";
 import Loading from "../components/Loading";
+import { Link } from "react-router-dom";
 
 const Reservation = () => {
   const navigate = useNavigate();
@@ -38,6 +39,7 @@ const Reservation = () => {
 
   // 지역바꾸면 뜨는 리스트
   const handleLocation = async e => {
+    e.preventDefault();
     setLocationNum(e.target.value);
     console.log(e.target.value);
     try {
@@ -81,6 +83,7 @@ const Reservation = () => {
                 <span>지역을 선택해주세요</span>
                 <select
                   className="select_location"
+                  defaultValue={locationNum}
                   onChange={e => handleLocation(e)}
                 >
                   <option value="0">전체</option>
@@ -119,15 +122,18 @@ const Reservation = () => {
                         </div>
                       </div>
                       <div className="camping_reservation">
-                        <button onClick={e => handleCampDetail(item.icamp)}>
+                        <Link
+                          to={`/main/reservationpayment?icamp=${item.icamp}`}
+                        >
                           캠핑예약하기
-                        </button>
+                        </Link>
                       </div>
                     </li>
                   ))}
                 </>
               ) : (
-                <Loading />
+                ""
+                // <Loading />
               )}
             </ul>
           </div>
