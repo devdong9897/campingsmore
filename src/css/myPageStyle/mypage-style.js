@@ -641,3 +641,59 @@ export const DibsWrapper = styled.div`
     }
   }
 `;
+
+export const ReservationHistoryWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  h1 {
+    margin-bottom: 20px;
+  }
+  .reser_list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    height: 100%;
+    li {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      height: 300px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(0, 0, 0, 0.3);
+      .camping_img {
+        position: relative;
+        width: 50%;
+        overflow: hidden;
+        img {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          height: 100%;
+        }
+      }
+      .camping_info {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        height: 100%;
+        gap: 10px;
+        padding: 10px;
+        li {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          width: 100%;
+          height: auto;
+          font-size: 20px;
+          border: none;
+          .title {
+            font-size: 17px;
+          }
+        }
+      }
+    }
+  }
+`;

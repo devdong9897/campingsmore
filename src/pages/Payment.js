@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import DaumPost from "../api/DaumPost";
-import { PostPayMent, getPayMent } from "../api/paymentFetch";
+import { PostKakaoPay, PostPayMent, getPayMent } from "../api/paymentFetch";
 import PaymentModal from "../components/PaymentModal";
+import KpayModal from "../components/modal/KpayModal";
 import { PaymentWrapper } from "../css/payment-style";
 import { useSearchParams } from "react-router-dom";
 import { basketItemEmpty } from "../reducers/basketSlice";
-
 const Payment = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -15,26 +15,32 @@ const Payment = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const basket = searchParams.get("basket");
   const [selectedItem, setSelectedItem] = useState({});
-  const [paymentData, setPaymentData] = useState([]);
   const [userName, setUserName] = useState("");
   const [userPhoneNumber, setUserPhoneNumber] = useState("");
   const [userAddress, setUserAddress] = useState("");
   const [userAddressDeatil, setUserAddressDeatil] = useState("");
-  const [userPostNumber, setPostNumber] = useState("");
   const [userMemo, setUserMemo] = useState("");
-  const [pointMoney, setPointMoney] = useState("");
-  const [pointMoneyBox2, setPointMoneyBox2] = useState("");
   // 장바구니 데이터 슷테이트에 담기!
   const [payBasketData, setPayBasketData] = useState([]);
   // 다음 주소 state
   const [daumModal, isDaumModal] = useState(false);
   // 페이먼트 모달창 state
   const [paymentModalState, setpaymentModalState] = useState(false);
-  // 장바구니 데이터
+  // 장바구니 데이터 Slice
   const BasketData = useSelector(state => state.basket.basketArr);
+  // 단일 결제 데이터 Slice
+  const singleItem = useSelector(state => state.order.orderItemArr);
+  // 예약한 캠핑장 불러오기 state
+  const [campingInfoCall, setCampingInfoCall] = useState(false);
+  // 카카오페이할시 돌려받은 데이터 state
+  const [kakaoPayResult, setKakaoPayResult] = useState({});
+  // 카카오페이결제 시 띄우는 모달창
+  const [kakaoModal, setKakaoModal] = useState(false);
+
+  const baseUrl = "http://192.168.0.144:5005/img/";
 
   const userData = useSelector(state => state.user.UserProFileArr);
-  const ItemData = useSelector(state => state.order.orderItemArr);
+  // const ItemData = useSelector(state => state.order.orderItemArr);
   const BasketPayData = useSelector(state => state.basketpay.basketpayArr);
   console.log("장바구니에서 결제한 데이터 들어옴?", BasketPayData);
   console.log(userAddress);
@@ -43,7 +49,7 @@ const Payment = () => {
 
   const getPayMentData = async () => {
     try {
-      const data = await getPayMent(ItemData);
+      const data = await getPayMent(singleItem);
       setSelectedItem(data);
       console.log("요청데이터 받았니?", data);
     } catch (err) {
@@ -59,6 +65,53 @@ const Payment = () => {
       getPayMentData();
     }
   }, []);
+
+  // 카카오 결제 핸들러
+  const handleToKakaoPay = async () => {
+    setKakaoModal(true);
+    // 검증데이터
+    const inputtrue = {
+      name: userName,
+      phone: userPhoneNumber,
+      address: userAddress,
+      detail: userAddressDeatil,
+      memo: userMemo,
+    };
+    // 전송데이터
+    const newPaymentData = {
+      address: userAddress,
+      addressDetail: userAddressDeatil,
+      totalPrice: selectedItem.totalPrice,
+      shippingPrice: 4000,
+      shippingMemo: userMemo,
+      type: "KAKAO",
+      purchaseList: [
+        {
+          iitem: selectedItem.iitem,
+          quantity: selectedItem.quantity,
+          totalPrice: selectedItem.totalPrice,
+        },
+      ],
+    };
+    if (!inputtrue.name) {
+      alert("이름을 입력하세요");
+    } else if (!inputtrue.phone) {
+      alert("전화번호를 입력하세요");
+    } else if (!inputtrue.address) {
+      alert("주소를 입력하세요");
+    } else if (!inputtrue.detail) {
+      alert("상세주소를 입력하세요");
+    } else if (!inputtrue.memo) {
+      alert("작성하신 메모가 없습니다.");
+    } else {
+      try {
+        const data = await PostKakaoPay(newPaymentData);
+        setKakaoPayResult(data);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
 
   // 단일 결제 핸들러
   const handleToPayment = () => {
@@ -77,6 +130,7 @@ const Payment = () => {
       totalPrice: selectedItem.totalPrice,
       shippingPrice: 4000,
       shippingMemo: userMemo,
+      type: "CARD",
       purchaseList: [
         {
           iitem: selectedItem.iitem,
@@ -153,6 +207,16 @@ const Payment = () => {
     navigate("/main/orderlist");
   };
 
+  // 캠핑정보 불러오는 핸들러
+  const handleCallCamping = () => {
+    setCampingInfoCall(true);
+    setUserAddress(selectedItem.campInfo.address);
+  };
+  // 캠핑정보 닫는 핸들러
+  const handleCampingCancel = () => {
+    setCampingInfoCall(false);
+  };
+
   useEffect(() => {
     getPayMentData();
 
@@ -198,11 +262,34 @@ const Payment = () => {
       ) : (
         ""
       )}
+      {kakaoModal ? (
+        <KpayModal
+          kakaoPayResult={kakaoPayResult}
+          setKakaoModal={setKakaoModal}
+        />
+      ) : (
+        ""
+      )}
       <div className="top_payment_contents">
         <div className="payment_contents_inner">
           <div className="top_line">
             <h1>주문/결제</h1>
           </div>
+          {selectedItem.campInfo ? (
+            <>
+              {campingInfoCall ? (
+                ""
+              ) : (
+                <div className="camping_call_btn" onClick={handleCallCamping}>
+                  예약하신 캠핑장이 있습니다. 예약한 캠핑장으로
+                  주문하시겠습니까?
+                </div>
+              )}
+            </>
+          ) : (
+            ""
+          )}
+
           {basket ? (
             <>
               {BasketPayData ? (
@@ -227,20 +314,70 @@ const Payment = () => {
               )}
             </>
           ) : (
-            <ul className="payment_order_list">
-              <li>
-                <div className="information">
-                  <div className="img">
-                    <img src={selectedItem.pic}></img>
+            <>
+              {selectedItem.campInfo ? (
+                <>
+                  {campingInfoCall ? (
+                    <div className="camping_info_box">
+                      <div className="camping_img">
+                        <img
+                          src={`${baseUrl}${selectedItem.campInfo.mainPic} `}
+                        ></img>
+                      </div>
+                      <ul className="camping_info_list">
+                        <li>
+                          <span>캠핑장명</span>
+                          <span>{selectedItem.campInfo.name}</span>
+                        </li>
+                        <li>
+                          <span>주소</span>
+                          <span>{selectedItem.campInfo.address}</span>
+                        </li>
+                        <li>
+                          <span>전화번호</span>
+                          <span>{selectedItem.campInfo.campPhone}</span>
+                        </li>
+                        <li>
+                          <span>예약날짜</span>
+                          <span>{selectedItem.campInfo.reservation}</span>
+                        </li>
+                        <span className="note">
+                          *캠핑장으로 음식 주문을 할시 예약된 캠핑주소로 음식이
+                          배달됩니다.
+                        </span>
+                        <button
+                          className="camping_order_cencel"
+                          onClick={handleCampingCancel}
+                        >
+                          캠핑주문취소
+                        </button>
+                      </ul>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </>
+              ) : (
+                ""
+              )}
+
+              <ul className="payment_order_list">
+                <li>
+                  <div className="information">
+                    <div className="img">
+                      <img src={selectedItem.pic}></img>
+                    </div>
+                    <div className="item_info">
+                      <h1>{selectedItem.name}</h1>
+                      <p className="quantity">수량: {selectedItem.quantity}</p>
+                      <p className="price">
+                        총 금액: {selectedItem.totalPrice}
+                      </p>
+                    </div>
                   </div>
-                  <div className="item_info">
-                    <h1>{selectedItem.name}</h1>
-                    <p className="quantity">수량: {selectedItem.quantity}</p>
-                    <p className="price">총 금액: {selectedItem.totalPrice}</p>
-                  </div>
-                </div>
-              </li>
-            </ul>
+                </li>
+              </ul>
+            </>
           )}
           <div className="payment_order_del">
             <h1>배송지 정보</h1>
@@ -261,12 +398,17 @@ const Payment = () => {
               onChange={e => setUserPhoneNumber(e.target.value)}
             />
             <p>배송지 주소</p>
-            <button
-              className="payment_postnumber_btn"
-              onClick={handleDaumModal}
-            >
-              주소검색
-            </button>
+            {campingInfoCall ? (
+              ""
+            ) : (
+              <button
+                className="payment_postnumber_btn"
+                onClick={handleDaumModal}
+              >
+                주소검색
+              </button>
+            )}
+
             <input
               type="text"
               className="payment_address"
@@ -294,15 +436,23 @@ const Payment = () => {
               있습니다.
             </p>
             <hr />
+            <span className="title">결제방식 선택</span>
             {basket ? (
               <button className="payment_box" onClick={handleBasketPay}>
                 장바구니 결제하기
               </button>
             ) : (
               <>
-                <button className="payment_box" onClick={handleToPayment}>
-                  결제하기
-                </button>
+                <div className="pay_type">
+                  <button
+                    className="card_pay"
+                    onClick={handleToPayment}
+                  ></button>
+                  <button
+                    className="kakao_pay"
+                    onClick={handleToKakaoPay}
+                  ></button>
+                </div>
               </>
             )}
           </div>

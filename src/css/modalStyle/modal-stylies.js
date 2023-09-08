@@ -144,7 +144,7 @@ export const ReserModalWapper = styled.div`
     transform: translate(-50%, -80%);
     width: 500px;
     height: auto;
-    background: rgba(210, 180, 140, 1);
+    background: #f2f2f2;
     border-radius: 35px;
     padding: 20px;
     .warning_text {
@@ -153,7 +153,7 @@ export const ReserModalWapper = styled.div`
       height: auto;
       font-size: 25px;
       text-align: center;
-      color: #fff;
+      color: #000;
       .pay_check_head {
         display: flex;
         flex-direction: column;
@@ -190,7 +190,7 @@ export const ReserModalWapper = styled.div`
     .warning_confrim_text {
       padding: 10px 0px;
       text-align: center;
-      color: #fff;
+      color: #000;
     }
     .modal_button {
       margin-top: 35px;
@@ -204,6 +204,10 @@ export const ReserModalWapper = styled.div`
         border-radius: 10px;
         border: none;
         font-size: 18px;
+        background: rgba(210, 180, 140, 0.9);
+        &:hover {
+          background: #f5dbb8;
+        }
       }
     }
   }
@@ -224,6 +228,49 @@ export const WithModalWapper = styled.div`
     transform: translate(-50%, -80%);
     width: 500px;
     height: 200px;
+    background: rgba(210, 180, 140, 0.9);
+    border-radius: 35px;
+    padding: 20px;
+    .warning_text {
+      margin-top: 30px;
+      width: 100%;
+      height: auto;
+      font-size: 25px;
+      text-align: center;
+      color: #fff;
+    }
+    .modal_button {
+      margin-top: 35px;
+      gap: 20px;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      button {
+        width: 150px;
+        height: 45px;
+        border-radius: 10px;
+        border: none;
+        font-size: 18px;
+      }
+    }
+  }
+`;
+
+export const KakaoPayModalWrapper = styled.div`
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999999;
+  .inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -80%);
+    width: 500px;
+    height: 250px;
     background: rgba(210, 180, 140, 0.9);
     border-radius: 35px;
     padding: 20px;

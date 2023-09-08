@@ -19,6 +19,23 @@ export const PaymentWrapper = styled.div`
         font-size: 20px;
         color: #6d6d6d;
       }
+      .camping_call_btn {
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        height: 80px;
+        background: #9ab685;
+        color: #fff;
+        text-align: center;
+        border-radius: 10px;
+        font-size: 20px;
+        cursor: pointer;
+        &:hover {
+          background: #a7c491;
+        }
+      }
       .payment_order_cate_box {
         display: flex;
         flex-direction: column;
@@ -46,6 +63,62 @@ export const PaymentWrapper = styled.div`
             border-right: 1px solid #fff;
             &:last-child {
               border-right: none;
+            }
+          }
+        }
+      }
+      .camping_info_box {
+        margin: 20px 0px;
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+        height: 300px;
+        padding: 20px;
+        background: #fff;
+        border-radius: 15px;
+        border: 1px solid #cd853f;
+        .camping_img {
+          position: relative;
+          width: 50%;
+          height: 100%;
+          overflow: hidden;
+          border-radius: 10px;
+          img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+          }
+        }
+        .camping_info_list {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+          width: 50%;
+          height: 100%;
+          padding-left: 50px;
+          li {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            width: 100%;
+            font-size: 18px;
+          }
+          .note {
+            margin-top: 10px;
+            color: #cd853f;
+            font-weight: bold;
+          }
+          .camping_order_cencel {
+            width: 125px;
+            height: 50px;
+            border: 10px;
+            border-radius: 10px;
+            background: #9ab685;
+            color: #fff;
+            &:hover {
+              background: #a7c491;
             }
           }
         }
@@ -230,23 +303,64 @@ export const PaymentWrapper = styled.div`
         .payment_all_point:hover {
           border: 1px solid #ff4500;
         }
-        .payment_box {
+        .title {
+          margin-top: 10px;
           display: block;
-          background-color: #d2b48c;
-          width: 200px;
-          height: 40px;
-          color: white;
-          border-radius: 10px;
-          border: none;
+          width: 100%;
+          text-align: center;
           font-size: 20px;
-          margin-left: 500px;
-          margin-top: 100px;
-          margin-bottom: 50px;
-          cursor: pointer;
         }
-        .payment_box:hover {
+        .pay_type {
+          margin: 50px 0px;
+          width: 100%;
+          height: 70px;
+          display: flex;
+          justify-content: center;
+          gap: 5%;
+          button {
+            width: 200px;
+            height: 100%;
+            border-radius: 10px;
+            border: none;
+          }
+          .card_pay {
+            background: url("/image/CARDPAY.jpg");
+            background-position: center;
+            background-size: contain;
+            background-color: #6d6d6d;
+            background-repeat: no-repeat;
+          }
+          .kakao_pay {
+            background: url("/image/kakaoPay.jpg");
+            background-position: center;
+            background-size: contain;
+            background-color: #6d6d6d;
+            background-repeat: no-repeat;
+          }
+          .payment_box {
+            display: block;
+            background-color: #d2b48c;
+            width: 150px;
+            height: 100px;
+            color: white;
+            border-radius: 10px;
+            border: none;
+            font-size: 20px;
+            margin-left: 500px;
+            margin-top: 100px;
+            margin-bottom: 50px;
+            background: url("/image/CARDPAY.jpg");
+            background-position: center;
+            background-size: contain;
+            background-color: black;
+            background-repeat: no-repeat;
+            cursor: pointer;
+          }
+        }
+
+        /* .payment_box:hover {
           background: #cd853f;
-        }
+        } */
       }
     }
   }

@@ -9,6 +9,7 @@ import IdResult from "../components/IdResult";
 import SnsKakao from "../components/SnsKakao";
 import DaumPost from "../api/DaumPost";
 import { AccoutWrapper } from "../css/accountStyle/acoount-style";
+import Klogin from "./Klogin";
 
 const Account = () => {
   return (
@@ -23,6 +24,8 @@ const Account = () => {
           <Route path="/findid" element={<FindID />}></Route>
           <Route path="/idresult" element={<IdResult />}></Route>
           <Route path="/kakaologin" element={<SnsKakao />}></Route>
+          <Route path="/kakaoauth" element={<Klogin />}></Route>
+          <Route path="/payment/kakao/successs" element={<Klogin />}></Route>
         </Routes>
       </div>
     </AccoutWrapper>

@@ -10,6 +10,12 @@ import { useEffect } from "react";
 
 const Login = () => {
   const accessToken = getCookie("accessToken");
+  const REST_API_KEY = "58abeedd61fb371489a99bb736791694";
+  const REDIRECT_URI = "http://localhost:3000/kakaoauth";
+  const link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+  const loginHandler = () => {
+    window.location.href = link;
+  };
   const [isLoggedIn, setIsLoggedIn] = useState(accessToken ? true : false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -90,14 +96,12 @@ const Login = () => {
       </div>
       <ul className="sub_login">
         <li>
-          <a href="/kakaologin">
-            <button className="kakao">카카오 로그인</button>
-          </a>
+          <button className="kakao" onClick={loginHandler}>
+            카카오 로그인
+          </button>
         </li>
         <li>
-          <a href="http://localhost:8080/oauth2/authorization/kakao?redirect_uri=http://localhost:8080/main">
-            <button className="kakao">카카오 로그아웃</button>
-          </a>
+          <button className="kakao">카카오 로그아웃</button>
         </li>
         <li>
           <button className="google">구글 로그인</button>

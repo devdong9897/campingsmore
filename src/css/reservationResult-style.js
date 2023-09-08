@@ -6,6 +6,19 @@ export const ReservationResultWrapper = styled.div`
   height: auto;
   padding-top: 130px;
   background: #eaeaea;
+  .camping_img {
+    position: relative;
+    margin-top: 20px;
+    width: 100%;
+    height: 300px;
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      height: 100%;
+    }
+  }
   .camping_info {
     width: 100%;
     height: auto;

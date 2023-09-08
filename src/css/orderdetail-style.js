@@ -192,9 +192,13 @@ export const OrderDetailWrapper = styled.div`
     }
 
     .detailed_image {
-      width: 50%;
+      width: 70%;
       height: auto;
       margin: 0 auto;
+      img {
+        width: 100%;
+        margin: 0 auto;
+      }
     }
     .profile_box {
       border-top: 1px solid #f0f0f0;

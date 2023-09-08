@@ -25,6 +25,8 @@ import { getBasketList } from "../api/basketFetch";
 import { getMapData } from "../api/mapDataFetch";
 import "../css/kakao-style.css";
 import ReservationResult from "./ReservationResult";
+import Klogin from "./Klogin";
+import KakaoLogin from "react-kakao-login";
 
 const MainPage = () => {
   const dispatch = useDispatch();

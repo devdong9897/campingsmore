@@ -52,6 +52,7 @@ export const fetchLogin = async (email, pw) => {
 export const deleteCookie = () => {
   cookies.remove("accessToken");
   cookies.remove("refreshToken");
+  cookies.remove("kakaoToken");
 };
 
 export const deleteKakaoCookie = async () => {

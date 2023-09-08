@@ -20,7 +20,8 @@ const ReservationPayment = () => {
   const [campDetail, setCampDetail] = useState([]);
   const [campiday, setCampiday] = useState([]);
   const icampParams = searchParams.get("icamp");
-  const [dateValue, setDateValue] = useState(new Date());
+  const [dateValue, setDateValue] = useState("");
+  const [success, setSuccess] = useState({});
 
   // 인풋 state
   const [username, setUserName] = useState("");
@@ -42,27 +43,25 @@ const ReservationPayment = () => {
     return !availableDates.has(formattedDate);
   };
 
+  const handleChange = e => {
+    const chnagemoment = moment(e).format("YYYY-MM-DD");
+    const matchiday = campiday.find(item => item.date === chnagemoment);
+    setDateValue(chnagemoment);
+    setThisiday(matchiday.iday);
+    console.log(chnagemoment, matchiday.iday);
+  };
+
   // 캠핑 결제 올리기
-  const handleModal = async () => {
-    const momentDate = moment(dateValue).format("YYYY-MM-DD");
-    const matchiday = campiday.find(item => item.date === momentDate);
-    if (matchiday) {
-      console.log(matchiday.iday);
-      setThisiday(matchiday.iday);
-    }
+  const handleModal = () => {
     const senddata = {
-      reservation: momentDate,
+      reservation: dateValue,
       name: username,
       phone: phoneNumber,
       payType: "KAKAO",
       iday: thisiday,
     };
-    try {
-      const data = await postCampReserve(senddata);
-      console.log("캠핑예약성공했냐?", data);
-    } catch (err) {
-      console.log(err);
-    }
+    setSuccess(senddata);
+    setPayModal(true);
   };
 
   const campingDetailData = async () => {
@@ -91,7 +90,15 @@ const ReservationPayment = () => {
   }, []);
   return (
     <ReserPayWapper>
-      {payModal ? <ReserPayModal setPayModal={setPayModal} /> : ""}
+      {payModal ? (
+        <ReserPayModal
+          setPayModal={setPayModal}
+          success={success}
+          campDetail={campDetail}
+        />
+      ) : (
+        ""
+      )}
       <div className="camping_info">
         {campDetail.length ? (
           <>
@@ -132,9 +139,8 @@ const ReservationPayment = () => {
       </div>
       <div className="calendar_area">
         <span className="calender_title">예약일자를 선택하세요</span>
-        {/* <MyCalendar /> */}
         <Calendar
-          onChange={setDateValue}
+          onChange={e => handleChange(e)}
           defaultValue={dateValue}
           tileDisabled={tileDisabled}
         />

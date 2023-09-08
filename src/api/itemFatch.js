@@ -43,7 +43,9 @@ const getDefaultOrderList = async () => {
 
 const getOrderDetailPage = async iitem => {
   try {
-    const res = await axios.get(`/api/item/detail/${iitem}?page=1&row=5`);
+    const res = await axios.get(
+      `/api/item/detail/${iitem}?page=0&size=5&sort=ireview%2CDESC`,
+    );
     const result = res.data;
     console.log("getOrderDetail 요청완료");
     console.log(result);

@@ -2,7 +2,7 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useSearchParams } from "react-router-dom/dist";
 import { getOrderDetailPage } from "../api/itemFatch";
 import { OrderDetailWrapper } from "../css/orderdetail-style";
@@ -13,9 +13,12 @@ import BasketCompleteModal from "../components/modal/BasketCompleteModal";
 
 const OrderDetail = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const iitem = searchParams.get("iitem");
   // 장바구니 담는 모달창 staet
+  // 현재 아이템의 키값
+  const [thisItem, setThisItem] = useState("");
   const [isModal, setIsModal] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [goodImg, setGoodImg] = useState(null);
@@ -31,11 +34,13 @@ const OrderDetail = () => {
     const getOrderDetail = async () => {
       try {
         const data = await getOrderDetailPage(iitem);
-        setGoodImg(data.item.pic);
-        setGoodName(data.item.name);
-        setGoodPrice(data.item.price);
+        console.log("자 아이템 디테일이다", data);
+        setThisItem(data.item.itemSelDetailVo.iitem);
+        setGoodImg(data.item.itemSelDetailVo.pic);
+        setGoodName(data.item.itemSelDetailVo.name);
+        setGoodPrice(data.item.itemSelDetailVo.price);
         setGoodPicListImg(data.item.picList);
-        setReviewPage(parseInt(data.review.maxPage, 10));
+        setReviewPage(parseInt(data.review.page, 10));
         setReviewList(data.review.list);
       } catch (err) {
         console.log("오더디테일 에러", err);
@@ -82,10 +87,13 @@ const OrderDetail = () => {
   };
 
   const handelbuy = () => {
+    // navigate(`/main/payment?thisitem${thisItem}?quantity=1`);
+    // navigate(`/main/payment?=${thisItem}`);
     const orderItem = {
-      iitemId: iitem,
+      iitemId: thisItem,
       quantitys: quantity,
     };
+    navigate("/main/payment");
     dispatch(OrderItemAdd(orderItem));
   };
 
@@ -141,9 +149,7 @@ const OrderDetail = () => {
               장바구니담기
             </button>
             <button className="right" onClick={handelbuy}>
-              <Link to="/main/payment" className="payrig">
-                구매하기
-              </Link>
+              구매하기
             </button>
           </div>
         </div>

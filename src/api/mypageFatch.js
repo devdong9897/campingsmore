@@ -26,7 +26,7 @@ const getMypageReviewData = async () => {
 // 구매리스트 요청
 const getPurchaseData = async () => {
   try {
-    const res = await axios.get("/api/payment/paymentList");
+    const res = await axios.get("/api/payment/payment-list");
     const result = res.data;
     console.log("getPurchaseData 요청완료");
     console.log(result);
@@ -84,6 +84,7 @@ const getMyProfileData = async () => {
   }
 };
 
+// 내 프로필 수정?
 const postMyProfileData = async formData => {
   try {
     const res = await axios.post("/api/user/update-profile", formData);
@@ -94,6 +95,7 @@ const postMyProfileData = async formData => {
   }
 };
 
+// 리뷰삭제
 const deleteReview = async thisReview => {
   try {
     const res = await axios.delete(`/api/review?ireview=${thisReview}`);
@@ -104,6 +106,7 @@ const deleteReview = async thisReview => {
   }
 };
 
+// 리뷰등록
 const postReview = async formData => {
   try {
     const res = await axios.post("/api/review", formData, {
@@ -118,18 +121,7 @@ const postReview = async formData => {
   }
 };
 
-// const getPaymentDetail = async iorder => {
-//   try {
-//     const res = await axios.get(`/api/payment/${iorder}`);
-//     const result = res.data;
-//     console.log("단일 결제 내역보기 성공?", result);
-//     return result;
-//   } catch (err) {
-//     console.log(err);
-//   }
-//   return [];
-// };
-
+// 상세결제 내역 불러오기
 const getPaymentItemDetail = async (iorder, iitem) => {
   try {
     const res = await axios.get(
@@ -144,7 +136,20 @@ const getPaymentItemDetail = async (iorder, iitem) => {
   return [];
 };
 
+const getreservationData = async () => {
+  try {
+    const res = await axios.get("/api/camp/my-reserve");
+    const result = res.data;
+    console.log("내 예약리스트 불러오기", result);
+    return result;
+  } catch (err) {
+    console.log(err);
+  }
+  return [];
+};
+
 export {
+  getreservationData,
   postWishList,
   getPaymentItemDetail,
   getMypageReviewData,

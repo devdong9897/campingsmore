@@ -12,10 +12,12 @@ import {
   getMyProfileData,
   getMypageReviewData,
   getPurchaseData,
+  getreservationData,
 } from "../api/mypageFatch";
 import { useDispatch, useSelector } from "react-redux";
 import WithdrawalModal from "../components/modal/WithdrawalModal";
 import { useSearchParams } from "react-router-dom";
+import MyReservation from "../components/MyReservation";
 
 const Mypage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -43,6 +45,8 @@ const Mypage = () => {
   const [review, setReview] = useState([]);
   // 게시글 목록 state
   const [comulist, setComuList] = useState([]);
+  // 예약내역 state
+  const [reserList, setReserList] = useState([]);
   const baseUrl = "http://192.168.0.144:5005/img/";
 
   const handleMenuChange = index => {
@@ -57,11 +61,22 @@ const Mypage = () => {
     if (index == 3) {
       getCommunity();
     }
-    if (index == 1) {
+    if (index == 4) {
       getPurchase();
     }
-    if (index == 1) {
-      getPurchase();
+    if (index == 5) {
+      reservationData();
+    }
+  };
+
+  // 예약내역 실행
+  const reservationData = async () => {
+    try {
+      const data = await getreservationData();
+      console.log("내 예약내역", data);
+      setReserList(data);
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -114,6 +129,7 @@ const Mypage = () => {
     () => <ReviewHistory review={review} />,
     () => <WritingHistory comulist={comulist} getCommunity={getCommunity} />,
     () => <DibsList />,
+    () => <MyReservation reserList={reserList} />,
   ];
 
   useEffect(() => {

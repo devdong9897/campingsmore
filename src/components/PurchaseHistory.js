@@ -61,7 +61,7 @@ const PurchaseHistory = ({ purchase }) => {
         ""
       )}
       <h1>구매내역</h1>
-      {purchase.length > 0 ? (
+      {purchase.length ? (
         <ul className="purchase_list">
           {purchase.map((item, index) => (
             <li key={index}>
