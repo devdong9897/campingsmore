@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import WithdrawalModal from "../components/modal/WithdrawalModal";
 import { useSearchParams } from "react-router-dom";
 import MyReservation from "../components/MyReservation";
+import AddressPath from "../components/AddressPath";
 
 const Mypage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -130,6 +131,7 @@ const Mypage = () => {
     () => <WritingHistory comulist={comulist} getCommunity={getCommunity} />,
     () => <DibsList />,
     () => <MyReservation reserList={reserList} />,
+    () => <AddressPath />,
   ];
 
   useEffect(() => {
@@ -162,6 +164,7 @@ const Mypage = () => {
               "작성글",
               "찜내역",
               "캠핑예약내역",
+              "배송지관리",
             ].map((menu, index) => (
               <li key={index} onClick={() => handleMenuChange(index)}>
                 {menu}

@@ -1,5 +1,5 @@
 import React from "react";
-import { ReserModalWapper } from "../../css/modalStyle/modal-stylies";
+import { UniteMocalWapper } from "../../css/modalStyle/modal-stylies";
 import { useNavigate } from "react-router";
 import { postCampReserve } from "../../api/campingFetch";
 import { useDispatch } from "react-redux";
@@ -24,8 +24,8 @@ const ReserPayModal = ({ setPayModal, success, campDetail }) => {
     setPayModal(false);
   };
   return (
-    <ReserModalWapper>
-      <div className="reserModal_inner">
+    <UniteMocalWapper>
+      <div className="inner">
         <div className="warning_text">
           <span>입력한 결제 정보</span>
           <div className="pay_check_head">
@@ -59,7 +59,7 @@ const ReserPayModal = ({ setPayModal, success, campDetail }) => {
           <button onClick={handlecencel}>취소</button>
         </div>
       </div>
-    </ReserModalWapper>
+    </UniteMocalWapper>
   );
 };
 

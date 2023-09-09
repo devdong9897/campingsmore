@@ -1,5 +1,5 @@
 import React from "react";
-import { WithModalWapper } from "../../css/modalStyle/modal-stylies";
+import { UniteMocalWapper } from "../../css/modalStyle/modal-stylies";
 import { postWishList } from "../../api/mypageFatch";
 
 const WishModal = ({ wishitem, setIsWishModal }) => {
@@ -21,7 +21,7 @@ const WishModal = ({ wishitem, setIsWishModal }) => {
     }
   };
   return (
-    <WithModalWapper>
+    <UniteMocalWapper>
       <div className="inner">
         <div className="warning_text">
           해당 상품을 찜목록에 추가하시겠습니까?
@@ -31,7 +31,7 @@ const WishModal = ({ wishitem, setIsWishModal }) => {
           <button onClick={handleModal}>취소</button>
         </div>
       </div>
-    </WithModalWapper>
+    </UniteMocalWapper>
   );
 };
 

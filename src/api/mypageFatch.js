@@ -122,11 +122,9 @@ const postReview = async formData => {
 };
 
 // 상세결제 내역 불러오기
-const getPaymentItemDetail = async (iorder, iitem) => {
+const getPaymentItemDetail = async iorder => {
   try {
-    const res = await axios.get(
-      `/api/payment/paymentList/detail/${iorder}?iitem=${iitem}`,
-    );
+    const res = await axios.get(`/api/payment/payment-list/detail/${iorder}`);
     const result = res.data;
     console.log("상세 결제 내역 성공", result);
     return result;
@@ -136,6 +134,7 @@ const getPaymentItemDetail = async (iorder, iitem) => {
   return [];
 };
 
+// 내 예약리스트 요청
 const getreservationData = async () => {
   try {
     const res = await axios.get("/api/camp/my-reserve");
@@ -146,6 +145,18 @@ const getreservationData = async () => {
     console.log(err);
   }
   return [];
+};
+
+const patchPayCancel = async thisIorder => {
+  try {
+    const res = await axios.patch(
+      `/api/payment/payment-list/detail/${thisIorder}`,
+    );
+    const result = res.data;
+    console.log("환불요청??", result);
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 export {
@@ -160,4 +171,5 @@ export {
   postReview,
   updateCommunityData,
   deleteReview,
+  patchPayCancel,
 };

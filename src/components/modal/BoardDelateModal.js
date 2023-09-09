@@ -1,6 +1,6 @@
 import React from "react";
 import { updateCommunityData } from "../../api/mypageFatch";
-import { BoardDeleteModalWrapper } from "../../css/modalStyle/modal-stylies";
+import { UniteMocalWapper } from "../../css/modalStyle/modal-stylies";
 
 const BoardDelateModal = ({ setUpdateData, setIsModal, thisBoard }) => {
   const handleDeleteBaord = async () => {
@@ -18,15 +18,15 @@ const BoardDelateModal = ({ setUpdateData, setIsModal, thisBoard }) => {
     setIsModal(false);
   };
   return (
-    <BoardDeleteModalWrapper>
-      <div className="boardDelete_inner">
+    <UniteMocalWapper>
+      <div className="inner">
         <div className="warning_text">해당 게시글을 삭제하시겠습니까?</div>
         <div className="modal_button">
           <button onClick={handleDeleteBaord}>삭제</button>
           <button onClick={handleBoardCencal}>취소</button>
         </div>
       </div>
-    </BoardDeleteModalWrapper>
+    </UniteMocalWapper>
   );
 };
 

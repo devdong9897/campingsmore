@@ -4,9 +4,11 @@ import {
   getPaymentDetail,
   getPurchaseData,
   getPaymentItemDetail,
+  patchPayCancel,
 } from "../api/mypageFatch";
 import ReviewModal from "./ReviewModal";
 import ReviewCompletedModal from "./modal/ReviewCompletedModal";
+import PayCencelModal from "./modal/PayCencelModal";
 
 const PurchaseHistory = ({ purchase }) => {
   console.log("잘넘어오나?", purchase);
@@ -19,6 +21,10 @@ const PurchaseHistory = ({ purchase }) => {
   const [thispurchaseIndex, setThispurchaseIndex] = useState(null);
   const [paymentDetail, setpaymentDetail] = useState({});
   const [listIndex, setListIndex] = useState("");
+  // 결제취소모달 staet
+  const [payCancelState, setPayCancelState] = useState(false);
+  // 결제취소한 iorder 값 state
+  const [thisIorder, setThisIorder] = useState("");
 
   const handleReviewWrite = (itemiorder, subitemiitem) => {
     setThisItem(itemiorder);
@@ -33,14 +39,25 @@ const PurchaseHistory = ({ purchase }) => {
     setThispurchaseIndex(iorder);
     setListIndex(subindex);
     try {
-      const data = await getPaymentItemDetail(iorder, iitem);
+      const data = await getPaymentItemDetail(iorder);
       setpaymentDetail(data);
     } catch (err) {
       console.log(err);
     }
   };
-  const handleDetailClose = () => {
+
+  const handleDetailClose = async iorder => {
     setPurchaseDetail(false);
+    try {
+      const data = await patchPayCancel(iorder);
+      console.log("환불요청함?", data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const handlePayCancel = iorder => {
+    setThisIorder(iorder);
+    setPayCancelState(true);
   };
   return (
     <PurchaseWrapper>
@@ -57,6 +74,14 @@ const PurchaseHistory = ({ purchase }) => {
       )}
       {isreviewConfirm ? (
         <ReviewCompletedModal setIsReviewConfirm={setIsReviewConfirm} />
+      ) : (
+        ""
+      )}
+      {payCancelState ? (
+        <PayCencelModal
+          setPayCancelState={setPayCancelState}
+          thisIorder={thisIorder}
+        />
       ) : (
         ""
       )}
@@ -82,7 +107,7 @@ const PurchaseHistory = ({ purchase }) => {
                         <span>{subitem.totalPrice} 원</span>
                       </div>
                       <div className="purchase_func">
-                        {subitem.reviewYn === 0 ? (
+                        {subitem.reviewYn === null ? (
                           <button
                             className="write_review"
                             onClick={() =>
@@ -169,7 +194,10 @@ const PurchaseHistory = ({ purchase }) => {
                           {paymentDetail.totalPrice +
                             paymentDetail.shippingPrice}
                         </span>
-                        <button className="purchase_cancel_btn">
+                        <button
+                          className="purchase_cancel_btn"
+                          onClick={e => handlePayCancel(item.iorder)}
+                        >
                           결제취소
                         </button>
                       </div>
