@@ -9,9 +9,9 @@ import { Autoplay, EffectFade, Navigation, Pagination } from "swiper/modules";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-const SwiperMapDetail = ({ campDetail }) => {
+const SwiperMapDetail = ({ campPicList }) => {
   const baseUrl = "http://192.168.0.144:5005/img/";
-  console.log("이게뭔데", campDetail[0].pic);
+  console.log("어 이거 왜 안뜨고 지랄링임?", campPicList);
   return (
     <>
       <Swiper
@@ -20,10 +20,10 @@ const SwiperMapDetail = ({ campDetail }) => {
         modules={[Navigation, Pagination]}
         className="mySwiper-slice"
       >
-        {campDetail[0].pic.map((item, index) => (
+        {campPicList.map((item, index) => (
           <SwiperSlide key={index}>
             <div className="slide_inner">
-              <img src={baseUrl + item} />
+              <img src={baseUrl + item.pic} />
             </div>
           </SwiperSlide>
         ))}

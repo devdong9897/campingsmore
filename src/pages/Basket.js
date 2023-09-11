@@ -88,6 +88,7 @@ const Basket = () => {
     setBasketList(newList);
   };
 
+  // 장바구니 삭제
   const handleRemoveItem = async icart => {
     try {
       await deleteBasketItem(icart);
@@ -99,6 +100,7 @@ const Basket = () => {
     }
   };
 
+  // 총합계 계산가격
   const calculateItemTotal = item => {
     return item.quantity * item.price;
   };
@@ -125,26 +127,27 @@ const Basket = () => {
     const basketIcart = basketList.filter(item => item.isCheck);
     // console.log(basketIcart)
     // 체크된 배열에서 icart 값만 뽑아서 배열만들기
-    const basketIcartData = {
-      icart: basketIcart.map(item => item.icart),
-    };
-    basketPay(basketIcartData);
+    console.log(basketIcart);
+    // const basketIcartData = {
+    //   icart: basketIcart.map(item => item.icart),
+    // };
+    navigate(`/main/payment?basket=1`);
+    dispatch(basketpayData(basketIcart));
   };
-
-  const basketPay = async basketData => {
-    console.log("basketPay basketData : ", basketData);
-    // 이건 뭔지 파악이 필요하다. 용도는 코딩한 사람 머리에만 있다. 주석을 달아주세요.
-    const basketTrue = 1;
-    try {
-      const data = await postBasketPay(basketData);
-      // console.log("데이터받앗니", data);
-      // setPayBasketResult(data);
-      dispatch(basketpayData(data));
-      navigate(`/main/payment?basket=${basketTrue}`);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const basketPay = async basketData => {
+  //   console.log("basketPay basketData : ", basketData);
+  //   // 이건 뭔지 파악이 필요하다. 용도는 코딩한 사람 머리에만 있다. 주석을 달아주세요.
+  //   const basketTrue = 1;
+  //   try {
+  //     const data = await postBasketPay(basketData);
+  //     // console.log("데이터받앗니", data);
+  //     // setPayBasketResult(data);
+  //     dispatch(basketpayData(data));
+  //     navigate(`/main/payment?basket=${basketTrue}`);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   return (
     <>
@@ -195,29 +198,21 @@ const Basket = () => {
                             />
                           </div>
                           <div className="basket_product_img">
-                            {/* <img src="#" alt="" />{item.pic} */}
                             <img src={item.pic} alt="" />
                           </div>
                           <div>
-                            {/* <p>{item.name}허니 머시기 후라이드 치킨</p> */}
                             <p>{item.name}</p>
                           </div>
                           <div>
                             <button onClick={() => onHandleClickMinus(index)}>
                               -
                             </button>
-                            {/* <button>-</button> */}
-                            {/* <span>{item.quantity}1</span> */}
                             <span>{item.quantity}</span>
-                            {/* <span>{count}</span> */}
                             <button onClick={() => onHandleClickPlus(index)}>
                               +
                             </button>
-                            {/* <button>+</button> */}
                           </div>
-                          {/* <div>{item.price}10000원</div> */}
                           <div>{calculateItemTotal(item)}</div>
-                          {/* <div>{item.price}</div> */}
                           <div>
                             <button
                               onClick={() => handleRemoveItem(item.icart)}

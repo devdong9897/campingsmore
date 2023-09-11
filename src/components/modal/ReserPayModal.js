@@ -14,11 +14,11 @@ const ReserPayModal = ({ setPayModal, success, campDetail }) => {
     try {
       const data = await postCampReserve(success);
       console.log("캠핑예약성공했냐?", data);
+      navigate("/main/reserresult");
       dispatch(ReserAdd(data));
     } catch (err) {
       console.log(err);
     }
-    navigate(`/main/reserresult?data=${success}`);
   };
   const handlecencel = () => {
     setPayModal(false);
@@ -29,8 +29,8 @@ const ReserPayModal = ({ setPayModal, success, campDetail }) => {
         <div className="warning_text">
           <span>입력한 결제 정보</span>
           <div className="pay_check_head">
-            <span className="camp_name">{campDetail[0].name}</span>
-            <span className="price">{campDetail[0].price}원</span>
+            <span className="camp_name">{campDetail.name}</span>
+            <span className="price">{campDetail.price}원</span>
           </div>
           <ul className="pay_info_list">
             <li>
@@ -47,7 +47,7 @@ const ReserPayModal = ({ setPayModal, success, campDetail }) => {
             </li>
             <li>
               <span>캠핑장 주소</span>
-              <span>{campDetail[0].price}</span>
+              <span>{campDetail.price}</span>
             </li>
           </ul>
         </div>

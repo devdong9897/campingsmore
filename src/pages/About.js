@@ -4,7 +4,7 @@ import { AboutWrapper } from "../css/about-style";
 const About = () => {
   return (
     <AboutWrapper>
-      <div className="inner"></div>
+      <div className="about_inner"></div>
     </AboutWrapper>
   );
 };

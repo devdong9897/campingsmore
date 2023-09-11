@@ -10,6 +10,9 @@ const ReservationResult = () => {
   const handleToMain = () => {
     navigate("/main");
   };
+  const handleToOrder = () => {
+    navigate("/main/orderlist");
+  };
   return (
     <ReservationResultWrapper>
       <div className="payment_camping">
@@ -81,7 +84,9 @@ const ReservationResult = () => {
             예약된 캠핑장에 직접 주문한 음식도 배달가능합니다.
           </span>
           <div className="payment_check">
-            <button className="pay_btn">음식주문하기</button>
+            <button className="pay_btn" onClick={handleToOrder}>
+              음식주문하기
+            </button>
             <button className="pay_btn" onClick={handleToMain}>
               예약끝내기
             </button>

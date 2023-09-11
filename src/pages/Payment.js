@@ -47,9 +47,11 @@ const Payment = () => {
   console.log("장바구니데이터", BasketData);
   console.log("장바구니에서 들어왔냐", basket);
 
+  // 싱글아이템은 장터보기에서 바로 주문하기 눌러 들어올때 받는것이다.
   const getPayMentData = async () => {
     try {
       const data = await getPayMent(singleItem);
+      // 그렇게 요청한 아이템을 선택한 아이템에 담는다.
       setSelectedItem(data);
       console.log("요청데이터 받았니?", data);
     } catch (err) {
@@ -275,15 +277,25 @@ const Payment = () => {
           <div className="top_line">
             <h1>주문/결제</h1>
           </div>
-          {selectedItem.campInfo ? (
+
+          {selectedItem ? (
             <>
-              {campingInfoCall ? (
-                ""
+              {selectedItem.campInfo ? (
+                <>
+                  {campingInfoCall ? (
+                    ""
+                  ) : (
+                    <div
+                      className="camping_call_btn"
+                      onClick={handleCallCamping}
+                    >
+                      예약하신 캠핑장이 있습니다. 예약한 캠핑장으로
+                      주문하시겠습니까?
+                    </div>
+                  )}
+                </>
               ) : (
-                <div className="camping_call_btn" onClick={handleCallCamping}>
-                  예약하신 캠핑장이 있습니다. 예약한 캠핑장으로
-                  주문하시겠습니까?
-                </div>
+                ""
               )}
             </>
           ) : (

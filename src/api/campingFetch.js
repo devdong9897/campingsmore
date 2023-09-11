@@ -30,9 +30,7 @@ const getLocationCampingList = async e => {
 
 const getcampDetail = async icampParams => {
   try {
-    const res = await axios.get(
-      `/api/camp/detail-camping?icamp=${icampParams}`,
-    );
+    const res = await axios.get(`/api/camp/${icampParams}`);
     const result = res.data;
     console.log("캠핑장 디테일 요청완료", result);
     return result;

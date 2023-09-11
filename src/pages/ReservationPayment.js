@@ -18,6 +18,7 @@ const ReservationPayment = () => {
   const [payModal, setPayModal] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const [campDetail, setCampDetail] = useState([]);
+  const [campPicList, setCampPicList] = useState([]);
   const [campiday, setCampiday] = useState([]);
   const icampParams = searchParams.get("icamp");
   const [dateValue, setDateValue] = useState("");
@@ -60,6 +61,7 @@ const ReservationPayment = () => {
       payType: "KAKAO",
       iday: thisiday,
     };
+    console.log("마음을 모아 fly", senddata);
     setSuccess(senddata);
     setPayModal(true);
   };
@@ -68,7 +70,9 @@ const ReservationPayment = () => {
     try {
       const data = await getcampDetail(icampParams);
       console.log("디테일 캠핑?", data);
+      console.log("픽리스트", data.pic);
       setCampDetail(data);
+      setCampPicList(data.pic);
     } catch (err) {
       console.log(err);
     }
@@ -100,36 +104,36 @@ const ReservationPayment = () => {
         ""
       )}
       <div className="camping_info">
-        {campDetail.length ? (
+        {campDetail ? (
           <>
             <div className="main_thumbnail">
-              <SwiperMapDetail campDetail={campDetail} />
+              <SwiperMapDetail campPicList={campPicList} />
             </div>
             <div className="detail_info">
               <div className="detail_info_desc">
-                <span className="title">{campDetail[0].name}</span>
+                <span className="title">{campDetail.name}</span>
                 <ul className="detail_info_list">
                   <li>
                     <span>주소</span>
-                    <span>{campDetail[0].address}</span>
+                    <span>{campDetail.address}</span>
                   </li>
                   <li>
                     <span>전화번호</span>
-                    <span>{campDetail[0].campPhone}</span>
+                    <span>{campDetail.campPhone}</span>
                   </li>
                   <li>
                     <span>예약자리</span>
-                    <span>{campDetail[0].quantity}</span>
+                    <span>{campDetail.quantity}</span>
                   </li>
                   <li className="price">
                     <span>예약가격</span>
-                    <span>{campDetail[0].price}원</span>
+                    <span>{campDetail.price}원</span>
                   </li>
                 </ul>
               </div>
               <div className="note">
                 <span className="title">캠핑장 안내사항</span>
-                {campDetail[0].note}
+                {campDetail.note}
               </div>
             </div>
           </>
