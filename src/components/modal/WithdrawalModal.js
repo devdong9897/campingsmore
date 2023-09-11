@@ -21,9 +21,7 @@ const WithdrawalModal = ({ userIuser, isWithdrawal }) => {
     const basketEmpty = [];
     dispatch(UserLogout(LogoutEmpty));
     dispatch(basketItemEmpty(basketEmpty));
-    // LogoutFetch();
     navigate("/");
-    // window.location.reload();
   };
   return (
     <WithdrawalWrapper>

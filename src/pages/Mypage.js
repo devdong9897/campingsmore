@@ -127,8 +127,14 @@ const Mypage = () => {
   const menuComponents = [
     () => <EditInformation isWithdrawal={isWithdrawal} userData={userData} />,
     () => <PurchaseHistory purchase={purchase} />,
-    () => <ReviewHistory review={review} />,
-    () => <WritingHistory comulist={comulist} getCommunity={getCommunity} />,
+    () => <ReviewHistory review={review} setReview={setReview} />,
+    () => (
+      <WritingHistory
+        comulist={comulist}
+        setComuList={setComuList}
+        getCommunity={getCommunity}
+      />
+    ),
     () => <DibsList />,
     () => <MyReservation reserList={reserList} />,
     () => <AddressPath />,

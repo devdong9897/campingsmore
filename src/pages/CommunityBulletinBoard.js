@@ -75,8 +75,7 @@ const CommunityBulletinBoard = () => {
 
   // 댓글 등록
   const handlePostComment = async () => {
-    
-    const textWithLineBreaks = commentText.replace(/\n/g, '<br />');
+    const textWithLineBreaks = commentText.replace(/\n/g, "<br />");
 
     const commentPostData = {
       iboard: iboard,
@@ -87,7 +86,6 @@ const CommunityBulletinBoard = () => {
       const data = await getFetchData(iboard);
       setCommentListData(data.commentList.list);
       setCommentText("");
-      // window.location.reload();
     } catch (err) {
       console.log(err);
     }
@@ -102,41 +100,41 @@ const CommunityBulletinBoard = () => {
 
   // 댓글 삭제
   const handleDeleteComment = async _icomment => {
-
-    console.log("댓글 삭제 : ", _icomment)
-    setModalIcomment(_icomment)
+    console.log("댓글 삭제 : ", _icomment);
+    setModalIcomment(_icomment);
     setModalShow(true);
-
-   
   };
   const handleCancel = () => {
     setModalShow(false);
-  }
+  };
 
-  const handleConfirm = async () => {  
-     const result = await deleteComment(modalIcomment);
-   
+  const handleConfirm = async () => {
+    const result = await deleteComment(modalIcomment);
+
     // // setIcomment(_icomment)
     // // setCommentDelete(true)
 
     // 목록 갱신
     const arr = commentListData.filter(item => item.icomment !== modalIcomment);
-    setCommentListData(arr);  
+    setCommentListData(arr);
     setModalShow(false);
-  }
+  };
 
   return (
     <CommunityBulletinBoardWrapper>
-      {
-        modalShow ? <CommentDeleteModal handleCancel={handleCancel} handleConfirm={handleConfirm}/> : null
-      }
-      
+      {modalShow ? (
+        <CommentDeleteModal
+          handleCancel={handleCancel}
+          handleConfirm={handleConfirm}
+        />
+      ) : null}
+
       <div className="top_community_bulletin_board_contents">
         <div className="community_bulletin_board_contents_inner">
           <h1>커뮤니티 게시글 상세보기</h1>
           <hr className="community_bulletin_board_line" />
           <div className="community_bulletin_board_topbox">
-                <p className="board_category">[{boardDevoCategory}]</p>
+            <p className="board_category">[{boardDevoCategory}]</p>
             <p className="community_bulletin_board_title">{boardDevoTitle}</p>
             <div>
               <div className="board_info">
@@ -173,7 +171,7 @@ const CommunityBulletinBoard = () => {
             ))}
           </ul>
           <h1>댓글 등록</h1>
-          <hr className="community_bulletin_board_line"/>
+          <hr className="community_bulletin_board_line" />
           <div className="community_bulletin_board_comment_box">
             <div className="community_bulletin_board_comment">
               <ul className="community_bulletin_ul">

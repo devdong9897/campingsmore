@@ -69,6 +69,7 @@ const ReviewModal = ({
     } catch (err) {
       console.log(err);
     }
+    setisReviewModal(false);
   };
 
   // 리뷰수정할때 실행
@@ -81,7 +82,7 @@ const ReviewModal = ({
       },
     };
     try {
-      console.log("수정데이터@?", data);
+      console.log("수정데이터?", data);
       const formData = new FormData();
       formData.append("dto", JSON.stringify(data.dto));
       if (uploadImage) {
@@ -99,6 +100,7 @@ const ReviewModal = ({
     } catch (err) {
       console.log(err);
     }
+    setisReviewModal(false);
   };
 
   // 이미지 선택 핸들러

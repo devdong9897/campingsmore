@@ -9,7 +9,6 @@ const BasketModal = ({ isModal, basketList, cartCount, setBasketList }) => {
     );
     setBasketList(updataBasketList);
     isModal(false);
-    window.location.reload();
   };
   const handleModal = () => {
     isModal(false);

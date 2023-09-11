@@ -1,5 +1,7 @@
 import axios from "axios";
 import { basketDelete, basketItem } from "../reducers/basketSlice";
+import { useDispatch } from "react-redux";
+import { eventTrigger } from "../reducers/EventSlice";
 
 const getBasketList = async dispatch => {
   try {
@@ -14,13 +16,14 @@ const getBasketList = async dispatch => {
   return [];
 };
 
-const postBasket = async iitem => {
+const postBasket = async (iitem, dispatch) => {
   try {
     const res = await axios.post(`/api/cart`, {
       iitem: iitem,
       quantity: 1,
     });
-    console.log("postbasket 실행완료");
+    dispatch(eventTrigger({ event: "postBasket" }));
+    console.log("postbasket 실행완료", res.data);
   } catch (error) {
     console.log(error);
   }
@@ -40,19 +43,18 @@ const postBasketPay = async basketData => {
 };
 // 장바구니 목록을 선택하여 삭제
 const deleteBasketItemList = async icartArr => {
-  let str="";
+  let str = "";
   icartArr.forEach(item => {
     let tt = `icart=${item}&`;
     str += tt;
-  })
-  console.log(str)
-  try{
-    const res = await axios.delete(`/api/cart?${str}`)
-  }catch (err) {
+  });
+  console.log(str);
+  try {
+    const res = await axios.delete(`/api/cart?${str}`);
+  } catch (err) {
     console.log(err);
   }
-}
-
+};
 
 // 장바구니 목록 삭제
 const deleteBasketItem = async icart => {

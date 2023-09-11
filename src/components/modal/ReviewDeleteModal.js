@@ -1,16 +1,18 @@
 import React from "react";
 import { ReviewModalWrapper } from "../../css/modalStyle/modal-stylies";
-import { deleteReview } from "../../api/mypageFatch";
+import { deleteReview, getMypageReviewData } from "../../api/mypageFatch";
 
-const ReviewDeleteModal = ({ setIsReviewModal, thisReview }) => {
+const ReviewDeleteModal = ({ setIsReviewModal, thisReview, setReview }) => {
   //   alert(thisReview);
   const handleReviewDelete = async () => {
     try {
       const date = await deleteReview(thisReview);
+      const renewal = await getMypageReviewData();
+      setReview(renewal);
+      setIsReviewModal(false);
     } catch (err) {
       console.log(err);
     }
-    window.location.reload();
   };
   const handleCancel = () => {
     setIsReviewModal(false);

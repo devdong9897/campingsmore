@@ -3,7 +3,7 @@ const BASE_URL = "/api/community/icategory";
 
 const postCommunity = async () => {
   try {
-    const res = await axios.post("/api/community/comunity");
+    const res = await axios.post("/api/community/category-list");
     const data = res.data;
     return res.data;
   } catch (error) {
@@ -14,7 +14,7 @@ const postCommunity = async () => {
 
 const getCommunityList = async () => {
   try {
-    const res = await axios.get("/api/community/comunity");
+    const res = await axios.get("/api/community/list");
     const result = res.data;
     console.log("커뮤니티 게시글 요청완료");
     console.log(result);
@@ -28,7 +28,7 @@ const getCommunityList = async () => {
 const getCommunityPage = async _index => {
   try {
     const res = await axios.get(
-      `/api/community/comunity?page=${_index + 1}&row=15`,
+      `/api/community/list?page=${_index + 1}&row=15`,
     );
     const result = res.data;
     console.log("커뮤니티 게시글 페이지 요청완료");

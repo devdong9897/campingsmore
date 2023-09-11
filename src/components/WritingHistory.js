@@ -6,10 +6,11 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import BoardDelateModal from "./modal/BoardDelateModal";
 
-const WritingHistory = ({ comulist, getCommunity }) => {
+const WritingHistory = ({ comulist, setComuList, getCommunity }) => {
   const navigate = useNavigate();
   console.log(comulist[1]);
   const [updatedData, setUpdateData] = useState({});
+  const [updatecomuList, setUpdatecomuList] = useState([]);
   const [isModal, setIsModal] = useState(false);
   const [thisBoard, setThisBoard] = useState("");
 
@@ -33,6 +34,7 @@ const WritingHistory = ({ comulist, getCommunity }) => {
           setUpdateData={setUpdateData}
           setIsModal={setIsModal}
           thisBoard={thisBoard}
+          setComuList={setComuList}
         />
       ) : (
         ""

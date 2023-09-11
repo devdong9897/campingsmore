@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 import {
   deleteBasketItem,
   deleteBasketItemList,
+  getBasketList,
   postBasketPay,
 } from "../api/basketFetch";
 import BasketModal from "../components/modal/BasketModal";
@@ -91,6 +92,7 @@ const Basket = () => {
     try {
       await deleteBasketItem(icart);
       const updatedBasketList = basketList.filter(item => item.icart !== icart);
+      const updatedBaksetrenewal = await getBasketList(dispatch);
       setBasketList(updatedBasketList);
     } catch (err) {
       console.log(err);

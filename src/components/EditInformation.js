@@ -24,7 +24,6 @@ const EditInformation = ({ isWithdrawal, userData }) => {
   const [mypageDaum, setMypageDaum] = useState(false);
   // 최종확인 모달 state
   const [EditconfirmState, seteditconfirmState] = useState(false);
-
   console.log(userData);
 
   const [fixPass, setfixPass] = useState("");

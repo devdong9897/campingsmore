@@ -39,7 +39,7 @@ const getPurchaseData = async () => {
 // 작성 게시글 요청
 const getCommunityData = async () => {
   try {
-    const res = await axios.get("/api/community");
+    const res = await axios.get("/api/community/my-list");
     const result = res.data;
     console.log("getCommunityData 요청완료");
     console.log(result);

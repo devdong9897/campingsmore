@@ -3,7 +3,7 @@ import { ReviewHistoryWrapper } from "../css/myPageStyle/mypage-style";
 import ReviewDeleteModal from "./modal/ReviewDeleteModal";
 import ReviewModal from "./ReviewModal";
 
-const ReviewHistory = ({ review }) => {
+const ReviewHistory = ({ review, setReview }) => {
   // 리뷰수정 state
   const [isEditReviewModal, setisEditReviewModal] = useState(false);
   // 리뷰삭제 State
@@ -43,6 +43,7 @@ const ReviewHistory = ({ review }) => {
         <ReviewDeleteModal
           setIsReviewModal={setIsReviewModal}
           thisReview={thisReview}
+          setReview={setReview}
         />
       ) : (
         ""

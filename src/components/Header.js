@@ -23,16 +23,6 @@ const Header = () => {
   const [scrollOver, setScrollOver] = useState(0);
   const [scrolled, setScrolled] = useState(false);
 
-  // const basketCountData = async () => {
-  //   try {
-  //     const data = await getBasketList();
-  //     setBasketCount(data);
-  //     console.log("장바구니데이터", data);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-
   // 스크롤이벤트 핸들러
   const handleScroll = () => {
     const scrollY = window.scrollY;

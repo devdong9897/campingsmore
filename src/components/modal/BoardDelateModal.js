@@ -1,14 +1,21 @@
 import React from "react";
-import { updateCommunityData } from "../../api/mypageFatch";
+import { getCommunityData, updateCommunityData } from "../../api/mypageFatch";
 import { UniteMocalWapper } from "../../css/modalStyle/modal-stylies";
 
-const BoardDelateModal = ({ setUpdateData, setIsModal, thisBoard }) => {
+const BoardDelateModal = ({
+  setUpdateData,
+  setIsModal,
+  thisBoard,
+  setComuList,
+}) => {
   const handleDeleteBaord = async () => {
     try {
       const result = await updateCommunityData(thisBoard);
+      const renewal = await getCommunityData();
+      console.log("여긴 뭐오노", renewal);
+      setComuList(renewal);
       console.log("게시글 삭제 성공");
       setUpdateData("뭘 담나?", result);
-      window.location.reload();
       setIsModal(false);
     } catch (err) {
       console.log("게시글 삭제 실패", err);
