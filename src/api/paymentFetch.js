@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const getPayMent = async ItemData => {
+const getPayMent = async singleItem => {
   try {
     const res = await axios.get(
-      `/api/payment/order/${ItemData.iitemId}?quantity=${ItemData.quantitys}`,
+      `/api/payment/order/${singleItem.iitemId}?quantity=${singleItem.quantitys}`,
     );
     const result = res.data;
     console.log(result);

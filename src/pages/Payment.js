@@ -52,6 +52,7 @@ const Payment = () => {
     try {
       const data = await getPayMent(singleItem);
       // 그렇게 요청한 아이템을 선택한 아이템에 담는다.
+      console.log(singleItem);
       setSelectedItem(data);
       console.log("요청데이터 받았니?", data);
     } catch (err) {
@@ -278,7 +279,7 @@ const Payment = () => {
             <h1>주문/결제</h1>
           </div>
 
-          {selectedItem ? (
+          {/* {selectedItem ? (
             <>
               {selectedItem.campInfo ? (
                 <>
@@ -300,9 +301,9 @@ const Payment = () => {
             </>
           ) : (
             ""
-          )}
+          )} */}
 
-          {basket ? (
+          {/* {basket ? (
             <>
               {BasketPayData ? (
                 <ul className="payment_order_list">
@@ -390,7 +391,7 @@ const Payment = () => {
                 </li>
               </ul>
             </>
-          )}
+          )} */}
           <div className="payment_order_del">
             <h1>배송지 정보</h1>
             <p>주문자</p>
