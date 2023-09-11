@@ -24,7 +24,7 @@ const PurchaseHistory = ({ purchase }) => {
   // 결제취소모달 staet
   const [payCancelState, setPayCancelState] = useState(false);
   // 결제취소한 iorder 값 state
-  const [thisIorder, setThisIorder] = useState("");
+  const [thisIorderitme, setThisIorderitem] = useState("");
 
   const handleReviewWrite = (itemiorder, subitemiitem) => {
     setThisItem(itemiorder);
@@ -46,17 +46,12 @@ const PurchaseHistory = ({ purchase }) => {
     }
   };
 
-  const handleDetailClose = async iorder => {
+  const handleDetailClose = () => {
     setPurchaseDetail(false);
-    try {
-      const data = await patchPayCancel(iorder);
-      console.log("환불요청함?", data);
-    } catch (err) {
-      console.log(err);
-    }
   };
-  const handlePayCancel = iorder => {
-    setThisIorder(iorder);
+  const handlePayCancel = async iorderitem => {
+    console.log(iorderitem);
+    setThisIorderitem(iorderitem);
     setPayCancelState(true);
   };
   return (
@@ -80,7 +75,7 @@ const PurchaseHistory = ({ purchase }) => {
       {payCancelState ? (
         <PayCencelModal
           setPayCancelState={setPayCancelState}
-          thisIorder={thisIorder}
+          thisIorderitme={thisIorderitme}
         />
       ) : (
         ""
@@ -142,6 +137,12 @@ const PurchaseHistory = ({ purchase }) => {
                             구매상세
                           </button>
                         )}
+                        <button
+                          className="purchase_cancel_btn"
+                          onClick={e => handlePayCancel(subitem.iorderitem)}
+                        >
+                          결제취소
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -194,12 +195,6 @@ const PurchaseHistory = ({ purchase }) => {
                           {paymentDetail.totalPrice +
                             paymentDetail.shippingPrice}
                         </span>
-                        <button
-                          className="purchase_cancel_btn"
-                          onClick={e => handlePayCancel(item.iorder)}
-                        >
-                          결제취소
-                        </button>
                       </div>
                     </div>
                   ) : (

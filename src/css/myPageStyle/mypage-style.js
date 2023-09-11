@@ -362,6 +362,10 @@ export const PurchaseWrapper = styled.div`
                   background: #cd853f;
                 }
               }
+              .purchase_cancel_btn {
+                background-color: #ab5b5b;
+                color: #fff;
+              }
             }
           }
         }
@@ -407,15 +411,6 @@ export const PurchaseWrapper = styled.div`
             width: 100%;
             span {
               font-size: 18px;
-            }
-            .purchase_cancel_btn {
-              font-family: "NanumSquare";
-              width: 15%;
-              height: 35px;
-              border: none;
-              background-color: #c97575;
-              color: #fff;
-              border-radius: 10px;
             }
           }
         }

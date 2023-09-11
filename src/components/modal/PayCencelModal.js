@@ -2,10 +2,10 @@ import React from "react";
 import { UniteMocalWapper } from "../../css/modalStyle/modal-stylies";
 import { patchPayCancel } from "../../api/mypageFatch";
 
-const PayCencelModal = ({ setPayCancelState, thisIorder }) => {
+const PayCencelModal = ({ setPayCancelState, thisIorderitme }) => {
   const handlePayCancel = async () => {
     try {
-      const data = await patchPayCancel(thisIorder);
+      const data = await patchPayCancel(thisIorderitme);
       setPayCancelState(false);
     } catch (err) {
       console.log(err);
