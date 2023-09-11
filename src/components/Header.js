@@ -19,7 +19,6 @@ const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(accessToken ? true : false);
   // 장바구니 아이템 갯수 state
   const userBasketCount = useSelector(state => state.basket.basketArr);
-
   const [scrollOver, setScrollOver] = useState(0);
   const [scrolled, setScrolled] = useState(false);
 
