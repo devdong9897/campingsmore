@@ -8,6 +8,7 @@ import WishList from "../components/WishList";
 import { cookies, getCookie } from "../api/cookie";
 import { useEffect } from "react";
 import {
+  getAddressSet,
   getCommunityData,
   getMyProfileData,
   getMypageReviewData,
@@ -51,6 +52,8 @@ const Mypage = () => {
   const [reserList, setReserList] = useState([]);
   // 찜내역 state
   const [wishListData, setWishListData] = useState([]);
+  // 배송내역 State
+  const [addressPathList, setAddressPathList] = useState([]);
   const baseUrl = "http://192.168.0.144:5005/img/";
 
   const handleMenuChange = index => {
@@ -70,6 +73,19 @@ const Mypage = () => {
     }
     if (index == 5) {
       reservationData();
+    }
+    if (index == 6) {
+      getAddressData();
+    }
+  };
+
+  // 배송관리내역 실행
+  const getAddressData = async () => {
+    try {
+      const data = await getAddressSet(dispatch);
+      setAddressPathList(data);
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -151,7 +167,12 @@ const Mypage = () => {
     ),
     () => <WishList wishListData={wishListData} />,
     () => <MyReservation reserList={reserList} />,
-    () => <AddressPath />,
+    () => (
+      <AddressPath
+        addressPathList={addressPathList}
+        setAddressPathList={setAddressPathList}
+      />
+    ),
   ];
 
   useEffect(() => {

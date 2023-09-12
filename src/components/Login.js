@@ -11,10 +11,12 @@ import { useEffect } from "react";
 const Login = () => {
   const accessToken = getCookie("accessToken");
   const REST_API_KEY = "0fc03c2467ca0d7ca9999c9d1ed64911";
-  const REDIRECT_URI = "http://112.222.157.156:5005/login/oauth2/code/kakao";
-  const link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+  const HOST_URI = window.location.host;
+  const REDIRECT_URI = `http://${HOST_URI}/login/oauth2/code/kakao`;
+  // const link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
   const loginHandler = () => {
-    window.location.href = link;
+    // window.location.href = `https://${HOST_URI}/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+    window.location.href = `http://${HOST_URI}/oauth2/authorization/kakao?redirect_uri=${REDIRECT_URI}`;
   };
   const [isLoggedIn, setIsLoggedIn] = useState(accessToken ? true : false);
   const dispatch = useDispatch();

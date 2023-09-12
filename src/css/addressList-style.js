@@ -71,4 +71,28 @@ export const AddressListWapper = styled.div`
       }
     }
   }
+  .address_list_box {
+    margin-top: 15px;
+    .address_list {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      li {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        padding: 15px;
+        background: #fffdf7;
+        border-radius: 10px;
+        box-shadow: 3px 3px 3px 2px rgba(0, 0, 0, 0.3);
+        span {
+          padding: 3px 0px;
+          display: grid;
+          grid-template-columns: 100px 1fr;
+        }
+      }
+    }
+  }
 `;

@@ -42,6 +42,9 @@ const Payment = () => {
   const userData = useSelector(state => state.user.UserProFileArr);
   // const ItemData = useSelector(state => state.order.orderItemArr);
   const BasketPayData = useSelector(state => state.basketpay.basketpayArr);
+  const AddressListData = useSelector(
+    state => state.AddressList.addressListArr,
+  );
   console.log("장바구니에서 결제한 데이터 들어옴?", BasketPayData);
   console.log(userAddress);
   console.log("장바구니데이터", BasketData);
@@ -414,12 +417,14 @@ const Payment = () => {
             {campingInfoCall ? (
               ""
             ) : (
-              <button
-                className="payment_postnumber_btn"
-                onClick={handleDaumModal}
-              >
-                주소검색
-              </button>
+              <>
+                <button
+                  className="payment_postnumber_btn"
+                  onClick={handleDaumModal}
+                >
+                  주소검색
+                </button>
+              </>
             )}
 
             <input
