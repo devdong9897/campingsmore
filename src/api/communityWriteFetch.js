@@ -31,7 +31,7 @@ export const deleteBoard = async _iboard => {
 export const postOnePice = async (_iboard, postData) => {
   try {
     const res = await axios.post(
-      `/api/community/onepice?iboard=${_iboard}`,
+      `/api/community/photo?iboard=${_iboard}`,
       postData,
     );
     console.log("이미지 업로드 요청 성공", res);
