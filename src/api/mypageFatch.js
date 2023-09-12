@@ -159,7 +159,20 @@ const patchPayCancel = async thisIorder => {
   }
 };
 
+const getWishList = async () => {
+  try {
+    const res = await axios.get("/api/mypage/wishlist");
+    const result = res.data;
+    console.log("찜하기 목록 불러오자", result);
+    return result;
+  } catch (err) {
+    console.log(err);
+  }
+  return [];
+};
+
 export {
+  getWishList,
   getreservationData,
   postWishList,
   getPaymentItemDetail,

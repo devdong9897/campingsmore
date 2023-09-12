@@ -611,16 +611,29 @@ export const WritingWrapper = styled.div`
   }
 `;
 
-export const DibsWrapper = styled.div`
+export const WishListWrapper = styled.div`
   width: 100%;
   height: 100%;
-  .writing_list {
+  .wishlist_box {
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
+    gap: 10px;
     width: 100%;
-    height: 100%;
+    height: auto;
+    li {
+      font-size: 15px;
+      padding: 10px;
+      background: #fff6e6;
+      border-radius: 5px;
+      box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      &:hover {
+        background: #f5e8d0;
+      }
+    }
   }
-  .dibs_img {
+  .Wish_img {
     margin-left: 50%;
     margin-top: 15%;
     img {

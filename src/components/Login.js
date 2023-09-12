@@ -10,8 +10,8 @@ import { useEffect } from "react";
 
 const Login = () => {
   const accessToken = getCookie("accessToken");
-  const REST_API_KEY = "58abeedd61fb371489a99bb736791694";
-  const REDIRECT_URI = "http://localhost:3000/kakaoauth";
+  const REST_API_KEY = "0fc03c2467ca0d7ca9999c9d1ed64911";
+  const REDIRECT_URI = "http://112.222.157.156:5005/login/oauth2/code/kakao";
   const link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
   const loginHandler = () => {
     window.location.href = link;

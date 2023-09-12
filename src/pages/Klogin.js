@@ -9,12 +9,6 @@ const Klogin = () => {
 
   const kakaoLogin = async () => {
     try {
-      setCookie("kakaoToken", kakaocode, {
-        path: "/",
-        secure: true,
-        sameSite: "none",
-        httpOnly: true,
-      });
       const res = await axios.post("/api/kakao", {
         authorize_code: kakaocode,
       });

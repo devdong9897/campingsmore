@@ -279,7 +279,7 @@ const Payment = () => {
             <h1>주문/결제</h1>
           </div>
 
-          {/* {selectedItem ? (
+          {selectedItem ? (
             <>
               {selectedItem.campInfo ? (
                 <>
@@ -301,9 +301,9 @@ const Payment = () => {
             </>
           ) : (
             ""
-          )} */}
+          )}
 
-          {/* {basket ? (
+          {basket ? (
             <>
               {BasketPayData ? (
                 <ul className="payment_order_list">
@@ -391,7 +391,7 @@ const Payment = () => {
                 </li>
               </ul>
             </>
-          )} */}
+          )}
           <div className="payment_order_del">
             <h1>배송지 정보</h1>
             <p>주문자</p>

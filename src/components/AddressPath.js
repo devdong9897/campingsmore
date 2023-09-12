@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { AddressListWapper } from "../css/addressList-style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
+import DaumPost from "../api/DaumPost";
 
 const AddressPath = () => {
   const [addAddressState, setAddAddressState] = useState(false);
@@ -9,11 +10,41 @@ const AddressPath = () => {
   const [addressDetail, setAddressDetail] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const [fromAddressSet, setFromAddressSet] = useState(false);
   const handleAdd = () => {
     setAddAddressState(true);
   };
+
+  const handleDaumPostCall = () => {
+    setFromAddressSet(true);
+  };
   const handleCancel = () => {
+    setAddress("");
+    setAddressDetail("");
+    setName("");
+    setPhone("");
     setAddAddressState(false);
+  };
+
+  const handleSumbit = () => {
+    const sendData = {
+      address: address,
+      addressDetail: addressDetail,
+      name: name,
+      phone: phone,
+    };
+    if (!sendData.address) {
+      alert("상세주소를 입력하세요");
+    } else if (!sendData.addressDetail) {
+      alert("이름을 입력하세요");
+    } else if (!sendData.name) {
+      alert("전화번호를 입력하세요");
+    } else if (!sendData.phone) {
+      alert("주소를 입력하세요!");
+    } else {
+      alert("오케이 땡규! 오케이 사딸라!");
+    }
+    console.log(sendData);
   };
   return (
     <AddressListWapper>
@@ -35,7 +66,11 @@ const AddressPath = () => {
           <ul className="post_address_list">
             <li>
               <span>주소</span>
-              <input type="text" placeholder="배송지 주소를 입력하세요"></input>
+              <input
+                type="text"
+                placeholder="배송지 주소를 입력하세요"
+                onClick={handleDaumPostCall}
+              ></input>
             </li>
             <li>
               <span>상세주소</span>
@@ -101,7 +136,7 @@ const AddressPath = () => {
                 placeholder="전화번호를 입력하세요"
               ></input>
             </li>
-            <button>배송지 등록하기</button>
+            <button onClick={handleSumbit}>배송지 등록하기</button>
             <button onClick={handleCancel}>취소하기</button>
           </ul>
         </div>

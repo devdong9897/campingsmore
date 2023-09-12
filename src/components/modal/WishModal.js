@@ -14,11 +14,7 @@ const WishModal = ({ wishitem, setIsWishModal }) => {
   };
 
   const handleModal = () => {
-    try {
-      console.log("게임하면 역시~ 트릭컬~");
-    } catch (err) {
-      setIsWishModal(false);
-    }
+    setIsWishModal(false);
   };
   return (
     <UniteMocalWapper>
@@ -26,7 +22,7 @@ const WishModal = ({ wishitem, setIsWishModal }) => {
         <div className="warning_text">
           해당 상품을 찜목록에 추가하시겠습니까?
         </div>
-        <div className="modal_buttons">
+        <div className="modal_button">
           <button onClick={handleWish}>추가</button>
           <button onClick={handleModal}>취소</button>
         </div>
