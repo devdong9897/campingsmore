@@ -104,6 +104,18 @@ const kakaoAccoutPost = async Kdata => {
   return [];
 };
 
+const postCampingCancel = async senddata => {
+  try {
+    const res = await axios.put("/api/camp/cancel", senddata);
+    const result = res.data;
+    console.log("캠핑예약취소확인?", result);
+    return result;
+  } catch (err) {
+    console.log(err);
+  }
+  return [];
+};
+
 export {
   kakaoAccoutPost,
   UserLogoutFetch,
@@ -113,4 +125,5 @@ export {
   LogoutFetch,
   AccoutwithdrawalFetch,
   FindPasswordFetch,
+  postCampingCancel,
 };

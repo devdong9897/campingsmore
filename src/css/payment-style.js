@@ -178,131 +178,161 @@ export const PaymentWrapper = styled.div`
         background-color: white;
         border: 2px solid #d2b48c;
         border-radius: 15px;
+        padding: 20px;
         margin-bottom: 50px;
-        padding-left: 50px;
-
-        h1 {
-          margin: 50px 0 0 0px;
-          font-size: 25px;
+        /* 묶음 */
+        .payment_input_area {
+          display: flex;
+          justify-content: space-between;
+          gap: 1%;
+          width: 100%;
+          height: auto;
+          /* 결제 왼쪽 */
+          .payment_left {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            height: 100%;
+            border-right: 1px solid #191919;
+            p {
+              font-weight: bold;
+              margin-top: 10px;
+            }
+            input {
+              margin-top: 5px;
+              border: none;
+              border-radius: 10px;
+              padding: 8px;
+              background: #f0f0f0;
+            }
+            .payment_username {
+              width: 50%;
+            }
+            .payment_first_usernumber {
+              width: 50%;
+            }
+            .payment_right {
+              width: 50%;
+              height: 100%;
+            }
+            .payment_address {
+              width: 80%;
+            }
+            .payment_address_detail {
+              width: 80%;
+            }
+            .payment_memo {
+              width: 80%;
+              height: 100px;
+            }
+            .payment_postnumber_btn {
+              margin-top: 10px;
+              width: 50%;
+              padding: 10px 0px;
+              border-radius: 10px;
+              border: none;
+              background-color: #d2b48c;
+              color: #fff;
+              &:hover {
+                background-color: #cd853f;
+              }
+            }
+          }
+          .payment_right {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            height: 100%;
+            border-right: 1px solid #191919;
+            .address_list_call {
+              margin-top: 10px;
+              width: 100%;
+              .call_address_btn {
+                margin-top: 10px;
+                width: 100%;
+                padding: 10px 0px;
+                border-radius: 10px;
+                border: none;
+                background-color: #d2b48c;
+                color: #fff;
+                &:hover {
+                  background-color: #cd853f;
+                }
+              }
+            }
+            .address_list_result {
+              margin-top: 10px;
+              width: 100%;
+              height: 300px;
+              overflow-y: scroll;
+              .address_list_data {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                li {
+                  width: 100%;
+                  height: auto;
+                  display: flex;
+                  flex-direction: column;
+                  background: #f0f0f0;
+                  color: #000;
+                  padding: 10px;
+                  border-radius: 10px;
+                  cursor: pointer;
+                  &:hover {
+                    background: #d2b48c;
+                    color: #fff;
+                  }
+                }
+                .active {
+                  background: #d2b48c;
+                  color: #fff;
+                }
+              }
+            }
+          }
+          /* 결제 오른쪽 */
         }
-        p {
-          margin: 20px 0 5px 0px;
-          font-size: 20px;
-        }
-        .payment_address {
-          display: block;
-          width: 300px;
-        }
-        .payment_add {
-          font-size: 12px;
-          color: red;
-        }
-
-        .payment_username {
-          width: 300px;
-          height: 40px;
-          border-radius: 15px;
-          text-indent: 10px;
-          font-size: 20px;
-        }
-        .payment_first_usernumber {
-          width: 200px;
-          height: 40px;
-          border-radius: 15px;
-          text-indent: 10px;
-          font-size: 20px;
-        }
-
-        .payment_usernumber {
-          width: 70px;
-          height: 40px;
-          border-radius: 15px;
-          text-indent: 10px;
-          font-size: 20px;
-        }
-        .payment_postnumber {
-          width: 90px;
-          height: 40px;
-          border-radius: 15px;
-          text-indent: 10px;
-          font-size: 20px;
-          margin-right: 10px;
-        }
-        .payment_postnumber_btn {
-          width: 80px;
-          height: 35px;
-          background-color: white;
-        }
-        .payment_postnumber_btn:hover {
+        /* .address_list {
+          margin: 20px 0px;
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+          width: 35%;
+          border-radius: 10px;
+          .call_address {
+            padding: 10px 15px;
+            text-align: left;
+            border: none;
+            background: #9ab685;
+            color: #fff;
+            font-size: 17px;
+            border-radius: 10px;
+          }
+          .callAddressList_box {
+            width: 100%;
+            height: 125px;
+            overflow: hidden;
+            .address_select {
+              option {
+                display: flex;
+                flex-direction: column;
+              }
+            }
+          }
+          .close_address {
+            width: 100%;
+            border: none;
+            padding: 5px 0px;
+          }
+        } */
+        /* .payment_postnumber_btn:hover {
           background-color: black;
           border-radius: 5px;
           color: white;
           border: none;
-        }
-        .payment_address {
-          width: 400px;
-          height: 40px;
-          border-radius: 15px;
-          text-indent: 10px;
-          font-size: 20px;
-          margin-top: 5px;
-        }
-        .payment_address_detail {
-          width: 350px;
-          height: 40px;
-          border-radius: 15px;
-          padding-left: 10px;
-          margin-top: 5px;
-        }
-        .payment_memo {
-          width: 800px;
-          height: 40px;
-          border-radius: 15px;
-          text-indent: 10px;
-          font-size: 20px;
-        }
-        .plus {
-          color: red;
-        }
-        hr {
-          margin-top: 40px;
-        }
-        .payment_point_money {
-          margin: 20px 0 0 50px;
-          font-size: 20px;
-          display: block;
-          float: left;
-        }
-        .payment_point_money_box,
-        .payment_point_money_box2 {
-          border-top: none;
-          border-left: none;
-          border-right: none;
-          display: block;
-          margin-top: 30px;
-          width: 300px;
-          height: auto;
-          direction: ltr;
-          text-align: right;
-        }
-        .payment_point_money_box2 {
-          margin-top: 50px;
-          margin-right: 30px;
-          float: left;
-        }
-        .payment_all_point {
-          display: block;
-          width: 100px;
-          height: 30px;
-          margin-top: 39px;
-          border: 1px solid #d2b48c;
-          border-radius: 5px;
-          background-color: white;
-          font-size: 17px;
-        }
-        .payment_all_point:hover {
-          border: 1px solid #ff4500;
-        }
+        } */
+
         .title {
           margin-top: 10px;
           display: block;

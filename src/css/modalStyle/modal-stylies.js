@@ -142,7 +142,7 @@ export const UniteMocalWapper = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -80%);
-    width: 500px;
+    width: 800px;
     height: auto;
     padding: 20px;
     background: #fffefa;

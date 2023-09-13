@@ -13,6 +13,7 @@ import {
   postCampReserve,
 } from "../api/campingFetch";
 import SwiperMapDetail from "../components/swiper/SwiperMapDetail";
+import { useSelector } from "react-redux";
 
 const ReservationPayment = () => {
   const [payModal, setPayModal] = useState(false);
@@ -23,6 +24,8 @@ const ReservationPayment = () => {
   const icampParams = searchParams.get("icamp");
   const [dateValue, setDateValue] = useState("");
   const [success, setSuccess] = useState({});
+  // 전역사용자 정보
+  const userInfo = useSelector(state => state.user.UserProFileArr);
 
   // 인풋 state
   const [username, setUserName] = useState("");
@@ -157,7 +160,7 @@ const ReservationPayment = () => {
               <span>예약자 성함</span>
               <input
                 type="text"
-                defaultValue={username}
+                defaultValue={userInfo.name}
                 placeholder="주문자를 입력해주세요"
                 onChange={e => setUserName(e.target.value)}
               ></input>
@@ -173,11 +176,6 @@ const ReservationPayment = () => {
                 <option value={3}>3명</option>
                 <option value={4}>4명</option>
                 <option value={5}>5명</option>
-                <option value={6}>6명</option>
-                <option value={7}>7명</option>
-                <option value={8}>8명</option>
-                <option value={9}>9명</option>
-                <option value={10}>10명</option>
               </select>
             </div>
           </li>
@@ -187,7 +185,7 @@ const ReservationPayment = () => {
               <input
                 type="text"
                 placeholder="전화번호를 입력하세요"
-                defaultValue={phoneNumber}
+                defaultValue={userInfo.phone}
                 onChange={e => setPhoneNumber(e.target.value)}
               ></input>
             </div>
@@ -200,27 +198,6 @@ const ReservationPayment = () => {
                 value={moment(dateValue).format("YYYY-MM-DD")}
               ></input>
             </div>
-          </li>
-        </ul>
-        <span className="title">결제방식</span>
-        <ul className="payment_way_list">
-          <li>
-            <div className="payment_way">
-              <FontAwesomeIcon icon={faCreditCard} />
-            </div>
-            <span>카드</span>
-          </li>
-          <li>
-            <div className="payment_way">결제방식이미지</div>
-            <span>카카오페이</span>
-          </li>
-          <li>
-            <div className="payment_way">결제방식이미지</div>
-            <span>무통장입금</span>
-          </li>
-          <li>
-            <div className="payment_way">결제방식이미지</div>
-            <span>네이버페이</span>
           </li>
         </ul>
         <div className="payment_check">

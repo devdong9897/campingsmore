@@ -1,15 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { addressListArr: [] };
+const initialState = { AddressListArr: [] };
 const AddressListSlice = createSlice({
   name: "AddressListSlice",
   initialState,
   reducers: {
-    addressListSet: (state, action) => {
-      state.addressListArr = action.playload;
+    AddressListSet: (state, action) => {
+      state.AddressListArr = action.payload;
     },
   },
 });
 
 export default AddressListSlice;
-export const { addressListSet } = AddressListSlice.actions;
+export const { AddressListSet } = AddressListSlice.actions;

@@ -39,7 +39,7 @@ const PurchaseHistory = ({ purchase }) => {
     setThispurchaseIndex(iorder);
     setListIndex(subindex);
     try {
-      const data = await getPaymentItemDetail(iorder);
+      const data = await getPaymentItemDetail(iitem);
       setpaymentDetail(data);
     } catch (err) {
       console.log(err);
@@ -129,7 +129,7 @@ const PurchaseHistory = ({ purchase }) => {
                             onClick={e =>
                               handleItemDatail(
                                 item.iorder,
-                                item.itemList[subindex].iitem,
+                                item.itemList[subindex].iorderitem,
                                 subindex,
                               )
                             }

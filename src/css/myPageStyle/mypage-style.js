@@ -666,7 +666,7 @@ export const ReservationHistoryWrapper = styled.div`
       display: flex;
       justify-content: space-between;
       width: 100%;
-      height: 300px;
+      height: 180px;
       border-radius: 10px;
       overflow: hidden;
       border: 1px solid rgba(0, 0, 0, 0.3);
@@ -676,10 +676,10 @@ export const ReservationHistoryWrapper = styled.div`
         overflow: hidden;
         img {
           position: absolute;
-          top: 50%;
+          top: 30%;
           left: 50%;
           transform: translate(-50%, -50%);
-          height: 100%;
+          width: 100%;
         }
       }
       .camping_info {
@@ -699,6 +699,13 @@ export const ReservationHistoryWrapper = styled.div`
           border: none;
           .title {
             font-size: 17px;
+          }
+          .cancel_button {
+            width: 100%;
+            height: 40px;
+            border: none;
+            color: #fff;
+            background: #ab5b5b;
           }
         }
       }

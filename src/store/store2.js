@@ -17,6 +17,6 @@ export default configureStore({
     KakaoData: KakaoDataSlice.reducer,
     basketpay: BasketPaySlice.reducer,
     Reservation: ReservationSlice.reducer,
-    AddressList: AddressListSlice.reducer,
+    addressList: AddressListSlice.reducer,
   },
 });

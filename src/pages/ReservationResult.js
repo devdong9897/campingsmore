@@ -75,7 +75,7 @@ const ReservationResult = () => {
                   type="text"
                   readOnly
                   placeholder="총 사용료"
-                  value={57000}
+                  value={ReserData.price}
                 ></input>
               </div>
             </li>

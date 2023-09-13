@@ -1,5 +1,5 @@
 import axios from "axios";
-import { addressListSet } from "../reducers/addressSlice";
+import { AddressListSet } from "../reducers/addressSlice";
 
 const postWishList = async wishitem => {
   try {
@@ -187,7 +187,7 @@ const getAddressSet = async dispatch => {
     const res = await axios.get("/api/payment/address-list");
     const result = res.data;
     console.log("배송지 목록 불러오기", result);
-    dispatch(addressListSet(result));
+    dispatch(AddressListSet(result));
     return result;
   } catch (err) {
     console.log(err);
