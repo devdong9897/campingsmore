@@ -23,7 +23,7 @@ const SwiperMapDetail = ({ campPicList }) => {
         {campPicList.map((item, index) => (
           <SwiperSlide key={index}>
             <div className="slide_inner">
-              <img src={baseUrl + item.pic} />
+              <img src={"/img/" + item.pic} />
             </div>
           </SwiperSlide>
         ))}

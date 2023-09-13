@@ -109,7 +109,7 @@ const Reservation = () => {
                     >
                       <div className="camping_info_box">
                         <div className="camping_img">
-                          <img src={baseUrl + item.mainPic}></img>
+                          <img src={"/img/" + item.mainPic}></img>
                         </div>
                         <div className="camping_info">
                           <span className="camping_name">{item.name}</span>

@@ -17,7 +17,7 @@ const ReservationResult = () => {
     <ReservationResultWrapper>
       <div className="payment_camping">
         <div className="camping_img">
-          <img src={baseUrl + ReserData.campEntity.mainPic}></img>
+          <img src={"/img/" + ReserData.campEntity.mainPic}></img>
         </div>
         <div className="camping_info">
           <span className="title">{ReserData.campEntity.name}</span>

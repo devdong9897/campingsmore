@@ -359,7 +359,7 @@ const Payment = () => {
                     <div className="camping_info_box">
                       <div className="camping_img">
                         <img
-                          src={`${baseUrl}${selectedItem.campInfo.mainPic} `}
+                          src={`/img/${selectedItem.campInfo.mainPic} `}
                         ></img>
                       </div>
                       <ul className="camping_info_list">

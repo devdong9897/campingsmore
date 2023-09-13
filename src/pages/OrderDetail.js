@@ -189,7 +189,7 @@ const OrderDetail = () => {
                     <span className="profile_title">{item.reviewCtnt}</span>
                     {item.pic ? (
                       <span className="profile_ctnt">
-                        <img src={baseUrl + item.pic}></img>
+                        <img src={"/img/" + item.pic}></img>
                       </span>
                     ) : (
                       ""

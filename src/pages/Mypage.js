@@ -190,7 +190,7 @@ const Mypage = () => {
         <div className="my_menu">
           <span className="my_menu_title">마이페이지</span>
           <div className="profile_img_box">
-            <img src={baseUrl + userData.pic}></img>
+            <img src={"/img/" + userData.pic}></img>
           </div>
           <div className="profile_info">
             <span className="profile_name">{userData.name}</span>
