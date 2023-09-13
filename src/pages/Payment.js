@@ -530,7 +530,7 @@ const Payment = () => {
             <span className="title">결제방식 선택</span>
             {basket ? (
               <div className="pay_type">
-                <button className="card_pay" onClick={handleToPayment}></button>
+                <button className="card_pay" onClick={handleBasketPay}></button>
                 <button
                   className="kakao_pay"
                   onClick={handleToKakaoPay}

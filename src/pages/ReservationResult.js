@@ -43,15 +43,6 @@ const ReservationResult = () => {
                   value={ReserData.name}
                 ></input>
               </div>
-              <div className="input_box">
-                <span>예약인원</span>
-                <input
-                  type="number"
-                  readOnly
-                  placeholder="예약인원을 입력하세요"
-                  value={ReserData.ireserve}
-                ></input>
-              </div>
             </li>
             <li>
               <div className="input_box">

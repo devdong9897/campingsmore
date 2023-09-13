@@ -287,8 +287,13 @@ const OrderList = () => {
             <li key={index}>
               <div className="img">
                 <img src={item.pic} alt="" />
+
                 <div className="wish" onClick={() => handleWish(item.iitem)}>
-                  <img src="../image/wish_border.png"></img>
+                  {item.wish ? (
+                    <img src="../image/wish_full.png"></img>
+                  ) : (
+                    <img src="../image/wish_border.png"></img>
+                  )}
                 </div>
               </div>
               <div className="product_desc">

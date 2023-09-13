@@ -59,8 +59,8 @@ const ReservationPayment = () => {
   const handleModal = () => {
     const senddata = {
       reservation: dateValue,
-      name: username,
-      phone: phoneNumber,
+      name: username ? username : userInfo.name,
+      phone: phoneNumber ? phoneNumber : userInfo.phone,
       payType: "KAKAO",
       iday: thisiday,
     };

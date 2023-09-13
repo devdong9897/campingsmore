@@ -14,6 +14,7 @@ import { getMapData } from "../api/mapDataFetch";
 import SwiperMap from "../components/swiper/SwiperMap";
 import { useDispatch, useSelector } from "react-redux";
 import { KakaoDataAdd } from "../reducers/KakaoDataSlice";
+import { getCamingList } from "../api/campingFetch";
 
 const MainContents = () => {
   const dispatch = useDispatch();
@@ -28,6 +29,8 @@ const MainContents = () => {
   const [qusearch, setQusearch] = useState("");
   // 가져온데이타 맵 데이터 stae
   const [kmapData, setKmapData] = useState([]);
+  // 그냥 지도 데이터
+  const [mapData, setMapData] = useState([]);
 
   const SwiperFadeMemoized = React.memo(SwiperFade);
   const SwiperSliceMemoized = React.memo(SwiperSlice);
@@ -49,6 +52,8 @@ const MainContents = () => {
       const bestitemJson = await getbestitem();
       setBestitem(bestitemJson);
       const mapData = await getMapData(dispatch);
+      const mainMapdata = await getCamingList();
+      setMapData(mainMapdata);
       setKmapData(mapData);
       console.log("카테고리 상품", orderData);
       console.log("추천상품", bestitemJson);
@@ -119,7 +124,11 @@ const MainContents = () => {
       <div className="kakao_map_wrap">
         <span className="map_title">최적의 캠핑 장소를 찾아보세요</span>
         <div className="kakao_map_area">
-          {kmapData ? <SwiperMapMemoized kmapData={kmapData} /> : ""}
+          {kmapData ? (
+            <SwiperMapMemoized kmapData={kmapData} mapData={mapData} />
+          ) : (
+            ""
+          )}
         </div>
       </div>
       <div className="recommned_menu">

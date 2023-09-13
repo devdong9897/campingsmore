@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import { ReservationHistoryWrapper } from "../css/myPageStyle/mypage-style";
 import { postCampingCancel } from "../api/userFatch";
+import CampingCancelModal from "./modal/CampingCancelModal";
 
-const MyReservation = ({ reserList }) => {
+const MyReservation = ({ reserList, setReserList }) => {
   const [thisIday, setThisday] = useState("");
-  const handleCampingCancel = async (iday, ireserve) => {
+  const [isModal, setIsModal] = useState(false);
+  const [cancelData, setCancelData] = useState({});
+  const handleCampingCancel = (iday, ireserve) => {
+    setIsModal(true);
     setThisday(iday);
     console.log(iday);
     console.log(ireserve);
@@ -12,16 +16,21 @@ const MyReservation = ({ reserList }) => {
       ireserve: ireserve,
       iday: iday,
     };
-    try {
-      const data = await postCampingCancel(senddata);
-      console.log("성공?", data);
-    } catch (err) {
-      console.log(err);
-    }
+    setCancelData(senddata);
   };
   console.log("여잘등어오나?", reserList);
   return (
     <ReservationHistoryWrapper>
+      {isModal ? (
+        <CampingCancelModal
+          setIsModal={setIsModal}
+          cancelData={cancelData}
+          setReserList={setReserList}
+        />
+      ) : (
+        ""
+      )}
+
       <h1>캠핑예약내역</h1>
       <ul className="reser_list">
         {reserList.length ? (

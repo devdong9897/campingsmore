@@ -166,7 +166,7 @@ const Mypage = () => {
       />
     ),
     () => <WishList wishListData={wishListData} />,
-    () => <MyReservation reserList={reserList} />,
+    () => <MyReservation reserList={reserList} setReserList={setReserList} />,
     () => (
       <AddressPath
         addressPathList={addressPathList}
