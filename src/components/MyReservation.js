@@ -18,6 +18,7 @@ const MyReservation = ({ reserList, setReserList }) => {
     };
     setCancelData(senddata);
   };
+  const path = process.env.PUBLIC_URL;
   console.log("여잘등어오나?", reserList);
   return (
     <ReservationHistoryWrapper>
@@ -66,7 +67,10 @@ const MyReservation = ({ reserList, setReserList }) => {
             ))}
           </>
         ) : (
-          ""
+          <div className="Wish_img">
+            <img src={`${path}/image/camping_empty.com.png`} alt="" />
+            <p>예약한 캠핑장이 없습니다.</p>
+          </div>
         )}
       </ul>
     </ReservationHistoryWrapper>

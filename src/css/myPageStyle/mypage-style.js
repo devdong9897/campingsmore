@@ -710,5 +710,34 @@ export const ReservationHistoryWrapper = styled.div`
         }
       }
     }
+    .Wish_img {
+      margin-left: 25%;
+      margin-top: 15%;
+      img {
+        width: auto;
+        height: 250px;
+      }
+      p {
+        font-size: 25px;
+        color: #a9a9a9;
+        font-weight: 700;
+        margin-top: 20px;
+        margin-left: 50px;
+      }
+    }
+    /* .Wish_img {
+    margin-left: 50%;
+    margin-top: 15%;
+    img {
+      width: 250px;
+      height: 250px;
+    }
+    p {
+      font-size: 25px;
+      color: #a9a9a9;
+      font-weight: 700;
+      margin-top: 20px;
+      margin-left: 50px;
+    }  */
   }
 `;

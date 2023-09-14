@@ -102,7 +102,7 @@ const PurchaseHistory = ({ purchase }) => {
                         <span>{subitem.totalPrice} 원</span>
                       </div>
                       <div className="purchase_func">
-                        {subitem.reviewYn === null ? (
+                        {subitem.reviewYn === 0 ? (
                           <button
                             className="write_review"
                             onClick={() =>
