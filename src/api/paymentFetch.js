@@ -6,12 +6,23 @@ const getPayMent = async singleItem => {
       `/api/payment/order/${singleItem.iitemId}?quantity=${singleItem.quantitys}`,
     );
     const result = res.data;
-    console.log(result);
-    console.log("getpayment 요청완료", result);
+    console.log("getpayment 요청완료!!!!", result);
     return result;
   } catch (err) {
     console.log(err);
   }
+};
+
+const getCampingData = async () => {
+  try {
+    const res = await axios.get("/api/camp/my-reserve");
+    const result = res.data;
+    console.log("캠핑장 불러왔냐고 섀꺄", result);
+    return result;
+  } catch (err) {
+    console.log(err);
+  }
+  return [];
 };
 
 const postPaymentList = async data => {
@@ -47,4 +58,4 @@ const PostKakaoPay = async newPaymentData => {
   return [];
 };
 
-export { PostPayMent, getPayMent, PostKakaoPay };
+export { PostPayMent, getPayMent, PostKakaoPay, getCampingData };

@@ -2,7 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import DaumPost from "../api/DaumPost";
-import { PostKakaoPay, PostPayMent, getPayMent } from "../api/paymentFetch";
+import {
+  PostKakaoPay,
+  PostPayMent,
+  getCampingData,
+  getPayMent,
+} from "../api/paymentFetch";
 import PaymentModal from "../components/PaymentModal";
 import KpayModal from "../components/modal/KpayModal";
 import { PaymentWrapper } from "../css/payment-style";
@@ -33,6 +38,8 @@ const Payment = () => {
   const singleItem = useSelector(state => state.order.orderItemArr);
   // 예약한 캠핑장 불러오기 state
   const [campingInfoCall, setCampingInfoCall] = useState(false);
+  // 예약한 캠핑잘 리스트 불러오기
+  const [campingInfoList, setCampingInfoList] = useState([]);
   // 카카오페이할시 돌려받은 데이터 state
   const [kakaoPayResult, setKakaoPayResult] = useState({});
   // 카카오페이결제 시 띄우는 모달창
@@ -215,6 +222,17 @@ const Payment = () => {
     }
   };
 
+  // 캠핑 예약리스트 불러오기
+  const getCampingList = async () => {
+    try {
+      const data = await getCampingData();
+      setCampingInfoList(data);
+      console.log("예약리스트 불러옴?", data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const emptyPayment = () => {
     navigate("/main/orderlist");
   };
@@ -247,6 +265,7 @@ const Payment = () => {
   };
   useEffect(() => {
     getPayMentData();
+    getCampingList();
 
     const handleBeforeUnload = event => {
       event.preventDefault();
@@ -304,9 +323,9 @@ const Payment = () => {
             <h1>주문/결제</h1>
           </div>
 
-          {selectedItem ? (
+          {selectedItem || campingInfoList.lenght ? (
             <>
-              {selectedItem.campInfo ? (
+              {selectedItem.campInfo || campingInfoList.lenght ? (
                 <>
                   {campingInfoCall ? (
                     ""
@@ -353,7 +372,7 @@ const Payment = () => {
             </>
           ) : (
             <>
-              {selectedItem.campInfo ? (
+              {selectedItem.campInfo || campingInfoList.lenght ? (
                 <>
                   {campingInfoCall ? (
                     <div className="camping_info_box">

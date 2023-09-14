@@ -27,21 +27,20 @@ const Login = () => {
   const handleLogin = async e => {
     if (id === "" || pass === "") {
       alert("아이디와 비밀번호를 입력해주세요!!");
-    } else if (e.key === "enter") {
-      alert("adawd");
-    }
-    try {
-      e.preventDefault();
-      const login = await fetchLogin(id, pass);
-      const result = login;
-      await getUserData(dispatch);
-      await getBasketList(dispatch);
-      setId("");
-      setPass("");
-    } catch (err) {
-      console.log(err);
-    } finally {
-      navigate("/main");
+    } else {
+      try {
+        e.preventDefault();
+        const login = await fetchLogin(id, pass);
+        const result = login;
+        await getUserData(dispatch);
+        await getBasketList(dispatch);
+        setId("");
+        setPass("");
+      } catch (err) {
+        console.log(err);
+      } finally {
+        navigate("/main");
+      }
     }
   };
 

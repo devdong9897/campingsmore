@@ -39,9 +39,7 @@ const MyReservation = ({ reserList, setReserList }) => {
             {reserList.map((item, index) => (
               <li key={index}>
                 <div className="camping_img">
-                  <img
-                    src={"http://192.168.0.144:5005/img/" + item.mainPic}
-                  ></img>
+                  <img src={"/img/" + item.mainPic}></img>
                 </div>
                 <ul className="camping_info">
                   <li>

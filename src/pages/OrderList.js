@@ -57,12 +57,14 @@ const OrderList = () => {
     setWishItem(iitem);
   };
 
-  // 그냥 장너보기 눌렀을때 나오는것
+  // 그냥 장터보기 눌렀을때 나오는것
   const getOrderList = async () => {
     try {
       const res = await getDefaultOrderList();
       setOrderList(res.itemList);
+      setOrderPage(parseInt(res.maxPage, 10));
       console.log("그냥 장터보기 눌럿을때 나오는거!", res.itemList);
+      console.log("페이지 갯수", res);
     } catch (err) {
       console.log(err);
     }
@@ -88,7 +90,7 @@ const OrderList = () => {
     try {
       const res = await axios.get(`/api/item/search?text=${search}`);
       setOrderList(res.data.itemList);
-      setOrderPage(parseInt(res.data.maxPage, 10));
+      setOrderPage(parseInt(res.maxPage, 10));
       console.log("메인에서 검색하고 들어올때다", search);
     } catch (err) {
       console.log(err);
@@ -101,7 +103,7 @@ const OrderList = () => {
     try {
       const data = await getOrderCateSearch(catecode);
       setOrderList(data.itemList);
-      setOrderPage(data.maxPage);
+      setOrderPage(parseInt(data.maxPage, 10));
       console.log(data.maxPage);
       console.log("메인에서 카테고리 눌럿을때 나오는 데이터", data);
     } catch (err) {
@@ -113,6 +115,7 @@ const OrderList = () => {
   const getOrderSearchData = async searchText => {
     try {
       const data = await getOrderSearch(searchText);
+      setOrderPage(parseInt(data.maxPage, 10));
       console.log("검색한결과닷!", data);
       setOrderList(data.itemList);
     } catch (err) {
