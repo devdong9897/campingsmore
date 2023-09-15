@@ -95,7 +95,7 @@ const Login = () => {
           로그인
         </button>
       </div>
-      {/* <ul className="sub_login">
+      <ul className="sub_login">
         <li>
           <button className="kakao" onClick={loginHandler}>
             카카오 로그인
@@ -110,7 +110,7 @@ const Login = () => {
         <li>
           <button className="naver">네이버 로그인</button>
         </li>
-      </ul> */}
+      </ul>
       <div className="non_member">
         <Link to="/main">비회원으로 계속하기</Link>
       </div>
