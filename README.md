@@ -1,8 +1,6 @@
 <div align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=0:e69138,100:D2B48C&height=200&section=header&text=Camping%20Smore&fontSize=90&fontColor=fff"" />
 </div>
-https://github.com/LSYbuilds/campingsmore/assets/130975837/d8ad8a38-116b-46c3-ac26-6945cfa4bb7f
-
 <br/>
 <br/>
 <div align="center">  
