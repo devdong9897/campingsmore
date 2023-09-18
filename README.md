@@ -14,7 +14,9 @@
   캠핑을 즐겨 이용하는 사람들이 간편하게 캠핑음식을 <br/>주문 할 수 있도록 제작하였습니다.
 </div>
 
+<div align="center">
 ![Wondershare_Filmora_UhF6y4V4gc](https://github.com/LSYbuilds/campingsmore/assets/130975837/1ac4efe4-153e-4a82-bad7-42e068452251)
+</div>
 
 
 <br/>
