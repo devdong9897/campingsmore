@@ -10,7 +10,7 @@
   </h3>
 </div> 
 <div align="center"> 
- 2차 백앤드+프론트엔트 협업 프로젝트 CampingSmore입니다. <br/>
+ 2차 백앤드+프론트엔드 협업 프로젝트 CampingSmore입니다. <br/>
   캠핑을 즐겨 이용하는 사람들이 간편하게 캠핑음식을 <br/>주문 할 수 있도록 제작하였습니다.
 </div>
 <br/>
