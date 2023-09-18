@@ -13,6 +13,12 @@
  2차 협업 프로젝트 CampingSmore입니다. <br/>
   캠핑을 즐겨 이용하는 사람들이 간편하게 캠핑음식을 <br/>주문 할 수 있도록 제작하였습니다.
 </div>
+
+
+<div align="center">
+  ![Wondershare_Filmora_UhF6y4V4gc](https://github.com/LSYbuilds/campingsmore/assets/130975837/27db5bca-7781-4ee3-b18b-5aabb79066cf)
+</div>
+
 <br/>
 <br/>
 <div align="center">
@@ -72,10 +78,6 @@
 </div>
 <br/>
 <br/>
-
-<div align="center">
-  ![Wondershare_Filmora_UhF6y4V4gc](https://github.com/LSYbuilds/campingsmore/assets/130975837/27db5bca-7781-4ee3-b18b-5aabb79066cf)
-</div>
 
 
 <div align="center">
