@@ -32,7 +32,8 @@
 <div align="center">
   - [GitHub](https://github.com/devdong9897/campingsmore) <br/>
   - [Notion](https://www.notion.so/1-TodoList-Grow-Green-d560a969307441a3a59024c019aba580) <br/>
-  - [Figma] (https://www.figma.com/file/gBaoqSAs24bzZh6w4ad8tp/Untitled?type=design&node-id=0-1&mode=design&t=UrIUrZ3CI4y7xys5-0)
+  - [Figma] (https://www.figma.com/file/gBaoqSAs24bzZh6w4ad8tp/Untitled?type=design&node-id=0-1&mode=design&t=UrIUrZ3CI4y7xys5-0) <br/>
+  - 프로젝트 시연영상 - <br/>
   - [Youtube] (https://youtu.be/t1SAFgNBxOI)
 </div>
 
