@@ -1,7 +1,6 @@
 <div align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=0:e69138,100:D2B48C&height=200&section=header&text=Camping%20Smore&fontSize=90&fontColor=fff"" />
 </div>
-
 <br/>
 <br/>
 <div align="center">  
@@ -14,6 +13,13 @@
  2차 협업 프로젝트 CampingSmore입니다. <br/>
   캠핑을 즐겨 이용하는 사람들이 간편하게 캠핑음식을 <br/>주문 할 수 있도록 제작하였습니다.
 </div>
+
+<div align="center">
+  <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/130975837/268596102-1ac4efe4-153e-4a82-bad7-42e068452251.gif" />
+</div>
+<!-- ![Wondershare_Filmora_UhF6y4V4gc](https://github.com/LSYbuilds/campingsmore/assets/130975837/1ac4efe4-153e-4a82-bad7-42e068452251) -->
+
+
 <br/>
 <br/>
 <div align="center">
@@ -73,6 +79,8 @@
 </div>
 <br/>
 <br/>
+
+
 
 <div align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=0:e69138,100:D2B48C&height=200&section=footer" />
