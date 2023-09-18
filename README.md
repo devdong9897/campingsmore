@@ -38,7 +38,7 @@
 <br/> 
 
 <div align="center">
-    <img src="https://img.shields.io/badge/dotenv-#ECD53F?style=flat&logo=React&logoColor=white"/>
+    <img src="https://img.shields.io/badge/dotenv-ECD53F?style=flat&logo=React&logoColor=white"/>
     <img src="https://img.shields.io/badge/css3-1572B6?style=flat&logo=css3&logoColor=white"/>
     <img src="https://img.shields.io/badge/javascript-F7DF1E?style=flat&logo=javascript&logoColor=white"/>
     <img src="https://img.shields.io/badge/React Router-CA4245?style=flat&logo=React Router&logoColor=white"/>
