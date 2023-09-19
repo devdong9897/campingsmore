@@ -611,16 +611,29 @@ export const WritingWrapper = styled.div`
   }
 `;
 
-export const DibsWrapper = styled.div`
+export const WishListWrapper = styled.div`
   width: 100%;
   height: 100%;
-  .writing_list {
+  .wishlist_box {
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
+    gap: 10px;
     width: 100%;
-    height: 100%;
+    height: auto;
+    li {
+      font-size: 15px;
+      padding: 10px;
+      background: #fff6e6;
+      border-radius: 5px;
+      box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      &:hover {
+        background: #f5e8d0;
+      }
+    }
   }
-  .dibs_img {
+  .Wish_img {
     margin-left: 50%;
     margin-top: 15%;
     img {
@@ -653,7 +666,7 @@ export const ReservationHistoryWrapper = styled.div`
       display: flex;
       justify-content: space-between;
       width: 100%;
-      height: 300px;
+      height: 180px;
       border-radius: 10px;
       overflow: hidden;
       border: 1px solid rgba(0, 0, 0, 0.3);
@@ -663,10 +676,10 @@ export const ReservationHistoryWrapper = styled.div`
         overflow: hidden;
         img {
           position: absolute;
-          top: 50%;
+          top: 30%;
           left: 50%;
           transform: translate(-50%, -50%);
-          height: 100%;
+          width: 100%;
         }
       }
       .camping_info {
@@ -687,8 +700,44 @@ export const ReservationHistoryWrapper = styled.div`
           .title {
             font-size: 17px;
           }
+          .cancel_button {
+            width: 100%;
+            height: 40px;
+            border: none;
+            color: #fff;
+            background: #ab5b5b;
+          }
         }
       }
     }
+    .Wish_img {
+      margin-left: 25%;
+      margin-top: 15%;
+      img {
+        width: auto;
+        height: 250px;
+      }
+      p {
+        font-size: 25px;
+        color: #a9a9a9;
+        font-weight: 700;
+        margin-top: 20px;
+        margin-left: 50px;
+      }
+    }
+    /* .Wish_img {
+    margin-left: 50%;
+    margin-top: 15%;
+    img {
+      width: 250px;
+      height: 250px;
+    }
+    p {
+      font-size: 25px;
+      color: #a9a9a9;
+      font-weight: 700;
+      margin-top: 20px;
+      margin-left: 50px;
+    }  */
   }
 `;

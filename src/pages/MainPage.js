@@ -27,6 +27,7 @@ import "../css/kakao-style.css";
 import ReservationResult from "./ReservationResult";
 import Klogin from "./Klogin";
 import KakaoLogin from "react-kakao-login";
+import { getAddressSet } from "../api/mypageFatch";
 
 const MainPage = () => {
   const dispatch = useDispatch();
@@ -34,6 +35,7 @@ const MainPage = () => {
     getUserData(dispatch);
     getBasketList(dispatch);
     getMapData(dispatch);
+    getAddressSet(dispatch);
   }, []);
   return (
     <MainWarp>

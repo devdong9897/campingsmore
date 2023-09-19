@@ -160,7 +160,7 @@ const ReviewModal = ({
             ></textarea>
             <div className="isReview_img">
               <span>현재 등록된 이미지</span>
-              <img src={baseUrl + editReviewData.pic}></img>
+              <img src={"/img" + editReviewData.pic}></img>
             </div>
             <div className="review_upload_box">
               <span>리뷰 이미지를 업로드 해보세요</span>

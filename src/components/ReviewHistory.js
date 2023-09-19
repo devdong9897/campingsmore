@@ -66,7 +66,7 @@ const ReviewHistory = ({ review, setReview }) => {
               <li key={index}>
                 <div className="review_img">
                   <img
-                    src={item.pic ? baseUrl + item.pic : `../image/logo3.png`}
+                    src={item.pic ? "/img/" + item.pic : `../image/logo3.png`}
                     alt="리뷰사진"
                   ></img>
                 </div>

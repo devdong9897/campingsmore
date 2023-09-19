@@ -4,14 +4,16 @@ import EditInformation from "../components/EditInformation";
 import PurchaseHistory from "../components/PurchaseHistory";
 import ReviewHistory from "../components/ReviewHistory";
 import WritingHistory from "../components/WritingHistory";
-import DibsList from "../components/DibsList";
+import WishList from "../components/WishList";
 import { cookies, getCookie } from "../api/cookie";
 import { useEffect } from "react";
 import {
+  getAddressSet,
   getCommunityData,
   getMyProfileData,
   getMypageReviewData,
   getPurchaseData,
+  getWishList,
   getreservationData,
 } from "../api/mypageFatch";
 import { useDispatch, useSelector } from "react-redux";
@@ -48,6 +50,10 @@ const Mypage = () => {
   const [comulist, setComuList] = useState([]);
   // 예약내역 state
   const [reserList, setReserList] = useState([]);
+  // 찜내역 state
+  const [wishListData, setWishListData] = useState([]);
+  // 배송내역 State
+  const [addressPathList, setAddressPathList] = useState([]);
   const baseUrl = "http://192.168.0.144:5005/img/";
 
   const handleMenuChange = index => {
@@ -63,10 +69,34 @@ const Mypage = () => {
       getCommunity();
     }
     if (index == 4) {
-      getPurchase();
+      getWishListData();
     }
     if (index == 5) {
       reservationData();
+    }
+    if (index == 6) {
+      getAddressData();
+    }
+  };
+
+  // 배송관리내역 실행
+  const getAddressData = async () => {
+    try {
+      const data = await getAddressSet(dispatch);
+      setAddressPathList(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // 찜내역 실행
+  const getWishListData = async () => {
+    try {
+      const data = await getWishList();
+      setWishListData(data);
+      console.log("내 찜내역", data);
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -135,9 +165,14 @@ const Mypage = () => {
         getCommunity={getCommunity}
       />
     ),
-    () => <DibsList />,
-    () => <MyReservation reserList={reserList} />,
-    () => <AddressPath />,
+    () => <WishList wishListData={wishListData} />,
+    () => <MyReservation reserList={reserList} setReserList={setReserList} />,
+    () => (
+      <AddressPath
+        addressPathList={addressPathList}
+        setAddressPathList={setAddressPathList}
+      />
+    ),
   ];
 
   useEffect(() => {
@@ -155,7 +190,7 @@ const Mypage = () => {
         <div className="my_menu">
           <span className="my_menu_title">마이페이지</span>
           <div className="profile_img_box">
-            <img src={baseUrl + userData.pic}></img>
+            <img src={"/img/" + userData.pic}></img>
           </div>
           <div className="profile_info">
             <span className="profile_name">{userData.name}</span>

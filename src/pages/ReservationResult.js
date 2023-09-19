@@ -17,7 +17,7 @@ const ReservationResult = () => {
     <ReservationResultWrapper>
       <div className="payment_camping">
         <div className="camping_img">
-          <img src={baseUrl + ReserData.campEntity.mainPic}></img>
+          <img src={"/img/" + ReserData.campEntity.mainPic}></img>
         </div>
         <div className="camping_info">
           <span className="title">{ReserData.campEntity.name}</span>
@@ -43,15 +43,6 @@ const ReservationResult = () => {
                   value={ReserData.name}
                 ></input>
               </div>
-              <div className="input_box">
-                <span>예약인원</span>
-                <input
-                  type="number"
-                  readOnly
-                  placeholder="예약인원을 입력하세요"
-                  value={ReserData.ireserve}
-                ></input>
-              </div>
             </li>
             <li>
               <div className="input_box">
@@ -75,7 +66,7 @@ const ReservationResult = () => {
                   type="text"
                   readOnly
                   placeholder="총 사용료"
-                  value={57000}
+                  value={ReserData.price}
                 ></input>
               </div>
             </li>

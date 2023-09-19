@@ -10,11 +10,13 @@ import { useEffect } from "react";
 
 const Login = () => {
   const accessToken = getCookie("accessToken");
-  const REST_API_KEY = "58abeedd61fb371489a99bb736791694";
-  const REDIRECT_URI = "http://localhost:3000/kakaoauth";
-  const link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+  const REST_API_KEY = "0fc03c2467ca0d7ca9999c9d1ed64911";
+  const HOST_URI = window.location.host;
+  const REDIRECT_URI = `http://${HOST_URI}/login/oauth2/code/kakao`;
+  // const link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
   const loginHandler = () => {
-    window.location.href = link;
+    // window.location.href = `https://${HOST_URI}/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+    window.location.href = `http://${HOST_URI}/oauth2/authorization/kakao?redirect_uri=${REDIRECT_URI}`;
   };
   const [isLoggedIn, setIsLoggedIn] = useState(accessToken ? true : false);
   const dispatch = useDispatch();
@@ -25,21 +27,20 @@ const Login = () => {
   const handleLogin = async e => {
     if (id === "" || pass === "") {
       alert("아이디와 비밀번호를 입력해주세요!!");
-    } else if (e.key === "enter") {
-      alert("adawd");
-    }
-    try {
-      e.preventDefault();
-      const login = await fetchLogin(id, pass);
-      const result = login;
-      await getUserData(dispatch);
-      await getBasketList(dispatch);
-      setId("");
-      setPass("");
-    } catch (err) {
-      console.log(err);
-    } finally {
-      navigate("/main");
+    } else {
+      try {
+        e.preventDefault();
+        const login = await fetchLogin(id, pass);
+        const result = login;
+        await getUserData(dispatch);
+        await getBasketList(dispatch);
+        setId("");
+        setPass("");
+      } catch (err) {
+        console.log(err);
+      } finally {
+        navigate("/main");
+      }
     }
   };
 
@@ -94,7 +95,7 @@ const Login = () => {
           로그인
         </button>
       </div>
-      <ul className="sub_login">
+      {/* <ul className="sub_login">
         <li>
           <button className="kakao" onClick={loginHandler}>
             카카오 로그인
@@ -109,7 +110,7 @@ const Login = () => {
         <li>
           <button className="naver">네이버 로그인</button>
         </li>
-      </ul>
+      </ul> */}
       <div className="non_member">
         <Link to="/main">비회원으로 계속하기</Link>
       </div>

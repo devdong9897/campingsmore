@@ -31,6 +31,7 @@ const Header = () => {
   // 쿠키 로그아웃
   const handleLogout = async () => {
     try {
+      const data = await LogoutFetch();
       deleteCookie();
       setIsLoggedIn(false);
       const LogoutEmpty = [];
@@ -38,7 +39,6 @@ const Header = () => {
       dispatch(UserLogout(LogoutEmpty));
       dispatch(basketItemEmpty(basketEmpty));
       navigate("/");
-      LogoutFetch();
     } catch (err) {
       console.log(err);
     }

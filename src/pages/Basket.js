@@ -78,7 +78,8 @@ const Basket = () => {
   // 체크 박스 관련한 처리
   const [checkArr, setCheckArr] = useState([]);
 
-  const handleSelectItem = _icart => {
+  const handleSelectItem = (_icart, iitem) => {
+    console.log("장수돌침대", _icart);
     const newList = basketList.map(item => {
       if (item.icart === _icart) {
         item.isCheck = !item.isCheck;
@@ -194,7 +195,9 @@ const Basket = () => {
                             <input
                               type="checkbox"
                               checked={item.isCheck}
-                              onChange={() => handleSelectItem(item.icart)}
+                              onChange={() =>
+                                handleSelectItem(item.icart, item.iitem)
+                              }
                             />
                           </div>
                           <div className="basket_product_img">

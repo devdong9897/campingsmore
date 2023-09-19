@@ -1,7 +1,6 @@
 <div align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=0:e69138,100:D2B48C&height=200&section=header&text=Camping%20Smore&fontSize=90&fontColor=fff"" />
 </div>
-
 <br/>
 <br/>
 <div align="center">  
@@ -11,9 +10,17 @@
   </h3>
 </div> 
 <div align="center"> 
- 2차 협업 프로젝트 CampingSmore입니다. <br/>
+ 2차 백앤드+프론트엔드 협업 프로젝트 CampingSmore입니다. <br/>
   캠핑을 즐겨 이용하는 사람들이 간편하게 캠핑음식을 <br/>주문 할 수 있도록 제작하였습니다.
 </div>
+<br/>
+<br/>
+
+<div align="center">
+  <img src="https://raw.githubusercontent.com/LSYbuilds/campingsmore/main/public/image/Project.gif" />
+</div>
+
+
 <br/>
 <br/>
 <div align="center">
@@ -24,8 +31,10 @@
 
 <div align="center">
   - [GitHub](https://github.com/devdong9897/campingsmore) <br/>
-  - [Notion](https://www.notion.so/1-TodoList-Grow-Green-d560a969307441a3a59024c019aba580) <br/>
-  - [Figma] (https://www.figma.com/file/gBaoqSAs24bzZh6w4ad8tp/Untitled?type=design&node-id=0-1&mode=design&t=UrIUrZ3CI4y7xys5-0)
+  - [Notion](https://www.notion.so/TEAM-PROJECT3-c8700645684148ebbb54cd13365ee8cf)) <br/>
+  - [Figma] (https://www.figma.com/file/gBaoqSAs24bzZh6w4ad8tp/Untitled?type=design&node-id=0-1&mode=design&t=UrIUrZ3CI4y7xys5-0) <br/>
+  - 프로젝트 시연영상 - <br/>
+  - [Youtube] (https://youtu.be/t1SAFgNBxOI)
 </div>
 
 
@@ -73,6 +82,8 @@
 </div>
 <br/>
 <br/>
+
+
 
 <div align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=0:e69138,100:D2B48C&height=200&section=footer" />

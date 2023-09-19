@@ -6,6 +6,7 @@ import KakaoMapSlice from "../reducers/KakaoMapSlice";
 import BasketPaySlice from "../reducers/basketPaySlice";
 import KakaoDataSlice from "../reducers/KakaoDataSlice";
 import ReservationSlice from "../reducers/reservationPaySlice";
+import AddressListSlice from "../reducers/addressSlice";
 
 export default configureStore({
   reducer: {
@@ -16,5 +17,6 @@ export default configureStore({
     KakaoData: KakaoDataSlice.reducer,
     basketpay: BasketPaySlice.reducer,
     Reservation: ReservationSlice.reducer,
+    addressList: AddressListSlice.reducer,
   },
 });

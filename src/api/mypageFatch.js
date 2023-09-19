@@ -1,4 +1,5 @@
 import axios from "axios";
+import { AddressListSet } from "../reducers/addressSlice";
 
 const postWishList = async wishitem => {
   try {
@@ -159,7 +160,45 @@ const patchPayCancel = async thisIorder => {
   }
 };
 
+const getWishList = async () => {
+  try {
+    const res = await axios.get("/api/mypage/wishlist");
+    const result = res.data;
+    console.log("찜하기 목록 불러오자", result);
+    return result;
+  } catch (err) {
+    console.log(err);
+  }
+  return [];
+};
+
+const postAddressSet = async sendData => {
+  try {
+    const res = await axios.post("/api/payment/address", sendData);
+    const result = res.data;
+    console.log("배송지 추가등록", result);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const getAddressSet = async dispatch => {
+  try {
+    const res = await axios.get("/api/payment/address-list");
+    const result = res.data;
+    console.log("배송지 목록 불러오기", result);
+    dispatch(AddressListSet(result));
+    return result;
+  } catch (err) {
+    console.log(err);
+  }
+  return [];
+};
+
 export {
+  getAddressSet,
+  postAddressSet,
+  getWishList,
   getreservationData,
   postWishList,
   getPaymentItemDetail,

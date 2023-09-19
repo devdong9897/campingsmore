@@ -2,21 +2,79 @@ import React, { useState } from "react";
 import { AddressListWapper } from "../css/addressList-style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
+import DaumPost from "../api/DaumPost";
+import { getAddressSet, postAddressSet } from "../api/mypageFatch";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
-const AddressPath = () => {
+const AddressPath = ({ addressPathList, setAddressPathList }) => {
+  const dispatch = useDispatch();
   const [addAddressState, setAddAddressState] = useState(false);
   const [address, setAddress] = useState("");
   const [addressDetail, setAddressDetail] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const [fromAddressSet, setFromAddressSet] = useState(false);
   const handleAdd = () => {
     setAddAddressState(true);
   };
+
+  const handleDaumPostCall = () => {
+    setFromAddressSet(true);
+  };
   const handleCancel = () => {
+    setAddress("");
+    setAddressDetail("");
+    setName("");
+    setPhone("");
     setAddAddressState(false);
   };
+
+  const handleSumbit = async () => {
+    const sendData = {
+      address: address,
+      addressDetail: addressDetail,
+      name: name,
+      phone: phone,
+    };
+    if (!sendData.address) {
+      alert("상세주소를 입력하세요");
+    } else if (!sendData.addressDetail) {
+      alert("이름을 입력하세요");
+    } else if (!sendData.name) {
+      alert("전화번호를 입력하세요");
+    } else if (!sendData.phone) {
+      alert("주소를 입력하세요!");
+    } else {
+      alert("오케이 땡규! 오케이 사딸라!");
+      try {
+        console.log(sendData);
+        const data = await postAddressSet(sendData);
+        console.log("보냄?", data);
+        setAddress("");
+        setAddressDetail("");
+        setName("");
+        setPhone("");
+        const renewl = await getAddressSet(dispatch);
+        setAddressPathList(renewl);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    console.log(sendData);
+  };
+
   return (
     <AddressListWapper>
+      {fromAddressSet ? (
+        <DaumPost
+          fromAddressSet={fromAddressSet}
+          setFromAddressSet={setFromAddressSet}
+          setAddress={setAddress}
+        />
+      ) : (
+        ""
+      )}
       <h1>배송지 관리</h1>
       <div className="note">
         <span>
@@ -35,7 +93,12 @@ const AddressPath = () => {
           <ul className="post_address_list">
             <li>
               <span>주소</span>
-              <input type="text" placeholder="배송지 주소를 입력하세요"></input>
+              <input
+                type="text"
+                value={address}
+                placeholder="배송지 주소를 입력하세요"
+                onClick={handleDaumPostCall}
+              ></input>
             </li>
             <li>
               <span>상세주소</span>
@@ -71,6 +134,7 @@ const AddressPath = () => {
               <input
                 type="text"
                 readOnly
+                value={address}
                 placeholder="배송지 주소를 입력하세요"
               ></input>
             </li>
@@ -101,15 +165,42 @@ const AddressPath = () => {
                 placeholder="전화번호를 입력하세요"
               ></input>
             </li>
-            <button>배송지 등록하기</button>
+            <button onClick={handleSumbit}>배송지 등록하기</button>
             <button onClick={handleCancel}>취소하기</button>
           </ul>
         </div>
       ) : (
         ""
       )}
-
-      <div className="address_list_box">등록된 배송지가 없습니다.</div>
+      {addressPathList.length ? (
+        <div className="address_list_box">
+          <h3>등록된 배송지 리스트</h3>
+          <ul className="address_list">
+            {addressPathList.map((item, index) => (
+              <li key={index}>
+                <span>
+                  <p>주소</p>
+                  <p>{item.address}</p>
+                </span>
+                <span>
+                  <p>상세주소</p>
+                  <p>{item.addressDetail}</p>
+                </span>
+                <span>
+                  <p>이름</p>
+                  <p>{item.name}</p>
+                </span>
+                <span>
+                  <p>전화전호</p>
+                  <p>{item.phone}</p>
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : (
+        <div className="address_list_empty">등록된 배송지가 없습니다.</div>
+      )}
     </AddressListWapper>
   );
 };
